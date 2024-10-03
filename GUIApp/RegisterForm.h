@@ -94,9 +94,10 @@ namespace GUIApp {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(56, 53);
+			this->label1->Location = System::Drawing::Point(42, 43);
+			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(56, 16);
+			this->label1->Size = System::Drawing::Size(44, 13);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Nombre";
 			this->label1->Click += gcnew System::EventHandler(this, &RegisterForm::label1_Click);
@@ -104,63 +105,69 @@ namespace GUIApp {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(56, 94);
+			this->label2->Location = System::Drawing::Point(42, 76);
+			this->label2->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(57, 16);
+			this->label2->Size = System::Drawing::Size(44, 13);
 			this->label2->TabIndex = 1;
 			this->label2->Text = L"Apellido";
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(56, 140);
+			this->label3->Location = System::Drawing::Point(42, 114);
+			this->label3->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(30, 16);
+			this->label3->Size = System::Drawing::Size(26, 13);
 			this->label3->TabIndex = 2;
 			this->label3->Text = L"DNI";
 			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(56, 183);
+			this->label4->Location = System::Drawing::Point(42, 149);
+			this->label4->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(49, 16);
+			this->label4->Size = System::Drawing::Size(39, 13);
 			this->label4->TabIndex = 3;
 			this->label4->Text = L"Celular";
 			// 
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(56, 226);
+			this->label5->Location = System::Drawing::Point(42, 184);
+			this->label5->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(54, 16);
+			this->label5->Size = System::Drawing::Size(43, 13);
 			this->label5->TabIndex = 4;
 			this->label5->Text = L"Usuario";
 			// 
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(56, 270);
+			this->label6->Location = System::Drawing::Point(42, 219);
+			this->label6->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(76, 16);
+			this->label6->Size = System::Drawing::Size(61, 13);
 			this->label6->TabIndex = 5;
 			this->label6->Text = L"Contraseña";
 			// 
 			// label7
 			// 
 			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(56, 310);
+			this->label7->Location = System::Drawing::Point(42, 252);
+			this->label7->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(28, 16);
+			this->label7->Size = System::Drawing::Size(23, 13);
 			this->label7->TabIndex = 6;
 			this->label7->Text = L"Rol";
 			// 
 			// btnPassenger
 			// 
-			this->btnPassenger->Location = System::Drawing::Point(148, 304);
-			this->btnPassenger->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->btnPassenger->Location = System::Drawing::Point(111, 247);
+			this->btnPassenger->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->btnPassenger->Name = L"btnPassenger";
-			this->btnPassenger->Size = System::Drawing::Size(75, 33);
+			this->btnPassenger->Size = System::Drawing::Size(56, 27);
 			this->btnPassenger->TabIndex = 7;
 			this->btnPassenger->Text = L"Pasajero";
 			this->btnPassenger->UseVisualStyleBackColor = true;
@@ -168,10 +175,10 @@ namespace GUIApp {
 			// 
 			// btnDriver
 			// 
-			this->btnDriver->Location = System::Drawing::Point(263, 304);
-			this->btnDriver->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->btnDriver->Location = System::Drawing::Point(197, 247);
+			this->btnDriver->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->btnDriver->Name = L"btnDriver";
-			this->btnDriver->Size = System::Drawing::Size(85, 33);
+			this->btnDriver->Size = System::Drawing::Size(64, 27);
 			this->btnDriver->TabIndex = 8;
 			this->btnDriver->Text = L"Conductor";
 			this->btnDriver->UseVisualStyleBackColor = true;
@@ -179,10 +186,10 @@ namespace GUIApp {
 			// 
 			// btnRegister
 			// 
-			this->btnRegister->Location = System::Drawing::Point(189, 364);
-			this->btnRegister->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->btnRegister->Location = System::Drawing::Point(142, 296);
+			this->btnRegister->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->btnRegister->Name = L"btnRegister";
-			this->btnRegister->Size = System::Drawing::Size(101, 34);
+			this->btnRegister->Size = System::Drawing::Size(76, 28);
 			this->btnRegister->TabIndex = 9;
 			this->btnRegister->Text = L"Registrarse";
 			this->btnRegister->UseVisualStyleBackColor = true;
@@ -190,58 +197,57 @@ namespace GUIApp {
 			// 
 			// txtName
 			// 
-			this->txtName->Location = System::Drawing::Point(157, 53);
-			this->txtName->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->txtName->Location = System::Drawing::Point(118, 43);
+			this->txtName->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->txtName->Name = L"txtName";
-			this->txtName->Size = System::Drawing::Size(100, 22);
+			this->txtName->Size = System::Drawing::Size(76, 20);
 			this->txtName->TabIndex = 10;
 			// 
 			// txtLastname
 			// 
-			this->txtLastname->Location = System::Drawing::Point(157, 94);
-			this->txtLastname->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->txtLastname->Location = System::Drawing::Point(118, 76);
+			this->txtLastname->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->txtLastname->Name = L"txtLastname";
-			this->txtLastname->Size = System::Drawing::Size(100, 22);
+			this->txtLastname->Size = System::Drawing::Size(76, 20);
 			this->txtLastname->TabIndex = 11;
 			// 
 			// txtDNI
 			// 
-			this->txtDNI->Location = System::Drawing::Point(157, 140);
-			this->txtDNI->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->txtDNI->Location = System::Drawing::Point(118, 114);
+			this->txtDNI->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->txtDNI->Name = L"txtDNI";
-			this->txtDNI->Size = System::Drawing::Size(100, 22);
+			this->txtDNI->Size = System::Drawing::Size(76, 20);
 			this->txtDNI->TabIndex = 12;
 			// 
 			// txtPhone
 			// 
-			this->txtPhone->Location = System::Drawing::Point(157, 183);
-			this->txtPhone->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->txtPhone->Location = System::Drawing::Point(118, 149);
+			this->txtPhone->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->txtPhone->Name = L"txtPhone";
-			this->txtPhone->Size = System::Drawing::Size(100, 22);
+			this->txtPhone->Size = System::Drawing::Size(76, 20);
 			this->txtPhone->TabIndex = 13;
 			// 
 			// txtUsername
 			// 
-			this->txtUsername->Location = System::Drawing::Point(157, 226);
-			this->txtUsername->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->txtUsername->Location = System::Drawing::Point(118, 184);
+			this->txtUsername->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->txtUsername->Name = L"txtUsername";
-			this->txtUsername->Size = System::Drawing::Size(100, 22);
+			this->txtUsername->Size = System::Drawing::Size(76, 20);
 			this->txtUsername->TabIndex = 14;
 			// 
 			// txtPassword
 			// 
-			this->txtPassword->Location = System::Drawing::Point(157, 270);
-			this->txtPassword->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->txtPassword->Location = System::Drawing::Point(118, 219);
+			this->txtPassword->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->txtPassword->Name = L"txtPassword";
-			this->txtPassword->Size = System::Drawing::Size(100, 22);
+			this->txtPassword->Size = System::Drawing::Size(76, 20);
 			this->txtPassword->TabIndex = 15;
 			// 
 			// btn_back
 			// 
-			this->btn_back->Location = System::Drawing::Point(363, 9);
-			this->btn_back->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->btn_back->Location = System::Drawing::Point(272, 7);
 			this->btn_back->Name = L"btn_back";
-			this->btn_back->Size = System::Drawing::Size(109, 25);
+			this->btn_back->Size = System::Drawing::Size(82, 20);
 			this->btn_back->TabIndex = 16;
 			this->btn_back->Text = L"VOLVER";
 			this->btn_back->UseVisualStyleBackColor = true;
@@ -249,9 +255,9 @@ namespace GUIApp {
 			// 
 			// RegisterForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(484, 426);
+			this->ClientSize = System::Drawing::Size(363, 346);
 			this->Controls->Add(this->btn_back);
 			this->Controls->Add(this->txtPassword);
 			this->Controls->Add(this->txtUsername);
@@ -269,9 +275,10 @@ namespace GUIApp {
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
-			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->Name = L"RegisterForm";
 			this->Text = L"RegisterForm";
+			this->Load += gcnew System::EventHandler(this, &RegisterForm::RegisterForm_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -312,6 +319,10 @@ namespace GUIApp {
 		}
 	}
 	private: System::Void btn_back_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Hide();  // Ocultar el formulario actual
+		LoginForm^ waa = gcnew LoginForm();
+		waa->Show();
+
 	}
 	private: System::Void btnPassenger_Click(System::Object^ sender, System::EventArgs^ e) {
 		pasajero = 1;
@@ -319,5 +330,7 @@ namespace GUIApp {
 	private: System::Void btnDriver_Click(System::Object^ sender, System::EventArgs^ e) {
 		pasajero = 2;
 	}
+private: System::Void RegisterForm_Load(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }
