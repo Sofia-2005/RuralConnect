@@ -319,10 +319,6 @@ namespace GUIApp {
 		}
 	}
 	private: System::Void btn_back_Click(System::Object^ sender, System::EventArgs^ e) {
-		this->Hide();  // Ocultar el formulario actual
-		//LoginForm^ waa = gcnew LoginForm();
-		//waa->Show();
-
 	}
 	private: System::Void btnPassenger_Click(System::Object^ sender, System::EventArgs^ e) {
 		pasajero = 1;
