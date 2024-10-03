@@ -16,10 +16,6 @@ namespace RuralService {
 
 		static List<Object^>^ listUsers = gcnew List<Object^>();
 		
-
-		
-
-
 	public:
 		static void AddDriver(Driver^);
 		static void AddPassenger(Passenger^);

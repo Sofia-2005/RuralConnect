@@ -42,6 +42,7 @@ namespace GUIApp {
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::TextBox^ txt_password;
 	private: System::Windows::Forms::Button^ txt_startSession;
+	private: System::Windows::Forms::Button^ button2;
 
 
 	protected:
@@ -66,6 +67,7 @@ namespace GUIApp {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->txt_password = (gcnew System::Windows::Forms::TextBox());
 			this->txt_startSession = (gcnew System::Windows::Forms::Button());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->fotoLogo))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -88,6 +90,7 @@ namespace GUIApp {
 			this->fotoLogo->Size = System::Drawing::Size(403, 431);
 			this->fotoLogo->TabIndex = 1;
 			this->fotoLogo->TabStop = false;
+			this->fotoLogo->Click += gcnew System::EventHandler(this, &LoginForm::fotoLogo_Click);
 			// 
 			// lbl_username
 			// 
@@ -135,11 +138,22 @@ namespace GUIApp {
 			this->txt_startSession->UseVisualStyleBackColor = true;
 			this->txt_startSession->Click += gcnew System::EventHandler(this, &LoginForm::txt_startSession_Click);
 			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(360, 355);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(9, 13);
+			this->button2->TabIndex = 7;
+			this->button2->Text = L"button2";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &LoginForm::button2_Click);
+			// 
 			// LoginForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(505, 602);
+			this->Controls->Add(this->button2);
 			this->Controls->Add(this->txt_startSession);
 			this->Controls->Add(this->txt_password);
 			this->Controls->Add(this->label1);
@@ -159,21 +173,22 @@ namespace GUIApp {
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 		
-		//this->Hide();
-		RegisterForm^ form = gcnew RegisterForm();
-		form->Show();
+
+		this->Hide();
+		RegisterForm^ form1 = gcnew RegisterForm();
+		form1->Show();
 		
 	}
 	private: System::Void LoginForm_Load(System::Object^ sender, System::EventArgs^ e) {
 		this->BackColor = System::Drawing::Color::Black; // Color negro
 
-		OpenFileDialog^ ofd = gcnew OpenFileDialog();
+		/*OpenFileDialog^ ofd = gcnew OpenFileDialog();
 		ofd->Filter = "Image Files (*.jpg;*.jpeg;)|*.jpg;*.jpeg;";
 		if (ofd->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
 			fotoLogo->Image = gcnew Bitmap(ofd->FileName);
 			// Ajustar el tamaño de la imagen para que se acople al PictureBox
 			fotoLogo->SizeMode = PictureBoxSizeMode::StretchImage;
-		}
+		}*/
 	}
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
@@ -194,6 +209,11 @@ private: System::Void txt_startSession_Click(System::Object^ sender, System::Eve
 }
 private: System::Void txt_password_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	txt_password->PasswordChar = '*';
+}
+private: System::Void fotoLogo_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+
 }
 };
 }

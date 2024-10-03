@@ -1,9 +1,15 @@
 #include "pch.h"
 
 #include "Service.h"
+#include "DuplicatedUsernameException.h"
+#include "DoesNotExistUsernameException.h"
 
 void RuralService::Service::AddPassenger(Passenger^ passenger)
 {
+    for each (Passenger^ p in PassengerList) {
+        if (p->Username == passenger->Username)
+            throw gcnew DuplicatedUsernameException("El usuario ya existe en la base de datos.");
+    }
     PassengerList->Add(passenger);
 }
 
@@ -15,6 +21,7 @@ void RuralService::Service::UpdatePassenger(Passenger^ p)
             return;
         }
     }
+    throw gcnew DoesNotExistUsernameException("El usuario no existe en la base de datos.");
 }
 
 void RuralService::Service::DeletePassenger(String^ username)
@@ -25,6 +32,7 @@ void RuralService::Service::DeletePassenger(String^ username)
             return;
         }
     }
+    throw gcnew DoesNotExistUsernameException("El usuario no existe en la base de datos.");
 }
 
 List<Passenger^>^ RuralService::Service::QueryAllPassengers()
@@ -39,6 +47,7 @@ Passenger^ RuralService::Service::QueryPassengerbyUsername(String^ username)
             return PassengerList[i];
         }
     }
+    throw gcnew DoesNotExistUsernameException("El usuario no existe en la base de datos.");
 }
 
 void RuralService::Service::UpdateDriver(Driver^ p)
@@ -49,6 +58,7 @@ void RuralService::Service::UpdateDriver(Driver^ p)
             return;
         }
     }
+    throw gcnew DoesNotExistUsernameException("El usuario no existe en la base de datos.");
 }
 
 void RuralService::Service::DeleteDriver(String^ username)
@@ -59,6 +69,7 @@ void RuralService::Service::DeleteDriver(String^ username)
             return;
         }
     }
+    throw gcnew DoesNotExistUsernameException("El usuario no existe en la base de datos.");
 }
 
 List<Driver^>^ RuralService::Service::QueryAllDrivers()
@@ -73,6 +84,7 @@ Driver^ RuralService::Service::QueryDriverbyUsername(String^ username)
             return DriverList[i];
         }
     }
+    throw gcnew DoesNotExistUsernameException("El usuario no existe en la base de datos.");
 }
 
 int RuralService::Service::QueryDriverPassengerbyUsername(String^ username, String^ password)
@@ -100,10 +112,13 @@ int RuralService::Service::QueryDriverPassengerbyUsername(String^ username, Stri
 
     return 0;
 
-
 }
 
 void RuralService::Service::AddDriver(Driver^ driver)
 {
+    for each (Driver^ p in DriverList) {
+        if (p->Username == driver->Username)
+            throw gcnew DuplicatedUsernameException("El usuario ya existe en la base de datos.");
+    }
     DriverList->Add(driver);
 }
