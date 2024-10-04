@@ -128,23 +128,58 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DriverPage.cpp" />
     <ClCompile Include="LoginForm.cpp" />
+    <ClCompile Include="PublicRouteDriver.cpp" />
     <ClCompile Include="RegisterForm.cpp" />
+    <ClCompile Include="SelectRouteDriver.cpp" />
+    <ClCompile Include="TripInCourse.cpp" />
+    <ClCompile Include="TripRequestToDriverh.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DriverPage.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="LoginForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="PublicRouteDriver.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="RegisterForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="SelectRouteDriver.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="TripInCourse.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="TripRequestToDriver.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="DriverPage.resx">
+      <DependentUpon>DriverPage.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PublicRouteDriver.resx">
+      <DependentUpon>PublicRouteDriver.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RegisterForm.resx">
       <DependentUpon>RegisterForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectRouteDriver.resx">
+      <DependentUpon>SelectRouteDriver.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TripInCourse.resx">
+      <DependentUpon>TripInCourse.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TripRequestToDriver.resx">
+      <DependentUpon>TripRequestToDriver.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

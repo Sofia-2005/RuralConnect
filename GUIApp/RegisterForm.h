@@ -300,6 +300,7 @@ namespace GUIApp {
 				String^ dni = txtDNI->Text;
 
 				if (pasajero == 1) {
+					MessageBox::Show("Existen " + Service::ShowListCount());
 					Passenger^ p = gcnew Passenger(name, lastname, username, password, phone, dni);
 					Service::AddPassenger(p);
 					MessageBox::Show("Se ha agregado al pasajero " + p->Name + " " + p->LastName);
@@ -315,10 +316,14 @@ namespace GUIApp {
 			catch (Exception^ ex) {
 				MessageBox::Show("No se ha podido agregar al usuario por el siguiente motivo:\n" +
 					ex->Message);
+				pasajero = 0;
 			}
 		}
 	}
 	private: System::Void btn_back_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Hide();  // Ocultar el formulario actual
+		//LoginForm^ waa = gcnew LoginForm();
+		//waa->Show();
 	}
 	private: System::Void btnPassenger_Click(System::Object^ sender, System::EventArgs^ e) {
 		pasajero = 1;

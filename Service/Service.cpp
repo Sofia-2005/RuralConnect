@@ -4,10 +4,16 @@
 #include "DuplicatedUsernameException.h"
 #include "DoesNotExistUsernameException.h"
 
+int RuralService::Service::ShowListCount()
+{
+    return PassengerList->Count;
+}
+
 void RuralService::Service::AddPassenger(Passenger^ passenger)
 {
-    for each (Passenger^ p in PassengerList) {
-        if (p->Username == passenger->Username)
+
+    for each (Passenger^ k in PassengerList) {
+        if (k->Username->Equals(passenger->Username))
             throw gcnew DuplicatedUsernameException("El usuario ya existe en la base de datos.");
     }
     PassengerList->Add(passenger);
@@ -16,7 +22,7 @@ void RuralService::Service::AddPassenger(Passenger^ passenger)
 void RuralService::Service::UpdatePassenger(Passenger^ p)
 {
     for (int i = 0; i < PassengerList->Count; i++) {
-        if (PassengerList[i]->PhoneNumber == p->PhoneNumber) {
+        if (PassengerList[i]->Username == p->Username) {
             PassengerList[i] = p;
             return;
         }
@@ -53,7 +59,7 @@ Passenger^ RuralService::Service::QueryPassengerbyUsername(String^ username)
 void RuralService::Service::UpdateDriver(Driver^ p)
 {
     for (int i = 0; i < DriverList->Count; i++) {
-        if (DriverList[i]->PhoneNumber == p->PhoneNumber) {
+        if (DriverList[i]->Username == p->Username) {
             DriverList[i] = p;
             return;
         }
@@ -109,15 +115,13 @@ int RuralService::Service::QueryDriverPassengerbyUsername(String^ username, Stri
 
         }
     }
-
     return 0;
-
 }
 
 void RuralService::Service::AddDriver(Driver^ driver)
 {
-    for each (Driver^ p in DriverList) {
-        if (p->Username == driver->Username)
+    for each (Driver^ k in DriverList) {
+        if (k->Username->Equals(driver->Username))
             throw gcnew DuplicatedUsernameException("El usuario ya existe en la base de datos.");
     }
     DriverList->Add(driver);

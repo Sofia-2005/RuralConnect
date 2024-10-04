@@ -10,13 +10,12 @@ namespace RuralService {
 	{
 	public:
 		static String^ TXT_PASSENGER_FILE = "passengers.txt";
-	private:
+	public:
 		static List<Passenger^>^ PassengerList = gcnew List<Passenger^>();
 		static List<Driver^>^ DriverList = gcnew List<Driver^>();
 
-		static List<Object^>^ listUsers = gcnew List<Object^>();
-		
 	public:
+		static int ShowListCount();
 		static void AddDriver(Driver^);
 		static void AddPassenger(Passenger^);
 		//Operaciones CRUD (Create, Request, Update, Delete) se utilizan para los mantenimientos de las entidades del sistema

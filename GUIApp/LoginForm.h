@@ -174,7 +174,7 @@ namespace GUIApp {
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 		
 
-		this->Hide();
+		//this->Hide();
 		RegisterForm^ form1 = gcnew RegisterForm();
 		form1->Show();
 		
