@@ -10,12 +10,12 @@ namespace GUIApp {
 	using namespace System::Drawing;
 
 	/// <summary>
-	/// Resumen de PrincipalForm
+	/// Resumen de MyForm
 	/// </summary>
-	public ref class PrincipalForm : public System::Windows::Forms::Form
+	public ref class MyForm : public System::Windows::Forms::Form
 	{
 	public:
-		PrincipalForm(void)
+		MyForm(void)
 		{
 			InitializeComponent();
 			//
@@ -27,21 +27,23 @@ namespace GUIApp {
 		/// <summary>
 		/// Limpiar los recursos que se estén usando.
 		/// </summary>
-		~PrincipalForm()
+		~MyForm()
 		{
 			if (components)
 			{
 				delete components;
 			}
 		}
+
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
-	protected:
+	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::Label^ label1;
-	private: System::Windows::Forms::ProgressBar^ progressBar1;
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label3;
-	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::Button^ button2;
+	private: System::Windows::Forms::Button^ button3;
+	private: System::Windows::Forms::ProgressBar^ progressBar1;
+	private: System::Windows::Forms::Label^ label4;
+	protected:
 
 	private:
 		/// <summary>
@@ -57,91 +59,103 @@ namespace GUIApp {
 		void InitializeComponent(void)
 		{
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->progressBar1 = (gcnew System::Windows::Forms::ProgressBar());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->progressBar1 = (gcnew System::Windows::Forms::ProgressBar());
+			this->label4 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// pictureBox1
 			// 
-			this->pictureBox1->Location = System::Drawing::Point(49, 139);
+			this->pictureBox1->Location = System::Drawing::Point(34, 108);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(212, 207);
-			this->pictureBox1->TabIndex = 0;
+			this->pictureBox1->Size = System::Drawing::Size(162, 189);
+			this->pictureBox1->TabIndex = 1;
 			this->pictureBox1->TabStop = false;
+			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(12, 12);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(75, 23);
+			this->button2->TabIndex = 2;
+			this->button2->Text = L"LOGOUT";
+			this->button2->UseVisualStyleBackColor = true;
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(425, 150);
+			this->label1->Location = System::Drawing::Point(339, 121);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(103, 16);
-			this->label1->TabIndex = 1;
-			this->label1->Text = L"Nombre usuario";
-			this->label1->Click += gcnew System::EventHandler(this, &PrincipalForm::label1_Click);
-			// 
-			// progressBar1
-			// 
-			this->progressBar1->Location = System::Drawing::Point(348, 212);
-			this->progressBar1->Name = L"progressBar1";
-			this->progressBar1->Size = System::Drawing::Size(209, 20);
-			this->progressBar1->TabIndex = 2;
+			this->label1->Size = System::Drawing::Size(128, 16);
+			this->label1->TabIndex = 3;
+			this->label1->Text = L"Nombre del Usuario";
+			this->label1->Click += gcnew System::EventHandler(this, &MyForm::label1_Click);
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(602, 216);
+			this->label2->Location = System::Drawing::Point(437, 185);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(70, 16);
-			this->label2->TabIndex = 3;
-			this->label2->Text = L" 4.5 puntos";
-			this->label2->Click += gcnew System::EventHandler(this, &PrincipalForm::label2_Click);
+			this->label2->Size = System::Drawing::Size(123, 16);
+			this->label2->TabIndex = 4;
+			this->label2->Text = L"puntaje(cant.viajes)";
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(406, 268);
+			this->label3->Location = System::Drawing::Point(274, 252);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(122, 16);
-			this->label3->TabIndex = 4;
-			this->label3->Text = L"Categoria Premium";
+			this->label3->Size = System::Drawing::Size(66, 16);
+			this->label3->TabIndex = 5;
+			this->label3->Text = L"Categoria";
 			// 
-			// button1
+			// button3
 			// 
-			this->button1->Location = System::Drawing::Point(409, 342);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(134, 54);
-			this->button1->TabIndex = 5;
-			this->button1->Text = L"A donde vamos\?";
-			this->button1->UseVisualStyleBackColor = true;
+			this->button3->Location = System::Drawing::Point(316, 311);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(173, 27);
+			this->button3->TabIndex = 6;
+			this->button3->Text = L"¿A DÓNDE VAMOS\?";
+			this->button3->UseVisualStyleBackColor = true;
 			// 
-			// button2
+			// progressBar1
 			// 
-			this->button2->Location = System::Drawing::Point(115, 27);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(79, 42);
-			this->button2->TabIndex = 6;
-			this->button2->Text = L"LogOut";
-			this->button2->UseVisualStyleBackColor = true;
+			this->progressBar1->Location = System::Drawing::Point(254, 178);
+			this->progressBar1->Name = L"progressBar1";
+			this->progressBar1->Size = System::Drawing::Size(158, 23);
+			this->progressBar1->TabIndex = 7;
 			// 
-			// PrincipalForm
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->BackColor = System::Drawing::SystemColors::ActiveCaption;
+			this->label4->Location = System::Drawing::Point(365, 57);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(95, 16);
+			this->label4->TabIndex = 8;
+			this->label4->Text = L"BIENVENIDO :";
+			// 
+			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(817, 531);
-			this->Controls->Add(this->button2);
-			this->Controls->Add(this->button1);
+			this->ClientSize = System::Drawing::Size(626, 431);
+			this->Controls->Add(this->label4);
+			this->Controls->Add(this->progressBar1);
+			this->Controls->Add(this->button3);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
-			this->Controls->Add(this->progressBar1);
 			this->Controls->Add(this->label1);
+			this->Controls->Add(this->button2);
 			this->Controls->Add(this->pictureBox1);
-			this->Name = L"PrincipalForm";
-			this->Text = L"PrincipalForm";
+			this->HelpButton = true;
+			this->Name = L"MyForm";
+			this->Text = L"MyForm";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -150,7 +164,5 @@ namespace GUIApp {
 #pragma endregion
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-	private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
-	};
+};
 }

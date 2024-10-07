@@ -129,7 +129,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DriverPage.cpp" />
+    <ClCompile Include="FindTrip.cpp" />
     <ClCompile Include="LoginForm.cpp" />
+    <ClCompile Include="PrincipalForm.cpp" />
     <ClCompile Include="PublicRouteDriver.cpp" />
     <ClCompile Include="RegisterForm.cpp" />
     <ClCompile Include="SelectRouteDriver.cpp" />
@@ -141,7 +143,13 @@
     <ClInclude Include="DriverPage.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="FindTrip.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="LoginForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="PrincipalForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="PublicRouteDriver.h">
@@ -167,8 +175,14 @@
     <EmbeddedResource Include="DriverPage.resx">
       <DependentUpon>DriverPage.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FindTrip.resx">
+      <DependentUpon>FindTrip.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrincipalForm.resx">
+      <DependentUpon>PrincipalForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PublicRouteDriver.resx">
       <DependentUpon>PublicRouteDriver.h</DependentUpon>
