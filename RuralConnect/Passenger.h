@@ -14,7 +14,7 @@ using namespace System;
 using namespace System::Collections::Generic;
 
 namespace RuralConnect {
-    public ref class Passenger : public User{
+    [Serializable]public ref class Passenger : public User{
     public:
         String^ Address;
         String^ DesiredDestination;
@@ -24,6 +24,10 @@ namespace RuralConnect {
         void CreateRoute();
 
         void CancelRoute();
+        //constructor sin parametros
+        Passenger() {
+
+        }
 
         Passenger(String^ name, String^ lastname, String^ username, String^ password, int phone, String^ dni) {
             Name = name;

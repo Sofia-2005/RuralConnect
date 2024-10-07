@@ -1,15 +1,19 @@
 #pragma once
 
 using namespace System;
+//using namespace System::IO;
 using namespace System::Collections::Generic;
 using namespace RuralConnect;
+using namespace RCPersistance;
 //using namespace RuralPersistance;
 
 namespace RuralService {
 	public ref class Service
 	{
 	public:
-		static String^ TXT_PASSENGER_FILE = "passengers.txt";
+		static String^ XML_PASSENGER_FILE_NAME = "passengers.xml";
+		static String^ BIN_PASSENGER_FILE_NAME = "passengers.bin";
+		static String^ BIN_DRIVER_FILE_NAME = "driver.bin";
 	public:
 		static List<Passenger^>^ PassengerList = gcnew List<Passenger^>();
 		static List<Driver^>^ DriverList = gcnew List<Driver^>();

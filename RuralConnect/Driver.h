@@ -15,7 +15,7 @@ using namespace System;
 using namespace System::Collections::Generic;
 
 namespace RuralConnect {
-    public ref class Driver : public User{
+    [Serializable]public ref class Driver : public User{
     public:
         int NumberOfCompletedTrips;
         List<Route^> TypicalRoutes;
@@ -27,6 +27,10 @@ namespace RuralConnect {
         void CancelRoute();
         void EndPassengerRoute();
         void AddTypicalRoute();
+
+        //constructor sin parametros
+        Driver() {
+        }
 
         Driver(String^ name, String^ lastname, String^ username, String^ password, int phone, String^ dni) {
             Name = name;

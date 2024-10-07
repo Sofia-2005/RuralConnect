@@ -10,7 +10,7 @@ using namespace System;
 using namespace System::Collections::Generic;
 
 namespace RuralConnect{
-    public ref class User {
+    [Serializable]public ref class User {
     public:
         String^ Name;
         String^ LastName;

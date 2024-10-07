@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfPassenger xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Passenger>
+    <Name>2</Name>
+    <LastName>2</LastName>
+    <DNI>2</DNI>
+    <PhoneNumber>2</PhoneNumber>
+    <Username>2</Username>
+    <Password>2</Password>
+    <Qualification>0</Qualification>
+  </Passenger>
+</ArrayOfPassenger>

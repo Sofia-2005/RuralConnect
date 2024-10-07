@@ -20,10 +20,10 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
-    <ProjectGuid>{9E66F239-B150-4904-B317-302D20D5B662}</ProjectGuid>
+    <ProjectGuid>{E975702C-CC19-4577-AA48-4161DA51B2AA}</ProjectGuid>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
-    <RootNamespace>Service</RootNamespace>
+    <RootNamespace>Persistance</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -119,23 +119,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="DoesNotExistUsernameException.h" />
-    <ClInclude Include="DuplicatedUsernameException.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Persistance.h" />
     <ClInclude Include="Resource.h" />
-    <ClInclude Include="Service.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
-    <ClCompile Include="DoesNotExistUsernameException.cpp" />
-    <ClCompile Include="DuplicatedUsernameException.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Service.cpp" />
+    <ClCompile Include="Persistance.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc" />
@@ -149,9 +145,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Persistance\Persistance.vcxproj">
-      <Project>{e975702c-cc19-4577-aa48-4161da51b2aa}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\RuralConnect\RuralConnect.vcxproj">
       <Project>{09f53f1e-fb29-40b8-9f8d-607bfef824ec}</Project>
     </ProjectReference>
