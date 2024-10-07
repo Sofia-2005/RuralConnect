@@ -135,6 +135,7 @@
     <ClCompile Include="SelectRouteDriver.cpp" />
     <ClCompile Include="TripInCourse.cpp" />
     <ClCompile Include="TripRequestToDriverh.cpp" />
+    <ClCompile Include="VehicleForm.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DriverPage.h">
@@ -156,6 +157,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="TripRequestToDriver.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="VehicleForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>
@@ -180,6 +184,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TripRequestToDriver.resx">
       <DependentUpon>TripRequestToDriver.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VehicleForm.resx">
+      <DependentUpon>VehicleForm.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

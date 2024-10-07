@@ -15,7 +15,7 @@ namespace RuralConnect {
         String^ Model;
         int Seats;
         String^ PlateNumber;
-        String^ License;
+        array<Byte>^ License;
     };
 }
 

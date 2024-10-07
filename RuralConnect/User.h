@@ -12,13 +12,13 @@ using namespace System::Collections::Generic;
 namespace RuralConnect{
     public ref class User {
     public:
-        static String^ Name;
-        static String^ LastName;
-        static String^ DNI;
-        static int PhoneNumber;
-        static String^ Username;
-        static String^ Password;
-        static int Qualification;
+        String^ Name;
+        String^ LastName;
+        String^ DNI;
+        int PhoneNumber;
+        String^ Username;
+        String^ Password;
+        int Qualification;
 
         void Register();
 

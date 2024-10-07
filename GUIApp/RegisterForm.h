@@ -1,4 +1,5 @@
 #pragma once
+#include "VehicleForm.h"
 
 namespace GUIApp {
 
@@ -300,24 +301,26 @@ namespace GUIApp {
 				String^ dni = txtDNI->Text;
 
 				if (pasajero == 1) {
-					MessageBox::Show("Existen " + Service::ShowListCount());
 					Passenger^ p = gcnew Passenger(name, lastname, username, password, phone, dni);
 					Service::AddPassenger(p);
 					MessageBox::Show("Se ha agregado al pasajero " + p->Name + " " + p->LastName);
+					
 				}
 				else {
-					Driver^ p = gcnew Driver(name, lastname, username, password, phone, dni);
-					Service::AddDriver(p);
-					MessageBox::Show("Se ha agregado al conductor " + p->Name + " " + p->LastName);
+					VehicleForm^ form1 = gcnew VehicleForm(name, lastname, username, password, phone, dni);
+					form1->Show();
 				}
 				pasajero = 0;
-				this->Close();
 			}
 			catch (Exception^ ex) {
 				MessageBox::Show("No se ha podido agregar al usuario por el siguiente motivo:\n" +
 					ex->Message);
 				pasajero = 0;
 			}
+			this->Close();
+		}
+		else {
+			MessageBox::Show("Debe elegir pasajero o conductor");
 		}
 	}
 	private: System::Void btn_back_Click(System::Object^ sender, System::EventArgs^ e) {

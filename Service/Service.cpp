@@ -16,6 +16,10 @@ void RuralService::Service::AddPassenger(Passenger^ passenger)
         if (k->Username->Equals(passenger->Username))
             throw gcnew DuplicatedUsernameException("El usuario ya existe en la base de datos.");
     }
+    for each (Driver ^ k in DriverList) {
+        if (k->Username->Equals(passenger->Username))
+            throw gcnew DuplicatedUsernameException("El usuario ya existe en la base de datos.");
+    }
     PassengerList->Add(passenger);
 }
 
@@ -121,6 +125,10 @@ int RuralService::Service::QueryDriverPassengerbyUsername(String^ username, Stri
 void RuralService::Service::AddDriver(Driver^ driver)
 {
     for each (Driver^ k in DriverList) {
+        if (k->Username->Equals(driver->Username))
+            throw gcnew DuplicatedUsernameException("El usuario ya existe en la base de datos.");
+    }
+    for each (Passenger ^ k in PassengerList) {
         if (k->Username->Equals(driver->Username))
             throw gcnew DuplicatedUsernameException("El usuario ya existe en la base de datos.");
     }
