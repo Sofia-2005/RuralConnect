@@ -34,6 +34,7 @@ void RuralService::Service::AddPassenger(Passenger^ passenger)
         if (k->Username->Equals(passenger->Username))
             throw gcnew DuplicatedUsernameException("El usuario ya existe en la base de datos.");
     }
+    PassengerList = Service::QueryAllPassengers();
     PassengerList->Add(passenger);
     //Persistance::PersistXMLFile(XML_PASSENGER_FILE_NAME, PassengerList);
     Persistance::PersistBinaryFile(BIN_PASSENGER_FILE_NAME, PassengerList);
