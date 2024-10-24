@@ -17,8 +17,8 @@ using namespace System::Collections::Generic;
 namespace RuralConnect {
     [Serializable]public ref class Driver : public User{
     public:
-        int NumberOfCompletedTrips;
-        List<Route^> TypicalRoutes;
+        int NumberOfCompletedTrips=0;
+        //List<Route^> TypicalRoutes;
         Vehicle^ vehicle;
         void EndMyRoute();
         void CreateRoute();

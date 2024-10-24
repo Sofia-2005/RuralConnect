@@ -176,9 +176,13 @@ namespace GUIApp {
 			// 
 			// pbVehicle
 			// 
+			this->pbVehicle->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
 			this->pbVehicle->Location = System::Drawing::Point(265, 237);
 			this->pbVehicle->Name = L"pbVehicle";
 			this->pbVehicle->Size = System::Drawing::Size(148, 127);
+			this->pbVehicle->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pbVehicle->TabIndex = 9;
 			this->pbVehicle->TabStop = false;
 			// 
