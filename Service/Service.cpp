@@ -122,7 +122,7 @@ List<Driver^>^ RuralService::Service::QueryAllDrivers()
     try {
         //robotsList = (List<RobotWaiter^>^)Persistance::LoadRobotWaitersTextFile(TXT_ROBOT_FILE_NAME);
         //PassengerList = (List<Passenger^>^)Persistance::LoadPassengersXmlFile(XML_PASSENGER_FILE_NAME);
-        DriverList = (List<Driver^>^)Persistance::LoadBinaryFile(BIN_PASSENGER_FILE_NAME);
+        DriverList = (List<Driver^>^)Persistance::LoadBinaryFile(BIN_DRIVER_FILE_NAME);
         if (DriverList == nullptr)
             DriverList = gcnew List<Driver^>();
     }
@@ -145,8 +145,10 @@ Driver^ RuralService::Service::QueryDriverbyUsername(String^ username)
 
 int RuralService::Service::QueryDriverPassengerbyUsername(String^ username, String^ password)
 {
-    
+    DriverList = Service::QueryAllDrivers();
+    PassengerList = Service::QueryAllPassengers();
     for (int i = 0; i < DriverList->Count; i++) {
+       
         if (DriverList[i]->Username == username) {
             
             if (DriverList[i]->Password == password) {
