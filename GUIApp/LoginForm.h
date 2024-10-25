@@ -1,5 +1,6 @@
 #pragma once
 #include "RegisterForm.h"
+#include "PrincipalForm.h"
 
 namespace GUIApp {
 
@@ -9,6 +10,7 @@ namespace GUIApp {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Collections::Generic;
 
 	/// <summary>
 	/// Resumen de LoginForm
@@ -199,6 +201,20 @@ private: System::Void txt_startSession_Click(System::Object^ sender, System::Eve
 
 	if (Service::QueryDriverPassengerbyUsername(usuario, contra)) {
 		MessageBox::Show("El usuario " + contra + " ha iniciado sesion ");
+
+		int i = Service::PassengerOrDriver(usuario);
+		if (i == 0) {
+			Passenger^ p = Service::QueryPassengerbyUsername(usuario);
+			MyForm^ f = gcnew MyForm(p);
+			f->Show();
+		}
+		else {
+			Passenger^ p = Service::QueryPassengerbyUsername(usuario);
+			MyForm^ f = gcnew MyForm(p);
+			f->Show();
+		}
+		this->Hide();
+
 	}
 	else {
 		MessageBox::Show("Usted no se encuentra registrado, debe realizarlo");

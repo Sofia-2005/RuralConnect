@@ -170,3 +170,22 @@ int RuralService::Service::QueryDriverPassengerbyUsername(String^ username, Stri
     return 0;
 }
 
+int RuralService::Service::PassengerOrDriver(String^ username)
+{
+    DriverList = Service::QueryAllDrivers();
+    PassengerList = Service::QueryAllPassengers();
+    for (int i = 0; i < DriverList->Count; i++) {
+
+        if (DriverList[i]->Username == username) {
+            return 1;
+        }
+    }
+
+    for (int i = 0; i < PassengerList->Count; i++) {
+        if (PassengerList[i]->Username == username) {
+            return 0;
+
+        }
+    }
+}
+

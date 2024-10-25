@@ -8,6 +8,7 @@ namespace GUIApp {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace RuralConnect;
 
 	/// <summary>
 	/// Resumen de MyForm
@@ -15,12 +16,15 @@ namespace GUIApp {
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
 	public:
-		MyForm(void)
+
+		static Passenger^ User;
+		MyForm(RuralConnect::Passenger^ user)
 		{
 			InitializeComponent();
 			//
 			//TODO: agregar código de constructor aquí
 			//
+			this->User = user;
 		}
 
 	protected:

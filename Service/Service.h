@@ -34,5 +34,6 @@ namespace RuralService {
 		static Driver^ QueryDriverbyUsername(String^ username);
 
 		static int QueryDriverPassengerbyUsername(String^ username, String^ password);
+		static int PassengerOrDriver(String^ username);
 	};
 }
