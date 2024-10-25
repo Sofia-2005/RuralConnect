@@ -132,6 +132,7 @@
     <ClCompile Include="FindTrip.cpp" />
     <ClCompile Include="LoginForm.cpp" />
     <ClCompile Include="PrincipalForm.cpp" />
+    <ClCompile Include="PrincipalFormDriver.cpp" />
     <ClCompile Include="PublicRouteDriver.cpp" />
     <ClCompile Include="RegisterForm.cpp" />
     <ClCompile Include="SelectRouteDriver.cpp" />
@@ -150,6 +151,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="PrincipalForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="PrincipalFormDriver.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="PublicRouteDriver.h">
@@ -183,6 +187,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PrincipalForm.resx">
       <DependentUpon>PrincipalForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrincipalFormDriver.resx">
+      <DependentUpon>PrincipalFormDriver.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PublicRouteDriver.resx">
       <DependentUpon>PublicRouteDriver.h</DependentUpon>

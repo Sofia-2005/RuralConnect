@@ -133,6 +133,7 @@ namespace GUIApp {
 			this->progressBar1->Name = L"progressBar1";
 			this->progressBar1->Size = System::Drawing::Size(158, 23);
 			this->progressBar1->TabIndex = 7;
+			this->progressBar1->Click += gcnew System::EventHandler(this, &MyForm::progressBar1_Click);
 			// 
 			// label4
 			// 
@@ -168,5 +169,8 @@ namespace GUIApp {
 #pragma endregion
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
+private: System::Void progressBar1_Click(System::Object^ sender, System::EventArgs^ e) {
+
+}
 };
 }

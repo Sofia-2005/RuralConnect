@@ -10,6 +10,8 @@
     <ClCompile Include="TripInCourse.cpp" />
     <ClCompile Include="TripRequestToDriverh.cpp" />
     <ClCompile Include="FindTrip.cpp" />
+    <ClCompile Include="VehicleForm.cpp" />
+    <ClCompile Include="PrincipalFormDriver.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LoginForm.cpp">
@@ -33,34 +35,18 @@
     <ClCompile Include="TripRequestToDriverh.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="VehicleForm.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LoginForm.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="RegisterForm.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="DriverPage.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="PublicRouteDriver.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="SelectRouteDriver.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="TripInCourse.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="TripRequestToDriver.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="VehicleForm.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
+    <ClInclude Include="DriverPage.h" />
+    <ClInclude Include="FindTrip.h" />
+    <ClInclude Include="LoginForm.h" />
+    <ClInclude Include="PrincipalForm.h" />
+    <ClInclude Include="PublicRouteDriver.h" />
+    <ClInclude Include="RegisterForm.h" />
+    <ClInclude Include="SelectRouteDriver.h" />
+    <ClInclude Include="TripInCourse.h" />
+    <ClInclude Include="TripRequestToDriver.h" />
+    <ClInclude Include="VehicleForm.h" />
+    <ClInclude Include="PrincipalFormDriver.h" />
   </ItemGroup>
 </Project>
