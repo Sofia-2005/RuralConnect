@@ -135,7 +135,7 @@ namespace GUIApp {
 			// 
 			// progressBar1
 			// 
-			this->progressBar1->Location = System::Drawing::Point(408, 163);
+			this->progressBar1->Location = System::Drawing::Point(254, 178);
 			this->progressBar1->Name = L"progressBar1";
 			this->progressBar1->Size = System::Drawing::Size(158, 23);
 			this->progressBar1->TabIndex = 7;
