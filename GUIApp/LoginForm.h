@@ -1,6 +1,7 @@
 #pragma once
 #include "RegisterForm.h"
 #include "PrincipalForm.h"
+#include "PrincipalFormDriver.h"
 
 namespace GUIApp {
 
@@ -209,8 +210,8 @@ private: System::Void txt_startSession_Click(System::Object^ sender, System::Eve
 			f->Show();
 		}
 		else {
-			Passenger^ p = Service::QueryPassengerbyUsername(usuario);
-			MyForm^ f = gcnew MyForm(p);
+			Driver^ d = Service::QueryDriverbyUsername(usuario);
+			PrincipalFormDriver^ f = gcnew PrincipalFormDriver(d);
 			f->Show();
 		}
 		this->Hide();

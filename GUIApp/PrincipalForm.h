@@ -103,7 +103,7 @@ namespace GUIApp {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(437, 185);
+			this->label2->Location = System::Drawing::Point(438, 207);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(123, 16);
 			this->label2->TabIndex = 4;
@@ -129,7 +129,7 @@ namespace GUIApp {
 			// 
 			// progressBar1
 			// 
-			this->progressBar1->Location = System::Drawing::Point(254, 178);
+			this->progressBar1->Location = System::Drawing::Point(259, 207);
 			this->progressBar1->Name = L"progressBar1";
 			this->progressBar1->Size = System::Drawing::Size(158, 23);
 			this->progressBar1->TabIndex = 7;
