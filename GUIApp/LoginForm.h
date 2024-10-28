@@ -13,6 +13,7 @@ namespace GUIApp {
 	using namespace System::Drawing;
 	using namespace System::Collections::Generic;
 
+
 	/// <summary>
 	/// Resumen de LoginForm
 	/// </summary>
@@ -38,14 +39,16 @@ namespace GUIApp {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::Button^ btnRegister;
+	protected:
+
 	private: System::Windows::Forms::PictureBox^ fotoLogo;
 	private: System::Windows::Forms::Label^ lbl_username;
 	private: System::Windows::Forms::TextBox^ txt_username;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::TextBox^ txt_password;
 	private: System::Windows::Forms::Button^ txt_startSession;
-	private: System::Windows::Forms::Button^ button2;
+
 
 
 	protected:
@@ -63,34 +66,34 @@ namespace GUIApp {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->btnRegister = (gcnew System::Windows::Forms::Button());
 			this->fotoLogo = (gcnew System::Windows::Forms::PictureBox());
 			this->lbl_username = (gcnew System::Windows::Forms::Label());
 			this->txt_username = (gcnew System::Windows::Forms::TextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->txt_password = (gcnew System::Windows::Forms::TextBox());
 			this->txt_startSession = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->fotoLogo))->BeginInit();
 			this->SuspendLayout();
 			// 
-			// button1
+			// btnRegister
 			// 
-			this->button1->Location = System::Drawing::Point(169, 321);
-			this->button1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(121, 28);
-			this->button1->TabIndex = 0;
-			this->button1->Text = L"Registrarse";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->ContextMenuStripChanged += gcnew System::EventHandler(this, &LoginForm::button1_Click);
-			this->button1->Click += gcnew System::EventHandler(this, &LoginForm::button1_Click);
+			this->btnRegister->Location = System::Drawing::Point(207, 366);
+			this->btnRegister->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->btnRegister->Name = L"btnRegister";
+			this->btnRegister->Size = System::Drawing::Size(179, 52);
+			this->btnRegister->TabIndex = 0;
+			this->btnRegister->Text = L"REGISTRARSE";
+			this->btnRegister->UseVisualStyleBackColor = true;
+			this->btnRegister->ContextMenuStripChanged += gcnew System::EventHandler(this, &LoginForm::btnRegister_Click);
+			this->btnRegister->Click += gcnew System::EventHandler(this, &LoginForm::btnRegister_Click);
 			// 
 			// fotoLogo
 			// 
-			this->fotoLogo->Location = System::Drawing::Point(36, 31);
+			this->fotoLogo->Location = System::Drawing::Point(48, 38);
+			this->fotoLogo->Margin = System::Windows::Forms::Padding(4);
 			this->fotoLogo->Name = L"fotoLogo";
-			this->fotoLogo->Size = System::Drawing::Size(403, 381);
+			this->fotoLogo->Size = System::Drawing::Size(537, 469);
 			this->fotoLogo->TabIndex = 1;
 			this->fotoLogo->TabStop = false;
 			this->fotoLogo->Click += gcnew System::EventHandler(this, &LoginForm::fotoLogo_Click);
@@ -99,72 +102,66 @@ namespace GUIApp {
 			// 
 			this->lbl_username->AutoSize = true;
 			this->lbl_username->BackColor = System::Drawing::SystemColors::ButtonFace;
-			this->lbl_username->Location = System::Drawing::Point(106, 163);
+			this->lbl_username->Location = System::Drawing::Point(142, 162);
+			this->lbl_username->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->lbl_username->Name = L"lbl_username";
-			this->lbl_username->Size = System::Drawing::Size(65, 13);
+			this->lbl_username->Size = System::Drawing::Size(77, 16);
 			this->lbl_username->TabIndex = 2;
 			this->lbl_username->Text = L"USUARIO : ";
 			this->lbl_username->Click += gcnew System::EventHandler(this, &LoginForm::label1_Click);
 			// 
 			// txt_username
 			// 
-			this->txt_username->Location = System::Drawing::Point(206, 163);
+			this->txt_username->Location = System::Drawing::Point(272, 162);
+			this->txt_username->Margin = System::Windows::Forms::Padding(4);
 			this->txt_username->Name = L"txt_username";
-			this->txt_username->Size = System::Drawing::Size(152, 20);
+			this->txt_username->Size = System::Drawing::Size(201, 22);
 			this->txt_username->TabIndex = 3;
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
 			this->label1->BackColor = System::Drawing::SystemColors::ButtonFace;
-			this->label1->Location = System::Drawing::Point(95, 217);
+			this->label1->Location = System::Drawing::Point(127, 207);
+			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(76, 13);
+			this->label1->Size = System::Drawing::Size(92, 16);
 			this->label1->TabIndex = 4;
 			this->label1->Text = L"PASSWORD :";
 			// 
 			// txt_password
 			// 
-			this->txt_password->Location = System::Drawing::Point(204, 212);
+			this->txt_password->Location = System::Drawing::Point(272, 204);
+			this->txt_password->Margin = System::Windows::Forms::Padding(4);
 			this->txt_password->Name = L"txt_password";
-			this->txt_password->Size = System::Drawing::Size(153, 20);
+			this->txt_password->Size = System::Drawing::Size(201, 22);
 			this->txt_password->TabIndex = 5;
 			this->txt_password->TextChanged += gcnew System::EventHandler(this, &LoginForm::txt_password_TextChanged);
 			// 
 			// txt_startSession
 			// 
-			this->txt_startSession->Location = System::Drawing::Point(169, 275);
+			this->txt_startSession->Location = System::Drawing::Point(207, 291);
+			this->txt_startSession->Margin = System::Windows::Forms::Padding(4);
 			this->txt_startSession->Name = L"txt_startSession";
-			this->txt_startSession->Size = System::Drawing::Size(121, 30);
+			this->txt_startSession->Size = System::Drawing::Size(179, 55);
 			this->txt_startSession->TabIndex = 6;
 			this->txt_startSession->Text = L"INICIAR SESION";
 			this->txt_startSession->UseVisualStyleBackColor = true;
 			this->txt_startSession->Click += gcnew System::EventHandler(this, &LoginForm::txt_startSession_Click);
 			// 
-			// button2
-			// 
-			this->button2->Location = System::Drawing::Point(364, 212);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(30, 20);
-			this->button2->TabIndex = 7;
-			this->button2->Text = L"button2";
-			this->button2->UseVisualStyleBackColor = true;
-			this->button2->Click += gcnew System::EventHandler(this, &LoginForm::button2_Click);
-			// 
 			// LoginForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(505, 447);
-			this->Controls->Add(this->button2);
+			this->ClientSize = System::Drawing::Size(673, 550);
 			this->Controls->Add(this->txt_startSession);
 			this->Controls->Add(this->txt_password);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->txt_username);
 			this->Controls->Add(this->lbl_username);
-			this->Controls->Add(this->button1);
+			this->Controls->Add(this->btnRegister);
 			this->Controls->Add(this->fotoLogo);
-			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"LoginForm";
 			this->Text = L"LoginForm";
 			this->Load += gcnew System::EventHandler(this, &LoginForm::LoginForm_Load);
@@ -174,8 +171,7 @@ namespace GUIApp {
 
 		}
 #pragma endregion
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		
+	private: System::Void btnRegister_Click(System::Object^ sender, System::EventArgs^ e) {
 
 		//this->Hide();
 		RegisterForm^ form1 = gcnew RegisterForm();

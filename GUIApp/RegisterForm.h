@@ -97,9 +97,9 @@ namespace GUIApp {
 			this->label1->AutoSize = true;
 			this->label1->Location = System::Drawing::Point(56, 53);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(56, 16);
+			this->label1->Size = System::Drawing::Size(59, 16);
 			this->label1->TabIndex = 0;
-			this->label1->Text = L"Nombre";
+			this->label1->Text = L"Nombre:";
 			this->label1->Click += gcnew System::EventHandler(this, &RegisterForm::label1_Click);
 			// 
 			// label2
@@ -107,54 +107,54 @@ namespace GUIApp {
 			this->label2->AutoSize = true;
 			this->label2->Location = System::Drawing::Point(56, 94);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(57, 16);
+			this->label2->Size = System::Drawing::Size(60, 16);
 			this->label2->TabIndex = 1;
-			this->label2->Text = L"Apellido";
+			this->label2->Text = L"Apellido:";
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
 			this->label3->Location = System::Drawing::Point(56, 140);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(30, 16);
+			this->label3->Size = System::Drawing::Size(33, 16);
 			this->label3->TabIndex = 2;
-			this->label3->Text = L"DNI";
+			this->label3->Text = L"DNI:";
 			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
 			this->label4->Location = System::Drawing::Point(56, 183);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(49, 16);
+			this->label4->Size = System::Drawing::Size(52, 16);
 			this->label4->TabIndex = 3;
-			this->label4->Text = L"Celular";
+			this->label4->Text = L"Celular:";
 			// 
 			// label5
 			// 
 			this->label5->AutoSize = true;
 			this->label5->Location = System::Drawing::Point(56, 226);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(54, 16);
+			this->label5->Size = System::Drawing::Size(57, 16);
 			this->label5->TabIndex = 4;
-			this->label5->Text = L"Usuario";
+			this->label5->Text = L"Usuario:";
 			// 
 			// label6
 			// 
 			this->label6->AutoSize = true;
 			this->label6->Location = System::Drawing::Point(56, 270);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(76, 16);
+			this->label6->Size = System::Drawing::Size(79, 16);
 			this->label6->TabIndex = 5;
-			this->label6->Text = L"Contraseña";
+			this->label6->Text = L"Contraseña:";
 			// 
 			// label7
 			// 
 			this->label7->AutoSize = true;
 			this->label7->Location = System::Drawing::Point(56, 310);
 			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(28, 16);
+			this->label7->Size = System::Drawing::Size(31, 16);
 			this->label7->TabIndex = 6;
-			this->label7->Text = L"Rol";
+			this->label7->Text = L"Rol:";
 			// 
 			// btnPassenger
 			// 
@@ -180,10 +180,10 @@ namespace GUIApp {
 			// 
 			// btnRegister
 			// 
-			this->btnRegister->Location = System::Drawing::Point(189, 364);
+			this->btnRegister->Location = System::Drawing::Point(167, 355);
 			this->btnRegister->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnRegister->Name = L"btnRegister";
-			this->btnRegister->Size = System::Drawing::Size(101, 34);
+			this->btnRegister->Size = System::Drawing::Size(142, 47);
 			this->btnRegister->TabIndex = 9;
 			this->btnRegister->Text = L"Registrarse";
 			this->btnRegister->UseVisualStyleBackColor = true;
@@ -241,11 +241,11 @@ namespace GUIApp {
 			// btn_back
 			// 
 			this->btn_back->Location = System::Drawing::Point(363, 9);
-			this->btn_back->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->btn_back->Margin = System::Windows::Forms::Padding(4);
 			this->btn_back->Name = L"btn_back";
 			this->btn_back->Size = System::Drawing::Size(109, 25);
 			this->btn_back->TabIndex = 16;
-			this->btn_back->Text = L"VOLVER";
+			this->btn_back->Text = L"Volver";
 			this->btn_back->UseVisualStyleBackColor = true;
 			this->btn_back->Click += gcnew System::EventHandler(this, &RegisterForm::btn_back_Click);
 			// 
