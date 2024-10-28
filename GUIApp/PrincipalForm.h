@@ -1,4 +1,5 @@
 #pragma once
+#include "FindTrip.h"
 
 namespace GUIApp {
 
@@ -132,6 +133,7 @@ namespace GUIApp {
 			this->button3->TabIndex = 6;
 			this->button3->Text = L"¿A DÓNDE VAMOS\?";
 			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &MyForm::button3_Click);
 			// 
 			// progressBar1
 			// 
@@ -259,6 +261,16 @@ private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) 
 private: System::Void label3_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+	// Crear una instancia del nuevo formulario (Form2 en este caso)
+	FindTrip^ newForm = gcnew FindTrip();
+
+	// Mostrar el nuevo formulario
+	newForm->Show();
+
+	// Ocultar el formulario actual (opcional)
+	this->Hide();
 }
 };
 }

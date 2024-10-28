@@ -1,4 +1,5 @@
 #pragma once
+#include "SelectRouteDriver.h"
 
 namespace GUIApp {
 
@@ -8,6 +9,8 @@ namespace GUIApp {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace RuralConnect;
+	using namespace RuralService;
 
 	/// <summary>
 	/// Resumen de FindTrip
@@ -39,10 +42,19 @@ namespace GUIApp {
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label3;
-	private: System::Windows::Forms::TextBox^ textBox1;
-	private: System::Windows::Forms::TextBox^ textBox2;
-	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::Button^ button3;
+	private: System::Windows::Forms::TextBox^ txtLatitude;
+	private: System::Windows::Forms::TextBox^ txtLongitudinal;
+	private: System::Windows::Forms::Button^ btnFindTrip;
+	private: System::Windows::Forms::Button^ btnSelectInMap;
+
+
+
+
+
+
+
+
+
 	protected:
 
 	private:
@@ -63,10 +75,10 @@ namespace GUIApp {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->txtLatitude = (gcnew System::Windows::Forms::TextBox());
+			this->txtLongitudinal = (gcnew System::Windows::Forms::TextBox());
+			this->btnFindTrip = (gcnew System::Windows::Forms::Button());
+			this->btnSelectInMap = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// webBrowser1
@@ -76,7 +88,6 @@ namespace GUIApp {
 			this->webBrowser1->Name = L"webBrowser1";
 			this->webBrowser1->Size = System::Drawing::Size(357, 363);
 			this->webBrowser1->TabIndex = 0;
-			this->webBrowser1->DocumentCompleted += gcnew System::Windows::Forms::WebBrowserDocumentCompletedEventHandler(this, &FindTrip::webBrowser1_DocumentCompleted);
 			// 
 			// button2
 			// 
@@ -114,49 +125,50 @@ namespace GUIApp {
 			this->label3->TabIndex = 6;
 			this->label3->Text = L"Longitud";
 			// 
-			// textBox1
+			// txtLatitude
 			// 
-			this->textBox1->Location = System::Drawing::Point(181, 185);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(124, 22);
-			this->textBox1->TabIndex = 7;
+			this->txtLatitude->Location = System::Drawing::Point(181, 185);
+			this->txtLatitude->Name = L"txtLatitude";
+			this->txtLatitude->Size = System::Drawing::Size(124, 22);
+			this->txtLatitude->TabIndex = 7;
 			// 
-			// textBox2
+			// txtLongitudinal
 			// 
-			this->textBox2->Location = System::Drawing::Point(181, 231);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(124, 22);
-			this->textBox2->TabIndex = 8;
+			this->txtLongitudinal->Location = System::Drawing::Point(181, 231);
+			this->txtLongitudinal->Name = L"txtLongitudinal";
+			this->txtLongitudinal->Size = System::Drawing::Size(124, 22);
+			this->txtLongitudinal->TabIndex = 8;
 			// 
-			// button1
+			// btnFindTrip
 			// 
-			this->button1->Location = System::Drawing::Point(79, 340);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(91, 59);
-			this->button1->TabIndex = 9;
-			this->button1->Text = L"Seleccionar en el mapa";
-			this->button1->UseVisualStyleBackColor = true;
-			// 
-			// button3
-			// 
-			this->button3->Font = (gcnew System::Drawing::Font(L"Gill Sans Ultra Bold", 7.8F, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
+			this->btnFindTrip->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button3->Location = System::Drawing::Point(168, 488);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(152, 48);
-			this->button3->TabIndex = 10;
-			this->button3->Text = L"Buscar Viaje";
-			this->button3->UseVisualStyleBackColor = true;
+			this->btnFindTrip->Location = System::Drawing::Point(238, 492);
+			this->btnFindTrip->Name = L"btnFindTrip";
+			this->btnFindTrip->Size = System::Drawing::Size(152, 48);
+			this->btnFindTrip->TabIndex = 13;
+			this->btnFindTrip->Text = L"Buscar Viaje";
+			this->btnFindTrip->UseVisualStyleBackColor = true;
+			this->btnFindTrip->Click += gcnew System::EventHandler(this, &FindTrip::btnFindTrip_Click);
+			// 
+			// btnSelectInMap
+			// 
+			this->btnSelectInMap->Location = System::Drawing::Point(161, 360);
+			this->btnSelectInMap->Name = L"btnSelectInMap";
+			this->btnSelectInMap->Size = System::Drawing::Size(91, 59);
+			this->btnSelectInMap->TabIndex = 14;
+			this->btnSelectInMap->Text = L"Seleccionar en el mapa";
+			this->btnSelectInMap->UseVisualStyleBackColor = true;
 			// 
 			// FindTrip
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(735, 576);
-			this->Controls->Add(this->button3);
-			this->Controls->Add(this->button1);
-			this->Controls->Add(this->textBox2);
-			this->Controls->Add(this->textBox1);
+			this->Controls->Add(this->btnSelectInMap);
+			this->Controls->Add(this->btnFindTrip);
+			this->Controls->Add(this->txtLongitudinal);
+			this->Controls->Add(this->txtLatitude);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
@@ -169,7 +181,23 @@ namespace GUIApp {
 
 		}
 #pragma endregion
-	private: System::Void webBrowser1_DocumentCompleted(System::Object^ sender, System::Windows::Forms::WebBrowserDocumentCompletedEventArgs^ e) {
+
+private: System::Void btnFindTrip_Click(System::Object^ sender, System::EventArgs^ e) {
+	try {
+		double latitude = Convert::ToDouble(txtLatitude->Text);
+		double longitude = Convert::ToDouble(txtLongitudinal->Text);
+		Route^ newtrip = gcnew Route(latitude, longitude);
+
+		MessageBox::Show("Se ha agregado la latitud " + newtrip->Latitude + " " + newtrip->Longitude);
+		this->Close();
+
+		SelectRouteDriver^ f = gcnew SelectRouteDriver();
+		f->Show();
 	}
-	};
+	catch (Exception^ ex) {
+		MessageBox::Show("No se ha podido agregar los datos de su destino por el siguiente motivo:\n" +
+			ex->Message);
+	}
+}
+};
 }

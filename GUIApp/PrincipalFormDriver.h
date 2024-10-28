@@ -1,5 +1,7 @@
 #pragma once
 
+#include "DriverPage.h"
+
 namespace GUIApp {
 
 	using namespace System;
@@ -99,6 +101,7 @@ namespace GUIApp {
 			this->button3->TabIndex = 14;
 			this->button3->Text = L"¿A DÓNDE VAMOS\?";
 			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &PrincipalFormDriver::button3_Click);
 			// 
 			// label2
 			// 
@@ -209,6 +212,16 @@ private: System::Void PrincipalFormDriver_Load(System::Object^ sender, System::E
 private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+	// Crear una instancia del nuevo formulario (Form2 en este caso)
+	DriverPage^ newForm = gcnew DriverPage();
+
+	// Mostrar el nuevo formulario
+	newForm->Show();
+
+	// Ocultar el formulario actual (opcional)
+	this->Hide();
 }
 };
 }

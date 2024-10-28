@@ -16,10 +16,17 @@ namespace RuralConnect {
         array<int>^ StartPoint;
         int Distance;
         int Duration;
+        double Latitude;
+        double Longitude;
 
         void GetEstimatedTime();
 
         void GetEstimatedPrice();
+
+        Route(double latitude, double longitude) {
+            Latitude = latitude;
+            Longitude = longitude;
+        }
 
     };
 }
