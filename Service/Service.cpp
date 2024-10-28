@@ -5,6 +5,7 @@
 #include "DoesNotExistUsernameException.h"
 using namespace System::IO;
 
+
 int RuralService::Service::ShowListCount()
 {
     return PassengerList->Count;
@@ -187,6 +188,60 @@ int RuralService::Service::PassengerOrDriver(String^ username)
             return 0;
 
         }
+    }
+}
+
+String^ RuralService::Service::ReadGPSData(String^ nmeaSentence)
+{
+    String^ result;
+    try {
+        // Asegúrate de que el puerto esté abierto antes de leer
+        if (!ArduinoPort->IsOpen) {
+            OpenPort();
+        }
+
+        String^ nmeaSentence = ArduinoPort->ReadLine();  // Leer una línea completa del puerto serial
+        if (nmeaSentence->StartsWith("$GPGGA")) {
+            Console::WriteLine("Recibido: " + nmeaSentence);  // Imprimir o procesar la línea recibida
+            // Aquí puedes almacenar o procesar la cadena `nmeaSentence`
+        }
+        
+        array<String^>^ data = nmeaSentence->Split(',');
+        String^ latitude = data[2];
+        String^ longitude = data[4];
+        result = latitude + " " + longitude;
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        ClosePort();
+    }
+    
+    return result;
+}
+
+void RuralService::Service::OpenPort()
+{
+    try {
+        ArduinoPort = gcnew SerialPort();
+        ArduinoPort->PortName = "COM5";
+        ArduinoPort->BaudRate = 9600;
+        ArduinoPort->Open();
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+}
+
+void RuralService::Service::ClosePort()
+{
+    try {
+        if (ArduinoPort->IsOpen)
+            ArduinoPort->Close();
+    }
+    catch (Exception^ ex) {
+        throw ex;
     }
 }
 

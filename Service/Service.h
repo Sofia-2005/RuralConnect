@@ -6,6 +6,8 @@ using namespace System::Collections::Generic;
 using namespace RuralConnect;
 using namespace RCPersistance;
 //using namespace RuralPersistance;
+using namespace System::IO::Ports;
+
 
 namespace RuralService {
 	public ref class Service
@@ -17,6 +19,7 @@ namespace RuralService {
 	public:
 		static List<Passenger^>^ PassengerList = gcnew List<Passenger^>();
 		static List<Driver^>^ DriverList = gcnew List<Driver^>();
+		static SerialPort^ ArduinoPort;
 
 	public:
 		static int ShowListCount();
@@ -35,5 +38,10 @@ namespace RuralService {
 
 		static int QueryDriverPassengerbyUsername(String^ username, String^ password);
 		static int PassengerOrDriver(String^ username);
+
+		//static String^ SendRobotToTable( int robotId, int tableNumber);
+		static String^ ReadGPSData(String^ nmeaSentence);
+		static void OpenPort();
+		static void ClosePort();
 	};
 }
