@@ -1,4 +1,6 @@
 #pragma once
+#include "SelectRouteDriver.h"
+#include "PublicRouteDriver.h"
 
 namespace GUIApp {
 
@@ -79,6 +81,7 @@ namespace GUIApp {
 			this->button1->TabIndex = 1;
 			this->button1->Text = L"Crear Ruta";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &DriverPage::button1_Click);
 			// 
 			// button2
 			// 
@@ -88,6 +91,7 @@ namespace GUIApp {
 			this->button2->TabIndex = 2;
 			this->button2->Text = L"Rutas Guardadas";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &DriverPage::button2_Click);
 			// 
 			// label2
 			// 
@@ -125,5 +129,25 @@ namespace GUIApp {
 #pragma endregion
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-	};
+	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+		// Crear una instancia del nuevo formulario (Form2 en este caso)
+		SelectRouteDriver^ newForm = gcnew SelectRouteDriver();
+
+		// Mostrar el nuevo formulario
+		newForm->Show();
+
+		// Ocultar el formulario actual (opcional)
+		this->Hide();
+	}
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		// Crear una instancia del nuevo formulario (Form2 en este caso)
+		PublicRouteDriver^ newForm = gcnew PublicRouteDriver();
+
+		// Mostrar el nuevo formulario
+		newForm->Show();
+
+		// Ocultar el formulario actual (opcional)
+		this->Hide();
+	}
+};
 }

@@ -30,6 +30,7 @@ namespace RuralConnect {
         void ValidatePassenger();
 
         void GetRealTimePosition();
+
     };
 }
 

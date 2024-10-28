@@ -38,7 +38,10 @@ namespace GUIApp {
 	protected:
 	private: System::Windows::Forms::WebBrowser^ webBrowser1;
 	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::Button^ btnRoutes;
+
+
+
 
 	private:
 		/// <summary>
@@ -56,7 +59,7 @@ namespace GUIApp {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->webBrowser1 = (gcnew System::Windows::Forms::WebBrowser());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->btnRoutes = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// label1
@@ -86,21 +89,21 @@ namespace GUIApp {
 			this->label2->Text = L"Cuando ya este en el punto de partida, presione \"publicar ruta\" para mostar su ru"
 				L"ta a los pasajeros";
 			// 
-			// button1
+			// btnRoutes
 			// 
-			this->button1->Location = System::Drawing::Point(288, 369);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(128, 35);
-			this->button1->TabIndex = 3;
-			this->button1->Text = L"Publicar Ruta";
-			this->button1->UseVisualStyleBackColor = true;
+			this->btnRoutes->Location = System::Drawing::Point(266, 378);
+			this->btnRoutes->Name = L"btnRoutes";
+			this->btnRoutes->Size = System::Drawing::Size(128, 35);
+			this->btnRoutes->TabIndex = 5;
+			this->btnRoutes->Text = L"Publicar Ruta";
+			this->btnRoutes->UseVisualStyleBackColor = true;
 			// 
 			// PublicRouteDriver
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(700, 482);
-			this->Controls->Add(this->button1);
+			this->Controls->Add(this->btnRoutes);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->webBrowser1);
 			this->Controls->Add(this->label1);
@@ -111,5 +114,8 @@ namespace GUIApp {
 
 		}
 #pragma endregion
-	};
+
+private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^ e) {
+}
+};
 }
