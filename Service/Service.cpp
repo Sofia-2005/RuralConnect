@@ -19,6 +19,7 @@ void RuralService::Service::AddDriver(Driver^ driver)
         if (k->Username->Equals(driver->Username))
             throw gcnew DuplicatedUsernameException("El usuario ya existe en la base de datos.");
     }
+    DriverList = Service::QueryAllDrivers();
     DriverList->Add(driver);
     Persistance::PersistBinaryFile(BIN_DRIVER_FILE_NAME, DriverList);
 
