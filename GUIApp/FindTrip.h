@@ -37,7 +37,7 @@ namespace GUIApp {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::WebBrowser^ webBrowser1;
+
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Label^ label2;
@@ -46,6 +46,7 @@ namespace GUIApp {
 	private: System::Windows::Forms::TextBox^ txtLongitudinal;
 	private: System::Windows::Forms::Button^ btnFindTrip;
 	private: System::Windows::Forms::Button^ btnSelectInMap;
+	private: System::Windows::Forms::PictureBox^ pictureBox1;
 
 
 
@@ -70,7 +71,7 @@ namespace GUIApp {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->webBrowser1 = (gcnew System::Windows::Forms::WebBrowser());
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(FindTrip::typeid));
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
@@ -79,15 +80,9 @@ namespace GUIApp {
 			this->txtLongitudinal = (gcnew System::Windows::Forms::TextBox());
 			this->btnFindTrip = (gcnew System::Windows::Forms::Button());
 			this->btnSelectInMap = (gcnew System::Windows::Forms::Button());
+			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
-			// 
-			// webBrowser1
-			// 
-			this->webBrowser1->Location = System::Drawing::Point(342, 76);
-			this->webBrowser1->MinimumSize = System::Drawing::Size(20, 20);
-			this->webBrowser1->Name = L"webBrowser1";
-			this->webBrowser1->Size = System::Drawing::Size(357, 363);
-			this->webBrowser1->TabIndex = 0;
 			// 
 			// button2
 			// 
@@ -144,7 +139,7 @@ namespace GUIApp {
 			// 
 			this->btnFindTrip->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btnFindTrip->Location = System::Drawing::Point(238, 492);
+			this->btnFindTrip->Location = System::Drawing::Point(81, 384);
 			this->btnFindTrip->Name = L"btnFindTrip";
 			this->btnFindTrip->Size = System::Drawing::Size(152, 48);
 			this->btnFindTrip->TabIndex = 13;
@@ -161,11 +156,24 @@ namespace GUIApp {
 			this->btnSelectInMap->Text = L"Seleccionar en el mapa";
 			this->btnSelectInMap->UseVisualStyleBackColor = true;
 			// 
+			// pictureBox1
+			// 
+			this->pictureBox1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
+			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
+			this->pictureBox1->Location = System::Drawing::Point(329, -2);
+			this->pictureBox1->Name = L"pictureBox1";
+			this->pictureBox1->Size = System::Drawing::Size(1106, 744);
+			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+			this->pictureBox1->TabIndex = 15;
+			this->pictureBox1->TabStop = false;
+			this->pictureBox1->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &FindTrip::pictureBox1_MouseClick);
+			// 
 			// FindTrip
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(735, 576);
+			this->ClientSize = System::Drawing::Size(1431, 744);
+			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->btnSelectInMap);
 			this->Controls->Add(this->btnFindTrip);
 			this->Controls->Add(this->txtLongitudinal);
@@ -174,14 +182,18 @@ namespace GUIApp {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->button2);
-			this->Controls->Add(this->webBrowser1);
 			this->Name = L"FindTrip";
 			this->Text = L"FindTrip";
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
+
+
+		double latTopLeft = -12.074135, lonTopLeft = -77.083166;   // Coordenadas de la esquina superior izquierda
+		double latBottomRight = -12.064391, lonBottomRight = -77.077202; // Coordenadas de la esquina inferior derecha
 
 private: System::Void btnFindTrip_Click(System::Object^ sender, System::EventArgs^ e) {
 	try {
@@ -202,6 +214,29 @@ private: System::Void btnFindTrip_Click(System::Object^ sender, System::EventArg
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->Hide();
+}
+private: System::Void pictureBox1_MouseClick(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+	//cmabiamos coordenadas pues la imagen esta volteada
+	// Obtener posición del clic en píxeles
+	int x = e->X;
+	int y = e->Y;
+
+	// Tamaño del PictureBox
+	int width = pictureBox1->Width;
+	int height = pictureBox1->Height;
+
+	// Convertir píxeles a coordenadas geográficas teniendo en cuenta la rotación
+	double lat = latTopLeft + (latBottomRight - latTopLeft) * (static_cast<double>(x) / width);
+	double lon = lonTopLeft + (lonBottomRight - lonTopLeft) * (static_cast<double>(y) / height);
+
+	// Dibujar el punto en el mapa
+	System::Drawing::Graphics^ g = pictureBox1->CreateGraphics();
+	int radius = 5; // Radio del punto
+	g->FillEllipse(System::Drawing::Brushes::Blue, x - radius, y - radius, radius * 2, radius * 2);
+
+	// Mostrar las coordenadas en un label o textbox
+	txtLatitude->Text = lat.ToString();
+	txtLongitudinal->Text = lon.ToString();
 }
 };
 }
