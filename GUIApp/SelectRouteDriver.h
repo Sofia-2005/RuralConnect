@@ -41,6 +41,11 @@ namespace GUIApp {
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::Button^ button3;
 	private: System::Windows::Forms::Button^ button4;
+	private: System::Windows::Forms::Button^ btnBack;
+	private: System::Windows::Forms::Button^ btnRouteDetails;
+	private: System::Windows::Forms::Button^ button5;
+
+
 
 	private:
 		/// <summary>
@@ -61,20 +66,23 @@ namespace GUIApp {
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->button4 = (gcnew System::Windows::Forms::Button());
+			this->btnBack = (gcnew System::Windows::Forms::Button());
+			this->btnRouteDetails = (gcnew System::Windows::Forms::Button());
+			this->button5 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(74, 52);
+			this->label1->Location = System::Drawing::Point(50, 54);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(116, 16);
+			this->label1->Size = System::Drawing::Size(128, 16);
 			this->label1->TabIndex = 0;
-			this->label1->Text = L"Seleccionar Ruta: ";
+			this->label1->Text = L"Selecciona una ruta:";
 			// 
 			// webBrowser1
 			// 
-			this->webBrowser1->Location = System::Drawing::Point(66, 139);
+			this->webBrowser1->Location = System::Drawing::Point(48, 79);
 			this->webBrowser1->MinimumSize = System::Drawing::Size(20, 20);
 			this->webBrowser1->Name = L"webBrowser1";
 			this->webBrowser1->Size = System::Drawing::Size(308, 250);
@@ -82,7 +90,7 @@ namespace GUIApp {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(457, 106);
+			this->button1->Location = System::Drawing::Point(439, 79);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(94, 38);
 			this->button1->TabIndex = 2;
@@ -91,7 +99,7 @@ namespace GUIApp {
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(457, 189);
+			this->button2->Location = System::Drawing::Point(439, 149);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(94, 38);
 			this->button2->TabIndex = 3;
@@ -100,7 +108,7 @@ namespace GUIApp {
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(457, 270);
+			this->button3->Location = System::Drawing::Point(439, 219);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(94, 38);
 			this->button3->TabIndex = 4;
@@ -109,18 +117,50 @@ namespace GUIApp {
 			// 
 			// button4
 			// 
-			this->button4->Location = System::Drawing::Point(457, 351);
+			this->button4->Location = System::Drawing::Point(439, 291);
 			this->button4->Name = L"button4";
 			this->button4->Size = System::Drawing::Size(94, 38);
 			this->button4->TabIndex = 5;
 			this->button4->Text = L"Ruta D";
 			this->button4->UseVisualStyleBackColor = true;
 			// 
+			// btnBack
+			// 
+			this->btnBack->Location = System::Drawing::Point(12, 12);
+			this->btnBack->Name = L"btnBack";
+			this->btnBack->Size = System::Drawing::Size(79, 26);
+			this->btnBack->TabIndex = 6;
+			this->btnBack->Text = L"Volver";
+			this->btnBack->UseVisualStyleBackColor = true;
+			this->btnBack->Click += gcnew System::EventHandler(this, &SelectRouteDriver::btnBack_Click);
+			// 
+			// btnRouteDetails
+			// 
+			this->btnRouteDetails->Location = System::Drawing::Point(73, 374);
+			this->btnRouteDetails->Name = L"btnRouteDetails";
+			this->btnRouteDetails->Size = System::Drawing::Size(210, 42);
+			this->btnRouteDetails->TabIndex = 7;
+			this->btnRouteDetails->Text = L"VER DETALLES DE LA RUTA";
+			this->btnRouteDetails->UseVisualStyleBackColor = true;
+			this->btnRouteDetails->Click += gcnew System::EventHandler(this, &SelectRouteDriver::btnRouteDetails_Click);
+			// 
+			// button5
+			// 
+			this->button5->Location = System::Drawing::Point(336, 374);
+			this->button5->Name = L"button5";
+			this->button5->Size = System::Drawing::Size(206, 42);
+			this->button5->TabIndex = 8;
+			this->button5->Text = L"BUSCAR OTRAS RUTAS";
+			this->button5->UseVisualStyleBackColor = true;
+			// 
 			// SelectRouteDriver
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(648, 459);
+			this->Controls->Add(this->button5);
+			this->Controls->Add(this->btnRouteDetails);
+			this->Controls->Add(this->btnBack);
 			this->Controls->Add(this->button4);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->button2);
@@ -134,5 +174,11 @@ namespace GUIApp {
 
 		}
 #pragma endregion
-	};
+	private: System::Void btnBack_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Hide();
+	}
+private: System::Void btnRouteDetails_Click(System::Object^ sender, System::EventArgs^ e) {
+
+}
+};
 }

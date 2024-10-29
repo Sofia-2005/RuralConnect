@@ -91,17 +91,18 @@ namespace GUIApp {
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(33, 36);
+			this->button2->Location = System::Drawing::Point(12, 12);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(75, 23);
 			this->button2->TabIndex = 3;
-			this->button2->Text = L"LOGOUT";
+			this->button2->Text = L"Volver";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &FindTrip::button2_Click);
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(105, 123);
+			this->label1->Location = System::Drawing::Point(95, 120);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(126, 16);
 			this->label1->TabIndex = 4;
@@ -110,31 +111,31 @@ namespace GUIApp {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(30, 185);
+			this->label2->Location = System::Drawing::Point(58, 182);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(46, 16);
+			this->label2->Size = System::Drawing::Size(49, 16);
 			this->label2->TabIndex = 5;
-			this->label2->Text = L"Latitud";
+			this->label2->Text = L"Latitud:";
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(30, 234);
+			this->label3->Location = System::Drawing::Point(58, 231);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(58, 16);
+			this->label3->Size = System::Drawing::Size(61, 16);
 			this->label3->TabIndex = 6;
-			this->label3->Text = L"Longitud";
+			this->label3->Text = L"Longitud:";
 			// 
 			// txtLatitude
 			// 
-			this->txtLatitude->Location = System::Drawing::Point(181, 185);
+			this->txtLatitude->Location = System::Drawing::Point(165, 176);
 			this->txtLatitude->Name = L"txtLatitude";
 			this->txtLatitude->Size = System::Drawing::Size(124, 22);
 			this->txtLatitude->TabIndex = 7;
 			// 
 			// txtLongitudinal
 			// 
-			this->txtLongitudinal->Location = System::Drawing::Point(181, 231);
+			this->txtLongitudinal->Location = System::Drawing::Point(165, 225);
 			this->txtLongitudinal->Name = L"txtLongitudinal";
 			this->txtLongitudinal->Size = System::Drawing::Size(124, 22);
 			this->txtLongitudinal->TabIndex = 8;
@@ -153,9 +154,9 @@ namespace GUIApp {
 			// 
 			// btnSelectInMap
 			// 
-			this->btnSelectInMap->Location = System::Drawing::Point(161, 360);
+			this->btnSelectInMap->Location = System::Drawing::Point(61, 286);
 			this->btnSelectInMap->Name = L"btnSelectInMap";
-			this->btnSelectInMap->Size = System::Drawing::Size(91, 59);
+			this->btnSelectInMap->Size = System::Drawing::Size(192, 38);
 			this->btnSelectInMap->TabIndex = 14;
 			this->btnSelectInMap->Text = L"Seleccionar en el mapa";
 			this->btnSelectInMap->UseVisualStyleBackColor = true;
@@ -188,7 +189,7 @@ private: System::Void btnFindTrip_Click(System::Object^ sender, System::EventArg
 		double longitude = Convert::ToDouble(txtLongitudinal->Text);
 		Route^ newtrip = gcnew Route(latitude, longitude);
 
-		MessageBox::Show("Se ha agregado la latitud " + newtrip->Latitude + " " + newtrip->Longitude);
+		MessageBox::Show("Se ha agregado los datos de su destino con latitud " + newtrip->Latitude + " y longitud " + " " + newtrip->Longitude);
 		this->Close();
 
 		SelectRouteDriver^ f = gcnew SelectRouteDriver();
@@ -198,6 +199,9 @@ private: System::Void btnFindTrip_Click(System::Object^ sender, System::EventArg
 		MessageBox::Show("No se ha podido agregar los datos de su destino por el siguiente motivo:\n" +
 			ex->Message);
 	}
+}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Hide();
 }
 };
 }

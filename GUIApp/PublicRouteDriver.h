@@ -1,4 +1,5 @@
 #pragma once
+#include "TripInCourse.h"
 
 namespace GUIApp {
 
@@ -38,7 +39,9 @@ namespace GUIApp {
 	protected:
 	private: System::Windows::Forms::WebBrowser^ webBrowser1;
 	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::Button^ btnRoutes;
+	private: System::Windows::Forms::Button^ btnPublishRoutes;
+
+	private: System::Windows::Forms::Button^ btnBack;
 
 
 
@@ -59,51 +62,63 @@ namespace GUIApp {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->webBrowser1 = (gcnew System::Windows::Forms::WebBrowser());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->btnRoutes = (gcnew System::Windows::Forms::Button());
+			this->btnPublishRoutes = (gcnew System::Windows::Forms::Button());
+			this->btnBack = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(83, 50);
+			this->label1->Location = System::Drawing::Point(9, 64);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(100, 16);
+			this->label1->Size = System::Drawing::Size(308, 16);
 			this->label1->TabIndex = 0;
-			this->label1->Text = L"Esta es su ruta: ";
+			this->label1->Text = L"A continuación, se muestran los detalles se su ruta:";
 			// 
 			// webBrowser1
 			// 
-			this->webBrowser1->Location = System::Drawing::Point(136, 93);
+			this->webBrowser1->Location = System::Drawing::Point(12, 92);
 			this->webBrowser1->MinimumSize = System::Drawing::Size(20, 20);
 			this->webBrowser1->Name = L"webBrowser1";
-			this->webBrowser1->Size = System::Drawing::Size(399, 187);
+			this->webBrowser1->Size = System::Drawing::Size(693, 250);
 			this->webBrowser1->TabIndex = 1;
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(63, 305);
+			this->label2->Location = System::Drawing::Point(9, 357);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(591, 16);
+			this->label2->Size = System::Drawing::Size(696, 16);
 			this->label2->TabIndex = 2;
-			this->label2->Text = L"Cuando ya este en el punto de partida, presione \"publicar ruta\" para mostar su ru"
-				L"ta a los pasajeros";
+			this->label2->Text = L"Cuando usted se encuentre en el punto de partida, presione el botón de \"publicar "
+				L"ruta\" para mostrarlo a los usuarios.";
 			// 
-			// btnRoutes
+			// btnPublishRoutes
 			// 
-			this->btnRoutes->Location = System::Drawing::Point(266, 378);
-			this->btnRoutes->Name = L"btnRoutes";
-			this->btnRoutes->Size = System::Drawing::Size(128, 35);
-			this->btnRoutes->TabIndex = 5;
-			this->btnRoutes->Text = L"Publicar Ruta";
-			this->btnRoutes->UseVisualStyleBackColor = true;
+			this->btnPublishRoutes->Location = System::Drawing::Point(240, 404);
+			this->btnPublishRoutes->Name = L"btnPublishRoutes";
+			this->btnPublishRoutes->Size = System::Drawing::Size(158, 48);
+			this->btnPublishRoutes->TabIndex = 5;
+			this->btnPublishRoutes->Text = L"PUBLICAR RUTA";
+			this->btnPublishRoutes->UseVisualStyleBackColor = true;
+			this->btnPublishRoutes->Click += gcnew System::EventHandler(this, &PublicRouteDriver::btnPublishRoutes_Click);
+			// 
+			// btnBack
+			// 
+			this->btnBack->Location = System::Drawing::Point(12, 12);
+			this->btnBack->Name = L"btnBack";
+			this->btnBack->Size = System::Drawing::Size(79, 26);
+			this->btnBack->TabIndex = 8;
+			this->btnBack->Text = L"Volver";
+			this->btnBack->UseVisualStyleBackColor = true;
 			// 
 			// PublicRouteDriver
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(700, 482);
-			this->Controls->Add(this->btnRoutes);
+			this->ClientSize = System::Drawing::Size(710, 482);
+			this->Controls->Add(this->btnBack);
+			this->Controls->Add(this->btnPublishRoutes);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->webBrowser1);
 			this->Controls->Add(this->label1);
@@ -116,6 +131,11 @@ namespace GUIApp {
 #pragma endregion
 
 private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void btnPublishRoutes_Click(System::Object^ sender, System::EventArgs^ e) {
+	TripInCourse^ PublishRoutes = gcnew TripInCourse();
+	PublishRoutes->Show();
+	this->Hide();
 }
 };
 }

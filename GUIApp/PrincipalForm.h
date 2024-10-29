@@ -93,9 +93,9 @@ namespace GUIApp {
 			// 
 			// pictureBox1
 			// 
-			this->pictureBox1->Location = System::Drawing::Point(42, 112);
+			this->pictureBox1->Location = System::Drawing::Point(27, 52);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(162, 189);
+			this->pictureBox1->Size = System::Drawing::Size(203, 235);
 			this->pictureBox1->TabIndex = 1;
 			this->pictureBox1->TabStop = false;
 			// 
@@ -122,7 +122,7 @@ namespace GUIApp {
 			// txtCategoria
 			// 
 			this->txtCategoria->AutoSize = true;
-			this->txtCategoria->Location = System::Drawing::Point(394, 236);
+			this->txtCategoria->Location = System::Drawing::Point(394, 241);
 			this->txtCategoria->Name = L"txtCategoria";
 			this->txtCategoria->Size = System::Drawing::Size(66, 16);
 			this->txtCategoria->TabIndex = 5;
@@ -172,15 +172,15 @@ namespace GUIApp {
 			this->txtUserName->AutoSize = true;
 			this->txtUserName->Location = System::Drawing::Point(339, 121);
 			this->txtUserName->Name = L"txtUserName";
-			this->txtUserName->Size = System::Drawing::Size(128, 16);
+			this->txtUserName->Size = System::Drawing::Size(125, 16);
 			this->txtUserName->TabIndex = 3;
-			this->txtUserName->Text = L"Nombre del Usuario";
+			this->txtUserName->Text = L"Nombre del usuario";
 			this->txtUserName->Click += gcnew System::EventHandler(this, &MyForm::label1_Click);
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(251, 236);
+			this->label1->Location = System::Drawing::Point(251, 241);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(72, 16);
 			this->label1->TabIndex = 10;
@@ -189,7 +189,7 @@ namespace GUIApp {
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(251, 202);
+			this->label3->Location = System::Drawing::Point(251, 207);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(122, 16);
 			this->label3->TabIndex = 11;
@@ -198,7 +198,7 @@ namespace GUIApp {
 			// txtNumeroViajes
 			// 
 			this->txtNumeroViajes->AutoSize = true;
-			this->txtNumeroViajes->Location = System::Drawing::Point(394, 202);
+			this->txtNumeroViajes->Location = System::Drawing::Point(394, 207);
 			this->txtNumeroViajes->Name = L"txtNumeroViajes";
 			this->txtNumeroViajes->Size = System::Drawing::Size(55, 16);
 			this->txtNumeroViajes->TabIndex = 12;
