@@ -190,8 +190,27 @@ int RuralService::Service::PassengerOrDriver(String^ username)
         }
     }
 }
+//metodo que cuando se invoque activara el protocolo de seguridad que hará parpadear un led y sonar un buzer
+void RuralService::Service::ActivateSecurityProtocol()
+{
+    String^ result;
+    try {
+        OpenPort();
+        String^ message = "SOS";
 
-String^ RuralService::Service::ReadGPSData(String^ nmeaSentence)
+        ArduinoPort->Write(message);
+        result = ArduinoPort->ReadLine();
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        ClosePort();
+    }
+
+}
+
+String^ RuralService::Service::ReadGPSData()
 {
     String^ result;
     try {
@@ -201,15 +220,11 @@ String^ RuralService::Service::ReadGPSData(String^ nmeaSentence)
         }
 
         String^ nmeaSentence = ArduinoPort->ReadLine();  // Leer una línea completa del puerto serial
-        if (nmeaSentence->StartsWith("$GPGGA")) {
-            Console::WriteLine("Recibido: " + nmeaSentence);  // Imprimir o procesar la línea recibida
-            // Aquí puedes almacenar o procesar la cadena `nmeaSentence`
-        }
         
         array<String^>^ data = nmeaSentence->Split(',');
-        String^ latitude = data[2];
-        String^ longitude = data[4];
-        result = latitude + " " + longitude;
+        String^ latitude = data[0];
+        String^ longitude = data[1];
+        result = latitude + " " + longitude; 
     }
     catch (Exception^ ex) {
         throw ex;
@@ -226,7 +241,7 @@ void RuralService::Service::OpenPort()
     try {
         ArduinoPort = gcnew SerialPort();
         ArduinoPort->PortName = "COM5";
-        ArduinoPort->BaudRate = 9600;
+        ArduinoPort->BaudRate = 115200;
         ArduinoPort->Open();
     }
     catch (Exception^ ex) {
