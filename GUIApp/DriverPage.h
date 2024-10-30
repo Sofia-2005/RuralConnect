@@ -37,10 +37,14 @@ namespace GUIApp {
 			}
 		}
 	private: System::Windows::Forms::Label^ label1;
-	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::Button^ button2;
-	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::WebBrowser^ webBrowser1;
+	private: System::Windows::Forms::Button^ btnCreateRoute;
+
+	private: System::Windows::Forms::Button^ btnMyRoutes;
+
+
+
+	private: System::Windows::Forms::Button^ btnBack;
+	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	protected:
 
 	private:
@@ -56,72 +60,79 @@ namespace GUIApp {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(DriverPage::typeid));
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->webBrowser1 = (gcnew System::Windows::Forms::WebBrowser());
+			this->btnCreateRoute = (gcnew System::Windows::Forms::Button());
+			this->btnMyRoutes = (gcnew System::Windows::Forms::Button());
+			this->btnBack = (gcnew System::Windows::Forms::Button());
+			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(34, 30);
+			this->label1->Location = System::Drawing::Point(9, 59);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(299, 16);
+			this->label1->Size = System::Drawing::Size(302, 16);
 			this->label1->TabIndex = 0;
-			this->label1->Text = L"Marque los puntos en el mapa para definir su ruta";
+			this->label1->Text = L"Marque los puntos en el mapa para definir su ruta:";
 			this->label1->Click += gcnew System::EventHandler(this, &DriverPage::label1_Click);
 			// 
-			// button1
+			// btnCreateRoute
 			// 
-			this->button1->Location = System::Drawing::Point(235, 298);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(99, 29);
-			this->button1->TabIndex = 1;
-			this->button1->Text = L"Crear Ruta";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &DriverPage::button1_Click);
+			this->btnCreateRoute->Location = System::Drawing::Point(63, 203);
+			this->btnCreateRoute->Name = L"btnCreateRoute";
+			this->btnCreateRoute->Size = System::Drawing::Size(145, 51);
+			this->btnCreateRoute->TabIndex = 1;
+			this->btnCreateRoute->Text = L"CREAR RUTA";
+			this->btnCreateRoute->UseVisualStyleBackColor = true;
+			this->btnCreateRoute->Click += gcnew System::EventHandler(this, &DriverPage::btnCreateRoute_Click);
 			// 
-			// button2
+			// btnMyRoutes
 			// 
-			this->button2->Location = System::Drawing::Point(210, 386);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(155, 48);
-			this->button2->TabIndex = 2;
-			this->button2->Text = L"Rutas Guardadas";
-			this->button2->UseVisualStyleBackColor = true;
-			this->button2->Click += gcnew System::EventHandler(this, &DriverPage::button2_Click);
+			this->btnMyRoutes->Location = System::Drawing::Point(63, 277);
+			this->btnMyRoutes->Name = L"btnMyRoutes";
+			this->btnMyRoutes->Size = System::Drawing::Size(145, 51);
+			this->btnMyRoutes->TabIndex = 2;
+			this->btnMyRoutes->Text = L"MIS RUTAS";
+			this->btnMyRoutes->UseVisualStyleBackColor = true;
+			this->btnMyRoutes->Click += gcnew System::EventHandler(this, &DriverPage::btnMyRoutes_Click);
 			// 
-			// label2
+			// btnBack
 			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(257, 351);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(52, 16);
-			this->label2->TabIndex = 3;
-			this->label2->Text = L"o elija...";
+			this->btnBack->Location = System::Drawing::Point(12, 12);
+			this->btnBack->Name = L"btnBack";
+			this->btnBack->Size = System::Drawing::Size(79, 26);
+			this->btnBack->TabIndex = 7;
+			this->btnBack->Text = L"Volver";
+			this->btnBack->UseVisualStyleBackColor = true;
+			this->btnBack->Click += gcnew System::EventHandler(this, &DriverPage::btnBack_Click);
 			// 
-			// webBrowser1
+			// pictureBox1
 			// 
-			this->webBrowser1->Location = System::Drawing::Point(77, 72);
-			this->webBrowser1->MinimumSize = System::Drawing::Size(20, 20);
-			this->webBrowser1->Name = L"webBrowser1";
-			this->webBrowser1->Size = System::Drawing::Size(421, 202);
-			this->webBrowser1->TabIndex = 4;
+			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
+			this->pictureBox1->Location = System::Drawing::Point(317, -2);
+			this->pictureBox1->Name = L"pictureBox1";
+			this->pictureBox1->Size = System::Drawing::Size(979, 557);
+			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+			this->pictureBox1->TabIndex = 8;
+			this->pictureBox1->TabStop = false;
 			// 
 			// DriverPage
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(610, 462);
-			this->Controls->Add(this->webBrowser1);
-			this->Controls->Add(this->label2);
-			this->Controls->Add(this->button2);
-			this->Controls->Add(this->button1);
+			this->ClientSize = System::Drawing::Size(1293, 549);
+			this->Controls->Add(this->pictureBox1);
+			this->Controls->Add(this->btnBack);
+			this->Controls->Add(this->btnMyRoutes);
+			this->Controls->Add(this->btnCreateRoute);
 			this->Controls->Add(this->label1);
 			this->Name = L"DriverPage";
 			this->Text = L"Definir Ruta";
+			this->Load += gcnew System::EventHandler(this, &DriverPage::DriverPage_Load);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -129,25 +140,20 @@ namespace GUIApp {
 #pragma endregion
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-		// Crear una instancia del nuevo formulario (Form2 en este caso)
-		SelectRouteDriver^ newForm = gcnew SelectRouteDriver();
-
-		// Mostrar el nuevo formulario
-		newForm->Show();
-
-		// Ocultar el formulario actual (opcional)
+	private: System::Void btnMyRoutes_Click(System::Object^ sender, System::EventArgs^ e) {
+		SelectRouteDriver^ Myroutes = gcnew SelectRouteDriver();
+		Myroutes->Show();
 		this->Hide();
 	}
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		// Crear una instancia del nuevo formulario (Form2 en este caso)
-		PublicRouteDriver^ newForm = gcnew PublicRouteDriver();
-
-		// Mostrar el nuevo formulario
-		newForm->Show();
-
-		// Ocultar el formulario actual (opcional)
+	private: System::Void btnCreateRoute_Click(System::Object^ sender, System::EventArgs^ e) {
+		PublicRouteDriver^ CreateRoute = gcnew PublicRouteDriver();
+		CreateRoute->Show();
 		this->Hide();
 	}
+	private: System::Void btnBack_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Hide();
+	}
+private: System::Void DriverPage_Load(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }
