@@ -42,8 +42,9 @@ namespace GUIApp {
 	private: System::Windows::Forms::Button^ btnMyRoutes;
 
 
-	private: System::Windows::Forms::WebBrowser^ webBrowser1;
+
 	private: System::Windows::Forms::Button^ btnBack;
+	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	protected:
 
 	private:
@@ -59,11 +60,13 @@ namespace GUIApp {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(DriverPage::typeid));
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->btnCreateRoute = (gcnew System::Windows::Forms::Button());
 			this->btnMyRoutes = (gcnew System::Windows::Forms::Button());
-			this->webBrowser1 = (gcnew System::Windows::Forms::WebBrowser());
 			this->btnBack = (gcnew System::Windows::Forms::Button());
+			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label1
@@ -78,7 +81,7 @@ namespace GUIApp {
 			// 
 			// btnCreateRoute
 			// 
-			this->btnCreateRoute->Location = System::Drawing::Point(190, 325);
+			this->btnCreateRoute->Location = System::Drawing::Point(63, 203);
 			this->btnCreateRoute->Name = L"btnCreateRoute";
 			this->btnCreateRoute->Size = System::Drawing::Size(145, 51);
 			this->btnCreateRoute->TabIndex = 1;
@@ -88,21 +91,13 @@ namespace GUIApp {
 			// 
 			// btnMyRoutes
 			// 
-			this->btnMyRoutes->Location = System::Drawing::Point(190, 399);
+			this->btnMyRoutes->Location = System::Drawing::Point(63, 277);
 			this->btnMyRoutes->Name = L"btnMyRoutes";
 			this->btnMyRoutes->Size = System::Drawing::Size(145, 51);
 			this->btnMyRoutes->TabIndex = 2;
 			this->btnMyRoutes->Text = L"MIS RUTAS";
 			this->btnMyRoutes->UseVisualStyleBackColor = true;
 			this->btnMyRoutes->Click += gcnew System::EventHandler(this, &DriverPage::btnMyRoutes_Click);
-			// 
-			// webBrowser1
-			// 
-			this->webBrowser1->Location = System::Drawing::Point(12, 87);
-			this->webBrowser1->MinimumSize = System::Drawing::Size(20, 20);
-			this->webBrowser1->Name = L"webBrowser1";
-			this->webBrowser1->Size = System::Drawing::Size(571, 214);
-			this->webBrowser1->TabIndex = 4;
 			// 
 			// btnBack
 			// 
@@ -114,18 +109,30 @@ namespace GUIApp {
 			this->btnBack->UseVisualStyleBackColor = true;
 			this->btnBack->Click += gcnew System::EventHandler(this, &DriverPage::btnBack_Click);
 			// 
+			// pictureBox1
+			// 
+			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
+			this->pictureBox1->Location = System::Drawing::Point(317, -2);
+			this->pictureBox1->Name = L"pictureBox1";
+			this->pictureBox1->Size = System::Drawing::Size(979, 557);
+			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+			this->pictureBox1->TabIndex = 8;
+			this->pictureBox1->TabStop = false;
+			// 
 			// DriverPage
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(610, 462);
+			this->ClientSize = System::Drawing::Size(1293, 549);
+			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->btnBack);
-			this->Controls->Add(this->webBrowser1);
 			this->Controls->Add(this->btnMyRoutes);
 			this->Controls->Add(this->btnCreateRoute);
 			this->Controls->Add(this->label1);
 			this->Name = L"DriverPage";
 			this->Text = L"Definir Ruta";
+			this->Load += gcnew System::EventHandler(this, &DriverPage::DriverPage_Load);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -146,5 +153,7 @@ namespace GUIApp {
 	private: System::Void btnBack_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Hide();
 	}
+private: System::Void DriverPage_Load(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }

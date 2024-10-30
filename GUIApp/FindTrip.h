@@ -166,6 +166,7 @@ namespace GUIApp {
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox1->TabIndex = 15;
 			this->pictureBox1->TabStop = false;
+			this->pictureBox1->Click += gcnew System::EventHandler(this, &FindTrip::pictureBox1_Click);
 			this->pictureBox1->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &FindTrip::pictureBox1_MouseClick);
 			// 
 			// FindTrip
@@ -237,6 +238,8 @@ private: System::Void pictureBox1_MouseClick(System::Object^ sender, System::Win
 	// Mostrar las coordenadas en un label o textbox
 	txtLatitude->Text = lat.ToString();
 	txtLongitudinal->Text = lon.ToString();
+}
+private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }
