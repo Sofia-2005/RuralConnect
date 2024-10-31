@@ -41,7 +41,7 @@ namespace RuralService {
 
 		//static String^ SendRobotToTable( int robotId, int tableNumber);
 		static void ActivateSecurityProtocol();
-		static String^ ReadGPSData();
+		static List<String^>^ ReadGPSData();
 		static void OpenPort();
 		static void ClosePort();
 	};

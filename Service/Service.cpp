@@ -210,21 +210,27 @@ void RuralService::Service::ActivateSecurityProtocol()
 
 }
 
-String^ RuralService::Service::ReadGPSData()
+List<String^>^ RuralService::Service::ReadGPSData()
 {
-    String^ result;
+    List<String^>^ result = gcnew List<String^>();  // Inicializar la lista;
     try {
         // Asegúrate de que el puerto esté abierto antes de leer
-        if (!ArduinoPort->IsOpen) {
+        //if (!ArduinoPort->IsOpen) {
             OpenPort();
-        }
+       // }
 
         String^ nmeaSentence = ArduinoPort->ReadLine();  // Leer una línea completa del puerto serial
+        if (nmeaSentence->Length > 5) {
+            array<String^>^ data = nmeaSentence->Split(',');
+  
+            String^ latitude = data[0];
+            String^ longitude = data[1];
+            result->Add(latitude);
+            result->Add(longitude);
+        }
         
-        array<String^>^ data = nmeaSentence->Split(',');
-        String^ latitude = data[0];
-        String^ longitude = data[1];
-        result = latitude + " " + longitude; 
+ 
+
     }
     catch (Exception^ ex) {
         throw ex;
