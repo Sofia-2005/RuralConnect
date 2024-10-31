@@ -137,7 +137,7 @@ namespace GUIApp {
 		double latBottomRight = -12.064391, lonBottomRight = -77.077202; // Coordenadas de la esquina inferior derecha
 
 		double latitude = -12.074135;
-		double longitude = -77.079;//-77.083166;
+		double longitude = -77.083166;
 
 	private: System::Void btnBack_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Hide();
@@ -152,8 +152,9 @@ private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArg
 }
 private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
 	if (latitude<=latBottomRight && latitude>=latTopLeft && longitude>=lonTopLeft && longitude<=lonBottomRight) {
-		latitude += 0.0001;
-		//longitude += 0.0001;
+		//latitude += 0.0001;
+		longitude += 0.0001;
+
 		pictureBox1->Invalidate();
 	}
 	else {
@@ -169,8 +170,8 @@ private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows:
 	int height = pictureBox1->Height;
 
 	// Convertir latitud y longitud a coordenadas de píxeles
-	int x = (int)((latitude- latTopLeft) / (latBottomRight- latTopLeft) * height);
-	int y = (int)((lonBottomRight-longitude) / (lonBottomRight - lonTopLeft) * width);
+	int x = (int)((latitude- latTopLeft) / (latBottomRight- latTopLeft) * width);
+	int y = (int)((longitude- lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
 
 	// Dibujar el punto en el mapa
 	//System::Drawing::Graphics^ g = pictureBox1->CreateGraphics();
