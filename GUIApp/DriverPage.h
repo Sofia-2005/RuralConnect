@@ -10,6 +10,7 @@ namespace GUIApp {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Collections::Generic;
 
 	/// <summary>
 	/// Resumen de DriverPage
@@ -118,6 +119,7 @@ namespace GUIApp {
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox1->TabIndex = 8;
 			this->pictureBox1->TabStop = false;
+			this->pictureBox1->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &DriverPage::pictureBox1_MouseClick);
 			// 
 			// DriverPage
 			// 
@@ -138,6 +140,14 @@ namespace GUIApp {
 
 		}
 #pragma endregion
+
+		bool primera = true;
+		int i = 0;
+		double latTopLeft = -12.074135, lonTopLeft = -77.083166;   // Coordenadas de la esquina superior izquierda
+		double latBottomRight = -12.064391, lonBottomRight = -77.077202; // Coordenadas de la esquina inferior derecha
+
+		List<array<int>^>^ listaXY = gcnew List<array<int>^>();
+
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void btnMyRoutes_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -154,6 +164,36 @@ namespace GUIApp {
 		this->Hide();
 	}
 private: System::Void DriverPage_Load(System::Object^ sender, System::EventArgs^ e) {
+}
+	private: System::Void pictureBox1_MouseClick(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+		int x = e->X;
+		int y = e->Y;
+
+		array<int>^ punto = {x, y};
+
+		listaXY->Add(punto);
+
+	// Tamaño del PictureBox
+	int width = pictureBox1->Width;
+	int height = pictureBox1->Height;
+
+	// Convertir píxeles a coordenadas geográficas teniendo en cuenta la rotación
+	double lat = latTopLeft + (latBottomRight - latTopLeft) * (static_cast<double>(x) / width);
+	double lon = lonTopLeft + (lonBottomRight - lonTopLeft) * (static_cast<double>(y) / height);
+
+	// Dibujar el punto en el mapa
+	System::Drawing::Graphics^ g = pictureBox1->CreateGraphics();
+	int radius = 5; // Radio del punto
+	g->FillEllipse(System::Drawing::Brushes::Blue, x - radius, y - radius, radius * 2, radius * 2);
+
+	if (!primera) {
+		Pen^ pen = gcnew Pen(Color::Black);
+		array<int>^ a1 = listaXY[i - 1];
+		array<int>^ a2 = listaXY[i ];
+		g->DrawLine(pen, a1[0],a1[1], a2[0], a2[1]);
+	}
+	i++;
+	primera = false;
 }
 };
 }
