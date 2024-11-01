@@ -1,14 +1,17 @@
 #pragma once
 #include "TripRequestToDriver.h"
 
+
 namespace GUIApp {
 
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
+	using namespace System::Collections::Generic;
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace RuralService;
 
 	/// <summary>
 	/// Resumen de TripInCourse
@@ -112,6 +115,7 @@ namespace GUIApp {
 			// 
 			// timer1
 			// 
+			this->timer1->Interval = 1000;
 			this->timer1->Tick += gcnew System::EventHandler(this, &TripInCourse::timer1_Tick);
 			// 
 			// TripInCourse
@@ -152,10 +156,16 @@ private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArg
 }
 private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
 	if (latitude<=latBottomRight && latitude>=latTopLeft && longitude>=lonTopLeft && longitude<=lonBottomRight) {
-		//latitude += 0.0001;
-		longitude += 0.0001;
-
-		pictureBox1->Invalidate();
+		List<String^>^ ubicacion = Service::ReadGPSData();
+		
+		if (ubicacion -> Count >= 2){
+			if (ubicacion[0] != __nullptr || ubicacion[1] != nullptr) {
+				latitude = Convert::ToDouble(ubicacion[0]);
+				longitude = Convert::ToDouble(ubicacion[1]);
+				pictureBox1->Invalidate();
+			}
+		}
+		
 	}
 	else {
 		timer1->Stop();
@@ -170,8 +180,8 @@ private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows:
 	int height = pictureBox1->Height;
 
 	// Convertir latitud y longitud a coordenadas de píxeles
-	int x = (int)((latitude- latTopLeft) / (latBottomRight- latTopLeft) * width);
-	int y = (int)((longitude- lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
+	int x = (int)((latitude- latTopLeft) / (latBottomRight- latTopLeft) * height);
+	int y = (int)((lonBottomRight-longitude) / (lonBottomRight - lonTopLeft) * width);
 
 	// Dibujar el punto en el mapa
 	//System::Drawing::Graphics^ g = pictureBox1->CreateGraphics();

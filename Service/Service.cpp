@@ -190,26 +190,47 @@ int RuralService::Service::PassengerOrDriver(String^ username)
         }
     }
 }
-
-String^ RuralService::Service::ReadGPSData(String^ nmeaSentence)
+//metodo que cuando se invoque activara el protocolo de seguridad que hará parpadear un led y sonar un buzer
+void RuralService::Service::ActivateSecurityProtocol()
 {
     String^ result;
     try {
+        OpenPort();
+        String^ message = "SOS";
+
+        ArduinoPort->Write(message);
+        result = ArduinoPort->ReadLine();
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        ClosePort();
+    }
+
+}
+
+List<String^>^ RuralService::Service::ReadGPSData()
+{
+    List<String^>^ result = gcnew List<String^>();  // Inicializar la lista;
+    try {
         // Asegúrate de que el puerto esté abierto antes de leer
-        if (!ArduinoPort->IsOpen) {
+        //if (!ArduinoPort->IsOpen) {
             OpenPort();
-        }
+       // }
 
         String^ nmeaSentence = ArduinoPort->ReadLine();  // Leer una línea completa del puerto serial
-        if (nmeaSentence->StartsWith("$GPGGA")) {
-            Console::WriteLine("Recibido: " + nmeaSentence);  // Imprimir o procesar la línea recibida
-            // Aquí puedes almacenar o procesar la cadena `nmeaSentence`
+        if (nmeaSentence->Length > 5) {
+            array<String^>^ data = nmeaSentence->Split(',');
+  
+            String^ latitude = data[0];
+            String^ longitude = data[1];
+            result->Add(latitude);
+            result->Add(longitude);
         }
         
-        array<String^>^ data = nmeaSentence->Split(',');
-        String^ latitude = data[2];
-        String^ longitude = data[4];
-        result = latitude + " " + longitude;
+ 
+
     }
     catch (Exception^ ex) {
         throw ex;
@@ -226,7 +247,7 @@ void RuralService::Service::OpenPort()
     try {
         ArduinoPort = gcnew SerialPort();
         ArduinoPort->PortName = "COM5";
-        ArduinoPort->BaudRate = 9600;
+        ArduinoPort->BaudRate = 115200;
         ArduinoPort->Open();
     }
     catch (Exception^ ex) {

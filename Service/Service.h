@@ -40,7 +40,8 @@ namespace RuralService {
 		static int PassengerOrDriver(String^ username);
 
 		//static String^ SendRobotToTable( int robotId, int tableNumber);
-		static String^ ReadGPSData(String^ nmeaSentence);
+		static void ActivateSecurityProtocol();
+		static List<String^>^ ReadGPSData();
 		static void OpenPort();
 		static void ClosePort();
 	};
