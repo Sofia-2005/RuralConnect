@@ -220,13 +220,16 @@ List<String^>^ RuralService::Service::ReadGPSData()
        // }
 
         String^ nmeaSentence = ArduinoPort->ReadLine();  // Leer una línea completa del puerto serial
-        if (nmeaSentence->Length > 5) {
+        if (nmeaSentence->Length > 1 && nmeaSentence->Contains(",")) {
             array<String^>^ data = nmeaSentence->Split(',');
   
             String^ latitude = data[0];
             String^ longitude = data[1];
             result->Add(latitude);
             result->Add(longitude);
+        }
+        else {
+            result->Add("1");
         }
         
  

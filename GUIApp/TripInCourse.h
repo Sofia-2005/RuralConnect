@@ -47,6 +47,10 @@ namespace GUIApp {
 	private: System::Windows::Forms::Button^ btnBack;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	private: System::Windows::Forms::Timer^ timer1;
+	private: System::Windows::Forms::TextBox^ txtLat;
+	private: System::Windows::Forms::TextBox^ txtLong;
+	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::Label^ label3;
 	private: System::ComponentModel::IContainer^ components;
 
 	private:
@@ -69,6 +73,10 @@ namespace GUIApp {
 			this->btnBack = (gcnew System::Windows::Forms::Button());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
+			this->txtLat = (gcnew System::Windows::Forms::TextBox());
+			this->txtLong = (gcnew System::Windows::Forms::TextBox());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->label3 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -115,14 +123,52 @@ namespace GUIApp {
 			// 
 			// timer1
 			// 
-			this->timer1->Interval = 1000;
+			this->timer1->Interval = 800;
 			this->timer1->Tick += gcnew System::EventHandler(this, &TripInCourse::timer1_Tick);
+			// 
+			// txtLat
+			// 
+			this->txtLat->Location = System::Drawing::Point(229, 13);
+			this->txtLat->Name = L"txtLat";
+			this->txtLat->Size = System::Drawing::Size(100, 22);
+			this->txtLat->TabIndex = 5;
+			this->txtLat->TextChanged += gcnew System::EventHandler(this, &TripInCourse::txtLat_TextChanged);
+			// 
+			// txtLong
+			// 
+			this->txtLong->Location = System::Drawing::Point(229, 58);
+			this->txtLong->Name = L"txtLong";
+			this->txtLong->Size = System::Drawing::Size(100, 22);
+			this->txtLong->TabIndex = 6;
+			this->txtLong->TextChanged += gcnew System::EventHandler(this, &TripInCourse::txtLong_TextChanged);
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(159, 19);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(42, 16);
+			this->label2->TabIndex = 7;
+			this->label2->Text = L"latitud";
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(159, 61);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(54, 16);
+			this->label3->TabIndex = 8;
+			this->label3->Text = L"longitud";
 			// 
 			// TripInCourse
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1263, 754);
+			this->Controls->Add(this->label3);
+			this->Controls->Add(this->label2);
+			this->Controls->Add(this->txtLong);
+			this->Controls->Add(this->txtLat);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->btnBack);
 			this->Controls->Add(this->btnTripApplication);
@@ -142,6 +188,8 @@ namespace GUIApp {
 
 		double latitude = -12.074135;
 		double longitude = -77.079;//-77.083166;
+		double latitudePas = -12.074135;
+		double longitudePas = -77.079;//-77.083166;
 
 	private: System::Void btnBack_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Hide();
@@ -155,39 +203,65 @@ namespace GUIApp {
 private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
-	if (latitude<=latBottomRight && latitude>=latTopLeft && longitude>=lonTopLeft && longitude<=lonBottomRight) {
-		List<String^>^ ubicacion = Service::ReadGPSData();
-		
-		if (ubicacion -> Count >= 2){
-			if (ubicacion[0] != __nullptr || ubicacion[1] != nullptr) {
-				latitude = Convert::ToDouble(ubicacion[0]);
-				longitude = Convert::ToDouble(ubicacion[1]);
-				pictureBox1->Invalidate();
-			}
+	List<String^>^ ubicacion = Service::ReadGPSData();
+	if (ubicacion[0] != "1") {
+		//Se leen los datos
+		latitude = Convert::ToDouble(ubicacion[0]);
+		longitude = Convert::ToDouble(ubicacion[1]);
+		//Se imprimen los daotos
+		txtLat->Text = Convert::ToString(latitude);
+		txtLong->Text = Convert::ToString(longitude);
+
+		if (latitude <= latBottomRight && latitude >= latTopLeft && longitude >= lonTopLeft && longitude <= lonBottomRight) {
+
+			//se envian los datos para imprimirse
+			latitudePas = latitude;
+			longitudePas = longitude;
+			//pictureBox1->Invalidate();
+
 		}
-		
+		else {
+			//se asignan los valores anteriores para imprimirse
+			MessageBox::Show("fuera de rango");
+			latitude = latitudePas;
+			longitude = longitudePas;
+			//pictureBox1->Invalidate();
+		}
+		//Se imprimen los datos enviados a imprmir
+		//txtLat->Text = Convert::ToString(latitude);
+		//txtLong->Text = Convert::ToString(longitude);
 	}
 	else {
-		timer1->Stop();
-		timer1->Enabled = false;
+		MessageBox::Show("llega con error " + Convert::ToString(latitude) + "   " + Convert::ToString(longitude));
+		latitude = latitudePas;
+		longitude = longitudePas;
+		
 	}
+	pictureBox1->Invalidate();7*1**
 }
 
 private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+	
+		// Tamaño del PictureBox
+		int width = pictureBox1->Width;
+		int height = pictureBox1->Height;
 
-	// Tamaño del PictureBox
-	int width = pictureBox1->Width;
-	int height = pictureBox1->Height;
+		// Convertir latitud y longitud a coordenadas de píxeles
+		int x = (int)((latitude- latTopLeft) / (latBottomRight- latTopLeft) * width);
+		int y = (int)((longitude-lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
 
-	// Convertir latitud y longitud a coordenadas de píxeles
-	int x = (int)((latitude- latTopLeft) / (latBottomRight- latTopLeft) * width);
-	int y = (int)((longitude-lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
+		// Dibujar el punto en el mapa
+		//System::Drawing::Graphics^ g = pictureBox1->CreateGraphics();
+		Graphics^ g = e->Graphics;
+		int radius = 5; // Radio del punto
+		g->FillEllipse(System::Drawing::Brushes::Blue, x - radius, y - radius, radius * 2, radius * 2);
 
-	// Dibujar el punto en el mapa
-	//System::Drawing::Graphics^ g = pictureBox1->CreateGraphics();
-	Graphics^ g = e->Graphics;
-	int radius = 5; // Radio del punto
-	g->FillEllipse(System::Drawing::Brushes::Blue, x - radius, y - radius, radius * 2, radius * 2);
+
+}
+private: System::Void txtLat_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	
+}
+private: System::Void txtLong_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }
