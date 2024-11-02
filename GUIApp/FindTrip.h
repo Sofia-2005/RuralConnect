@@ -18,9 +18,11 @@ namespace GUIApp {
 	public ref class FindTrip : public System::Windows::Forms::Form
 	{
 	public:
+		Bitmap^ originalImage;
 		FindTrip(void)
 		{
 			InitializeComponent();
+			originalImage = gcnew Bitmap(pictureBox1->Image);
 			//
 			//TODO: agregar código de constructor aquí
 			//
@@ -47,6 +49,7 @@ namespace GUIApp {
 	private: System::Windows::Forms::Button^ btnFindTrip;
 	private: System::Windows::Forms::Button^ btnSelectInMap;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
+	private: System::Windows::Forms::Label^ label4;
 
 
 
@@ -81,6 +84,7 @@ namespace GUIApp {
 			this->btnFindTrip = (gcnew System::Windows::Forms::Button());
 			this->btnSelectInMap = (gcnew System::Windows::Forms::Button());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->label4 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -97,7 +101,7 @@ namespace GUIApp {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(95, 120);
+			this->label1->Location = System::Drawing::Point(32, 65);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(126, 16);
 			this->label1->TabIndex = 4;
@@ -143,7 +147,7 @@ namespace GUIApp {
 			this->btnFindTrip->Name = L"btnFindTrip";
 			this->btnFindTrip->Size = System::Drawing::Size(152, 48);
 			this->btnFindTrip->TabIndex = 13;
-			this->btnFindTrip->Text = L"Buscar Viaje";
+			this->btnFindTrip->Text = L"Confirmar destino";
 			this->btnFindTrip->UseVisualStyleBackColor = true;
 			this->btnFindTrip->Click += gcnew System::EventHandler(this, &FindTrip::btnFindTrip_Click);
 			// 
@@ -166,14 +170,23 @@ namespace GUIApp {
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox1->TabIndex = 15;
 			this->pictureBox1->TabStop = false;
-			this->pictureBox1->Click += gcnew System::EventHandler(this, &FindTrip::pictureBox1_Click);
 			this->pictureBox1->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &FindTrip::pictureBox1_MouseClick);
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Location = System::Drawing::Point(30, 113);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(259, 16);
+			this->label4->TabIndex = 16;
+			this->label4->Text = L"Haz click en el mapa para elegir tu destino";
 			// 
 			// FindTrip
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1431, 744);
+			this->Controls->Add(this->label4);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->btnSelectInMap);
 			this->Controls->Add(this->btnFindTrip);
@@ -191,7 +204,7 @@ namespace GUIApp {
 
 		}
 #pragma endregion
-
+		// Guardar la imagen original
 
 		double latTopLeft = -12.074135, lonTopLeft = -77.083166;   // Coordenadas de la esquina superior izquierda
 		double latBottomRight = -12.064391, lonBottomRight = -77.077202; // Coordenadas de la esquina inferior derecha
@@ -219,6 +232,8 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 private: System::Void pictureBox1_MouseClick(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
 	//cmabiamos coordenadas pues la imagen esta volteada
 	// Obtener posición del clic en píxeles
+	//pictureBox1->Image = originalImage;
+
 	int x = e->X;
 	int y = e->Y;
 
@@ -239,7 +254,7 @@ private: System::Void pictureBox1_MouseClick(System::Object^ sender, System::Win
 	txtLatitude->Text = lat.ToString();
 	txtLongitudinal->Text = lon.ToString();
 }
-private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
-}
+
+
 };
 }

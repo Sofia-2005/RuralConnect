@@ -246,9 +246,9 @@ private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows:
 		int width = pictureBox1->Width;
 		int height = pictureBox1->Height;
 
-		// Convertir latitud y longitud a coordenadas de píxeles
-		int x = (int)((latitude- latTopLeft) / (latBottomRight- latTopLeft) * width);
-		int y = (int)((longitude-lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
+	// Convertir latitud y longitud a coordenadas de píxeles
+	int x = (int)((latitude- latTopLeft) / (latBottomRight- latTopLeft) * width);
+	int y = (int)((longitude-lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
 
 		// Dibujar el punto en el mapa
 		//System::Drawing::Graphics^ g = pictureBox1->CreateGraphics();

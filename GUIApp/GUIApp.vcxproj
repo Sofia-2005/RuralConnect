@@ -134,8 +134,10 @@
     <ClCompile Include="PrincipalForm.cpp" />
     <ClCompile Include="PrincipalFormDriver.cpp" />
     <ClCompile Include="PublicRouteDriver.cpp" />
+    <ClCompile Include="RealTimeForm.cpp" />
     <ClCompile Include="RegisterForm.cpp" />
     <ClCompile Include="SelectRouteDriver.cpp" />
+    <ClCompile Include="TripDetailsForm.cpp" />
     <ClCompile Include="TripInCourse.cpp" />
     <ClCompile Include="TripRequestToDriverh.cpp" />
     <ClCompile Include="VehicleForm.cpp" />
@@ -159,10 +161,16 @@
     <ClInclude Include="PublicRouteDriver.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="RealTimeForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="RegisterForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="SelectRouteDriver.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="TripDetailsForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="TripInCourse.h">
@@ -194,11 +202,17 @@
     <EmbeddedResource Include="PublicRouteDriver.resx">
       <DependentUpon>PublicRouteDriver.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RealTimeForm.resx">
+      <DependentUpon>RealTimeForm.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RegisterForm.resx">
       <DependentUpon>RegisterForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectRouteDriver.resx">
       <DependentUpon>SelectRouteDriver.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TripDetailsForm.resx">
+      <DependentUpon>TripDetailsForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TripInCourse.resx">
       <DependentUpon>TripInCourse.h</DependentUpon>
