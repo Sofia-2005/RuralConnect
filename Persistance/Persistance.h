@@ -18,5 +18,13 @@ namespace RCPersistance {
 		//static Object^ LoadRobotWaitersTextFile(String^ fileName);
 		static Object^ LoadPassengersXmlFile(String^ fileName);
 		static Object^ LoadBinaryFile(String^ fileName);
+
+		static void Persist_RUTA_XMLFile(String^ fileName, Object^ persistObject);
+		static Object^ Load_RUTA_XmlFile(String^ fileName);
+
+		static void PersistDriversFile(String^ fileName, Object^ persistObject);
+		static Object^ LoadDriversXmlFile(String^ fileName);
+
+
 	};
 }

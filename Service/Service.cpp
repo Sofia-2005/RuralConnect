@@ -269,3 +269,22 @@ void RuralService::Service::ClosePort()
     }
 }
 
+void RuralService::Service::Add_Rute(List<String^>^ ruta_x)
+{
+    Persistance::Persist_RUTA_XMLFile(XML_RUTA_FILE_NAME, ruta_x);
+}
+
+List<String^>^ RuralService::Service::load_Rute()
+{
+    rutas_x = gcnew List<String^>();
+    try {
+        
+        rutas_x = (List<String^>^)Persistance::Load_RUTA_XmlFile(XML_RUTA_FILE_NAME);
+        if (rutas_x == nullptr)
+            rutas_x = gcnew List<String^>();
+    }
+    catch (FileNotFoundException^ ex) {
+    }
+    return rutas_x;
+}
+

@@ -14,19 +14,26 @@ namespace RuralConnect {
     public:
         array<int>^ EndPoint;
         array<int>^ StartPoint;
-        int Distance;
-        int Duration;
+        double Distance;
+        double Duration;
         double Latitude;
         double Longitude;
+
+        String^ Puntos_x;
+        String^ Puntos_y;
 
         void GetEstimatedTime();
 
         void GetEstimatedPrice();
 
+        Route() {
+
+        }
         Route(double latitude, double longitude) {
             Latitude = latitude;
             Longitude = longitude;
         }
+        
 
     };
 }

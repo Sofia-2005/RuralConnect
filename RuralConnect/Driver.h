@@ -10,6 +10,7 @@
 #include "CreateRoute.h"
 #include "Route.h"
 #include "Vehicle.h"
+#include "Route.h"
 
 using namespace System;
 using namespace System::Collections::Generic;
@@ -20,6 +21,8 @@ namespace RuralConnect {
         int NumberOfCompletedTrips=0;
         //List<Route^> TypicalRoutes;
         Vehicle^ vehicle;
+
+        Route^ Rutasa;
         void EndMyRoute();
         void CreateRoute();
         void OfferRoute();

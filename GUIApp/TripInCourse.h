@@ -237,7 +237,7 @@ private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) 
 		longitude = longitudePas;
 		
 	}
-	pictureBox1->Invalidate();7*1**
+	pictureBox1->Invalidate();
 }
 
 private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {

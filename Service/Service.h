@@ -21,7 +21,17 @@ namespace RuralService {
 		static List<Driver^>^ DriverList = gcnew List<Driver^>();
 		static SerialPort^ ArduinoPort;
 
+		static List<String^>^ rutas_x = gcnew List<String^>();
+		static List<String^>^ rutas_y = gcnew List<String^>();
+
+		static String^ XML_RUTA_FILE_NAME = "RUTA.xml";
+
 	public:
+
+
+
+
+
 		static int ShowListCount();
 		static void AddDriver(Driver^);
 		static void AddPassenger(Passenger^);
@@ -44,5 +54,8 @@ namespace RuralService {
 		static List<String^>^ ReadGPSData();
 		static void OpenPort();
 		static void ClosePort();
+
+		static void Add_Rute(List<String^>^ ruta_x);
+		static List<String^>^ load_Rute();
 	};
 }
