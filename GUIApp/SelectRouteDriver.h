@@ -74,61 +74,68 @@ namespace GUIApp {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(50, 54);
+			this->label1->Location = System::Drawing::Point(38, 44);
+			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(128, 16);
+			this->label1->Size = System::Drawing::Size(105, 13);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Selecciona una ruta:";
 			// 
 			// webBrowser1
 			// 
-			this->webBrowser1->Location = System::Drawing::Point(48, 79);
-			this->webBrowser1->MinimumSize = System::Drawing::Size(20, 20);
+			this->webBrowser1->Location = System::Drawing::Point(36, 64);
+			this->webBrowser1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->webBrowser1->MinimumSize = System::Drawing::Size(15, 16);
 			this->webBrowser1->Name = L"webBrowser1";
-			this->webBrowser1->Size = System::Drawing::Size(308, 250);
+			this->webBrowser1->Size = System::Drawing::Size(231, 203);
 			this->webBrowser1->TabIndex = 1;
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(439, 79);
+			this->button1->Location = System::Drawing::Point(329, 64);
+			this->button1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(94, 38);
+			this->button1->Size = System::Drawing::Size(70, 31);
 			this->button1->TabIndex = 2;
 			this->button1->Text = L"Ruta A";
 			this->button1->UseVisualStyleBackColor = true;
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(439, 149);
+			this->button2->Location = System::Drawing::Point(329, 121);
+			this->button2->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(94, 38);
+			this->button2->Size = System::Drawing::Size(70, 31);
 			this->button2->TabIndex = 3;
 			this->button2->Text = L"Ruta B";
 			this->button2->UseVisualStyleBackColor = true;
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(439, 219);
+			this->button3->Location = System::Drawing::Point(329, 178);
+			this->button3->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(94, 38);
+			this->button3->Size = System::Drawing::Size(70, 31);
 			this->button3->TabIndex = 4;
 			this->button3->Text = L"Ruta C";
 			this->button3->UseVisualStyleBackColor = true;
 			// 
 			// button4
 			// 
-			this->button4->Location = System::Drawing::Point(439, 291);
+			this->button4->Location = System::Drawing::Point(329, 236);
+			this->button4->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(94, 38);
+			this->button4->Size = System::Drawing::Size(70, 31);
 			this->button4->TabIndex = 5;
 			this->button4->Text = L"Ruta D";
 			this->button4->UseVisualStyleBackColor = true;
 			// 
 			// btnBack
 			// 
-			this->btnBack->Location = System::Drawing::Point(12, 12);
+			this->btnBack->Location = System::Drawing::Point(9, 10);
+			this->btnBack->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->btnBack->Name = L"btnBack";
-			this->btnBack->Size = System::Drawing::Size(79, 26);
+			this->btnBack->Size = System::Drawing::Size(59, 21);
 			this->btnBack->TabIndex = 6;
 			this->btnBack->Text = L"Volver";
 			this->btnBack->UseVisualStyleBackColor = true;
@@ -136,9 +143,10 @@ namespace GUIApp {
 			// 
 			// btnRouteDetails
 			// 
-			this->btnRouteDetails->Location = System::Drawing::Point(73, 374);
+			this->btnRouteDetails->Location = System::Drawing::Point(55, 304);
+			this->btnRouteDetails->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->btnRouteDetails->Name = L"btnRouteDetails";
-			this->btnRouteDetails->Size = System::Drawing::Size(210, 42);
+			this->btnRouteDetails->Size = System::Drawing::Size(158, 34);
 			this->btnRouteDetails->TabIndex = 7;
 			this->btnRouteDetails->Text = L"VER DETALLES DE LA RUTA";
 			this->btnRouteDetails->UseVisualStyleBackColor = true;
@@ -146,18 +154,19 @@ namespace GUIApp {
 			// 
 			// button5
 			// 
-			this->button5->Location = System::Drawing::Point(336, 374);
+			this->button5->Location = System::Drawing::Point(252, 304);
+			this->button5->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->button5->Name = L"button5";
-			this->button5->Size = System::Drawing::Size(206, 42);
+			this->button5->Size = System::Drawing::Size(154, 34);
 			this->button5->TabIndex = 8;
 			this->button5->Text = L"BUSCAR OTRAS RUTAS";
 			this->button5->UseVisualStyleBackColor = true;
 			// 
 			// SelectRouteDriver
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(648, 459);
+			this->ClientSize = System::Drawing::Size(486, 373);
 			this->Controls->Add(this->button5);
 			this->Controls->Add(this->btnRouteDetails);
 			this->Controls->Add(this->btnBack);
@@ -167,6 +176,7 @@ namespace GUIApp {
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->webBrowser1);
 			this->Controls->Add(this->label1);
+			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->Name = L"SelectRouteDriver";
 			this->Text = L"Elegir Ruta";
 			this->ResumeLayout(false);

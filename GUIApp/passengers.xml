@@ -9,4 +9,13 @@
     <Password>2</Password>
     <Qualification>0</Qualification>
   </Passenger>
+  <Passenger>
+    <Name>lulu</Name>
+    <LastName>lulu</LastName>
+    <DNI>9</DNI>
+    <PhoneNumber>9</PhoneNumber>
+    <Username>lulu</Username>
+    <Password>lulu</Password>
+    <Qualification>0</Qualification>
+  </Passenger>
 </ArrayOfPassenger>

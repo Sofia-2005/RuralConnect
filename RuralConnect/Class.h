@@ -2,15 +2,13 @@
  * Project Untitled
  */
 
-
-#ifndef _CLASS_H
-#define _CLASS_H
+#pragma once
 
 using namespace System;
 using namespace System::Collections::Generic;
 
 namespace RuralConnect {
-    public ref class Class {
+    [Serializable] public ref class Class {
     public:
         String^ Type;
         double Discount;
@@ -20,4 +18,3 @@ namespace RuralConnect {
     };
 }
 
-#endif //_CLASS_H

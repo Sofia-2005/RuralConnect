@@ -12,6 +12,9 @@ namespace GUIApp {
 	using namespace RuralConnect;
 	using namespace RuralService;
 
+	using namespace System::Collections::Generic;
+	
+
 	/// <summary>
 	/// Resumen de FindTrip
 	/// </summary>
@@ -91,7 +94,7 @@ namespace GUIApp {
 			// button2
 			// 
 			this->button2->Location = System::Drawing::Point(9, 10);
-			this->button2->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->button2->Margin = System::Windows::Forms::Padding(2);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(56, 19);
 			this->button2->TabIndex = 3;
@@ -132,7 +135,7 @@ namespace GUIApp {
 			// txtLatitude
 			// 
 			this->txtLatitude->Location = System::Drawing::Point(124, 143);
-			this->txtLatitude->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->txtLatitude->Margin = System::Windows::Forms::Padding(2);
 			this->txtLatitude->Name = L"txtLatitude";
 			this->txtLatitude->Size = System::Drawing::Size(94, 20);
 			this->txtLatitude->TabIndex = 7;
@@ -140,7 +143,7 @@ namespace GUIApp {
 			// txtLongitudinal
 			// 
 			this->txtLongitudinal->Location = System::Drawing::Point(124, 183);
-			this->txtLongitudinal->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->txtLongitudinal->Margin = System::Windows::Forms::Padding(2);
 			this->txtLongitudinal->Name = L"txtLongitudinal";
 			this->txtLongitudinal->Size = System::Drawing::Size(94, 20);
 			this->txtLongitudinal->TabIndex = 8;
@@ -150,7 +153,7 @@ namespace GUIApp {
 			this->btnFindTrip->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btnFindTrip->Location = System::Drawing::Point(61, 312);
-			this->btnFindTrip->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->btnFindTrip->Margin = System::Windows::Forms::Padding(2);
 			this->btnFindTrip->Name = L"btnFindTrip";
 			this->btnFindTrip->Size = System::Drawing::Size(114, 39);
 			this->btnFindTrip->TabIndex = 13;
@@ -161,7 +164,7 @@ namespace GUIApp {
 			// btnSelectInMap
 			// 
 			this->btnSelectInMap->Location = System::Drawing::Point(46, 232);
-			this->btnSelectInMap->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->btnSelectInMap->Margin = System::Windows::Forms::Padding(2);
 			this->btnSelectInMap->Name = L"btnSelectInMap";
 			this->btnSelectInMap->Size = System::Drawing::Size(144, 31);
 			this->btnSelectInMap->TabIndex = 14;
@@ -173,7 +176,7 @@ namespace GUIApp {
 			this->pictureBox1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
 			this->pictureBox1->Location = System::Drawing::Point(247, -2);
-			this->pictureBox1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->pictureBox1->Margin = System::Windows::Forms::Padding(2);
 			this->pictureBox1->Name = L"pictureBox1";
 			this->pictureBox1->Size = System::Drawing::Size(830, 604);
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
@@ -207,9 +210,10 @@ namespace GUIApp {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->button2);
-			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->Margin = System::Windows::Forms::Padding(2);
 			this->Name = L"FindTrip";
 			this->Text = L"FindTrip";
+			this->Load += gcnew System::EventHandler(this, &FindTrip::FindTrip_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -220,6 +224,21 @@ namespace GUIApp {
 
 		double latTopLeft = -12.074135, lonTopLeft = -77.083166;   // Coordenadas de la esquina superior izquierda
 		double latBottomRight = -12.064391, lonBottomRight = -77.077202; // Coordenadas de la esquina inferior derecha
+
+public :
+	List<double>^ De_String_toDouble(String^ listasa) {
+		List<String^>^ lista = gcnew List<String^>(listasa->Split('.'));
+		List<double>^ lista_d = gcnew List<double>();
+
+		for each (String ^ i in lista) {
+			double value;
+			if (!String::IsNullOrEmpty(i) && Double::TryParse(i, value)) {
+				lista_d->Add(value);
+			}
+		}
+
+		return lista_d;
+	}
 
 private: System::Void btnFindTrip_Click(System::Object^ sender, System::EventArgs^ e) {
 	try {
@@ -248,7 +267,7 @@ private: System::Void pictureBox1_MouseClick(System::Object^ sender, System::Win
 
 	int x = e->X;
 	int y = e->Y;
-
+	MessageBox::Show("click " + x.ToString() + "  " + y.ToString());
 	// Tamaño del PictureBox
 	int width = pictureBox1->Width;
 	int height = pictureBox1->Height;
@@ -262,13 +281,98 @@ private: System::Void pictureBox1_MouseClick(System::Object^ sender, System::Win
 	int radius = 5; // Radio del punto
 	g->FillEllipse(System::Drawing::Brushes::Blue, x - radius, y - radius, radius * 2, radius * 2);
 
+	x = 400;  // Coordenada X (puedes cambiarla para mover el punto)
+	y = 300; // Coordenada Y (puedes cambiarla para mover el punto)
+
+	// Dibujar el punto en la posición deseada
+	g->FillEllipse(System::Drawing::Brushes::Red, x - radius, y - radius, radius * 2, radius * 2);
 	// Mostrar las coordenadas en un label o textbox
 	txtLatitude->Text = lat.ToString();
 	txtLongitudinal->Text = lon.ToString();
+
+
+
+	Service::Conductor_actual = Service::QueryDriverbyUsername("luis");
+	List<String^>^ lista_x = Service::Conductor_actual->Rutasa->Puntos_x_fijo;
+	List<String^>^ lista_y = Service::Conductor_actual->Rutasa->Puntos_y_fijo;
+
+	String^ punto_x = lista_x[0];
+	String^ punto_y = lista_y[0];
+
+	List <double>^ puntos_x = De_String_toDouble(punto_x);
+	List <double>^ puntos_y = De_String_toDouble(punto_y);
+	
+
+	for (int i = 0; i < puntos_x->Count - 1; i++) {
+
+		double pX = puntos_x[i];
+		double pY = puntos_y[i];
+
+		pX = width * (pX - lonTopLeft) / (lonBottomRight - lonTopLeft);
+		pY = height * (pY - latTopLeft) / (latBottomRight - latTopLeft);
+
+		int radius = 5; // Radio del punto
+		g->FillEllipse(System::Drawing::Brushes::Blue, pX - radius, pY - radius, radius * 2, radius * 2);
+
+
+	}
+
 }
 
 
 private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	
+
+}private: System::Void DriverPage_Load(System::Object^ sender, System::EventArgs^ e) {
+}
+
+	   
+private: System::Void FindTrip_Load(System::Object^ sender, System::EventArgs^ e) {
+	
+	double latTopLeft = -12.074135, lonTopLeft = -77.083166;   // Coordenadas de la esquina superior izquierda
+	double latBottomRight = -12.064391, lonBottomRight = -77.077202; // Coordenadas de la esquina inferior derecha
+
+
+	Service::Conductor_actual = Service::QueryDriverbyUsername("luis");
+	List<String^>^ lista_x = Service::Conductor_actual->Rutasa->Puntos_x_fijo;
+	List<String^>^ lista_y = Service::Conductor_actual->Rutasa->Puntos_y_fijo;
+
+	String^ punto_x = lista_x[0];
+	String^ punto_y = lista_y[0];
+
+	List <double>^ puntos_x = De_String_toDouble(punto_x);
+	List <double>^ puntos_y = De_String_toDouble(punto_y);
+	MessageBox::Show("tenemos " + punto_x + "  " + punto_y);
+
+	// Dibujar el punto en el mapa
+	System::Drawing::Graphics^ g = pictureBox1->CreateGraphics();
+	// Tamaño del PictureBox
+	int width = pictureBox1->Width;
+	int height = pictureBox1->Height;
+
+	int radius = 5; // Radio del punto
+	// Coordenadas para dibujar el punto dentro del cuadro
+	int x = 400;  // Coordenada X (puedes cambiarla para mover el punto)
+	int y = 300; // Coordenada Y (puedes cambiarla para mover el punto)
+
+	// Dibujar el punto en la posición deseada
+	g->FillEllipse(System::Drawing::Brushes::Blue, x - radius, y - radius, radius * 2, radius * 2);
+
+	for (int i = 0; i < puntos_x->Count - 1; i++) {
+
+		double pX = puntos_x[i];
+		double pY = puntos_y[i];
+
+		int pixelX = (int)((pX - lonBottomRight) / (latBottomRight- latTopLeft));
+		int pixelY = (int)((pY - lonTopLeft) / (lonBottomRight - lonTopLeft));
+
+		int radius = 5; // Radio del punto
+		g->FillEllipse(System::Drawing::Brushes::Red, pX - radius, pY - radius, radius * 2, radius * 2);
+
+
+	}
+
 }
 };
 }

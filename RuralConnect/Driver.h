@@ -2,9 +2,7 @@
  * Project Untitled
  */
 //waaaaaaaaaaaa
-
-#ifndef _DRIVER_H
-#define _DRIVER_H
+#pragma once
 
 #include "User.h"
 #include "CreateRoute.h"
@@ -22,7 +20,7 @@ namespace RuralConnect {
         //List<Route^> TypicalRoutes;
         Vehicle^ vehicle;
 
-        Route^ Rutasa;
+        Route^ Rutasa = gcnew Route() ;
         void EndMyRoute();
         void CreateRoute();
         void OfferRoute();
@@ -42,8 +40,8 @@ namespace RuralConnect {
             PhoneNumber = phone;
             Username = username;
             Password = password;
+            Rutasa = nullptr;
         }
     };
 }
 
-#endif //_DRIVER_H

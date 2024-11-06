@@ -58,9 +58,9 @@ namespace GUIApp {
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ txtNumeroViajes;
-	private: System::Windows::Forms::PictureBox^ pictureBox2;
-	private: System::Windows::Forms::PictureBox^ pictureBox3;
-	private: System::Windows::Forms::PictureBox^ pictureBox4;
+
+
+
 
 
 
@@ -79,7 +79,6 @@ namespace GUIApp {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm::typeid));
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->btnLogout = (gcnew System::Windows::Forms::Button());
 			this->label2 = (gcnew System::Windows::Forms::Label());
@@ -92,20 +91,14 @@ namespace GUIApp {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->txtNumeroViajes = (gcnew System::Windows::Forms::Label());
-			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
-			this->pictureBox3 = (gcnew System::Windows::Forms::PictureBox());
-			this->pictureBox4 = (gcnew System::Windows::Forms::PictureBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox3))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox4))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// pictureBox1
 			// 
 			this->pictureBox1->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->pictureBox1->Location = System::Drawing::Point(21, 67);
-			this->pictureBox1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->pictureBox1->Margin = System::Windows::Forms::Padding(2);
 			this->pictureBox1->Name = L"pictureBox1";
 			this->pictureBox1->Size = System::Drawing::Size(152, 191);
 			this->pictureBox1->TabIndex = 1;
@@ -114,7 +107,7 @@ namespace GUIApp {
 			// btnLogout
 			// 
 			this->btnLogout->Location = System::Drawing::Point(7, 12);
-			this->btnLogout->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->btnLogout->Margin = System::Windows::Forms::Padding(2);
 			this->btnLogout->Name = L"btnLogout";
 			this->btnLogout->Size = System::Drawing::Size(70, 19);
 			this->btnLogout->TabIndex = 2;
@@ -149,7 +142,7 @@ namespace GUIApp {
 			this->button3->BackColor = System::Drawing::Color::AntiqueWhite;
 			this->button3->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->button3->Location = System::Drawing::Point(191, 229);
-			this->button3->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->button3->Margin = System::Windows::Forms::Padding(2);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(174, 69);
 			this->button3->TabIndex = 6;
@@ -160,7 +153,7 @@ namespace GUIApp {
 			// progressBar1
 			// 
 			this->progressBar1->Location = System::Drawing::Point(298, 132);
-			this->progressBar1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->progressBar1->Margin = System::Windows::Forms::Padding(2);
 			this->progressBar1->Name = L"progressBar1";
 			this->progressBar1->Size = System::Drawing::Size(118, 19);
 			this->progressBar1->TabIndex = 7;
@@ -181,7 +174,7 @@ namespace GUIApp {
 			// btPhotoPass
 			// 
 			this->btPhotoPass->Location = System::Drawing::Point(52, 271);
-			this->btPhotoPass->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->btPhotoPass->Margin = System::Windows::Forms::Padding(2);
 			this->btPhotoPass->Name = L"btPhotoPass";
 			this->btPhotoPass->Size = System::Drawing::Size(83, 28);
 			this->btPhotoPass->TabIndex = 9;
@@ -229,48 +222,12 @@ namespace GUIApp {
 			this->txtNumeroViajes->TabIndex = 12;
 			this->txtNumeroViajes->Text = L"Número";
 			// 
-			// pictureBox2
-			// 
-			this->pictureBox2->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
-			this->pictureBox2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox2.Image")));
-			this->pictureBox2->Location = System::Drawing::Point(392, 229);
-			this->pictureBox2->Name = L"pictureBox2";
-			this->pictureBox2->Size = System::Drawing::Size(66, 70);
-			this->pictureBox2->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
-			this->pictureBox2->TabIndex = 13;
-			this->pictureBox2->TabStop = false;
-			// 
-			// pictureBox3
-			// 
-			this->pictureBox3->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
-			this->pictureBox3->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox3.Image")));
-			this->pictureBox3->Location = System::Drawing::Point(299, 12);
-			this->pictureBox3->Name = L"pictureBox3";
-			this->pictureBox3->Size = System::Drawing::Size(95, 41);
-			this->pictureBox3->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
-			this->pictureBox3->TabIndex = 14;
-			this->pictureBox3->TabStop = false;
-			// 
-			// pictureBox4
-			// 
-			this->pictureBox4->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
-			this->pictureBox4->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox4.Image")));
-			this->pictureBox4->Location = System::Drawing::Point(82, 12);
-			this->pictureBox4->Name = L"pictureBox4";
-			this->pictureBox4->Size = System::Drawing::Size(31, 32);
-			this->pictureBox4->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
-			this->pictureBox4->TabIndex = 15;
-			this->pictureBox4->TabStop = false;
-			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ActiveCaption;
 			this->ClientSize = System::Drawing::Size(470, 350);
-			this->Controls->Add(this->pictureBox4);
-			this->Controls->Add(this->pictureBox3);
-			this->Controls->Add(this->pictureBox2);
 			this->Controls->Add(this->txtNumeroViajes);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label1);
@@ -284,14 +241,11 @@ namespace GUIApp {
 			this->Controls->Add(this->btnLogout);
 			this->Controls->Add(this->pictureBox1);
 			this->HelpButton = true;
-			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->Margin = System::Windows::Forms::Padding(2);
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox3))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox4))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
