@@ -2,9 +2,7 @@
  * Project Untitled
  */
 
-
-#ifndef _USER_H
-#define _USER_H
+#pragma once
 
 using namespace System;
 using namespace System::Collections::Generic;
@@ -26,4 +24,3 @@ namespace RuralConnect{
     };
 }
 
-#endif //_USER_H

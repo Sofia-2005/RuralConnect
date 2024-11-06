@@ -2,9 +2,7 @@
  * Project Untitled
  */
 
-
-#ifndef _PASSENGER_H
-#define _PASSENGER_H
+#pragma once
 
 #include "User.h"
 #include "CreateRoute.h"
@@ -41,4 +39,3 @@ namespace RuralConnect {
     };
 }
 
-#endif //_PASSENGER_H

@@ -2,15 +2,13 @@
  * Project Untitled
  */
 
-
-#ifndef _CLAIM_H
-#define _CLAIM_H
+#pragma once
 
 using namespace System;
 using namespace System::Collections::Generic;
 
 namespace RuralConnect {
-    public ref class Claim {
+    [Serializable] public ref class Claim {
     public:
         String^ Reason;
 
@@ -18,4 +16,3 @@ namespace RuralConnect {
     };
 }
 
-#endif //_CLAIM_H

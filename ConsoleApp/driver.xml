@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfDriver xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Driver>
+    <Name>david</Name>
+    <LastName>david</LastName>
+    <DNI>9</DNI>
+    <PhoneNumber>0</PhoneNumber>
+    <Username>david</Username>
+    <Password>david</Password>
+    <Qualification>0</Qualification>
+    <NumberOfCompletedTrips>0</NumberOfCompletedTrips>
+    <vehicle>
+      <Model>david</Model>
+      <Seats>9</Seats>
+      <PlateNumber>9</PlateNumber>
+    </vehicle>
+  </Driver>
+</ArrayOfDriver>

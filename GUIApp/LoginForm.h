@@ -3,6 +3,8 @@
 #include "PrincipalForm.h"
 #include "PrincipalFormDriver.h"
 
+
+
 namespace GUIApp {
 
 	using namespace System;
@@ -12,6 +14,8 @@ namespace GUIApp {
 	using namespace System::Data;
 	using namespace System::Drawing;
 	using namespace System::Collections::Generic;
+
+	using namespace RuralService;
 
 
 	/// <summary>
@@ -196,17 +200,23 @@ private: System::Void txt_startSession_Click(System::Object^ sender, System::Eve
 	String^ contra = txt_password->Text;
 
 	if (Service::QueryDriverPassengerbyUsername(usuario, contra)) {
-		MessageBox::Show("El usuario " + contra + " ha iniciado sesion ");
+		MessageBox::Show("El usuario " + usuario + " ha iniciado sesion ");
 
 		int i = Service::PassengerOrDriver(usuario);
 		if (i == 0) {
 			Passenger^ p = Service::QueryPassengerbyUsername(usuario);
 			MyForm^ f = gcnew MyForm(p);
+			
+			Service::PasajeroActual = Service::QueryPassengerbyUsername(usuario);
+
 			f->Show();
 		}
 		else {
 			Driver^ d = Service::QueryDriverbyUsername(usuario);
 			PrincipalFormDriver^ f = gcnew PrincipalFormDriver(d);
+
+			Service::Conductor_actual = Service::QueryDriverbyUsername(usuario);
+			
 			f->Show();
 		}
 		this->Hide();

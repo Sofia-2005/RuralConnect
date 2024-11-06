@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfDriver xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Driver>
+    <Name>luis</Name>
+    <LastName>luis</LastName>
+    <DNI>0</DNI>
+    <PhoneNumber>0</PhoneNumber>
+    <Username>luis</Username>
+    <Password>luis</Password>
+    <Qualification>0</Qualification>
+    <NumberOfCompletedTrips>0</NumberOfCompletedTrips>
+    <vehicle>
+      <Model>luis</Model>
+      <Seats>0</Seats>
+      <PlateNumber>0</PlateNumber>
+    </vehicle>
+    <Rutasa>
+      <Latitude>0</Latitude>
+      <Longitude>0</Longitude>
+      <Puntos_y_volatil />
+      <Puntos_x_volatil />
+      <Puntos_y_fijo>
+        <string>-77,0806645430464.-77,0809015231788.</string>
+      </Puntos_y_fijo>
+      <Puntos_x_fijo>
+        <string>-12,0718516648501.-12,0722100953678.</string>
+      </Puntos_x_fijo>
+    </Rutasa>
+  </Driver>
+</ArrayOfDriver>
