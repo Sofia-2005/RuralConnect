@@ -2,9 +2,7 @@
  * Project Untitled
  */
 
-
-#ifndef _VEHICLE_H
-#define _VEHICLE_H
+#pragma once
 
 using namespace System;
 using namespace System::Collections::Generic;
@@ -19,4 +17,3 @@ namespace RuralConnect {
     };
 }
 
-#endif //_VEHICLE_H

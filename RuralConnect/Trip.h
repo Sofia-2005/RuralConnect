@@ -2,15 +2,14 @@
  * Project Untitled
  */
 
-#ifndef _TRIP_H
-#define _TRIP_H
+#pragma once
 #include "Passenger.h"
 
 using namespace System;
 using namespace System::Collections::Generic;
 
 namespace RuralConnect {
-    public ref class Trip {
+    [Serializable] public ref class Trip {
     public:
         LinkedList<String^>^ Route;
         String^ Date;
@@ -34,4 +33,3 @@ namespace RuralConnect {
     };
 }
 
-#endif //_TRIP_H

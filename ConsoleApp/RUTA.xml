@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <string>3,5,6,4,5,6,6,7,7,8,8,7,6,5,5</string>
+  <string>4,35,5,546,65,54,5435,3,44,536,5,3,3,43,3,54,6,545</string>
+  <string>5,45,4,45,5,54,4,3,3,4,3,3,3,2,2,65,4,67,5</string>
+</ArrayOfString>

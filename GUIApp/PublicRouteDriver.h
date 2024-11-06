@@ -6,6 +6,7 @@ namespace GUIApp {
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
+	using namespace System::Collections::Generic;
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
@@ -16,12 +17,47 @@ namespace GUIApp {
 	public ref class PublicRouteDriver : public System::Windows::Forms::Form
 	{
 	public:
-		PublicRouteDriver(void)
+		array<PointF>^ arrPoints = gcnew array<PointF>(2 * 360);
+		const int R = 100;
+		int counter = 1;
+		int i = 0;
+		List<array<double>^>^ LatLong = gcnew List<array<double>^>();
+	private: System::Windows::Forms::Timer^ timer1;
+	private: System::Windows::Forms::Timer^ timer2;
+	public:
+		List<array<int>^>^ ListaXY = gcnew List<array<int>^>();
+		PublicRouteDriver(List<array<double>^>^ a)
 		{
 			InitializeComponent();
+			LatLong = a;
+
+			int x = 0, y = 0;
+			// Tamaño del PictureBox
+			int width = pictureBox1->Width;
+			int height = pictureBox1->Height;
+
+			for (int i = 0; i < LatLong->Count;i++) {
+				array<double>^ a1 = LatLong[i];
+
+				double  latitude = a1[0];
+				double longitude = a1[1];
+
+				x = (int)((latitude - latTopLeft) / (latBottomRight - latTopLeft) * width);
+				y = (int)((longitude - lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
+
+				array<int>^ pt = { x, y };
+
+				ListaXY->Add(pt);
+			}
 			//
 			//TODO: agregar código de constructor aquí
 			//
+
+			for (int i = 0; i < 2 * 360; i++) {
+				arrPoints[i] = PointF(pictureBox1->Width / 2 - 360 + i,
+					pictureBox1->Height / 2 + R * Math::Sin(3 * Math::PI / 180 * (i - 3 * R)));
+			}
+			timer1->Start();
 		}
 
 	protected:
@@ -44,6 +80,7 @@ namespace GUIApp {
 	private: System::Windows::Forms::Button^ btnBack;
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
+	private: System::ComponentModel::IContainer^ components;
 
 
 
@@ -52,7 +89,7 @@ namespace GUIApp {
 		/// <summary>
 		/// Variable del diseñador necesaria.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -61,6 +98,7 @@ namespace GUIApp {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			this->components = (gcnew System::ComponentModel::Container());
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(PublicRouteDriver::typeid));
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
@@ -68,6 +106,8 @@ namespace GUIApp {
 			this->btnBack = (gcnew System::Windows::Forms::Button());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
+			this->timer2 = (gcnew System::Windows::Forms::Timer(this->components));
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -126,6 +166,12 @@ namespace GUIApp {
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox1->TabIndex = 10;
 			this->pictureBox1->TabStop = false;
+			this->pictureBox1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &PublicRouteDriver::pictureBox1_Paint);
+			// 
+			// timer1
+			// 
+			this->timer1->Interval = 10;
+			this->timer1->Tick += gcnew System::EventHandler(this, &PublicRouteDriver::timer1_Tick);
 			// 
 			// PublicRouteDriver
 			// 
@@ -147,12 +193,51 @@ namespace GUIApp {
 		}
 #pragma endregion
 
+
+		double latTopLeft = -12.074135, lonTopLeft = -77.083166;   // Coordenadas de la esquina superior izquierda
+		double latBottomRight = -12.064391, lonBottomRight = -77.077202; // Coordenadas de la esquina inferior derecha
+
 private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void btnPublishRoutes_Click(System::Object^ sender, System::EventArgs^ e) {
 	TripInCourse^ PublishRoutes = gcnew TripInCourse();
 	PublishRoutes->Show();
 	this->Hide();
+}
+private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+	int x = 50, y = 50, x2 = 0, y2 = 0;
+	bool primera = true;
+
+	Graphics^ g = e->Graphics;
+	Pen^ pen = gcnew Pen(Color::Blue);
+	int radius = 5; // Radio del punto
+	for (int i = 0;i < ListaXY->Count;i++) {
+		array<int>^ a1 = ListaXY[i];
+		x = a1[0];
+		y = a1[1];
+		g->FillEllipse(System::Drawing::Brushes::Blue, x - radius, y - radius, radius * 2, radius * 2);
+	}
+
+	for (int i = 0;i < ListaXY->Count - 1;i++) {
+		array<int>^ a1 = ListaXY[i];
+		x = a1[0];
+		y = a1[1];
+		a1 = ListaXY[i + 1];
+		x2 = a1[0];
+		y2 = a1[1];
+		g->DrawLine(pen, x, y, x2, y2);
+	}
+}
+private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
+
+	if (counter < 2) {
+		counter++;
+		pictureBox1->Invalidate();
+	}
+	else {
+		timer1->Stop();
+		timer1->Enabled = false;
+	}
 }
 };
 }

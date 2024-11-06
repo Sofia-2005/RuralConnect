@@ -22,7 +22,7 @@ void RuralService::Service::AddDriver(Driver^ driver)
     }
     DriverList = Service::QueryAllDrivers();
     DriverList->Add(driver);
-    Persistance::PersistBinaryFile(BIN_DRIVER_FILE_NAME, DriverList);
+    Persistance::Persist_Driver_XML_File(XML_DRIVER_FILE_NAME, DriverList);
 
 }
 void RuralService::Service::AddPassenger(Passenger^ passenger)
@@ -39,7 +39,7 @@ void RuralService::Service::AddPassenger(Passenger^ passenger)
     PassengerList = Service::QueryAllPassengers();
     PassengerList->Add(passenger);
     //Persistance::PersistXMLFile(XML_PASSENGER_FILE_NAME, PassengerList);
-    Persistance::PersistBinaryFile(BIN_PASSENGER_FILE_NAME, PassengerList);
+    Persistance::Persist_Passenger_XML_File(XML_PASSENGER_FILE_NAME, PassengerList);
 }
 
 void RuralService::Service::UpdatePassenger(Passenger^ p)
@@ -48,7 +48,7 @@ void RuralService::Service::UpdatePassenger(Passenger^ p)
         if (PassengerList[i]->Username == p->Username) {
             PassengerList[i] = p;
             //Persistance::PersistXMLFile(XML_PASSENGER_FILE_NAME, PassengerList);
-            Persistance::PersistBinaryFile(BIN_PASSENGER_FILE_NAME, PassengerList);
+            Persistance::Persist_Passenger_XML_File(XML_PASSENGER_FILE_NAME, PassengerList);
             return;
         }
     }
@@ -62,7 +62,7 @@ void RuralService::Service::DeletePassenger(String^ username)
             PassengerList->RemoveAt(i);
             
             //Persistance::PersistXMLFile(XML_PASSENGER_FILE_NAME, PassengerList);
-            Persistance::PersistBinaryFile(BIN_PASSENGER_FILE_NAME, PassengerList);
+            Persistance::Persist_Passenger_XML_File(XML_PASSENGER_FILE_NAME, PassengerList);
             return;
         }
     }
@@ -75,7 +75,7 @@ List<Passenger^>^ RuralService::Service::QueryAllPassengers()
     try {
         //robotsList = (List<RobotWaiter^>^)Persistance::LoadRobotWaitersTextFile(TXT_ROBOT_FILE_NAME);
         //PassengerList = (List<Passenger^>^)Persistance::LoadPassengersXmlFile(XML_PASSENGER_FILE_NAME);
-        PassengerList = (List<Passenger^>^)Persistance::LoadBinaryFile(BIN_PASSENGER_FILE_NAME);
+        PassengerList = (List<Passenger^>^)Persistance::Load_Passenger_XML_File(XML_PASSENGER_FILE_NAME);
         if(PassengerList == nullptr)
             PassengerList = gcnew List<Passenger^>();
     }
@@ -96,10 +96,12 @@ Passenger^ RuralService::Service::QueryPassengerbyUsername(String^ username)
 
 void RuralService::Service::UpdateDriver(Driver^ p)
 {
+    DriverList = QueryAllDrivers();
     for (int i = 0; i < DriverList->Count; i++) {
+        
         if (DriverList[i]->Username == p->Username) {
             DriverList[i] = p;
-            Persistance::PersistBinaryFile(BIN_DRIVER_FILE_NAME, DriverList);
+            Persistance::Persist_Driver_XML_File(XML_DRIVER_FILE_NAME, DriverList);
             return;
         }
     }
@@ -111,7 +113,7 @@ void RuralService::Service::DeleteDriver(String^ username)
     for (int i = 0; i < DriverList->Count; i++) {
         if (DriverList[i]->Username == username) {
             DriverList->RemoveAt(i);
-            Persistance::PersistBinaryFile(BIN_DRIVER_FILE_NAME, DriverList);
+            Persistance::Persist_Driver_XML_File(XML_DRIVER_FILE_NAME, DriverList);
             return;
         }
     }
@@ -120,25 +122,27 @@ void RuralService::Service::DeleteDriver(String^ username)
 
 List<Driver^>^ RuralService::Service::QueryAllDrivers()
 {
-    DriverList = gcnew List<Driver^>();
+    List<Driver^>^ lista_conduc = gcnew List<Driver^>();
     try {
-        //robotsList = (List<RobotWaiter^>^)Persistance::LoadRobotWaitersTextFile(TXT_ROBOT_FILE_NAME);
-        //PassengerList = (List<Passenger^>^)Persistance::LoadPassengersXmlFile(XML_PASSENGER_FILE_NAME);
-        DriverList = (List<Driver^>^)Persistance::LoadBinaryFile(BIN_DRIVER_FILE_NAME);
-        if (DriverList == nullptr)
-            DriverList = gcnew List<Driver^>();
+        
+        lista_conduc = (List<Driver^>^)Persistance::Load_Driver_XML_File(XML_DRIVER_FILE_NAME);
+        if (lista_conduc == nullptr)
+            lista_conduc = gcnew List<Driver^>();
     }
     catch (FileNotFoundException^ ex) {
+        throw ex;
     }
    
-    return DriverList;
+    return lista_conduc;
     
 }
 
 Driver^ RuralService::Service::QueryDriverbyUsername(String^ username)
 {
+    DriverList = QueryAllDrivers();
     for (int i = 0; i < DriverList->Count; i++) {
         if (DriverList[i]->Username == username) {
+            
             return DriverList[i];
         }
     }
@@ -169,7 +173,7 @@ int RuralService::Service::QueryDriverPassengerbyUsername(String^ username, Stri
 
         }
     }
-    return 0;
+    return 1;
 }
 
 int RuralService::Service::PassengerOrDriver(String^ username)
@@ -189,6 +193,7 @@ int RuralService::Service::PassengerOrDriver(String^ username)
 
         }
     }
+    return 2;
 }
 //metodo que cuando se invoque activara el protocolo de seguridad que hará parpadear un led y sonar un buzer
 void RuralService::Service::ActivateSecurityProtocol()
@@ -268,4 +273,25 @@ void RuralService::Service::ClosePort()
         throw ex;
     }
 }
+
+
+/*
+void RuralService::Service::Add_Rute(List<String^>^ ruta_x)
+{
+    Persistance::Persist_RUTA_XMLFile(XML_RUTA_FILE_NAME, ruta_x);
+}
+
+List<String^>^ RuralService::Service::load_Rute()
+{
+    Lista_rutas_x = gcnew List<String^>();
+    try {
+        
+        Lista_rutas_x = (List<String^>^)Persistance::Load_RUTA_XmlFile(XML_RUTA_FILE_NAME);
+        if (Lista_rutas_x == nullptr)
+            Lista_rutas_x = gcnew List<String^>();
+    }
+    catch (FileNotFoundException^ ex) {
+    }
+    return Lista_rutas_x;
+}*/
 

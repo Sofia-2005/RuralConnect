@@ -148,6 +148,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Persistance\Persistance.vcxproj">
+      <Project>{e975702c-cc19-4577-aa48-4161da51b2aa}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\RuralConnect\RuralConnect.vcxproj">
       <Project>{09f53f1e-fb29-40b8-9f8d-607bfef824ec}</Project>
     </ProjectReference>

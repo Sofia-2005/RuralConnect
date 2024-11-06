@@ -3,32 +3,39 @@
  */
 
 
-#ifndef _ROUTE_H
-#define _ROUTE_H
+#pragma once
 
 using namespace System;
 using namespace System::Collections::Generic;
 
 namespace RuralConnect {
-    public ref class Route {
+    [Serializable] public ref class Route {
     public:
-        array<int>^ EndPoint;
-        array<int>^ StartPoint;
-        int Distance;
-        int Duration;
         double Latitude;
         double Longitude;
+
+        property List< String^>^ Puntos_x_fijo ;
+        property List< String^>^ Puntos_y_fijo ;
+
+        property List< String^>^ Puntos_x_volatil;
+        property List< String^>^ Puntos_y_volatil;
 
         void GetEstimatedTime();
 
         void GetEstimatedPrice();
 
+        Route() {
+            Puntos_x_fijo = gcnew List<String^>();
+            Puntos_y_fijo = gcnew List<String^>(); 
+            Puntos_x_volatil = gcnew List<String^>();
+            Puntos_y_volatil = gcnew List<String^>();
+        }
         Route(double latitude, double longitude) {
             Latitude = latitude;
             Longitude = longitude;
         }
+        
 
     };
 }
 
-#endif //_ROUTE_H
