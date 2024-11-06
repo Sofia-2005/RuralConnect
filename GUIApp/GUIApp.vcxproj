@@ -128,6 +128,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AdvertisementForm.cpp" />
     <ClCompile Include="DriverPage.cpp" />
     <ClCompile Include="FindTrip.cpp" />
     <ClCompile Include="LoginForm.cpp" />
@@ -143,6 +144,9 @@
     <ClCompile Include="VehicleForm.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AdvertisementForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="DriverPage.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -184,6 +188,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AdvertisementForm.resx">
+      <DependentUpon>AdvertisementForm.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DriverPage.resx">
       <DependentUpon>DriverPage.h</DependentUpon>
     </EmbeddedResource>

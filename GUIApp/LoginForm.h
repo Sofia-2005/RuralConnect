@@ -117,6 +117,7 @@ namespace GUIApp {
 			this->txt_username->Name = L"txt_username";
 			this->txt_username->Size = System::Drawing::Size(201, 22);
 			this->txt_username->TabIndex = 3;
+			this->txt_username->TextChanged += gcnew System::EventHandler(this, &LoginForm::txt_username_TextChanged);
 			// 
 			// label1
 			// 
@@ -227,6 +228,8 @@ private: System::Void fotoLogo_Click(System::Object^ sender, System::EventArgs^ 
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 
+}
+private: System::Void txt_username_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

@@ -16,6 +16,7 @@ namespace RuralService {
 		static String^ XML_PASSENGER_FILE_NAME = "passengers.xml";
 		static String^ BIN_PASSENGER_FILE_NAME = "passengers.bin";
 		static String^ BIN_DRIVER_FILE_NAME = "driver.bin";
+		static String^ BIN_ADVERTISEMENTS_FILE_NAME = "advertisement.bin";
 	public:
 		static List<Passenger^>^ PassengerList = gcnew List<Passenger^>();
 		static List<Driver^>^ DriverList = gcnew List<Driver^>();
