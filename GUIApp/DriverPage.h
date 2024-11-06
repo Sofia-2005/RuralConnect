@@ -186,6 +186,7 @@ namespace GUIApp {
 		double latBottomRight = -12.064391, lonBottomRight = -77.077202; // Coordenadas de la esquina inferior derecha
 
 		List<array<int>^>^ listaXY = gcnew List<array<int>^>();
+		List<array<double>^>^ LatLong = gcnew List<array<double>^>();
 
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
@@ -195,7 +196,7 @@ namespace GUIApp {
 		this->Hide();
 	}
 	private: System::Void btnCreateRoute_Click(System::Object^ sender, System::EventArgs^ e) {
-		PublicRouteDriver^ CreateRoute = gcnew PublicRouteDriver();
+		PublicRouteDriver^ CreateRoute = gcnew PublicRouteDriver(LatLong);
 		CreateRoute->Show();
 		this->Hide();
 	}
@@ -208,22 +209,24 @@ private: System::Void DriverPage_Load(System::Object^ sender, System::EventArgs^
 		int x = e->X;
 		int y = e->Y;
 
-		array<int>^ punto = {x, y};
+		array<int>^ punto = { x, y };
 
 		listaXY->Add(punto);
 
-	// Tamaño del PictureBox
-	int width = pictureBox1->Width;
-	int height = pictureBox1->Height;
+		// Tamaño del PictureBox
+		int width = pictureBox1->Width;
+		int height = pictureBox1->Height;
 
-	// Convertir píxeles a coordenadas geográficas teniendo en cuenta la rotación
-	double lat = latTopLeft + (latBottomRight - latTopLeft) * (static_cast<double>(x) / width);
-	double lon = lonTopLeft + (lonBottomRight - lonTopLeft) * (static_cast<double>(y) / height);
+		// Convertir píxeles a coordenadas geográficas teniendo en cuenta la rotación
+		double lat = latTopLeft + (latBottomRight - latTopLeft) * (static_cast<double>(x) / width);
+		double lon = lonTopLeft + (lonBottomRight - lonTopLeft) * (static_cast<double>(y) / height);
 
-	// Dibujar el punto en el mapa
-	System::Drawing::Graphics^ g = pictureBox1->CreateGraphics();
-	int radius = 5; // Radio del punto
-	g->FillEllipse(System::Drawing::Brushes::Blue, x - radius, y - radius, radius * 2, radius * 2);
+		array<double>^ pt = { lat, lon };
+		LatLong->Add(pt);
+		// Dibujar el punto en el mapa
+		System::Drawing::Graphics^ g = pictureBox1->CreateGraphics();
+		int radius = 5; // Radio del punto
+		g->FillEllipse(System::Drawing::Brushes::Blue, x - radius, y - radius, radius * 2, radius * 2);
 
 	
 	MessageBox::Show("Datos ingresados"+lat.ToString() + "  " +lon.ToString());
