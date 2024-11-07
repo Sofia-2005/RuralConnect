@@ -63,6 +63,9 @@ namespace RuralService {
 		static List<Passenger^>^ QueryAllPassengers();
 		static Passenger^ QueryPassengerbyUsername(String^ username);
 
+
+
+
 		
 		//PERSISTENCIA PARA LOS RECLAMOS
 		static void AddAdvert(Claim^ p );
@@ -77,6 +80,6 @@ namespace RuralService {
 
 
 
-		
+		static List<double>^ De_String_toDouble(String^ listasa);
 	};
 }

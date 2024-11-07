@@ -14,6 +14,8 @@
     <ClCompile Include="PrincipalFormDriver.cpp" />
     <ClCompile Include="TripDetailsForm.cpp" />
     <ClCompile Include="RealTimeForm.cpp" />
+    <ClCompile Include="SelectRoutePassenger.cpp" />
+    <ClCompile Include="usersReportForm.cpp" />
     <ClCompile Include="AdvertisementForm.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -53,6 +55,5 @@
     <ClInclude Include="PrincipalFormDriver.h" />
     <ClInclude Include="TripDetailsForm.h" />
     <ClInclude Include="RealTimeForm.h" />
-    <ClInclude Include="AdvertisementForm.h" />
   </ItemGroup>
 </Project>

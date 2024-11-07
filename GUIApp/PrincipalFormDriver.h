@@ -45,7 +45,7 @@ namespace GUIApp {
 
 	private: System::Windows::Forms::Label^ label2;
 
-	private: System::Windows::Forms::Button^ button2;
+
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 
 	private: System::Windows::Forms::ProgressBar^ pB;
@@ -60,6 +60,8 @@ namespace GUIApp {
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ label5;
+	private: System::Windows::Forms::Button^ btn_CompletedTripReport;
+
 
 
 
@@ -83,7 +85,6 @@ namespace GUIApp {
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->pB = (gcnew System::Windows::Forms::ProgressBar());
 			this->label1 = (gcnew System::Windows::Forms::Label());
@@ -93,6 +94,7 @@ namespace GUIApp {
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->btn_CompletedTripReport = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -108,7 +110,7 @@ namespace GUIApp {
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(325, 288);
+			this->button3->Location = System::Drawing::Point(319, 328);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(208, 79);
 			this->button3->TabIndex = 14;
@@ -125,15 +127,6 @@ namespace GUIApp {
 			this->label2->TabIndex = 12;
 			this->label2->Text = L"Calificación:";
 			this->label2->Click += gcnew System::EventHandler(this, &PrincipalFormDriver::label2_Click);
-			// 
-			// button2
-			// 
-			this->button2->Location = System::Drawing::Point(12, 12);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(88, 23);
-			this->button2->TabIndex = 10;
-			this->button2->Text = L"LOGOUT";
-			this->button2->UseVisualStyleBackColor = true;
 			// 
 			// pictureBox1
 			// 
@@ -215,11 +208,22 @@ namespace GUIApp {
 			this->label5->TabIndex = 23;
 			this->label5->Text = L"Audi Z32 Gray";
 			// 
+			// btn_CompletedTripReport
+			// 
+			this->btn_CompletedTripReport->Location = System::Drawing::Point(323, 275);
+			this->btn_CompletedTripReport->Name = L"btn_CompletedTripReport";
+			this->btn_CompletedTripReport->Size = System::Drawing::Size(204, 47);
+			this->btn_CompletedTripReport->TabIndex = 24;
+			this->btn_CompletedTripReport->Text = L"Reporte de viajes completados";
+			this->btn_CompletedTripReport->UseVisualStyleBackColor = true;
+			this->btn_CompletedTripReport->Click += gcnew System::EventHandler(this, &PrincipalFormDriver::btn_CompletedTripReport_Click);
+			// 
 			// PrincipalFormDriver
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(640, 419);
+			this->Controls->Add(this->btn_CompletedTripReport);
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->button1);
@@ -231,7 +235,6 @@ namespace GUIApp {
 			this->Controls->Add(this->pB);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->label2);
-			this->Controls->Add(this->button2);
 			this->Controls->Add(this->pictureBox1);
 			this->Name = L"PrincipalFormDriver";
 			this->Text = L"PrincipalFormDriver";
@@ -258,9 +261,16 @@ private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e)
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 	// Crear una instancia del nuevo formulario (Form2 en este caso)
-	DriverPage^ newForm = gcnew DriverPage();
+	DriverPage^ newForm = gcnew DriverPage(User);
 	newForm->Show();
 	this->Hide();
+}
+private: System::Void btn_CompletedTripReport_Click(System::Object^ sender, System::EventArgs^ e) {
+
+}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void btn_Back_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }
