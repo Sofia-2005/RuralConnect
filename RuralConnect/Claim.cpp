@@ -10,6 +10,3 @@
  */
 
 
-void RuralConnect::Claim::ValidateClaim() {
-
-}

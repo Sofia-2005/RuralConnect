@@ -1,4 +1,5 @@
 #pragma once
+//#include "Claim.h"
 
 namespace GUIApp {
 
@@ -8,6 +9,8 @@ namespace GUIApp {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace RuralConnect;
+	using namespace RuralService;
 
 	/// <summary>
 	/// Resumen de AdvertisementForm
@@ -141,6 +144,7 @@ namespace GUIApp {
 			this->button1->TabIndex = 6;
 			this->button1->Text = L"Enviar y finalizar";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &AdvertisementForm::button1_Click);
 			// 
 			// radioButton1
 			// 
@@ -182,6 +186,7 @@ namespace GUIApp {
 			this->Controls->Add(this->label1);
 			this->Name = L"AdvertisementForm";
 			this->Text = L"AdvertisementForm";
+			this->Load += gcnew System::EventHandler(this, &AdvertisementForm::AdvertisementForm_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -199,6 +204,14 @@ private: System::Void radioButton2_CheckedChanged(System::Object^ sender, System
 	user = 1;
 }
 private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void AdvertisementForm_Load(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	//se guarda los valores del reclamo
+	Claim^ reclamo = gcnew Claim(txtReclamo->Text);
+	Service::AddAdvert(reclamo);
+
 }
 };
 }

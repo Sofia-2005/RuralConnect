@@ -109,6 +109,7 @@ namespace GUIApp {
 			this->Controls->Add(this->btnBack);
 			this->Name = L"RealTimeForm";
 			this->Text = L"RealTimeForm";
+			this->Load += gcnew System::EventHandler(this, &RealTimeForm::RealTimeForm_Load);
 			this->ResumeLayout(false);
 
 		}
@@ -121,5 +122,7 @@ namespace GUIApp {
 		newForm->Show();
 		this->Hide();
 	}
+private: System::Void RealTimeForm_Load(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }

@@ -1,6 +1,7 @@
 /**
  * Project Untitled
  */
+#include "Claim.h"
 
 #pragma once
 
@@ -16,6 +17,7 @@ namespace RuralConnect{
         int PhoneNumber;
         String^ Username;
         String^ Password;
+        Claim^ claim;
         int Qualification;
 
         void Register();
