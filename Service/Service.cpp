@@ -4,6 +4,7 @@
 #include "DuplicatedUsernameException.h"
 #include "DoesNotExistUsernameException.h"
 using namespace System::IO;
+using namespace RuralConnect;
 
 
 int RuralService::Service::ShowListCount()
@@ -93,6 +94,7 @@ Passenger^ RuralService::Service::QueryPassengerbyUsername(String^ username)
     }
     throw gcnew DoesNotExistUsernameException("El usuario no existe en la base de datos.");
 }
+
 
 void RuralService::Service::UpdateDriver(Driver^ p)
 {

@@ -55,6 +55,6 @@
     <ClInclude Include="TripDetailsForm.h" />
     <ClInclude Include="RealTimeForm.h" />
     <ClInclude Include="SelectRoutePassenger.h" />
-    <ClInclude Include="driversReportForm.h" />
+    <ClInclude Include="ReportForm.h" />
   </ItemGroup>
 </Project>

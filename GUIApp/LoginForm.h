@@ -2,7 +2,7 @@
 #include "RegisterForm.h"
 #include "PrincipalForm.h"
 #include "PrincipalFormDriver.h"
-#include "driversReportForm.h"
+#include "ReportForm.h"
 
 
 
@@ -205,7 +205,7 @@ private: System::Void txt_startSession_Click(System::Object^ sender, System::Eve
 		// Si es admin, redirige al formulario de reportes
 		MessageBox::Show("Administrador ha iniciado sesión.");
 		// Aquí se abre el formulario de reportes (cambia "ReportForm" por el nombre de tu formulario de reportes)
-		driversReportForm^ newForm = gcnew driversReportForm();
+		ReportForm^ newForm = gcnew ReportForm();
 		newForm->Show();
 		// Oculta el formulario actual
 		this->Hide();

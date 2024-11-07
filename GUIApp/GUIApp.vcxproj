@@ -185,7 +185,7 @@
     <ClInclude Include="TripRequestToDriver.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="driversReportForm.h">
+    <ClInclude Include="ReportForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="VehicleForm.h">
@@ -232,8 +232,8 @@
     <EmbeddedResource Include="TripRequestToDriver.resx">
       <DependentUpon>TripRequestToDriver.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="driversReportForm.resx">
-      <DependentUpon>driversReportForm.h</DependentUpon>
+    <EmbeddedResource Include="ReportForm.resx">
+      <DependentUpon>ReportForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VehicleForm.resx">
       <DependentUpon>VehicleForm.h</DependentUpon>

@@ -16,6 +16,7 @@ namespace RuralConnect {
     public:
         String^ Address;
         String^ DesiredDestination;
+        String^ Level;
 
         void requestTrip();
 

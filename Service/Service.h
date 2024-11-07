@@ -60,6 +60,9 @@ namespace RuralService {
 		static List<Passenger^>^ QueryAllPassengers();
 		static Passenger^ QueryPassengerbyUsername(String^ username);
 
+
+
+
 		
 
 		
