@@ -18,4 +18,13 @@
     <Password>lulu</Password>
     <Qualification>0</Qualification>
   </Passenger>
+  <Passenger>
+    <Name>Susan</Name>
+    <LastName>Lozano</LastName>
+    <DNI>7291837</DNI>
+    <PhoneNumber>21083912</PhoneNumber>
+    <Username>susan</Username>
+    <Password>susan</Password>
+    <Qualification>0</Qualification>
+  </Passenger>
 </ArrayOfPassenger>

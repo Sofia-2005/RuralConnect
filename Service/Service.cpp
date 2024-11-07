@@ -173,7 +173,7 @@ int RuralService::Service::QueryDriverPassengerbyUsername(String^ username, Stri
 
         }
     }
-    return 1;
+    return 0;
 }
 
 int RuralService::Service::PassengerOrDriver(String^ username)
@@ -272,6 +272,21 @@ void RuralService::Service::ClosePort()
     catch (Exception^ ex) {
         throw ex;
     }
+}
+
+List<double>^ RuralService::Service::De_String_toDouble(String^ listasa)
+{
+    List<String^>^ lista = gcnew List<String^>(listasa->Split(' '));
+    List<double>^ lista_d = gcnew List<double>();
+
+    for each (String ^ i in lista) {
+        double value;
+        if (!String::IsNullOrEmpty(i) && Double::TryParse(i, value)) {
+            lista_d->Add(value);
+        }
+    }
+
+    return lista_d;
 }
 
 

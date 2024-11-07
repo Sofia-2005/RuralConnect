@@ -17,10 +17,7 @@ namespace GUIApp {
 	public ref class PublicRouteDriver : public System::Windows::Forms::Form
 	{
 	public:
-		array<PointF>^ arrPoints = gcnew array<PointF>(2 * 360);
-		const int R = 100;
 		int counter = 1;
-		int i = 0;
 		List<array<double>^>^ LatLong = gcnew List<array<double>^>();
 	private: System::Windows::Forms::Timer^ timer1;
 	private: System::Windows::Forms::Timer^ timer2;
@@ -52,11 +49,6 @@ namespace GUIApp {
 			//
 			//TODO: agregar código de constructor aquí
 			//
-
-			for (int i = 0; i < 2 * 360; i++) {
-				arrPoints[i] = PointF(pictureBox1->Width / 2 - 360 + i,
-					pictureBox1->Height / 2 + R * Math::Sin(3 * Math::PI / 180 * (i - 3 * R)));
-			}
 			timer1->Start();
 		}
 
