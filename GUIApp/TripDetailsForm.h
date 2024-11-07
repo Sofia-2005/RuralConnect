@@ -250,7 +250,7 @@ namespace GUIApp {
 		this->Hide();
 	}
 private: System::Void btnAcceptTrip_Click(System::Object^ sender, System::EventArgs^ e) {
-
+	
 }
 private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
 

@@ -18,10 +18,34 @@ namespace GUIApp {
 	/// </summary>
 	public ref class TripInCourse : public System::Windows::Forms::Form
 	{
+		int counter = 1;
+		List<array<int>^>^ ListaXY = gcnew List<array<int>^>();
+	private: System::Windows::Forms::Timer^ timer2;
 	public:
-		TripInCourse(void)
+		List<array<double>^>^ LatLong = gcnew List<array<double>^>();
+	public:
+		TripInCourse(List<array<double>^>^ a)
 		{
 			InitializeComponent();
+			LatLong = a;
+			int x = 0, y = 0;
+			// Tamaño del PictureBox
+			int width = pictureBox1->Width;
+			int height = pictureBox1->Height;
+
+			for (int i = 0; i < LatLong->Count;i++) {
+				array<double>^ a1 = LatLong[i];
+
+				double  latitude = a1[0];
+				double longitude = a1[1];
+
+				x = (int)((latitude - latTopLeft) / (latBottomRight - latTopLeft) * width);
+				y = (int)((longitude - lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
+
+				array<int>^ pt = { x, y };
+
+				ListaXY->Add(pt);
+			}
 			timer1->Start();
 			//
 			//TODO: agregar código de constructor aquí
@@ -77,6 +101,7 @@ namespace GUIApp {
 			this->txtLong = (gcnew System::Windows::Forms::TextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->timer2 = (gcnew System::Windows::Forms::Timer(this->components));
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 

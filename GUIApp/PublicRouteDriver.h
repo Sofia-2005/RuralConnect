@@ -196,7 +196,7 @@ namespace GUIApp {
 private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void btnPublishRoutes_Click(System::Object^ sender, System::EventArgs^ e) {
-	TripInCourse^ PublishRoutes = gcnew TripInCourse();
+	TripInCourse^ PublishRoutes = gcnew TripInCourse(LatLong);
 	PublishRoutes->Show();
 	this->Hide();
 }
