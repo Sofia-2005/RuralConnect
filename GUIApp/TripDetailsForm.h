@@ -8,6 +8,9 @@ namespace GUIApp {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Collections::Generic;
+	using namespace RuralConnect;
+	using namespace RuralService;
 
 	/// <summary>
 	/// Summary for TripDetailsForm
@@ -15,12 +18,41 @@ namespace GUIApp {
 	public ref class TripDetailsForm : public System::Windows::Forms::Form
 	{
 	public:
-		TripDetailsForm(void)
+		int counter = 1;
+		List<array<int>^>^ ListaXY = gcnew List<array<int>^>();
+	private: System::Windows::Forms::Timer^ timer1;
+	public:
+		List<array<double>^>^ LatLong = gcnew List<array<double>^>();
+	private: System::Windows::Forms::Label^ label8;
+	public:
+		Driver^ conductor = gcnew Driver();
+		TripDetailsForm(List<array<double>^>^ a, Driver^ p)
 		{
 			InitializeComponent();
+			LatLong = a;
+			conductor = p;
+			int x = 0, y = 0;
+			// Tamaño del PictureBox
+			int width = pictureBox1->Width;
+			int height = pictureBox1->Height;
+
+			for (int i = 0; i < LatLong->Count;i++) {
+				array<double>^ a1 = LatLong[i];
+
+				double  latitude = a1[0];
+				double longitude = a1[1];
+
+				x = (int)((latitude - latTopLeft) / (latBottomRight - latTopLeft) * width);
+				y = (int)((longitude - lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
+
+				array<int>^ pt = { x, y };
+
+				ListaXY->Add(pt);
+			}
 			//
-			//TODO: Add the constructor code here
+			//TODO: agregar código de constructor aquí
 			//
+			timer1->Start();
 		}
 
 	protected:
@@ -39,18 +71,20 @@ namespace GUIApp {
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ label4;
-	private: System::Windows::Forms::WebBrowser^ webBrowser1;
+
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::Label^ label6;
 	private: System::Windows::Forms::Label^ label7;
 	private: System::Windows::Forms::Button^ btnAcceptTrip;
+	private: System::Windows::Forms::PictureBox^ pictureBox1;
+	private: System::ComponentModel::IContainer^ components;
 	protected:
 
 	private:
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -59,16 +93,21 @@ namespace GUIApp {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			this->components = (gcnew System::ComponentModel::Container());
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(TripDetailsForm::typeid));
 			this->btnBack = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
-			this->webBrowser1 = (gcnew System::Windows::Forms::WebBrowser());
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->btnAcceptTrip = (gcnew System::Windows::Forms::Button());
+			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
+			this->label8 = (gcnew System::Windows::Forms::Label());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// btnBack
@@ -117,14 +156,6 @@ namespace GUIApp {
 			this->label4->TabIndex = 15;
 			this->label4->Text = L"Sitios disponibles:";
 			// 
-			// webBrowser1
-			// 
-			this->webBrowser1->Location = System::Drawing::Point(310, 57);
-			this->webBrowser1->MinimumSize = System::Drawing::Size(20, 20);
-			this->webBrowser1->Name = L"webBrowser1";
-			this->webBrowser1->Size = System::Drawing::Size(315, 252);
-			this->webBrowser1->TabIndex = 16;
-			// 
 			// label5
 			// 
 			this->label5->AutoSize = true;
@@ -154,7 +185,7 @@ namespace GUIApp {
 			// 
 			// btnAcceptTrip
 			// 
-			this->btnAcceptTrip->Location = System::Drawing::Point(184, 335);
+			this->btnAcceptTrip->Location = System::Drawing::Point(51, 387);
 			this->btnAcceptTrip->Name = L"btnAcceptTrip";
 			this->btnAcceptTrip->Size = System::Drawing::Size(203, 56);
 			this->btnAcceptTrip->TabIndex = 20;
@@ -162,16 +193,41 @@ namespace GUIApp {
 			this->btnAcceptTrip->UseVisualStyleBackColor = true;
 			this->btnAcceptTrip->Click += gcnew System::EventHandler(this, &TripDetailsForm::btnAcceptTrip_Click);
 			// 
+			// pictureBox1
+			// 
+			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
+			this->pictureBox1->Location = System::Drawing::Point(289, 28);
+			this->pictureBox1->Name = L"pictureBox1";
+			this->pictureBox1->Size = System::Drawing::Size(1012, 514);
+			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+			this->pictureBox1->TabIndex = 21;
+			this->pictureBox1->TabStop = false;
+			this->pictureBox1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &TripDetailsForm::pictureBox1_Paint);
+			// 
+			// timer1
+			// 
+			this->timer1->Tick += gcnew System::EventHandler(this, &TripDetailsForm::timer1_Tick);
+			// 
+			// label8
+			// 
+			this->label8->AutoSize = true;
+			this->label8->Location = System::Drawing::Point(104, 99);
+			this->label8->Name = L"label8";
+			this->label8->Size = System::Drawing::Size(44, 16);
+			this->label8->TabIndex = 22;
+			this->label8->Text = L"label8";
+			// 
 			// TripDetailsForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(637, 414);
+			this->ClientSize = System::Drawing::Size(1330, 594);
+			this->Controls->Add(this->label8);
+			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->btnAcceptTrip);
 			this->Controls->Add(this->label7);
 			this->Controls->Add(this->label6);
 			this->Controls->Add(this->label5);
-			this->Controls->Add(this->webBrowser1);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
@@ -179,16 +235,60 @@ namespace GUIApp {
 			this->Controls->Add(this->btnBack);
 			this->Name = L"TripDetailsForm";
 			this->Text = L"TripDetailsForm";
+			this->Load += gcnew System::EventHandler(this, &TripDetailsForm::TripDetailsForm_Load);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
+
+		double latTopLeft = -12.074135, lonTopLeft = -77.083166;   // Coordenadas de la esquina superior izquierda
+		double latBottomRight = -12.064391, lonBottomRight = -77.077202; // Coordenadas de la esquina inferior derecha
+
 	private: System::Void btnBack_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Hide();
 	}
 private: System::Void btnAcceptTrip_Click(System::Object^ sender, System::EventArgs^ e) {
 
+}
+private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
+
+	if (counter < 2) {
+		counter++;
+		pictureBox1->Invalidate();
+	}
+	else {
+		timer1->Stop();
+		timer1->Enabled = false;
+	}
+}
+private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+	int x = 50, y = 50, x2 = 0, y2 = 0;
+	bool primera = true;
+
+	Graphics^ g = e->Graphics;
+	Pen^ pen = gcnew Pen(Color::Blue);
+	int radius = 5; // Radio del punto
+	for (int i = 0;i < ListaXY->Count;i++) {
+		array<int>^ a1 = ListaXY[i];
+		x = a1[0];
+		y = a1[1];
+		g->FillEllipse(System::Drawing::Brushes::Blue, x - radius, y - radius, radius * 2, radius * 2);
+	}
+
+	for (int i = 0;i < ListaXY->Count - 1;i++) {
+		array<int>^ a1 = ListaXY[i];
+		x = a1[0];
+		y = a1[1];
+		a1 = ListaXY[i + 1];
+		x2 = a1[0];
+		y2 = a1[1];
+		g->DrawLine(pen, x, y, x2, y2);
+	}
+}
+private: System::Void TripDetailsForm_Load(System::Object^ sender, System::EventArgs^ e) {
+	label8->Text = conductor->Name+ " "+ conductor->LastName;
 }
 };
 }

@@ -1,5 +1,5 @@
 #pragma once
-#include "SelectRouteDriver.h"
+#include "SelectRoutePassenger.h"
 
 namespace GUIApp {
 
@@ -222,32 +222,22 @@ namespace GUIApp {
 		double latTopLeft = -12.074135, lonTopLeft = -77.083166;   // Coordenadas de la esquina superior izquierda
 		double latBottomRight = -12.064391, lonBottomRight = -77.077202; // Coordenadas de la esquina inferior derecha
 
+		double latitude=0;
+		double longitude=0;
+
 public :
-	List<double>^ De_String_toDouble(String^ listasa) {
-		List<String^>^ lista = gcnew List<String^>(listasa->Split('.'));
-		List<double>^ lista_d = gcnew List<double>();
-
-		for each (String ^ i in lista) {
-			double value;
-			if (!String::IsNullOrEmpty(i) && Double::TryParse(i, value)) {
-				lista_d->Add(value);
-			}
-		}
-
-		return lista_d;
-	}
 
 private: System::Void btnFindTrip_Click(System::Object^ sender, System::EventArgs^ e) {
 	try {
-		double latitude = Convert::ToDouble(txtLatitude->Text);
-		double longitude = Convert::ToDouble(txtLongitudinal->Text);
-		Route^ newtrip = gcnew Route(latitude, longitude);
+		if (latitude != 0 && longitude != 0) {
+			Route^ newtrip = gcnew Route(latitude, longitude);
 
-		MessageBox::Show("Se ha agregado los datos de su destino con latitud " + newtrip->Latitude + " y longitud " + " " + newtrip->Longitude);
-		this->Close();
+			MessageBox::Show("Se ha agregado los datos de su destino con latitud " + newtrip->Latitude + " y longitud " + " " + newtrip->Longitude);
+			this->Close();
 
-		SelectRouteDriver^ f = gcnew SelectRouteDriver();
-		f->Show();
+			SelectRoutePassenger^ f = gcnew SelectRoutePassenger();
+			f->Show();
+		}
 	}
 	catch (Exception^ ex) {
 		MessageBox::Show("No se ha podido agregar los datos de su destino por el siguiente motivo:\n" +
@@ -264,56 +254,17 @@ private: System::Void pictureBox1_MouseClick(System::Object^ sender, System::Win
 
 	int x = e->X;
 	int y = e->Y;
-	MessageBox::Show("click " + x.ToString() + "  " + y.ToString());
 	// Tamaño del PictureBox
 	int width = pictureBox1->Width;
 	int height = pictureBox1->Height;
 
 	// Convertir píxeles a coordenadas geográficas teniendo en cuenta la rotación
-	double lat = latTopLeft + (latBottomRight - latTopLeft) * (static_cast<double>(x) / width);
-	double lon = lonTopLeft + (lonBottomRight - lonTopLeft) * (static_cast<double>(y) / height);
+	latitude = latTopLeft + (latBottomRight - latTopLeft) * (static_cast<double>(x) / width);
+	longitude = lonTopLeft + (lonBottomRight - lonTopLeft) * (static_cast<double>(y) / height);
 
-	// Dibujar el punto en el mapa
 	System::Drawing::Graphics^ g = pictureBox1->CreateGraphics();
 	int radius = 5; // Radio del punto
 	g->FillEllipse(System::Drawing::Brushes::Blue, x - radius, y - radius, radius * 2, radius * 2);
-
-	x = 400;  // Coordenada X (puedes cambiarla para mover el punto)
-	y = 300; // Coordenada Y (puedes cambiarla para mover el punto)
-
-	// Dibujar el punto en la posición deseada
-	g->FillEllipse(System::Drawing::Brushes::Red, x - radius, y - radius, radius * 2, radius * 2);
-	// Mostrar las coordenadas en un label o textbox
-	txtLatitude->Text = lat.ToString();
-	txtLongitudinal->Text = lon.ToString();
-
-
-
-	Service::Conductor_actual = Service::QueryDriverbyUsername("luis");
-	List<String^>^ lista_x = Service::Conductor_actual->Rutasa->Puntos_x_fijo;
-	List<String^>^ lista_y = Service::Conductor_actual->Rutasa->Puntos_y_fijo;
-
-	String^ punto_x = lista_x[0];
-	String^ punto_y = lista_y[0];
-
-	List <double>^ puntos_x = De_String_toDouble(punto_x);
-	List <double>^ puntos_y = De_String_toDouble(punto_y);
-	
-
-	for (int i = 0; i < puntos_x->Count - 1; i++) {
-
-		double pX = puntos_x[i];
-		double pY = puntos_y[i];
-
-		pX = width * (pX - lonTopLeft) / (lonBottomRight - lonTopLeft);
-		pY = height * (pY - latTopLeft) / (latBottomRight - latTopLeft);
-
-		int radius = 5; // Radio del punto
-		g->FillEllipse(System::Drawing::Brushes::Blue, pX - radius, pY - radius, radius * 2, radius * 2);
-
-
-	}
-
 }
 
 
@@ -321,55 +272,13 @@ private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArg
 
 	
 
-}private: System::Void DriverPage_Load(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void DriverPage_Load(System::Object^ sender, System::EventArgs^ e) {
 }
 
 	   
 private: System::Void FindTrip_Load(System::Object^ sender, System::EventArgs^ e) {
 	
-	double latTopLeft = -12.074135, lonTopLeft = -77.083166;   // Coordenadas de la esquina superior izquierda
-	double latBottomRight = -12.064391, lonBottomRight = -77.077202; // Coordenadas de la esquina inferior derecha
-
-
-	Service::Conductor_actual = Service::QueryDriverbyUsername("luis");
-	List<String^>^ lista_x = Service::Conductor_actual->Rutasa->Puntos_x_fijo;
-	List<String^>^ lista_y = Service::Conductor_actual->Rutasa->Puntos_y_fijo;
-
-	String^ punto_x = lista_x[0];
-	String^ punto_y = lista_y[0];
-
-	List <double>^ puntos_x = De_String_toDouble(punto_x);
-	List <double>^ puntos_y = De_String_toDouble(punto_y);
-	MessageBox::Show("tenemos " + punto_x + "  " + punto_y);
-
-	// Dibujar el punto en el mapa
-	System::Drawing::Graphics^ g = pictureBox1->CreateGraphics();
-	// Tamaño del PictureBox
-	int width = pictureBox1->Width;
-	int height = pictureBox1->Height;
-
-	int radius = 5; // Radio del punto
-	// Coordenadas para dibujar el punto dentro del cuadro
-	int x = 400;  // Coordenada X (puedes cambiarla para mover el punto)
-	int y = 300; // Coordenada Y (puedes cambiarla para mover el punto)
-
-	// Dibujar el punto en la posición deseada
-	g->FillEllipse(System::Drawing::Brushes::Blue, x - radius, y - radius, radius * 2, radius * 2);
-
-	for (int i = 0; i < puntos_x->Count - 1; i++) {
-
-		double pX = puntos_x[i];
-		double pY = puntos_y[i];
-
-		int pixelX = (int)((pX - lonBottomRight) / (latBottomRight- latTopLeft));
-		int pixelY = (int)((pY - lonTopLeft) / (lonBottomRight - lonTopLeft));
-
-		int radius = 5; // Radio del punto
-		g->FillEllipse(System::Drawing::Brushes::Red, pX - radius, pY - radius, radius * 2, radius * 2);
-
-
-	}
-
 }
 private: System::Void txtLatitude_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }

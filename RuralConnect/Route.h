@@ -17,8 +17,8 @@ namespace RuralConnect {
         property List< String^>^ Puntos_x_fijo ;
         property List< String^>^ Puntos_y_fijo ;
 
-        property List< String^>^ Puntos_x_volatil;
-        property List< String^>^ Puntos_y_volatil;
+        property String^ Puntos_x_volatil;
+        property String^ Puntos_y_volatil;
 
         void GetEstimatedTime();
 
@@ -27,8 +27,6 @@ namespace RuralConnect {
         Route() {
             Puntos_x_fijo = gcnew List<String^>();
             Puntos_y_fijo = gcnew List<String^>(); 
-            Puntos_x_volatil = gcnew List<String^>();
-            Puntos_y_volatil = gcnew List<String^>();
         }
         Route(double latitude, double longitude) {
             Latitude = latitude;

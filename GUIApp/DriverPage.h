@@ -11,6 +11,8 @@ namespace GUIApp {
 	using namespace System::Data;
 	using namespace System::Drawing;
 	using namespace System::Collections::Generic;
+	using namespace RuralConnect;
+	using namespace RuralService;
 
 	/// <summary>
 	/// Resumen de DriverPage
@@ -18,12 +20,14 @@ namespace GUIApp {
 	public ref class DriverPage : public System::Windows::Forms::Form
 	{
 	public:
-		DriverPage(void)
+		static Driver^ User;
+		DriverPage(RuralConnect::Driver^ user)
 		{
 			InitializeComponent();
 			//
 			//TODO: agregar código de constructor aquí
 			//
+			this->User = user;
 		}
 
 	protected:
@@ -188,14 +192,22 @@ namespace GUIApp {
 		List<array<int>^>^ listaXY = gcnew List<array<int>^>();
 		List<array<double>^>^ LatLong = gcnew List<array<double>^>();
 
+		String^ puntoslat;
+		String^ puntoslon;
+
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void btnMyRoutes_Click(System::Object^ sender, System::EventArgs^ e) {
-		SelectRouteDriver^ Myroutes = gcnew SelectRouteDriver();
+		SelectRouteDriver^ Myroutes = gcnew SelectRouteDriver(User);
 		Myroutes->Show();
 		this->Hide();
 	}
 	private: System::Void btnCreateRoute_Click(System::Object^ sender, System::EventArgs^ e) {
+		User->Rutasa->Puntos_x_fijo->Add(puntoslat);
+		User->Rutasa->Puntos_y_fijo->Add(puntoslon);
+		User->Rutasa->Puntos_x_volatil=puntoslat;
+		User->Rutasa->Puntos_y_volatil=puntoslon;
+		Service::UpdateDriver(User);
 		PublicRouteDriver^ CreateRoute = gcnew PublicRouteDriver(LatLong);
 		CreateRoute->Show();
 		this->Hide();
@@ -205,6 +217,7 @@ namespace GUIApp {
 	}
 private: System::Void DriverPage_Load(System::Object^ sender, System::EventArgs^ e) {
 }
+
 	private: System::Void pictureBox1_MouseClick(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
 		int x = e->X;
 		int y = e->Y;
@@ -228,18 +241,19 @@ private: System::Void DriverPage_Load(System::Object^ sender, System::EventArgs^
 		int radius = 5; // Radio del punto
 		g->FillEllipse(System::Drawing::Brushes::Blue, x - radius, y - radius, radius * 2, radius * 2);
 
-	
-	MessageBox::Show("Datos ingresados"+lat.ToString() + "  " +lon.ToString());
-	
-
-
-
+	//MessageBox::Show("Datos ingresados"+lat.ToString() + "  " +lon.ToString());
 
 	if (!primera) {
 		Pen^ pen = gcnew Pen(Color::Black);
 		array<int>^ a1 = listaXY[i - 1];
 		array<int>^ a2 = listaXY[i ];
 		g->DrawLine(pen, a1[0],a1[1], a2[0], a2[1]);
+		puntoslat = puntoslat +" "+lat.ToString();
+		puntoslon = puntoslon + " " + lon.ToString();
+	}
+	else {
+		puntoslat = lat.ToString();
+		puntoslon = lon.ToString();
 	}
 	i++;
 	primera = false;

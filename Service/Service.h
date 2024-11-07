@@ -73,6 +73,6 @@ namespace RuralService {
 		/*static void Add_Rute(List<String^>^ ruta_x);
 		static List<String^>^ load_Rute(); */
 
-		
+		static List<double>^ De_String_toDouble(String^ listasa);
 	};
 }

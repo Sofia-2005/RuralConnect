@@ -258,7 +258,7 @@ private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e)
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 	// Crear una instancia del nuevo formulario (Form2 en este caso)
-	DriverPage^ newForm = gcnew DriverPage();
+	DriverPage^ newForm = gcnew DriverPage(User);
 	newForm->Show();
 	this->Hide();
 }
