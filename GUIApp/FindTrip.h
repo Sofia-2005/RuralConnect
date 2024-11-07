@@ -265,6 +265,9 @@ private: System::Void pictureBox1_MouseClick(System::Object^ sender, System::Win
 	latitude = latTopLeft + (latBottomRight - latTopLeft) * (static_cast<double>(x) / width);
 	longitude = lonTopLeft + (lonBottomRight - lonTopLeft) * (static_cast<double>(y) / height);
 
+	System::Drawing::Graphics^ g = pictureBox1->CreateGraphics();
+	int radius = 5; // Radio del punto
+	g->FillEllipse(System::Drawing::Brushes::Blue, x - radius, y - radius, radius * 2, radius * 2);
 }
 
 
@@ -272,7 +275,8 @@ private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArg
 
 	
 
-}private: System::Void DriverPage_Load(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void DriverPage_Load(System::Object^ sender, System::EventArgs^ e) {
 }
 
 	   

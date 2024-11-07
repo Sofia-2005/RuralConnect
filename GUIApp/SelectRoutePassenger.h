@@ -1,4 +1,6 @@
 #pragma once
+#include "TripDetailsForm.h"
+#include "ComboBoxItem.h"
 
 namespace GUIApp {
 
@@ -24,6 +26,10 @@ namespace GUIApp {
 		List<String^>^ RutasLon = gcnew List<String^>();;
 		List<double>^ PuntosLat = gcnew List<double>();
 	private: System::Windows::Forms::Timer^ timer1;
+	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::Label^ label3;
+	private: System::Windows::Forms::ComboBox^ cmbRutas;
+	private: System::Windows::Forms::Label^ label2;
 	public:
 		List<double>^ PuntosLong = gcnew List<double>();
 		SelectRoutePassenger(void)
@@ -50,12 +56,12 @@ namespace GUIApp {
 		}
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	protected:
-	private: System::Windows::Forms::Button^ button5;
-	private: System::Windows::Forms::Button^ btnRouteDetails;
-	private: System::Windows::Forms::Button^ button4;
-	private: System::Windows::Forms::Button^ button3;
-	private: System::Windows::Forms::Button^ button2;
-	private: System::Windows::Forms::Button^ button1;
+
+
+
+
+
+
 	private: System::Windows::Forms::Label^ label1;
 	private: System::ComponentModel::IContainer^ components;
 
@@ -75,14 +81,12 @@ namespace GUIApp {
 			this->components = (gcnew System::ComponentModel::Container());
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(SelectRoutePassenger::typeid));
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
-			this->button5 = (gcnew System::Windows::Forms::Button());
-			this->btnRouteDetails = (gcnew System::Windows::Forms::Button());
-			this->button4 = (gcnew System::Windows::Forms::Button());
-			this->button3 = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
+			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->cmbRutas = (gcnew System::Windows::Forms::ComboBox());
+			this->label2 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -97,66 +101,6 @@ namespace GUIApp {
 			this->pictureBox1->TabStop = false;
 			this->pictureBox1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &SelectRoutePassenger::pictureBox1_Paint);
 			// 
-			// button5
-			// 
-			this->button5->Location = System::Drawing::Point(1086, 373);
-			this->button5->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->button5->Name = L"button5";
-			this->button5->Size = System::Drawing::Size(205, 42);
-			this->button5->TabIndex = 16;
-			this->button5->Text = L"BUSCAR OTRAS RUTAS";
-			this->button5->UseVisualStyleBackColor = true;
-			// 
-			// btnRouteDetails
-			// 
-			this->btnRouteDetails->Location = System::Drawing::Point(1080, 447);
-			this->btnRouteDetails->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->btnRouteDetails->Name = L"btnRouteDetails";
-			this->btnRouteDetails->Size = System::Drawing::Size(211, 42);
-			this->btnRouteDetails->TabIndex = 15;
-			this->btnRouteDetails->Text = L"VER DETALLES DE LA RUTA";
-			this->btnRouteDetails->UseVisualStyleBackColor = true;
-			// 
-			// button4
-			// 
-			this->button4->Location = System::Drawing::Point(1137, 285);
-			this->button4->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(93, 38);
-			this->button4->TabIndex = 14;
-			this->button4->Text = L"Ruta D";
-			this->button4->UseVisualStyleBackColor = true;
-			// 
-			// button3
-			// 
-			this->button3->Location = System::Drawing::Point(1137, 214);
-			this->button3->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(93, 38);
-			this->button3->TabIndex = 13;
-			this->button3->Text = L"Ruta C";
-			this->button3->UseVisualStyleBackColor = true;
-			// 
-			// button2
-			// 
-			this->button2->Location = System::Drawing::Point(1137, 144);
-			this->button2->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(93, 38);
-			this->button2->TabIndex = 12;
-			this->button2->Text = L"Ruta B";
-			this->button2->UseVisualStyleBackColor = true;
-			// 
-			// button1
-			// 
-			this->button1->Location = System::Drawing::Point(1137, 74);
-			this->button1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(93, 38);
-			this->button1->TabIndex = 11;
-			this->button1->Text = L"Ruta A";
-			this->button1->UseVisualStyleBackColor = true;
-			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
@@ -170,21 +114,57 @@ namespace GUIApp {
 			// 
 			this->timer1->Tick += gcnew System::EventHandler(this, &SelectRoutePassenger::timer1_Tick);
 			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(1127, 310);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(92, 39);
+			this->button1->TabIndex = 20;
+			this->button1->Text = L"Confirmar";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &SelectRoutePassenger::button1_Click);
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(1113, 183);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(42, 16);
+			this->label3->TabIndex = 19;
+			this->label3->Text = L"Rutas";
+			// 
+			// cmbRutas
+			// 
+			this->cmbRutas->FormattingEnabled = true;
+			this->cmbRutas->Location = System::Drawing::Point(1116, 219);
+			this->cmbRutas->Name = L"cmbRutas";
+			this->cmbRutas->Size = System::Drawing::Size(121, 24);
+			this->cmbRutas->TabIndex = 18;
+			this->cmbRutas->SelectedIndexChanged += gcnew System::EventHandler(this, &SelectRoutePassenger::cmbRutas_SelectedIndexChanged);
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(145, 34);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(291, 16);
+			this->label2->TabIndex = 21;
+			this->label2->Text = L"La ruta seleccionada se muestra de color verde";
+			// 
 			// SelectRoutePassenger
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1303, 631);
-			this->Controls->Add(this->pictureBox1);
-			this->Controls->Add(this->button5);
-			this->Controls->Add(this->btnRouteDetails);
-			this->Controls->Add(this->button4);
-			this->Controls->Add(this->button3);
-			this->Controls->Add(this->button2);
+			this->Controls->Add(this->label2);
 			this->Controls->Add(this->button1);
+			this->Controls->Add(this->label3);
+			this->Controls->Add(this->cmbRutas);
+			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->label1);
 			this->Name = L"SelectRoutePassenger";
 			this->Text = L"SelectRoutePassenger";
+			this->Load += gcnew System::EventHandler(this, &SelectRoutePassenger::SelectRoutePassenger_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -194,8 +174,9 @@ namespace GUIApp {
 	public:
 		double latTopLeft = -12.074135, lonTopLeft = -77.083166;   // Coordenadas de la esquina superior izquierda
 		double latBottomRight = -12.064391, lonBottomRight = -77.077202; // Coordenadas de la esquina inferior derecha
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
+		bool cambioRuta = false;
+		int indice = 0;
+
 private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
 
 	if (counter < 2) {
@@ -241,6 +222,70 @@ private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows:
 			y2 = (int)((PuntosLong[k+1] - lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
 			g->DrawLine(pen, x, y, x2, y2);
 		}
+	}
+
+	if (cambioRuta) {
+		int x = 50, y = 50, x2 = 0, y2 = 0;
+		bool primera = true;
+
+		int width = pictureBox1->Width;
+		int height = pictureBox1->Height;
+
+		Graphics^ g = e->Graphics;
+		Pen^ pen = gcnew Pen(Color::Green);
+		int radius = 5; // Radio del punto
+
+			PuntosLat = Service::De_String_toDouble(RutasLat[indice]);
+			PuntosLong = Service::De_String_toDouble(RutasLon[indice]);
+
+			for (int j = 0;j < PuntosLat->Count;j++) {
+
+				x = (int)((PuntosLat[j] - latTopLeft) / (latBottomRight - latTopLeft) * width);
+				y = (int)((PuntosLong[j] - lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
+
+				g->FillEllipse(System::Drawing::Brushes::Green, x - radius, y - radius, radius * 2, radius * 2);
+			}
+
+
+			for (int k = 0;k < PuntosLat->Count - 1;k++) {
+
+				x = (int)((PuntosLat[k] - latTopLeft) / (latBottomRight - latTopLeft) * width);
+				y = (int)((PuntosLong[k] - lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
+
+				x2 = (int)((PuntosLat[k + 1] - latTopLeft) / (latBottomRight - latTopLeft) * width);
+				y2 = (int)((PuntosLong[k + 1] - lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
+				g->DrawLine(pen, x, y, x2, y2);
+			}
+	}
+}
+private: System::Void cmbRutas_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+	indice = cmbRutas->SelectedIndex;
+	cambioRuta = true;
+	pictureBox1->Invalidate();
+}
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (cambioRuta) {
+
+		Driver^ p = Conductores[indice];
+		PuntosLat = Service::De_String_toDouble(RutasLat[indice]);
+		PuntosLong = Service::De_String_toDouble(RutasLon[indice]);
+
+		List<array<double>^>^ LatLong = gcnew List<array<double>^>();
+
+		for (int i = 0; i < PuntosLat->Count;i++) {
+			array<double>^ a = { PuntosLat[i],PuntosLong[i] };
+			LatLong->Add(a);
+		}
+
+		TripDetailsForm^ CreateRoute = gcnew TripDetailsForm(LatLong,p);
+		CreateRoute->Show();
+		this->Hide();
+	}
+}
+private: System::Void SelectRoutePassenger_Load(System::Object^ sender, System::EventArgs^ e) {
+	cmbRutas->Items->Clear();
+	for (int i = 0; i < Conductores->Count;i++) {
+		cmbRutas->Items->Add(gcnew ComboBoxItem(i, "Ruta " + (i + 1)));
 	}
 }
 };

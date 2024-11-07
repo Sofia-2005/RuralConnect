@@ -165,6 +165,10 @@ namespace GUIApp {
 			this->timer1->Interval = 10;
 			this->timer1->Tick += gcnew System::EventHandler(this, &PublicRouteDriver::timer1_Tick);
 			// 
+			// timer2
+			// 
+			this->timer2->Tick += gcnew System::EventHandler(this, &PublicRouteDriver::timer2_Tick);
+			// 
 			// PublicRouteDriver
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -230,6 +234,8 @@ private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) 
 		timer1->Stop();
 		timer1->Enabled = false;
 	}
+}
+private: System::Void timer2_Tick(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }
