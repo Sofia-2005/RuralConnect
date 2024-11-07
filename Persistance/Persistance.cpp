@@ -4,7 +4,7 @@
 
 using namespace System::Runtime::Serialization::Formatters::Binary;
 using namespace System::IO;
-
+using namespace System::Collections::Generic;
 using namespace RuralConnect;
 
 
@@ -278,6 +278,46 @@ Object^ RCPersistance::Persistance::Load_Passenger_XML_File(String^ fileName)
             reader = gcnew StreamReader(fileName);
             xmlSerializer = gcnew XmlSerializer(List<Passenger^>::typeid);
             result = (List<Passenger^>^) xmlSerializer->Deserialize(reader);
+        }
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        if (reader != nullptr) reader->Close();
+    }
+    return result;
+}
+
+void RCPersistance::Persistance::Persist_Claim_XML_File(String^ fileName, Object^ persistObject)
+{
+    StreamWriter^ writer;
+    try {
+        writer = gcnew StreamWriter(fileName);
+        if (persistObject->GetType() == List<Claim^>::typeid) {
+            XmlSerializer^ xmlSerializer = gcnew XmlSerializer(List<Claim^>::typeid);
+            xmlSerializer->Serialize(writer, persistObject);
+        }
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        if (writer != nullptr) writer->Close();
+    }
+}
+
+Object^ RCPersistance::Persistance::Load_Claim_XML_File(String^ fileName)
+{
+    StreamReader^ reader;
+    Object^ result = gcnew List<Claim^>();
+    XmlSerializer^ xmlSerializer;
+
+    try {
+        if (File::Exists(fileName)) {
+            reader = gcnew StreamReader(fileName);
+            xmlSerializer = gcnew XmlSerializer(List<Claim^>::typeid);
+            result = (List<Claim^>^) xmlSerializer->Deserialize(reader);
         }
     }
     catch (Exception^ ex) {

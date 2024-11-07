@@ -38,7 +38,8 @@ namespace RCPersistance {
 		static void Persist_Passenger_XML_File(String^ fileName, Object^ persistObject);
 		static Object^ Load_Passenger_XML_File(String^ fileName);
 
-
+		static void Persist_Claim_XML_File(String^ fileName, Object^ persistObject);
+		static Object^ Load_Claim_XML_File(String^ fileName);
 
 	};
 }

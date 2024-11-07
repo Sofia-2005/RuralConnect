@@ -85,6 +85,32 @@ List<Passenger^>^ RuralService::Service::QueryAllPassengers()
     return PassengerList;
 }
 
+void RuralService::Service::AddAdvert(Claim^ p)
+{
+    Lista_reclamos = Service::QueryAllAdvertisements();
+    Lista_reclamos->Add(p);
+    Persistance::Persist_Claim_XML_File(XML_CLAIM_FILE_NAME, Lista_reclamos);
+}
+
+List<Claim^>^ RuralService::Service::QueryAllAdvertisements()
+{
+
+    //////
+    Lista_reclamos = gcnew List<Claim^>();
+    try {
+        //robotsList = (List<RobotWaiter^>^)Persistance::LoadRobotWaitersTextFile(TXT_ROBOT_FILE_NAME);
+        //PassengerList = (List<Passenger^>^)Persistance::LoadPassengersXmlFile(XML_PASSENGER_FILE_NAME);
+        Lista_reclamos = (List<Claim^>^)Persistance::Load_Claim_XML_File(XML_CLAIM_FILE_NAME);
+        if (Lista_reclamos == nullptr)
+            Lista_reclamos = gcnew List<Claim^>();
+    }
+    catch (FileNotFoundException^ ex) {
+    }
+    return Lista_reclamos;
+    ///
+}
+
+
 Passenger^ RuralService::Service::QueryPassengerbyUsername(String^ username)
 {
     for (int i = 0; i < PassengerList->Count; i++) {

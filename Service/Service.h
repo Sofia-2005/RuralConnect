@@ -18,6 +18,7 @@ namespace RuralService {
 
 		static String^ XML_PASSENGER_FILE_NAME = "passengers.xml";
 		static String^ XML_DRIVER_FILE_NAME = "driver.xml";
+
 	public:
 		static List<Passenger^>^ PassengerList = gcnew List<Passenger^>();
 		static List<Driver^>^ DriverList = gcnew List<Driver^>();
@@ -31,10 +32,12 @@ namespace RuralService {
 
 		static List<String^>^ Lista_rutas_x = gcnew List<String^>();
 		static List<String^>^ Lista_rutas_y = gcnew List<String^>();
+		static List<Claim^>^ Lista_reclamos = gcnew List<Claim^>();
 
 		static String^ XML_RUTA_FILE_NAME = "RUTA.xml";
+		static String^ XML_CLAIM_FILE_NAME = "Claim.xml";
 
-	public:
+	public:  
 
 
 
@@ -53,7 +56,7 @@ namespace RuralService {
 		static int PassengerOrDriver(String^ username);
 
 
-
+		//PERSISTENCIA PASAJERO
 		static void AddPassenger(Passenger^);
 		static void UpdatePassenger(Passenger^);
 		static void DeletePassenger(String^ username);
@@ -64,17 +67,18 @@ namespace RuralService {
 
 
 		
-
-		
-
+		//PERSISTENCIA PARA LOS RECLAMOS
+		static void AddAdvert(Claim^ p );
+		//static void DeleteAdvert(String^ username);
+		static List<Claim^>^ QueryAllAdvertisements();
+				
 		//static String^ SendRobotToTable( int robotId, int tableNumber);
 		static void ActivateSecurityProtocol();
 		static List<String^>^ ReadGPSData();
 		static void OpenPort();
 		static void ClosePort();
 
-		/*static void Add_Rute(List<String^>^ ruta_x);
-		static List<String^>^ load_Rute(); */
+
 
 		static List<double>^ De_String_toDouble(String^ listasa);
 	};

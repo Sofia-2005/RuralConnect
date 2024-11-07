@@ -12,7 +12,12 @@ namespace RuralConnect {
     public:
         String^ Reason;
 
-        void ValidateClaim();
+        Claim() {
+
+        }
+        Claim(String^ R) {
+            Reason = R;
+        }
     };
 }
 

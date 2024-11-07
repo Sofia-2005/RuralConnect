@@ -1,4 +1,5 @@
 #pragma once
+#include "AdvertisementForm.h"
 
 namespace GUIApp {
 
@@ -8,6 +9,7 @@ namespace GUIApp {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace RuralService;
 
 	/// <summary>
 	/// Summary for RealTimeForm
@@ -84,6 +86,7 @@ namespace GUIApp {
 			this->button1->TabIndex = 18;
 			this->button1->Text = L"RECLAMO";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &RealTimeForm::button1_Click);
 			// 
 			// button2
 			// 
@@ -93,6 +96,7 @@ namespace GUIApp {
 			this->button2->TabIndex = 19;
 			this->button2->Text = L"SOS";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &RealTimeForm::button2_Click);
 			// 
 			// RealTimeForm
 			// 
@@ -105,9 +109,20 @@ namespace GUIApp {
 			this->Controls->Add(this->btnBack);
 			this->Name = L"RealTimeForm";
 			this->Text = L"RealTimeForm";
+			this->Load += gcnew System::EventHandler(this, &RealTimeForm::RealTimeForm_Load);
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
-	};
+	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+		Service::ActivateSecurityProtocol();
+	}
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {		//le envia a otra laguina donde el ususario puede escribir su reclamoq
+		AdvertisementForm^ newForm = gcnew AdvertisementForm();
+		newForm->Show();
+		this->Hide();
+	}
+private: System::Void RealTimeForm_Load(System::Object^ sender, System::EventArgs^ e) {
+}
+};
 }
