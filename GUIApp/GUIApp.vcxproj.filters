@@ -15,6 +15,7 @@
     <ClCompile Include="TripDetailsForm.cpp" />
     <ClCompile Include="RealTimeForm.cpp" />
     <ClCompile Include="SelectRoutePassenger.cpp" />
+    <ClCompile Include="usersReportForm.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LoginForm.cpp">
@@ -54,5 +55,6 @@
     <ClInclude Include="TripDetailsForm.h" />
     <ClInclude Include="RealTimeForm.h" />
     <ClInclude Include="SelectRoutePassenger.h" />
+    <ClInclude Include="driversReportForm.h" />
   </ItemGroup>
 </Project>

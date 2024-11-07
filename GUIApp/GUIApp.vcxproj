@@ -125,6 +125,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -141,6 +142,7 @@
     <ClCompile Include="TripDetailsForm.cpp" />
     <ClCompile Include="TripInCourse.cpp" />
     <ClCompile Include="TripRequestToDriverh.cpp" />
+    <ClCompile Include="usersReportForm.cpp" />
     <ClCompile Include="VehicleForm.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -181,6 +183,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="TripRequestToDriver.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="driversReportForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="VehicleForm.h">
@@ -226,6 +231,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TripRequestToDriver.resx">
       <DependentUpon>TripRequestToDriver.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="driversReportForm.resx">
+      <DependentUpon>driversReportForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VehicleForm.resx">
       <DependentUpon>VehicleForm.h</DependentUpon>

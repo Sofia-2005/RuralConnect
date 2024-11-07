@@ -2,6 +2,7 @@
 #include "RegisterForm.h"
 #include "PrincipalForm.h"
 #include "PrincipalFormDriver.h"
+#include "driversReportForm.h"
 
 
 
@@ -199,35 +200,45 @@ private: System::Void txt_startSession_Click(System::Object^ sender, System::Eve
 	String^ usuario = txt_username->Text;
 	String^ contra = txt_password->Text;
 
-	if (Service::QueryDriverPassengerbyUsername(usuario, contra)) {
-		MessageBox::Show("El usuario " + usuario + " ha iniciado sesion ");
+	// Verifica si es el administrador
+	if (usuario == "admin" && contra == "admin") {
+		// Si es admin, redirige al formulario de reportes
+		MessageBox::Show("Administrador ha iniciado sesión.");
+		// Aquí se abre el formulario de reportes (cambia "ReportForm" por el nombre de tu formulario de reportes)
+		driversReportForm^ newForm = gcnew driversReportForm();
+		newForm->Show();
+		// Oculta el formulario actual
+		this->Hide();
+	}
+	else if (Service::QueryDriverPassengerbyUsername(usuario, contra)) {
+		// Si no es admin, sigue con la lógica actual de conductor o pasajero
+		MessageBox::Show("El usuario " + usuario + " ha iniciado sesión.");
 
 		int i = Service::PassengerOrDriver(usuario);
 		if (i == 0) {
+			// Si es pasajero
 			Passenger^ p = Service::QueryPassengerbyUsername(usuario);
 			MyForm^ f = gcnew MyForm(p);
-			
-			Service::PasajeroActual = Service::QueryPassengerbyUsername(usuario);
 
+			Service::PasajeroActual = Service::QueryPassengerbyUsername(usuario);
 			f->Show();
 		}
 		else {
+			// Si es conductor
 			Driver^ d = Service::QueryDriverbyUsername(usuario);
 			PrincipalFormDriver^ f = gcnew PrincipalFormDriver(d);
 
 			Service::Conductor_actual = Service::QueryDriverbyUsername(usuario);
-			
 			f->Show();
 		}
-		this->Hide();
 
+		// Oculta el formulario actual
+		this->Hide();
 	}
 	else {
+		// Si el usuario no existe
 		MessageBox::Show("Usted no se encuentra registrado, debe realizarlo");
 	}
-	
-
-
 }
 private: System::Void txt_password_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	txt_password->PasswordChar = '*';
