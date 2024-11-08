@@ -37,7 +37,7 @@ namespace GUIApp {
 			}
 		}
 	private: System::Windows::Forms::Button^ btnBack;
-	private: System::Windows::Forms::WebBrowser^ webBrowser1;
+
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::Button^ button2;
 	protected:
@@ -56,7 +56,6 @@ namespace GUIApp {
 		void InitializeComponent(void)
 		{
 			this->btnBack = (gcnew System::Windows::Forms::Button());
-			this->webBrowser1 = (gcnew System::Windows::Forms::WebBrowser());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
@@ -69,14 +68,6 @@ namespace GUIApp {
 			this->btnBack->TabIndex = 12;
 			this->btnBack->Text = L"Volver";
 			this->btnBack->UseVisualStyleBackColor = true;
-			// 
-			// webBrowser1
-			// 
-			this->webBrowser1->Location = System::Drawing::Point(213, 86);
-			this->webBrowser1->MinimumSize = System::Drawing::Size(20, 20);
-			this->webBrowser1->Name = L"webBrowser1";
-			this->webBrowser1->Size = System::Drawing::Size(354, 291);
-			this->webBrowser1->TabIndex = 17;
 			// 
 			// button1
 			// 
@@ -102,10 +93,9 @@ namespace GUIApp {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(659, 494);
+			this->ClientSize = System::Drawing::Size(1227, 545);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
-			this->Controls->Add(this->webBrowser1);
 			this->Controls->Add(this->btnBack);
 			this->Name = L"RealTimeForm";
 			this->Text = L"RealTimeForm";

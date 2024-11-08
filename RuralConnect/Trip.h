@@ -11,13 +11,12 @@ using namespace System::Collections::Generic;
 namespace RuralConnect {
     [Serializable] public ref class Trip {
     public:
-        LinkedList<String^>^ Route;
+        List<String^>^ Route;
         String^ Date;
         int DepartureTime;
         int AvailableSeats;
-        LinkedList<Passenger^>^ Passengers;
+        List<Passenger^>^ Passengers = gcnew List<Passenger^>();
         int EstimatedPrice;
-        LinkedList<array<int>^>^ StopLocations;
         bool TripState;
 
         void assignPassenger();

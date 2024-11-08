@@ -46,7 +46,8 @@ namespace GUIApp {
 
 				ListaXY->Add(pt);
 			}
-			timer1->Start();
+			//timer1->Start();
+			timer2->Start();
 			//
 			//TODO: agregar código de constructor aquí
 			//
@@ -185,6 +186,10 @@ namespace GUIApp {
 			this->label3->TabIndex = 8;
 			this->label3->Text = L"longitud";
 			// 
+			// timer2
+			// 
+			this->timer2->Tick += gcnew System::EventHandler(this, &TripInCourse::timer2_Tick);
+			// 
 			// TripInCourse
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -281,12 +286,47 @@ private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows:
 		int radius = 5; // Radio del punto
 		g->FillEllipse(System::Drawing::Brushes::Blue, x - radius, y - radius, radius * 2, radius * 2);
 
+		if (counter == 2) {
+			counter++;
+			int x = 50, y = 50, x2 = 0, y2 = 0;
+			bool primera = true;
+
+			Graphics^ g = e->Graphics;
+			Pen^ pen = gcnew Pen(Color::Blue);
+			int radius = 5; // Radio del punto
+			for (int i = 0;i < ListaXY->Count;i++) {
+				array<int>^ a1 = ListaXY[i];
+				x = a1[0];
+				y = a1[1];
+				g->FillEllipse(System::Drawing::Brushes::Blue, x - radius, y - radius, radius * 2, radius * 2);
+			}
+
+			for (int i = 0;i < ListaXY->Count - 1;i++) {
+				array<int>^ a1 = ListaXY[i];
+				x = a1[0];
+				y = a1[1];
+				a1 = ListaXY[i + 1];
+				x2 = a1[0];
+				y2 = a1[1];
+				g->DrawLine(pen, x, y, x2, y2);
+			}
+		}
 
 }
 private: System::Void txtLat_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	
 }
 private: System::Void txtLong_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void timer2_Tick(System::Object^ sender, System::EventArgs^ e) {
+	if (counter < 2) {
+		counter++;
+		pictureBox1->Invalidate();
+	}
+	else {
+		timer1->Stop();
+		timer1->Enabled = false;
+	}
 }
 };
 }

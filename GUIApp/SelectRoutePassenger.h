@@ -32,7 +32,8 @@ namespace GUIApp {
 	private: System::Windows::Forms::Label^ label2;
 	public:
 		List<double>^ PuntosLong = gcnew List<double>();
-		SelectRoutePassenger(void)
+		Passenger^ User;
+		SelectRoutePassenger(Passenger^ user)
 		{
 			InitializeComponent();
 			Conductores = Service::QueryAllDrivers();
@@ -277,7 +278,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 			LatLong->Add(a);
 		}
 
-		TripDetailsForm^ CreateRoute = gcnew TripDetailsForm(LatLong,p);
+		TripDetailsForm^ CreateRoute = gcnew TripDetailsForm(LatLong,p, User);
 		CreateRoute->Show();
 		this->Hide();
 	}

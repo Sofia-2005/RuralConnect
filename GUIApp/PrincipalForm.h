@@ -18,7 +18,7 @@ namespace GUIApp {
 	{
 	public:
 
-		static Passenger^ User;
+		Passenger^ User;
 		MyForm(RuralConnect::Passenger^ user)
 		{
 			InitializeComponent();
@@ -280,7 +280,7 @@ private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e)
 }
 private: System::Void btnPlace_Click(System::Object^ sender, System::EventArgs^ e) {
 	// Crear una instancia del nuevo formulario (Form2 en este caso)
-	FindTrip^ newForm = gcnew FindTrip();
+	FindTrip^ newForm = gcnew FindTrip(User);
 	// Mostrar el nuevo formulario
 	newForm->Show();
 
