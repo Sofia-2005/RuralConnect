@@ -22,13 +22,15 @@ namespace GUIApp {
 	{
 	public:
 		Bitmap^ originalImage;
-		FindTrip(void)
+		Passenger^ User;
+		FindTrip(RuralConnect::Passenger^ user)
 		{
 			InitializeComponent();
 			originalImage = gcnew Bitmap(pictureBox1->Image);
 			//
 			//TODO: agregar código de constructor aquí
 			//
+			this->User = user;
 		}
 
 	protected:
@@ -235,7 +237,7 @@ private: System::Void btnFindTrip_Click(System::Object^ sender, System::EventArg
 			MessageBox::Show("Se ha agregado los datos de su destino con latitud " + newtrip->Latitude + " y longitud " + " " + newtrip->Longitude);
 			this->Close();
 
-			SelectRoutePassenger^ f = gcnew SelectRoutePassenger();
+			SelectRoutePassenger^ f = gcnew SelectRoutePassenger(User);
 			f->Show();
 		}
 	}

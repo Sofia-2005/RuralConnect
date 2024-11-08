@@ -9,6 +9,7 @@
 #include "Route.h"
 #include "Vehicle.h"
 #include "Route.h"
+#include "Trip.h"
 
 using namespace System;
 using namespace System::Collections::Generic;
@@ -19,8 +20,9 @@ namespace RuralConnect {
         int NumberOfCompletedTrips=0;
         //List<Route^> TypicalRoutes;
         Vehicle^ vehicle;
+        Trip^ viaje= gcnew Trip();
 
-        Route^ Rutasa = gcnew Route() ;
+        Route^ Rutasa = gcnew Route();
         void EndMyRoute();
         void CreateRoute();
         void OfferRoute();
@@ -28,6 +30,7 @@ namespace RuralConnect {
         void CancelRoute();
         void EndPassengerRoute();
         void AddTypicalRoute();
+
 
         //constructor sin parametros
         Driver() {
@@ -41,6 +44,7 @@ namespace RuralConnect {
             Username = username;
             Password = password;
             Rutasa = nullptr;
+            viaje = nullptr;
         }
     };
 }

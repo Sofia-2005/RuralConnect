@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfClaim xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Claim>
+    <Reason>AAAAAAAAAAAAAAAAAAAAAA</Reason>
+  </Claim>
+  <Claim>
+    <Reason>xdddddddddddddddddd</Reason>
+  </Claim>
+  <Claim>
+    <Reason>badsjfnkzjsnc</Reason>
+  </Claim>
+</ArrayOfClaim>

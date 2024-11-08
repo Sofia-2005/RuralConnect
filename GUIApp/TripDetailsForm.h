@@ -26,11 +26,13 @@ namespace GUIApp {
 	private: System::Windows::Forms::Label^ label8;
 	public:
 		Driver^ conductor = gcnew Driver();
-		TripDetailsForm(List<array<double>^>^ a, Driver^ p)
+		Passenger^ pasajero = gcnew Passenger();
+		TripDetailsForm(List<array<double>^>^ a, Driver^ p, Passenger^ pasa )
 		{
 			InitializeComponent();
 			LatLong = a;
 			conductor = p;
+			pasajero = pasa;
 			int x = 0, y = 0;
 			// Tamaño del PictureBox
 			int width = pictureBox1->Width;
@@ -250,6 +252,7 @@ namespace GUIApp {
 		this->Hide();
 	}
 private: System::Void btnAcceptTrip_Click(System::Object^ sender, System::EventArgs^ e) {
+	
 	RealTimeForm^ newForm = gcnew RealTimeForm();
 	newForm->Show();
 	this->Hide();

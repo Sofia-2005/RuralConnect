@@ -1,86 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfDriver xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Driver>
-    <Name>Luis</Name>
-    <LastName>Lopez</LastName>
-    <DNI>28132823</DNI>
-    <PhoneNumber>29838879</PhoneNumber>
-    <Username>luis</Username>
-    <Password>luis</Password>
+    <Name>Ana</Name>
+    <LastName>Lopes</LastName>
+    <DNI>2982</DNI>
+    <PhoneNumber>29382</PhoneNumber>
+    <Username>ana</Username>
+    <Password>ana</Password>
     <Qualification>0</Qualification>
     <NumberOfCompletedTrips>0</NumberOfCompletedTrips>
     <vehicle>
       <Model>KIA</Model>
       <Seats>5</Seats>
-      <PlateNumber>JS23NJK</PlateNumber>
+      <PlateNumber>KSDK39</PlateNumber>
     </vehicle>
+    <viaje>
+      <Route />
+      <DepartureTime>0</DepartureTime>
+      <AvailableSeats>0</AvailableSeats>
+      <Passengers />
+      <EstimatedPrice>0</EstimatedPrice>
+      <TripState>false</TripState>
+    </viaje>
     <Rutasa>
       <Latitude>0</Latitude>
       <Longitude>0</Longitude>
+      <Puntos_y_volatil>-77.0800062649007 -77.0800062649007 -77.079808781457 -77.0797692847682 -77.079650794702</Puntos_y_volatil>
+      <Puntos_x_volatil>-12.071440133515 -12.071440133515 -12.0703117411444 -12.0688780190736 -12.0672451689373</Puntos_x_volatil>
       <Puntos_y_fijo>
         <string>-77.0800062649007 -77.0798614437086 -77.0797429536424 -77.0796771258278 -77.0797166225166</string>
         <string>-77.080111589404 -77.0808093642384 -77.0806513774834 -77.0805460529801 -77.0804802251656 -77.0816782913907</string>
-        <string>-77,0807567019868 -77,0801905827815 -77,0804407284768</string>
-        <string>-77,0806513774834 -77,081941602649 -77,081941602649 -77,0805855496689 -77,0807040397351</string>
-        <string>-77,0804538940397 -77,0800062649007</string>
-        <string>-77,0809410198676 -77,0798614437086</string>
-        <string>-77,0816256291391 -77,0816256291391 -77,0813096556291 -77,0813096556291 -77,0807567019868 -77,0813491523179</string>
-        <string>-77,0813228211921 -77,0815598013245 -77,0811648344371</string>
-        <string>-77,0814676423841 -77,0806908741722 -77,0809278543046</string>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
       </Puntos_y_fijo>
       <Puntos_x_fijo>
         <string>-12.0716790871935 -12.0705241444142 -12.0693692016349 -12.0683204604905 -12.0669929400545</string>
         <string>-12.0718516648501 -12.0716790871935 -12.0711215286104 -12.0705772452316 -12.0702320899183 -12.0701258882834</string>
-        <string>-12,0720242425068 -12,0720109673025 -12,0715065095368</string>
-        <string>-12,0715994359673 -12,0669531144414 -12,0669531144414 -12,0661698773842 -12,0698471089918</string>
-        <string>-12,0732986621253 -12,0730198828338</string>
-        <string>-12,0717852888283 -12,072289746594</string>
-        <string>-12,0710817029973 -12,0710817029973 -12,0701922643052 -12,0701922643052 -12,0696214305177 -12,0685726893733</string>
-        <string>-12,072143719346 -12,0713206566758 -12,0713206566758</string>
-        <string>-12,0718118392371 -12,0718516648501 -12,0706568964578</string>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
       </Puntos_x_fijo>
     </Rutasa>
-  </Driver>
-  <Driver>
-    <Name>Matias</Name>
-    <LastName>Canchihuaman</LastName>
-    <DNI>75116030</DNI>
-    <PhoneNumber>914831180</PhoneNumber>
-    <Username>matias</Username>
-    <Password>matias</Password>
-    <Qualification>0</Qualification>
-    <NumberOfCompletedTrips>0</NumberOfCompletedTrips>
-    <vehicle>
-      <Model>SUV</Model>
-      <Seats>6</Seats>
-      <PlateNumber>EF1-32F</PlateNumber>
-    </vehicle>
-    <Rutasa>
-      <Latitude>0</Latitude>
-      <Longitude>0</Longitude>
-      <Puntos_y_fijo />
-      <Puntos_x_fijo />
-    </Rutasa>
-  </Driver>
-  <Driver>
-    <Name>Valeria</Name>
-    <LastName>Canchihuaman</LastName>
-    <DNI>78334411</DNI>
-    <PhoneNumber>985034674</PhoneNumber>
-    <Username>vale</Username>
-    <Password>vale</Password>
-    <Qualification>0</Qualification>
-    <NumberOfCompletedTrips>0</NumberOfCompletedTrips>
-    <vehicle>
-      <Model>SUV</Model>
-      <Seats>10</Seats>
-      <PlateNumber>XR1-33V</PlateNumber>
-    </vehicle>
   </Driver>
 </ArrayOfDriver>
