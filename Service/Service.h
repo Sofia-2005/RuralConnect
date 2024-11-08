@@ -74,5 +74,11 @@ namespace RuralService {
 		static List<String^>^ load_Rute(); */
 
 		static List<double>^ De_String_toDouble(String^ listasa);
+
+		static SerialPort^ ArduinoPort_Camera;
+		static int SolicitudPersonas(String^ text);
+		static void OpenPort_Camera();
+		static void ClosePort_Camera();
+
 	};
 }

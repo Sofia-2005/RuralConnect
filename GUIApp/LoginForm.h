@@ -52,6 +52,7 @@ namespace GUIApp {
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::TextBox^ txt_password;
 	private: System::Windows::Forms::Button^ txt_startSession;
+	private: System::Windows::Forms::PictureBox^ pictureBox1;
 
 
 
@@ -78,13 +79,15 @@ namespace GUIApp {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->txt_password = (gcnew System::Windows::Forms::TextBox());
 			this->txt_startSession = (gcnew System::Windows::Forms::Button());
+			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->fotoLogo))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// btnRegister
 			// 
 			this->btnRegister->Location = System::Drawing::Point(155, 363);
-			this->btnRegister->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->btnRegister->Margin = System::Windows::Forms::Padding(2);
 			this->btnRegister->Name = L"btnRegister";
 			this->btnRegister->Size = System::Drawing::Size(134, 42);
 			this->btnRegister->TabIndex = 0;
@@ -151,12 +154,24 @@ namespace GUIApp {
 			this->txt_startSession->UseVisualStyleBackColor = true;
 			this->txt_startSession->Click += gcnew System::EventHandler(this, &LoginForm::txt_startSession_Click);
 			// 
+			// pictureBox1
+			// 
+			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
+			this->pictureBox1->Location = System::Drawing::Point(381, 230);
+			this->pictureBox1->Name = L"pictureBox1";
+			this->pictureBox1->Size = System::Drawing::Size(33, 36);
+			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+			this->pictureBox1->TabIndex = 7;
+			this->pictureBox1->TabStop = false;
+			this->pictureBox1->Click += gcnew System::EventHandler(this, &LoginForm::pictureBox1_Click);
+			// 
 			// LoginForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->ClientSize = System::Drawing::Size(505, 447);
+			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->txt_startSession);
 			this->Controls->Add(this->txt_password);
 			this->Controls->Add(this->label1);
@@ -164,11 +179,12 @@ namespace GUIApp {
 			this->Controls->Add(this->lbl_username);
 			this->Controls->Add(this->btnRegister);
 			this->Controls->Add(this->fotoLogo);
-			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->Margin = System::Windows::Forms::Padding(2);
 			this->Name = L"LoginForm";
 			this->Text = L"LoginForm";
 			this->Load += gcnew System::EventHandler(this, &LoginForm::LoginForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->fotoLogo))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -236,6 +252,18 @@ private: System::Void fotoLogo_Click(System::Object^ sender, System::EventArgs^ 
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 
+}
+private:
+	bool mostrarPassword = false; // Variable para alternar entre mostrar/ocultar
+
+private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (mostrarPassword) {
+		txt_password->PasswordChar = '*'; // Oculta la contraseña
+	}
+	else {
+		txt_password->PasswordChar = '\0'; // Muestra el texto real
+	}
+	mostrarPassword = !mostrarPassword; // Cambia el estado
 }
 };
 }

@@ -221,10 +221,10 @@ List<String^>^ RuralService::Service::ReadGPSData()
     try {
         // Asegúrate de que el puerto esté abierto antes de leer
         //if (!ArduinoPort->IsOpen) {
-            OpenPort();
+            //OpenPort();
        // }
 
-        String^ nmeaSentence = ArduinoPort->ReadLine();  // Leer una línea completa del puerto serial
+        /*String^ nmeaSentence = ArduinoPort->ReadLine();  // Leer una línea completa del puerto serial
         if (nmeaSentence->Length > 1 && nmeaSentence->Contains(",")) {
             array<String^>^ data = nmeaSentence->Split(',');
   
@@ -235,7 +235,7 @@ List<String^>^ RuralService::Service::ReadGPSData()
         }
         else {
             result->Add("1");
-        }
+        }*/
         
  
 
@@ -244,7 +244,7 @@ List<String^>^ RuralService::Service::ReadGPSData()
         throw ex;
     }
     finally {
-        ClosePort();
+        //ClosePort();
     }
     
     return result;
@@ -287,6 +287,56 @@ List<double>^ RuralService::Service::De_String_toDouble(String^ listasa)
     }
 
     return lista_d;
+}
+
+int RuralService::Service::SolicitudPersonas(String^ text)
+{
+    int result;
+    try {
+        OpenPort_Camera();
+        ArduinoPort_Camera->Write(text);
+        ArduinoPort_Camera->BaseStream->Flush(); // Asegura que los datos se envíen
+        result = Convert::ToInt32(ArduinoPort_Camera->ReadLine());
+
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        ClosePort_Camera();
+    }
+    return result;
+}
+
+void RuralService::Service::OpenPort_Camera()
+{
+    try {
+        ArduinoPort_Camera = gcnew SerialPort();
+        ArduinoPort_Camera->PortName = "COM7";
+        ArduinoPort_Camera->BaudRate = 115200;
+        ArduinoPort_Camera->ReadTimeout = 17000;
+        if (!ArduinoPort_Camera->IsOpen) {
+            ArduinoPort_Camera->Open();
+
+        }
+
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+}
+
+void RuralService::Service::ClosePort_Camera()
+{
+    try {
+        if (ArduinoPort_Camera->IsOpen)
+            ArduinoPort_Camera->Close();
+        delete ArduinoPort_Camera;  // Liberar los recursos del puerto
+        ArduinoPort_Camera = nullptr;
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
 }
 
 
