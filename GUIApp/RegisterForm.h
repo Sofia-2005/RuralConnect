@@ -237,6 +237,7 @@ namespace GUIApp {
 			this->txtPassword->Name = L"txtPassword";
 			this->txtPassword->Size = System::Drawing::Size(100, 22);
 			this->txtPassword->TabIndex = 15;
+			this->txtPassword->TextChanged += gcnew System::EventHandler(this, &RegisterForm::txtPassword_TextChanged);
 			// 
 			// btn_back
 			// 
@@ -332,6 +333,8 @@ namespace GUIApp {
 private: System::Void RegisterForm_Load(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void txtName_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void txtPassword_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

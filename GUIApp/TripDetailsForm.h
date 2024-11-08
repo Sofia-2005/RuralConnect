@@ -1,5 +1,5 @@
 #pragma once
-
+#include "RealTimeForm.h"
 namespace GUIApp {
 
 	using namespace System;
@@ -250,7 +250,9 @@ namespace GUIApp {
 		this->Hide();
 	}
 private: System::Void btnAcceptTrip_Click(System::Object^ sender, System::EventArgs^ e) {
-
+	RealTimeForm^ newForm = gcnew RealTimeForm();
+	newForm->Show();
+	this->Hide();
 }
 private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
 

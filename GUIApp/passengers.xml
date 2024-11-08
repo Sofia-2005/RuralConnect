@@ -27,4 +27,13 @@
     <Password>susan</Password>
     <Qualification>0</Qualification>
   </Passenger>
+  <Passenger>
+    <Name>Jose</Name>
+    <LastName>Patiño</LastName>
+    <DNI>10267544</DNI>
+    <PhoneNumber>979895281</PhoneNumber>
+    <Username>jose</Username>
+    <Password>jose</Password>
+    <Qualification>0</Qualification>
+  </Passenger>
 </ArrayOfPassenger>

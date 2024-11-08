@@ -47,4 +47,40 @@
       </Puntos_x_fijo>
     </Rutasa>
   </Driver>
+  <Driver>
+    <Name>Matias</Name>
+    <LastName>Canchihuaman</LastName>
+    <DNI>75116030</DNI>
+    <PhoneNumber>914831180</PhoneNumber>
+    <Username>matias</Username>
+    <Password>matias</Password>
+    <Qualification>0</Qualification>
+    <NumberOfCompletedTrips>0</NumberOfCompletedTrips>
+    <vehicle>
+      <Model>SUV</Model>
+      <Seats>6</Seats>
+      <PlateNumber>EF1-32F</PlateNumber>
+    </vehicle>
+    <Rutasa>
+      <Latitude>0</Latitude>
+      <Longitude>0</Longitude>
+      <Puntos_y_fijo />
+      <Puntos_x_fijo />
+    </Rutasa>
+  </Driver>
+  <Driver>
+    <Name>Valeria</Name>
+    <LastName>Canchihuaman</LastName>
+    <DNI>78334411</DNI>
+    <PhoneNumber>985034674</PhoneNumber>
+    <Username>vale</Username>
+    <Password>vale</Password>
+    <Qualification>0</Qualification>
+    <NumberOfCompletedTrips>0</NumberOfCompletedTrips>
+    <vehicle>
+      <Model>SUV</Model>
+      <Seats>10</Seats>
+      <PlateNumber>XR1-33V</PlateNumber>
+    </vehicle>
+  </Driver>
 </ArrayOfDriver>
