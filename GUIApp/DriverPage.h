@@ -208,7 +208,7 @@ namespace GUIApp {
 		User->Rutasa->Puntos_x_volatil=puntoslat;
 		User->Rutasa->Puntos_y_volatil=puntoslon;
 		Service::UpdateDriver(User);
-		PublicRouteDriver^ CreateRoute = gcnew PublicRouteDriver(LatLong);
+		PublicRouteDriver^ CreateRoute = gcnew PublicRouteDriver(LatLong, User);
 		CreateRoute->Show();
 		this->Hide();
 	}

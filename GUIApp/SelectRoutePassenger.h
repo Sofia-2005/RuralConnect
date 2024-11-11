@@ -41,6 +41,7 @@ namespace GUIApp {
 				RutasLat->Add(d->Rutasa->Puntos_x_volatil);
 				RutasLon->Add(d->Rutasa->Puntos_y_volatil);
 			}
+			User = user;
 			timer1->Start();
 		}
 

@@ -10,6 +10,8 @@ namespace GUIApp {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace RuralConnect;
+	using namespace RuralService;
 
 	/// <summary>
 	/// Resumen de PublicRouteDriver
@@ -18,16 +20,17 @@ namespace GUIApp {
 	{
 	public:
 		int counter = 1;
+		Driver^ User;
 		List<array<double>^>^ LatLong = gcnew List<array<double>^>();
 	private: System::Windows::Forms::Timer^ timer1;
 	private: System::Windows::Forms::Timer^ timer2;
 	public:
 		List<array<int>^>^ ListaXY = gcnew List<array<int>^>();
-		PublicRouteDriver(List<array<double>^>^ a)
+		PublicRouteDriver(List<array<double>^>^ a, Driver^ p)
 		{
 			InitializeComponent();
 			LatLong = a;
-
+			this->User = p;
 			int x = 0, y = 0;
 			// Tamaño del PictureBox
 			int width = pictureBox1->Width;
@@ -196,7 +199,12 @@ namespace GUIApp {
 private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void btnPublishRoutes_Click(System::Object^ sender, System::EventArgs^ e) {
-	TripInCourse^ PublishRoutes = gcnew TripInCourse(LatLong);
+
+	Trip^ v = gcnew Trip();
+	v->AvailableSeats = User->vehicle->Seats;
+	User->viaje = v;
+	Service::UpdateDriver(User);
+	TripInCourse^ PublishRoutes = gcnew TripInCourse(LatLong, User);
 	PublishRoutes->Show();
 	this->Hide();
 }

@@ -31,6 +31,8 @@ namespace GUIApp {
 			//TODO: agregar código de constructor aquí
 			//
 			this->User = user;
+			User->UbiActual = "-12.071704 -77.080154";
+			Service::UpdatePassenger(User);
 		}
 
 	protected:
@@ -235,10 +237,13 @@ private: System::Void btnFindTrip_Click(System::Object^ sender, System::EventArg
 			Route^ newtrip = gcnew Route(latitude, longitude);
 
 			MessageBox::Show("Se ha agregado los datos de su destino con latitud " + newtrip->Latitude + " y longitud " + " " + newtrip->Longitude);
-			this->Close();
 
+			User->DesiredDestination = latitude + " " + longitude;
+			Service::UpdatePassenger(User);
 			SelectRoutePassenger^ f = gcnew SelectRoutePassenger(User);
 			f->Show();
+
+			this->Close();
 		}
 	}
 	catch (Exception^ ex) {
@@ -263,6 +268,9 @@ private: System::Void pictureBox1_MouseClick(System::Object^ sender, System::Win
 	// Convertir píxeles a coordenadas geográficas teniendo en cuenta la rotación
 	latitude = latTopLeft + (latBottomRight - latTopLeft) * (static_cast<double>(x) / width);
 	longitude = lonTopLeft + (lonBottomRight - lonTopLeft) * (static_cast<double>(y) / height);
+
+	txtLatitude->Text = latitude.ToString();
+	txtLongitudinal->Text = longitude.ToString();
 
 	System::Drawing::Graphics^ g = pictureBox1->CreateGraphics();
 	int radius = 5; // Radio del punto

@@ -310,7 +310,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 			LatLong->Add(a);
 		}
 
-		PublicRouteDriver^ CreateRoute = gcnew PublicRouteDriver(LatLong);
+		PublicRouteDriver^ CreateRoute = gcnew PublicRouteDriver(LatLong, User);
 		CreateRoute->Show();
 		this->Hide();
 	}

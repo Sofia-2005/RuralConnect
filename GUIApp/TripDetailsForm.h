@@ -253,6 +253,13 @@ namespace GUIApp {
 	}
 private: System::Void btnAcceptTrip_Click(System::Object^ sender, System::EventArgs^ e) {
 	
+	Solicitud^ soli = gcnew Solicitud();
+	soli->inicio = pasajero->UbiActual;
+	soli->destino = pasajero->DesiredDestination;
+	soli->pasajero = this->pasajero;
+	conductor->solicitud = soli;
+	Service::UpdateDriver(conductor);
+
 	RealTimeForm^ newForm = gcnew RealTimeForm();
 	newForm->Show();
 	this->Hide();

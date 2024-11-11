@@ -19,6 +19,7 @@ namespace RuralConnect{
         String^ Password;
         Claim^ claim;
         int Qualification;
+        String^ UbiActual;
 
         void Register();
 

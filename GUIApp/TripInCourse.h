@@ -11,6 +11,8 @@ namespace GUIApp {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace RuralConnect;
+	using namespace RuralService;
 
 
 	using namespace RuralService;
@@ -35,12 +37,14 @@ namespace GUIApp {
 	private: System::Windows::Forms::Label^ label10;
 
 	public:
+		Driver^ User;
 		List<array<double>^>^ LatLong = gcnew List<array<double>^>();
 	public:
-		TripInCourse(List<array<double>^>^ a)
+		TripInCourse(List<array<double>^>^ a, Driver^ p)
 		{
 			InitializeComponent();
 			LatLong = a;
+			this->User = p;
 			int x = 0, y = 0;
 			// Tamaño del PictureBox
 			int width = pictureBox1->Width;
@@ -416,10 +420,11 @@ namespace GUIApp {
 		this->Hide();
 	}
 	private: System::Void btnTripApplication_Click(System::Object^ sender, System::EventArgs^ e) {
-		TripRequestToDriverh^ Application = gcnew TripRequestToDriverh();
-		Application -> Show();
-		this->Hide();
-
+		if (User->solicitud != nullptr) {
+			TripRequestToDriverh^ Application = gcnew TripRequestToDriverh(User);
+			Application->Show();
+			//this->Hide();
+		}
 	}
 private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
 }

@@ -130,6 +130,7 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Route.h" />
     <ClInclude Include="RuralConnect.h" />
+    <ClInclude Include="Solicitud.h" />
     <ClInclude Include="Trip.h" />
     <ClInclude Include="User.h" />
     <ClInclude Include="Vehicle.h" />
@@ -149,6 +150,7 @@
     </ClCompile>
     <ClCompile Include="Route.cpp" />
     <ClCompile Include="RuralConnect.cpp" />
+    <ClCompile Include="Solicitud.cpp" />
     <ClCompile Include="Trip.cpp" />
     <ClCompile Include="User.cpp" />
     <ClCompile Include="Vehicle.cpp" />

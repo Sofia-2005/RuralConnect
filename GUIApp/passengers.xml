@@ -1,39 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfPassenger xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Passenger>
-    <Name>2</Name>
-    <LastName>2</LastName>
-    <DNI>2</DNI>
-    <PhoneNumber>2</PhoneNumber>
-    <Username>2</Username>
-    <Password>2</Password>
-    <Qualification>0</Qualification>
-  </Passenger>
-  <Passenger>
-    <Name>lulu</Name>
-    <LastName>lulu</LastName>
-    <DNI>9</DNI>
-    <PhoneNumber>9</PhoneNumber>
-    <Username>lulu</Username>
-    <Password>lulu</Password>
-    <Qualification>0</Qualification>
-  </Passenger>
-  <Passenger>
     <Name>Susan</Name>
     <LastName>Lozano</LastName>
-    <DNI>7291837</DNI>
-    <PhoneNumber>21083912</PhoneNumber>
+    <DNI>8198</DNI>
+    <PhoneNumber>82973</PhoneNumber>
     <Username>susan</Username>
     <Password>susan</Password>
     <Qualification>0</Qualification>
-  </Passenger>
-  <Passenger>
-    <Name>Jose</Name>
-    <LastName>Patiño</LastName>
-    <DNI>10267544</DNI>
-    <PhoneNumber>979895281</PhoneNumber>
-    <Username>jose</Username>
-    <Password>jose</Password>
-    <Qualification>0</Qualification>
+    <UbiActual>-12.071704 -77.080154</UbiActual>
+    <DesiredDestination>-12.0668680891566 -77.0798877748344</DesiredDestination>
   </Passenger>
 </ArrayOfPassenger>

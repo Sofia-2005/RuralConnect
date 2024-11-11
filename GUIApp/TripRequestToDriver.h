@@ -8,6 +8,8 @@ namespace GUIApp {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace RuralConnect;
+	using namespace RuralService;
 
 	/// <summary>
 	/// Resumen de TripRequestToDriverh
@@ -15,9 +17,13 @@ namespace GUIApp {
 	public ref class TripRequestToDriverh : public System::Windows::Forms::Form
 	{
 	public:
-		TripRequestToDriverh(void)
+		Driver^ user;
+		TripRequestToDriverh(Driver^p)
 		{
 			InitializeComponent();
+			user = p;
+			label2->Text = user->solicitud->pasajero->Name;
+			label8->Text = user->solicitud->pasajero->LastName;
 			//
 			//TODO: agregar código de constructor aquí
 			//
@@ -43,9 +49,12 @@ namespace GUIApp {
 	private: System::Windows::Forms::Label^ label7;
 	private: System::Windows::Forms::Button^ btnAcceptPassenger;
 
-	private: System::Windows::Forms::WebBrowser^ webBrowser1;
+
 
 	private: System::Windows::Forms::Button^ btnBack;
+
+	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::Label^ label8;
 
 	private:
 		/// <summary>
@@ -67,8 +76,9 @@ namespace GUIApp {
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->btnAcceptPassenger = (gcnew System::Windows::Forms::Button());
-			this->webBrowser1 = (gcnew System::Windows::Forms::WebBrowser());
 			this->btnBack = (gcnew System::Windows::Forms::Button());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// label1
@@ -127,21 +137,13 @@ namespace GUIApp {
 			// 
 			// btnAcceptPassenger
 			// 
-			this->btnAcceptPassenger->Location = System::Drawing::Point(189, 329);
+			this->btnAcceptPassenger->Location = System::Drawing::Point(46, 399);
 			this->btnAcceptPassenger->Name = L"btnAcceptPassenger";
 			this->btnAcceptPassenger->Size = System::Drawing::Size(200, 70);
 			this->btnAcceptPassenger->TabIndex = 7;
 			this->btnAcceptPassenger->Text = L"ACEPTAR PASAJERO";
 			this->btnAcceptPassenger->UseVisualStyleBackColor = true;
 			this->btnAcceptPassenger->Click += gcnew System::EventHandler(this, &TripRequestToDriverh::btnAcceptPassenger_Click);
-			// 
-			// webBrowser1
-			// 
-			this->webBrowser1->Location = System::Drawing::Point(288, 57);
-			this->webBrowser1->MinimumSize = System::Drawing::Size(20, 20);
-			this->webBrowser1->Name = L"webBrowser1";
-			this->webBrowser1->Size = System::Drawing::Size(330, 233);
-			this->webBrowser1->TabIndex = 8;
 			// 
 			// btnBack
 			// 
@@ -153,13 +155,32 @@ namespace GUIApp {
 			this->btnBack->UseVisualStyleBackColor = true;
 			this->btnBack->Click += gcnew System::EventHandler(this, &TripRequestToDriverh::btnBack_Click);
 			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(94, 142);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(44, 16);
+			this->label2->TabIndex = 12;
+			this->label2->Text = L"label2";
+			// 
+			// label8
+			// 
+			this->label8->AutoSize = true;
+			this->label8->Location = System::Drawing::Point(94, 181);
+			this->label8->Name = L"label8";
+			this->label8->Size = System::Drawing::Size(44, 16);
+			this->label8->TabIndex = 13;
+			this->label8->Text = L"label8";
+			// 
 			// TripRequestToDriverh
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(630, 421);
+			this->ClientSize = System::Drawing::Size(1091, 521);
+			this->Controls->Add(this->label8);
+			this->Controls->Add(this->label2);
 			this->Controls->Add(this->btnBack);
-			this->Controls->Add(this->webBrowser1);
 			this->Controls->Add(this->btnAcceptPassenger);
 			this->Controls->Add(this->label7);
 			this->Controls->Add(this->label6);
@@ -178,6 +199,13 @@ namespace GUIApp {
 		this->Hide();
 	}
 private: System::Void btnAcceptPassenger_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (user->viaje->AvailableSeats > 0) {
+		user->viaje->AvailableSeats -= 1;
+	}
+	user->viaje->Passengers->Add(user->solicitud->pasajero);
+	user->solicitud = nullptr;
+	Service::UpdateDriver(user);
+	this->Close();
 }
 };
 }

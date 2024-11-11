@@ -1,41 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfDriver xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Driver>
-    <Name>Ana</Name>
-    <LastName>Lopes</LastName>
-    <DNI>2982</DNI>
-    <PhoneNumber>29382</PhoneNumber>
-    <Username>ana</Username>
-    <Password>ana</Password>
+    <Name>Sofia</Name>
+    <LastName>Condor</LastName>
+    <DNI>29839</DNI>
+    <PhoneNumber>238129</PhoneNumber>
+    <Username>sofia</Username>
+    <Password>sofia</Password>
     <Qualification>0</Qualification>
     <NumberOfCompletedTrips>0</NumberOfCompletedTrips>
     <vehicle>
       <Model>KIA</Model>
-      <Seats>5</Seats>
-      <PlateNumber>KSDK39</PlateNumber>
+      <Seats>7</Seats>
+      <PlateNumber>KSJ221</PlateNumber>
     </vehicle>
     <viaje>
-      <Route />
       <DepartureTime>0</DepartureTime>
-      <AvailableSeats>0</AvailableSeats>
-      <Passengers />
+      <AvailableSeats>6</AvailableSeats>
+      <Passengers>
+        <Passenger>
+          <Name>Susan</Name>
+          <LastName>Lozano</LastName>
+          <DNI>8198</DNI>
+          <PhoneNumber>82973</PhoneNumber>
+          <Username>susan</Username>
+          <Password>susan</Password>
+          <Qualification>0</Qualification>
+          <UbiActual>-12.071704 -77.080154</UbiActual>
+          <DesiredDestination>-12.0668680891566 -77.0798877748344</DesiredDestination>
+        </Passenger>
+      </Passengers>
       <EstimatedPrice>0</EstimatedPrice>
       <TripState>false</TripState>
     </viaje>
     <Rutasa>
       <Latitude>0</Latitude>
       <Longitude>0</Longitude>
+      <Puntos_y_volatil>-77.0799930993378 -77.0797824503311 -77.0796771258278 -77.079808781457</Puntos_y_volatil>
+      <Puntos_x_volatil>-12.0714666839237 -12.0700462370572 -12.0686921662125 -12.0671124168937</Puntos_x_volatil>
       <Puntos_y_fijo>
-        <string>-77.0800062649007 -77.0798614437086 -77.0797429536424 -77.0796771258278 -77.0797166225166</string>
-        <string>-77.080111589404 -77.0808093642384 -77.0806513774834 -77.0805460529801 -77.0804802251656 -77.0816782913907</string>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
+        <string>-77.0799930993378 -77.0797824503311 -77.0796771258278 -77.079808781457</string>
       </Puntos_y_fijo>
       <Puntos_x_fijo>
-        <string>-12.0716790871935 -12.0705241444142 -12.0693692016349 -12.0683204604905 -12.0669929400545</string>
-        <string>-12.0718516648501 -12.0716790871935 -12.0711215286104 -12.0705772452316 -12.0702320899183 -12.0701258882834</string>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
+        <string>-12.0714666839237 -12.0700462370572 -12.0686921662125 -12.0671124168937</string>
       </Puntos_x_fijo>
     </Rutasa>
   </Driver>
