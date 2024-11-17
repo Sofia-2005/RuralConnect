@@ -8,7 +8,6 @@
     <ClCompile Include="RegisterForm.cpp" />
     <ClCompile Include="SelectRouteDriver.cpp" />
     <ClCompile Include="TripInCourse.cpp" />
-    <ClCompile Include="TripRequestToDriverh.cpp" />
     <ClCompile Include="FindTrip.cpp" />
     <ClCompile Include="VehicleForm.cpp" />
     <ClCompile Include="PrincipalFormDriver.cpp" />
@@ -51,7 +50,6 @@
     <ClInclude Include="RegisterForm.h" />
     <ClInclude Include="SelectRouteDriver.h" />
     <ClInclude Include="TripInCourse.h" />
-    <ClInclude Include="TripRequestToDriver.h" />
     <ClInclude Include="VehicleForm.h" />
     <ClInclude Include="PrincipalFormDriver.h" />
     <ClInclude Include="TripDetailsForm.h" />

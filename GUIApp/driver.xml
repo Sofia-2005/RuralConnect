@@ -23,7 +23,7 @@
     </viaje>
     <solicitud>
       <inicio>-12.071704 -77.080154</inicio>
-      <destino>-12.0678307493976 -77.0798482781457</destino>
+      <destino>-12.067642913253 -77.0799865165563</destino>
       <pasajero>
         <Name>Susan</Name>
         <LastName>Lozano</LastName>
@@ -33,7 +33,7 @@
         <Password>susan</Password>
         <Qualification>0</Qualification>
         <UbiActual>-12.071704 -77.080154</UbiActual>
-        <DesiredDestination>-12.0678307493976 -77.0798482781457</DesiredDestination>
+        <DesiredDestination>-12.067642913253 -77.0799865165563</DesiredDestination>
       </pasajero>
     </solicitud>
     <Rutasa>
