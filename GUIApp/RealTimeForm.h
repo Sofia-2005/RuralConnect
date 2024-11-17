@@ -9,7 +9,10 @@ namespace GUIApp {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Collections::Generic;
+	using namespace RuralConnect;
 	using namespace RuralService;
+
 
 	/// <summary>
 	/// Summary for RealTimeForm
@@ -17,9 +20,43 @@ namespace GUIApp {
 	public ref class RealTimeForm : public System::Windows::Forms::Form
 	{
 	public:
-		RealTimeForm(void)
+		List<array<int>^>^ ListaXY = gcnew List<array<int>^>();
+
+	public:
+		List<array<double>^>^ LatLong = gcnew List<array<double>^>();
+	public:
+		Driver^ conductor = gcnew Driver();
+
+	public:
+		Passenger^ pasajero = gcnew Passenger();
+		RealTimeForm(List<array<double>^>^ a, Driver^ p, Passenger^ pasa)
 		{
 			InitializeComponent();
+			LatLong = a;
+			conductor = p;
+			pasajero = pasa;
+			int x = 0, y = 0;
+			// Tamaño del PictureBox
+			int width = pictureBox1->Width;
+			int height = pictureBox1->Height;
+
+			for (int i = 0; i < LatLong->Count;i++) {
+				array<double>^ a1 = LatLong[i];
+
+				double  latitude = a1[0];
+				double longitude = a1[1];
+
+				x = (int)((latitude - latTopLeft) / (latBottomRight - latTopLeft) * width);
+				y = (int)((longitude - lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
+
+				array<int>^ pt = { x, y };
+
+				ListaXY->Add(pt);
+			}
+			//
+			//TODO: agregar código de constructor aquí
+			//
+			pictureBox1->Invalidate();
 			//
 			//TODO: Add the constructor code here
 			//
@@ -102,6 +139,7 @@ namespace GUIApp {
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox1->TabIndex = 20;
 			this->pictureBox1->TabStop = false;
+			this->pictureBox1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &RealTimeForm::pictureBox1_Paint);
 			// 
 			// RealTimeForm
 			// 
@@ -120,15 +158,66 @@ namespace GUIApp {
 
 		}
 #pragma endregion
+public:
+		double latTopLeft = -12.074135, lonTopLeft = -77.083166;   // Coordenadas de la esquina superior izquierda
+		double latBottomRight = -12.064391, lonBottomRight = -77.077202; // Coordenadas de la esquina inferior derecha
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 		Service::ActivateSecurityProtocol();
 	}
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {		//le envia a otra laguina donde el ususario puede escribir su reclamoq
 		AdvertisementForm^ newForm = gcnew AdvertisementForm();
 		newForm->Show();
-		this->Hide();
+		//this->Hide();
 	}
 private: System::Void RealTimeForm_Load(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+	int x = 50, y = 50, x2 = 0, y2 = 0;
+	bool primera = true;
+
+	int width = pictureBox1->Width;
+	int height = pictureBox1->Height;
+
+	Graphics^ g = e->Graphics;
+	Pen^ pen = gcnew Pen(Color::Blue);
+	int radius = 5; // Radio del punto
+
+	/* Graficamos ubicacion actual y destino*/
+
+	List<double>^ latlong = gcnew List<double>();
+
+	latlong = Service::De_String_toDouble(pasajero->UbiActual);
+
+	x = (int)((latlong[0] - latTopLeft) / (latBottomRight - latTopLeft) * width);
+	y = (int)((latlong[1] - lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
+
+	g->FillEllipse(System::Drawing::Brushes::Red, x - radius, y - radius, radius * 2, radius * 2);
+
+	latlong = Service::De_String_toDouble(pasajero->DesiredDestination);
+
+	x = (int)((latlong[0] - latTopLeft) / (latBottomRight - latTopLeft) * width);
+	y = (int)((latlong[1] - lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
+
+	g->FillEllipse(System::Drawing::Brushes::Black, x - radius, y - radius, radius * 2, radius * 2);
+
+	/* Terminamos de graficar ubicacion actual y destino*/
+
+	for (int i = 0;i < ListaXY->Count;i++) {
+		array<int>^ a1 = ListaXY[i];
+		x = a1[0];
+		y = a1[1];
+		g->FillEllipse(System::Drawing::Brushes::Blue, x - radius, y - radius, radius * 2, radius * 2);
+	}
+
+	for (int i = 0;i < ListaXY->Count - 1;i++) {
+		array<int>^ a1 = ListaXY[i];
+		x = a1[0];
+		y = a1[1];
+		a1 = ListaXY[i + 1];
+		x2 = a1[0];
+		y2 = a1[1];
+		g->DrawLine(pen, x, y, x2, y2);
+	}
 }
 };
 }

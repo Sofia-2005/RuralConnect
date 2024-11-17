@@ -20,12 +20,13 @@ namespace GUIApp {
 	public ref class SelectRoutePassenger : public System::Windows::Forms::Form
 	{
 	public:
-		int counter = 1;
+
+		bool cambioRuta = false;
 		List<Driver^>^ Conductores = gcnew List<Driver^>();
 		List<String^>^ RutasLat = gcnew List<String^>();;
 		List<String^>^ RutasLon = gcnew List<String^>();;
 		List<double>^ PuntosLat = gcnew List<double>();
-	private: System::Windows::Forms::Timer^ timer1;
+
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::ComboBox^ cmbRutas;
@@ -42,7 +43,8 @@ namespace GUIApp {
 				RutasLon->Add(d->Rutasa->Puntos_y_volatil);
 			}
 			User = user;
-			timer1->Start();
+			pictureBox1->Invalidate();
+
 		}
 
 	protected:
@@ -80,11 +82,9 @@ namespace GUIApp {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->components = (gcnew System::ComponentModel::Container());
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(SelectRoutePassenger::typeid));
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->cmbRutas = (gcnew System::Windows::Forms::ComboBox());
@@ -111,10 +111,6 @@ namespace GUIApp {
 			this->label1->Size = System::Drawing::Size(128, 16);
 			this->label1->TabIndex = 10;
 			this->label1->Text = L"Selecciona una ruta:";
-			// 
-			// timer1
-			// 
-			this->timer1->Tick += gcnew System::EventHandler(this, &SelectRoutePassenger::timer1_Tick);
 			// 
 			// button1
 			// 
@@ -176,19 +172,9 @@ namespace GUIApp {
 	public:
 		double latTopLeft = -12.074135, lonTopLeft = -77.083166;   // Coordenadas de la esquina superior izquierda
 		double latBottomRight = -12.064391, lonBottomRight = -77.077202; // Coordenadas de la esquina inferior derecha
-		bool cambioRuta = false;
 		int indice = 0;
 
 private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
-
-	if (counter < 2) {
-		counter++;
-		pictureBox1->Invalidate();
-	}
-	else {
-		timer1->Stop();
-		timer1->Enabled = false;
-	}
 }
 private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 
@@ -199,8 +185,28 @@ private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows:
 	int height = pictureBox1->Height;
 
 	Graphics^ g = e->Graphics;
-	Pen^ pen = gcnew Pen(Color::Blue);
 	int radius = 5; // Radio del punto
+	Pen^ pen = gcnew Pen(Color::Blue);
+
+	/* Graficamos ubicacion actual y destino*/
+
+	List<double>^ latlong = gcnew List<double>();
+
+	latlong = Service::De_String_toDouble(User->UbiActual);
+
+	x = (int)((latlong[0] - latTopLeft) / (latBottomRight - latTopLeft) * width);
+	y = (int)((latlong[1] - lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
+
+	g->FillEllipse(System::Drawing::Brushes::Red, x - radius, y - radius, radius * 2, radius * 2);
+
+	latlong = Service::De_String_toDouble(User->DesiredDestination);
+
+	x = (int)((latlong[0] - latTopLeft) / (latBottomRight - latTopLeft) * width);
+	y = (int)((latlong[1] - lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
+
+	g->FillEllipse(System::Drawing::Brushes::Black, x - radius, y - radius, radius * 2, radius * 2);
+
+	/* Terminamos de graficar ubicacion actual y destino*/
 
 	for (int i = 0;i < Conductores->Count;i++) {
 		PuntosLat = Service::De_String_toDouble(RutasLat[i]);

@@ -138,9 +138,9 @@ namespace GUIApp {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(286, 414);
+			this->button1->Location = System::Drawing::Point(245, 405);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(117, 23);
+			this->button1->Size = System::Drawing::Size(198, 32);
 			this->button1->TabIndex = 6;
 			this->button1->Text = L"Enviar y finalizar";
 			this->button1->UseVisualStyleBackColor = true;
@@ -211,7 +211,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	//se guarda los valores del reclamo
 	Claim^ reclamo = gcnew Claim(txtReclamo->Text);
 	Service::AddAdvert(reclamo);
-
+	this->Close();
 }
 };
 }

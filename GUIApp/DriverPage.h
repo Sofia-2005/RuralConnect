@@ -203,14 +203,19 @@ namespace GUIApp {
 		this->Hide();
 	}
 	private: System::Void btnCreateRoute_Click(System::Object^ sender, System::EventArgs^ e) {
-		User->Rutasa->Puntos_x_fijo->Add(puntoslat);
-		User->Rutasa->Puntos_y_fijo->Add(puntoslon);
-		User->Rutasa->Puntos_x_volatil=puntoslat;
-		User->Rutasa->Puntos_y_volatil=puntoslon;
-		Service::UpdateDriver(User);
-		PublicRouteDriver^ CreateRoute = gcnew PublicRouteDriver(LatLong, User);
-		CreateRoute->Show();
-		this->Hide();
+		if (!primera) {
+			User->Rutasa->Puntos_x_fijo->Add(puntoslat);
+			User->Rutasa->Puntos_y_fijo->Add(puntoslon);
+			User->Rutasa->Puntos_x_volatil = puntoslat;
+			User->Rutasa->Puntos_y_volatil = puntoslon;
+			Service::UpdateDriver(User);
+			PublicRouteDriver^ CreateRoute = gcnew PublicRouteDriver(LatLong, User);
+			CreateRoute->Show();
+			this->Hide();
+		}
+		else {
+			MessageBox::Show("Debe crear una ruta o sino puede elegir de sus rutas guardadas");
+		}
 	}
 	private: System::Void btnBack_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Hide();

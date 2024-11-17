@@ -18,14 +18,16 @@ namespace GUIApp {
 	public ref class TripDetailsForm : public System::Windows::Forms::Form
 	{
 	public:
-		int counter = 1;
 		List<array<int>^>^ ListaXY = gcnew List<array<int>^>();
-	private: System::Windows::Forms::Timer^ timer1;
+
 	public:
 		List<array<double>^>^ LatLong = gcnew List<array<double>^>();
 	private: System::Windows::Forms::Label^ label8;
 	public:
 		Driver^ conductor = gcnew Driver();
+	private: System::Windows::Forms::Label^ label9;
+	private: System::Windows::Forms::Label^ label10;
+	public:
 		Passenger^ pasajero = gcnew Passenger();
 		TripDetailsForm(List<array<double>^>^ a, Driver^ p, Passenger^ pasa )
 		{
@@ -54,7 +56,7 @@ namespace GUIApp {
 			//
 			//TODO: agregar código de constructor aquí
 			//
-			timer1->Start();
+			pictureBox1->Invalidate();
 		}
 
 	protected:
@@ -95,7 +97,6 @@ namespace GUIApp {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->components = (gcnew System::ComponentModel::Container());
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(TripDetailsForm::typeid));
 			this->btnBack = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
@@ -107,8 +108,9 @@ namespace GUIApp {
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->btnAcceptTrip = (gcnew System::Windows::Forms::Button());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
-			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->label8 = (gcnew System::Windows::Forms::Label());
+			this->label9 = (gcnew System::Windows::Forms::Label());
+			this->label10 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -206,10 +208,6 @@ namespace GUIApp {
 			this->pictureBox1->TabStop = false;
 			this->pictureBox1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &TripDetailsForm::pictureBox1_Paint);
 			// 
-			// timer1
-			// 
-			this->timer1->Tick += gcnew System::EventHandler(this, &TripDetailsForm::timer1_Tick);
-			// 
 			// label8
 			// 
 			this->label8->AutoSize = true;
@@ -219,11 +217,31 @@ namespace GUIApp {
 			this->label8->TabIndex = 22;
 			this->label8->Text = L"label8";
 			// 
+			// label9
+			// 
+			this->label9->AutoSize = true;
+			this->label9->Location = System::Drawing::Point(134, 165);
+			this->label9->Name = L"label9";
+			this->label9->Size = System::Drawing::Size(44, 16);
+			this->label9->TabIndex = 23;
+			this->label9->Text = L"label9";
+			// 
+			// label10
+			// 
+			this->label10->AutoSize = true;
+			this->label10->Location = System::Drawing::Point(70, 132);
+			this->label10->Name = L"label10";
+			this->label10->Size = System::Drawing::Size(51, 16);
+			this->label10->TabIndex = 24;
+			this->label10->Text = L"label10";
+			// 
 			// TripDetailsForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1330, 594);
+			this->Controls->Add(this->label10);
+			this->Controls->Add(this->label9);
 			this->Controls->Add(this->label8);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->btnAcceptTrip);
@@ -260,28 +278,44 @@ private: System::Void btnAcceptTrip_Click(System::Object^ sender, System::EventA
 	conductor->solicitud = soli;
 	Service::UpdateDriver(conductor);
 
-	RealTimeForm^ newForm = gcnew RealTimeForm();
+	RealTimeForm^ newForm = gcnew RealTimeForm(LatLong,conductor,pasajero);
 	newForm->Show();
 	this->Hide();
 }
 private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
 
-	if (counter < 2) {
-		counter++;
-		pictureBox1->Invalidate();
-	}
-	else {
-		timer1->Stop();
-		timer1->Enabled = false;
-	}
 }
 private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 	int x = 50, y = 50, x2 = 0, y2 = 0;
 	bool primera = true;
 
+	int width = pictureBox1->Width;
+	int height = pictureBox1->Height;
+
 	Graphics^ g = e->Graphics;
 	Pen^ pen = gcnew Pen(Color::Blue);
 	int radius = 5; // Radio del punto
+
+	/* Graficamos ubicacion actual y destino*/
+
+	List<double>^ latlong = gcnew List<double>();
+
+	latlong = Service::De_String_toDouble(pasajero->UbiActual);
+
+	x = (int)((latlong[0] - latTopLeft) / (latBottomRight - latTopLeft) * width);
+	y = (int)((latlong[1] - lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
+
+	g->FillEllipse(System::Drawing::Brushes::Red, x - radius, y - radius, radius * 2, radius * 2);
+
+	latlong = Service::De_String_toDouble(pasajero->DesiredDestination);
+
+	x = (int)((latlong[0] - latTopLeft) / (latBottomRight - latTopLeft) * width);
+	y = (int)((latlong[1] - lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
+
+	g->FillEllipse(System::Drawing::Brushes::Black, x - radius, y - radius, radius * 2, radius * 2);
+
+	/* Terminamos de graficar ubicacion actual y destino*/
+
 	for (int i = 0;i < ListaXY->Count;i++) {
 		array<int>^ a1 = ListaXY[i];
 		x = a1[0];
@@ -301,6 +335,7 @@ private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows:
 }
 private: System::Void TripDetailsForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	label8->Text = conductor->Name+ " "+ conductor->LastName;
+	label9->Text =""+conductor->viaje->AvailableSeats;
 }
 };
 }

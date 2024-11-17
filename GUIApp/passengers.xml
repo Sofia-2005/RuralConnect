@@ -9,6 +9,17 @@
     <Password>susan</Password>
     <Qualification>0</Qualification>
     <UbiActual>-12.071704 -77.080154</UbiActual>
-    <DesiredDestination>-12.0668680891566 -77.0798877748344</DesiredDestination>
+    <DesiredDestination>-12.0670794048193 -77.0798581523179</DesiredDestination>
+  </Passenger>
+  <Passenger>
+    <Name>Ana</Name>
+    <LastName>Lopez</LastName>
+    <DNI>2983</DNI>
+    <PhoneNumber>923890</PhoneNumber>
+    <Username>ana</Username>
+    <Password>ana</Password>
+    <Qualification>0</Qualification>
+    <UbiActual>-12.071704 -77.080154</UbiActual>
+    <DesiredDestination>-12.0671498433735 -77.0799568940397</DesiredDestination>
   </Passenger>
 </ArrayOfPassenger>

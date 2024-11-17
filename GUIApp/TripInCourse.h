@@ -26,7 +26,7 @@ namespace GUIApp {
 		int counter = 1;
 		List<array<int>^>^ ListaXY = gcnew List<array<int>^>();
 	private: System::Windows::Forms::Timer^ timer2;
-	private: System::Windows::Forms::Timer^ timer3;
+
 	private: System::Windows::Forms::PictureBox^ pictureBox4;
 	private: System::Windows::Forms::PictureBox^ pictureBox5;
 	private: System::Windows::Forms::Label^ label7;
@@ -63,8 +63,9 @@ namespace GUIApp {
 
 				ListaXY->Add(pt);
 			}
+			pictureBox1->Invalidate();
 			//timer1->Start();
-			timer3->Start();
+			//
 			//
 			//TODO: agregar código de constructor aquí
 			//
@@ -133,7 +134,6 @@ namespace GUIApp {
 			this->pictureBox3 = (gcnew System::Windows::Forms::PictureBox());
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->label6 = (gcnew System::Windows::Forms::Label());
-			this->timer3 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->pictureBox4 = (gcnew System::Windows::Forms::PictureBox());
 			this->pictureBox5 = (gcnew System::Windows::Forms::PictureBox());
 			this->label7 = (gcnew System::Windows::Forms::Label());
@@ -152,19 +152,18 @@ namespace GUIApp {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(9, 53);
-			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label1->Location = System::Drawing::Point(12, 65);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(95, 13);
+			this->label1->Size = System::Drawing::Size(117, 16);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"VIAJE EN CURSO";
 			// 
 			// btnTripApplication
 			// 
-			this->btnTripApplication->Location = System::Drawing::Point(573, 11);
-			this->btnTripApplication->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->btnTripApplication->Location = System::Drawing::Point(764, 14);
+			this->btnTripApplication->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnTripApplication->Name = L"btnTripApplication";
-			this->btnTripApplication->Size = System::Drawing::Size(103, 35);
+			this->btnTripApplication->Size = System::Drawing::Size(137, 43);
 			this->btnTripApplication->TabIndex = 2;
 			this->btnTripApplication->Text = L"Solicitudes de viaje";
 			this->btnTripApplication->UseVisualStyleBackColor = true;
@@ -172,10 +171,10 @@ namespace GUIApp {
 			// 
 			// btnBack
 			// 
-			this->btnBack->Location = System::Drawing::Point(9, 10);
-			this->btnBack->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->btnBack->Location = System::Drawing::Point(12, 12);
+			this->btnBack->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnBack->Name = L"btnBack";
-			this->btnBack->Size = System::Drawing::Size(61, 20);
+			this->btnBack->Size = System::Drawing::Size(81, 25);
 			this->btnBack->TabIndex = 3;
 			this->btnBack->Text = L"Volver";
 			this->btnBack->UseVisualStyleBackColor = true;
@@ -184,10 +183,10 @@ namespace GUIApp {
 			// pictureBox1
 			// 
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(0, 83);
-			this->pictureBox1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->pictureBox1->Location = System::Drawing::Point(0, 102);
+			this->pictureBox1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(676, 366);
+			this->pictureBox1->Size = System::Drawing::Size(901, 450);
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox1->TabIndex = 4;
 			this->pictureBox1->TabStop = false;
@@ -201,103 +200,105 @@ namespace GUIApp {
 			// 
 			// txtLat
 			// 
-			this->txtLat->Location = System::Drawing::Point(172, 11);
-			this->txtLat->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->txtLat->Location = System::Drawing::Point(229, 14);
+			this->txtLat->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtLat->Name = L"txtLat";
-			this->txtLat->Size = System::Drawing::Size(76, 20);
+			this->txtLat->Size = System::Drawing::Size(100, 22);
 			this->txtLat->TabIndex = 5;
 			this->txtLat->TextChanged += gcnew System::EventHandler(this, &TripInCourse::txtLat_TextChanged);
 			// 
 			// txtLong
 			// 
-			this->txtLong->Location = System::Drawing::Point(172, 47);
-			this->txtLong->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->txtLong->Location = System::Drawing::Point(229, 58);
+			this->txtLong->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtLong->Name = L"txtLong";
-			this->txtLong->Size = System::Drawing::Size(76, 20);
+			this->txtLong->Size = System::Drawing::Size(100, 22);
 			this->txtLong->TabIndex = 6;
 			this->txtLong->TextChanged += gcnew System::EventHandler(this, &TripInCourse::txtLong_TextChanged);
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(119, 15);
-			this->label2->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label2->Location = System::Drawing::Point(159, 18);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(35, 13);
+			this->label2->Size = System::Drawing::Size(42, 16);
 			this->label2->TabIndex = 7;
 			this->label2->Text = L"latitud";
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(119, 50);
-			this->label3->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label3->Location = System::Drawing::Point(159, 62);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(44, 13);
+			this->label3->Size = System::Drawing::Size(54, 16);
 			this->label3->TabIndex = 8;
 			this->label3->Text = L"longitud";
 			// 
 			// button1
 			// 
 			this->button1->Location = System::Drawing::Point(0, 0);
+			this->button1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(75, 23);
+			this->button1->Size = System::Drawing::Size(100, 28);
 			this->button1->TabIndex = 6;
 			// 
 			// label4
 			// 
 			this->label4->Location = System::Drawing::Point(0, 0);
+			this->label4->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(100, 23);
+			this->label4->Size = System::Drawing::Size(133, 28);
 			this->label4->TabIndex = 5;
 			// 
 			// txt_CantPersonas
 			// 
 			this->txt_CantPersonas->Location = System::Drawing::Point(0, 0);
+			this->txt_CantPersonas->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->txt_CantPersonas->Name = L"txt_CantPersonas";
-			this->txt_CantPersonas->Size = System::Drawing::Size(100, 20);
+			this->txt_CantPersonas->Size = System::Drawing::Size(132, 22);
 			this->txt_CantPersonas->TabIndex = 4;
 			// 
 			// pictureBox2
 			// 
 			this->pictureBox2->Location = System::Drawing::Point(0, 0);
+			this->pictureBox2->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->pictureBox2->Name = L"pictureBox2";
-			this->pictureBox2->Size = System::Drawing::Size(100, 50);
+			this->pictureBox2->Size = System::Drawing::Size(133, 62);
 			this->pictureBox2->TabIndex = 3;
 			this->pictureBox2->TabStop = false;
 			// 
 			// pictureBox3
 			// 
 			this->pictureBox3->Location = System::Drawing::Point(0, 0);
+			this->pictureBox3->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->pictureBox3->Name = L"pictureBox3";
-			this->pictureBox3->Size = System::Drawing::Size(100, 50);
+			this->pictureBox3->Size = System::Drawing::Size(133, 62);
 			this->pictureBox3->TabIndex = 2;
 			this->pictureBox3->TabStop = false;
 			// 
 			// label5
 			// 
 			this->label5->Location = System::Drawing::Point(0, 0);
+			this->label5->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(100, 23);
+			this->label5->Size = System::Drawing::Size(133, 28);
 			this->label5->TabIndex = 1;
 			// 
 			// label6
 			// 
 			this->label6->Location = System::Drawing::Point(0, 0);
+			this->label6->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(100, 23);
+			this->label6->Size = System::Drawing::Size(133, 28);
 			this->label6->TabIndex = 0;
-			// 
-			// timer3
-			// 
-			this->timer3->Tick += gcnew System::EventHandler(this, &TripInCourse::timer3_Tick);
 			// 
 			// pictureBox4
 			// 
 			this->pictureBox4->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox4.Image")));
-			this->pictureBox4->Location = System::Drawing::Point(731, 221);
+			this->pictureBox4->Location = System::Drawing::Point(975, 272);
+			this->pictureBox4->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->pictureBox4->Name = L"pictureBox4";
-			this->pictureBox4->Size = System::Drawing::Size(174, 102);
+			this->pictureBox4->Size = System::Drawing::Size(232, 126);
 			this->pictureBox4->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox4->TabIndex = 15;
 			this->pictureBox4->TabStop = false;
@@ -305,9 +306,10 @@ namespace GUIApp {
 			// pictureBox5
 			// 
 			this->pictureBox5->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox5.Image")));
-			this->pictureBox5->Location = System::Drawing::Point(870, 101);
+			this->pictureBox5->Location = System::Drawing::Point(1160, 124);
+			this->pictureBox5->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->pictureBox5->Name = L"pictureBox5";
-			this->pictureBox5->Size = System::Drawing::Size(35, 31);
+			this->pictureBox5->Size = System::Drawing::Size(47, 38);
 			this->pictureBox5->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox5->TabIndex = 14;
 			this->pictureBox5->TabStop = false;
@@ -315,41 +317,46 @@ namespace GUIApp {
 			// label7
 			// 
 			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(414, 243);
+			this->label7->Location = System::Drawing::Point(552, 299);
+			this->label7->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(0, 13);
+			this->label7->Size = System::Drawing::Size(0, 16);
 			this->label7->TabIndex = 13;
 			// 
 			// label8
 			// 
 			this->label8->AutoSize = true;
-			this->label8->Location = System::Drawing::Point(728, 153);
+			this->label8->Location = System::Drawing::Point(971, 188);
+			this->label8->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label8->Name = L"label8";
-			this->label8->Size = System::Drawing::Size(84, 13);
+			this->label8->Size = System::Drawing::Size(102, 16);
 			this->label8->TabIndex = 12;
 			this->label8->Text = L"En el auto están";
 			// 
 			// txtCantPersona
 			// 
-			this->txtCantPersona->Location = System::Drawing::Point(731, 179);
+			this->txtCantPersona->Location = System::Drawing::Point(975, 220);
+			this->txtCantPersona->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->txtCantPersona->Name = L"txtCantPersona";
-			this->txtCantPersona->Size = System::Drawing::Size(78, 20);
+			this->txtCantPersona->Size = System::Drawing::Size(103, 22);
 			this->txtCantPersona->TabIndex = 11;
 			// 
 			// label9
 			// 
 			this->label9->AutoSize = true;
-			this->label9->Location = System::Drawing::Point(706, 195);
+			this->label9->Location = System::Drawing::Point(941, 240);
+			this->label9->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label9->Name = L"label9";
-			this->label9->Size = System::Drawing::Size(0, 13);
+			this->label9->Size = System::Drawing::Size(0, 16);
 			this->label9->TabIndex = 10;
 			// 
 			// btnSolicitud
 			// 
 			this->btnSolicitud->ForeColor = System::Drawing::SystemColors::InactiveCaptionText;
-			this->btnSolicitud->Location = System::Drawing::Point(731, 83);
+			this->btnSolicitud->Location = System::Drawing::Point(975, 102);
+			this->btnSolicitud->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->btnSolicitud->Name = L"btnSolicitud";
-			this->btnSolicitud->Size = System::Drawing::Size(122, 49);
+			this->btnSolicitud->Size = System::Drawing::Size(163, 60);
 			this->btnSolicitud->TabIndex = 9;
 			this->btnSolicitud->Text = L"Solicitar Cantidad de Personas";
 			this->btnSolicitud->UseVisualStyleBackColor = true;
@@ -358,18 +365,19 @@ namespace GUIApp {
 			// label10
 			// 
 			this->label10->AutoSize = true;
-			this->label10->Location = System::Drawing::Point(815, 186);
+			this->label10->Location = System::Drawing::Point(1087, 229);
+			this->label10->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label10->Name = L"label10";
-			this->label10->Size = System::Drawing::Size(62, 13);
+			this->label10->Size = System::Drawing::Size(76, 16);
 			this->label10->TabIndex = 16;
 			this->label10->Text = L"personas ...";
 			// 
 			// TripInCourse
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ActiveCaption;
-			this->ClientSize = System::Drawing::Size(939, 497);
+			this->ClientSize = System::Drawing::Size(1252, 612);
 			this->Controls->Add(this->label10);
 			this->Controls->Add(this->pictureBox4);
 			this->Controls->Add(this->pictureBox5);
@@ -393,7 +401,7 @@ namespace GUIApp {
 			this->Controls->Add(this->btnBack);
 			this->Controls->Add(this->btnTripApplication);
 			this->Controls->Add(this->label1);
-			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"TripInCourse";
 			this->Text = L"Viaje en curso";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
@@ -421,7 +429,7 @@ namespace GUIApp {
 	}
 	private: System::Void btnTripApplication_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (User->solicitud != nullptr) {
-			TripRequestToDriverh^ Application = gcnew TripRequestToDriverh(User);
+			TripRequestToDriverh^ Application = gcnew TripRequestToDriverh(LatLong,User);
 			Application->Show();
 			//this->Hide();
 		}
@@ -472,17 +480,7 @@ private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows:
 		int width = pictureBox1->Width;
 		int height = pictureBox1->Height;
 
-	// Convertir latitud y longitud a coordenadas de píxeles
-	int x = (int)((latitude- latTopLeft) / (latBottomRight- latTopLeft) * width);
-	int y = (int)((longitude-lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
-
-		// Dibujar el punto en el mapa
-		//System::Drawing::Graphics^ g = pictureBox1->CreateGraphics();
-		Graphics^ g = e->Graphics;
-		int radius = 5; // Radio del punto
-		g->FillEllipse(System::Drawing::Brushes::Blue, x - radius, y - radius, radius * 2, radius * 2);
-
-		if (counter == 2) {
+		if (counter == 1) {
 			counter++;
 			int x = 50, y = 50, x2 = 0, y2 = 0;
 			bool primera = true;
@@ -507,6 +505,17 @@ private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows:
 				g->DrawLine(pen, x, y, x2, y2);
 			}
 		}
+		else {
+			// Convertir latitud y longitud a coordenadas de píxeles
+			int x = (int)((latitude - latTopLeft) / (latBottomRight - latTopLeft) * width);
+			int y = (int)((longitude - lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
+
+			// Dibujar el punto en el mapa
+			//System::Drawing::Graphics^ g = pictureBox1->CreateGraphics();
+			Graphics^ g = e->Graphics;
+			int radius = 5; // Radio del punto
+			g->FillEllipse(System::Drawing::Brushes::Blue, x - radius, y - radius, radius * 2, radius * 2);
+		}
 
 }
 private: System::Void txtLat_TextChanged(System::Object^ sender, System::EventArgs^ e) {
@@ -515,14 +524,6 @@ private: System::Void txtLat_TextChanged(System::Object^ sender, System::EventAr
 private: System::Void txtLong_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void timer3_Tick(System::Object^ sender, System::EventArgs^ e) {
-	if (counter < 2) {
-		counter++;
-		pictureBox1->Invalidate();
-	}
-	else {
-		timer3->Stop();
-		timer3->Enabled = false;
-	}
 }
 	   int ExecuteCantPeople(String^ text) {
 		   try {

@@ -22,6 +22,8 @@ namespace GUIApp {
 	{
 	public:
 		Bitmap^ originalImage;
+	private: System::Windows::Forms::Label^ label2;
+	public:
 		Passenger^ User;
 		FindTrip(RuralConnect::Passenger^ user)
 		{
@@ -32,6 +34,7 @@ namespace GUIApp {
 			//
 			this->User = user;
 			User->UbiActual = "-12.071704 -77.080154";
+			pictureBox1->Invalidate();
 			Service::UpdatePassenger(User);
 		}
 
@@ -49,12 +52,12 @@ namespace GUIApp {
 
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::Label^ label1;
-	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::Label^ label3;
-	private: System::Windows::Forms::TextBox^ txtLatitude;
-	private: System::Windows::Forms::TextBox^ txtLongitudinal;
+
+
+
+
 	private: System::Windows::Forms::Button^ btnFindTrip;
-	private: System::Windows::Forms::Button^ btnSelectInMap;
+
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	private: System::Windows::Forms::Label^ label4;
 
@@ -84,14 +87,10 @@ namespace GUIApp {
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(FindTrip::typeid));
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->txtLatitude = (gcnew System::Windows::Forms::TextBox());
-			this->txtLongitudinal = (gcnew System::Windows::Forms::TextBox());
 			this->btnFindTrip = (gcnew System::Windows::Forms::Button());
-			this->btnSelectInMap = (gcnew System::Windows::Forms::Button());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->label2 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -109,46 +108,12 @@ namespace GUIApp {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(32, 65);
+			this->label1->Location = System::Drawing::Point(32, 154);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(126, 16);
 			this->label1->TabIndex = 4;
 			this->label1->Text = L"¿Cuál es tu destino\?";
-			// 
-			// label2
-			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(59, 182);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(49, 16);
-			this->label2->TabIndex = 5;
-			this->label2->Text = L"Latitud:";
-			// 
-			// label3
-			// 
-			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(59, 231);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(61, 16);
-			this->label3->TabIndex = 6;
-			this->label3->Text = L"Longitud:";
-			// 
-			// txtLatitude
-			// 
-			this->txtLatitude->Location = System::Drawing::Point(165, 176);
-			this->txtLatitude->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->txtLatitude->Name = L"txtLatitude";
-			this->txtLatitude->Size = System::Drawing::Size(124, 22);
-			this->txtLatitude->TabIndex = 7;
-			this->txtLatitude->TextChanged += gcnew System::EventHandler(this, &FindTrip::txtLatitude_TextChanged);
-			// 
-			// txtLongitudinal
-			// 
-			this->txtLongitudinal->Location = System::Drawing::Point(165, 225);
-			this->txtLongitudinal->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->txtLongitudinal->Name = L"txtLongitudinal";
-			this->txtLongitudinal->Size = System::Drawing::Size(124, 22);
-			this->txtLongitudinal->TabIndex = 8;
+			this->label1->Click += gcnew System::EventHandler(this, &FindTrip::label1_Click);
 			// 
 			// btnFindTrip
 			// 
@@ -163,16 +128,6 @@ namespace GUIApp {
 			this->btnFindTrip->UseVisualStyleBackColor = true;
 			this->btnFindTrip->Click += gcnew System::EventHandler(this, &FindTrip::btnFindTrip_Click);
 			// 
-			// btnSelectInMap
-			// 
-			this->btnSelectInMap->Location = System::Drawing::Point(61, 286);
-			this->btnSelectInMap->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->btnSelectInMap->Name = L"btnSelectInMap";
-			this->btnSelectInMap->Size = System::Drawing::Size(192, 38);
-			this->btnSelectInMap->TabIndex = 14;
-			this->btnSelectInMap->Text = L"Seleccionar en el mapa";
-			this->btnSelectInMap->UseVisualStyleBackColor = true;
-			// 
 			// pictureBox1
 			// 
 			this->pictureBox1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
@@ -185,30 +140,36 @@ namespace GUIApp {
 			this->pictureBox1->TabIndex = 15;
 			this->pictureBox1->TabStop = false;
 			this->pictureBox1->Click += gcnew System::EventHandler(this, &FindTrip::pictureBox1_Click);
+			this->pictureBox1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &FindTrip::pictureBox1_Paint);
 			this->pictureBox1->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &FindTrip::pictureBox1_MouseClick);
 			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(29, 113);
+			this->label4->Location = System::Drawing::Point(32, 190);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(259, 16);
 			this->label4->TabIndex = 16;
 			this->label4->Text = L"Haz click en el mapa para elegir tu destino";
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(32, 62);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(237, 16);
+			this->label2->TabIndex = 17;
+			this->label2->Text = L"El punto rojo indica su ubicación actual";
 			// 
 			// FindTrip
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1431, 743);
+			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->pictureBox1);
-			this->Controls->Add(this->btnSelectInMap);
 			this->Controls->Add(this->btnFindTrip);
-			this->Controls->Add(this->txtLongitudinal);
-			this->Controls->Add(this->txtLatitude);
-			this->Controls->Add(this->label3);
-			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->button2);
 			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
@@ -229,14 +190,17 @@ namespace GUIApp {
 		double latitude=0;
 		double longitude=0;
 
+		public:
+			int xClick = 0;
+			int yClick = 0;
+
 public :
 
 private: System::Void btnFindTrip_Click(System::Object^ sender, System::EventArgs^ e) {
 	try {
 		if (latitude != 0 && longitude != 0) {
-			Route^ newtrip = gcnew Route(latitude, longitude);
 
-			MessageBox::Show("Se ha agregado los datos de su destino con latitud " + newtrip->Latitude + " y longitud " + " " + newtrip->Longitude);
+			MessageBox::Show("Se ha registrado su destino");
 
 			User->DesiredDestination = latitude + " " + longitude;
 			Service::UpdatePassenger(User);
@@ -244,6 +208,9 @@ private: System::Void btnFindTrip_Click(System::Object^ sender, System::EventArg
 			f->Show();
 
 			this->Close();
+		}
+		else {
+			MessageBox::Show("Debe elegir su destino");
 		}
 	}
 	catch (Exception^ ex) {
@@ -258,23 +225,9 @@ private: System::Void pictureBox1_MouseClick(System::Object^ sender, System::Win
 	//cmabiamos coordenadas pues la imagen esta volteada
 	// Obtener posición del clic en píxeles
 	//pictureBox1->Image = originalImage;
-
-	int x = e->X;
-	int y = e->Y;
-	// Tamaño del PictureBox
-	int width = pictureBox1->Width;
-	int height = pictureBox1->Height;
-
-	// Convertir píxeles a coordenadas geográficas teniendo en cuenta la rotación
-	latitude = latTopLeft + (latBottomRight - latTopLeft) * (static_cast<double>(x) / width);
-	longitude = lonTopLeft + (lonBottomRight - lonTopLeft) * (static_cast<double>(y) / height);
-
-	txtLatitude->Text = latitude.ToString();
-	txtLongitudinal->Text = longitude.ToString();
-
-	System::Drawing::Graphics^ g = pictureBox1->CreateGraphics();
-	int radius = 5; // Radio del punto
-	g->FillEllipse(System::Drawing::Brushes::Blue, x - radius, y - radius, radius * 2, radius * 2);
+	xClick = e->X;
+	yClick = e->Y;
+	pictureBox1->Invalidate();
 }
 
 
@@ -291,6 +244,38 @@ private: System::Void FindTrip_Load(System::Object^ sender, System::EventArgs^ e
 	
 }
 private: System::Void txtLatitude_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+	int x = 50, y = 50;
+
+	int width = pictureBox1->Width;
+	int height = pictureBox1->Height;
+
+	Graphics^ g = e->Graphics;
+	Pen^ pen = gcnew Pen(Color::Blue);
+	int radius = 5; // Radio del punto
+
+	//Ubicacion actual
+	List<double>^ latlong = gcnew List<double>();
+
+	latlong = Service::De_String_toDouble(User->UbiActual);
+
+	x = (int)((latlong[0] - latTopLeft) / (latBottomRight - latTopLeft) * width);
+	y = (int)((latlong[1] - lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
+
+	g->FillEllipse(System::Drawing::Brushes::Red, x - radius, y - radius, radius * 2, radius * 2);
+
+	//Destino
+
+	if (xClick!=0 && yClick!=0) {
+		// Convertir píxeles a coordenadas geográficas teniendo en cuenta la rotación
+		latitude = latTopLeft + (latBottomRight - latTopLeft) * (static_cast<double>(xClick) / width);
+		longitude = lonTopLeft + (lonBottomRight - lonTopLeft) * (static_cast<double>(yClick) / height);
+
+		g->FillEllipse(System::Drawing::Brushes::Blue, xClick - radius, yClick - radius, radius * 2, radius * 2);
+	}
+}
+private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

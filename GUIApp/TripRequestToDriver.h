@@ -10,6 +10,7 @@ namespace GUIApp {
 	using namespace System::Drawing;
 	using namespace RuralConnect;
 	using namespace RuralService;
+	using namespace System::Collections::Generic;
 
 	/// <summary>
 	/// Resumen de TripRequestToDriverh
@@ -17,16 +18,24 @@ namespace GUIApp {
 	public ref class TripRequestToDriverh : public System::Windows::Forms::Form
 	{
 	public:
+				List<array<int>^>^ ListaXY = gcnew List<array<int>^>();
+
+	public:
+		List<array<double>^>^ LatLong = gcnew List<array<double>^>();
 		Driver^ user;
-		TripRequestToDriverh(Driver^p)
+
+	public:
+		Passenger^ pasajero;
+	public:
+		TripRequestToDriverh(List<array<double>^>^ a,Driver^p)
 		{
 			InitializeComponent();
+
 			user = p;
-			label2->Text = user->solicitud->pasajero->Name;
-			label8->Text = user->solicitud->pasajero->LastName;
-			//
-			//TODO: agregar código de constructor aquí
-			//
+			LatLong = a;
+			pasajero = user->solicitud->pasajero;
+			label2->Text = pasajero->Name;
+			label8->Text = pasajero->LastName;
 		}
 
 	protected:
@@ -56,6 +65,8 @@ namespace GUIApp {
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label8;
 
+	private: System::Windows::Forms::Label^ label9;
+
 	private:
 		/// <summary>
 		/// Variable del diseñador necesaria.
@@ -79,6 +90,7 @@ namespace GUIApp {
 			this->btnBack = (gcnew System::Windows::Forms::Button());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label8 = (gcnew System::Windows::Forms::Label());
+			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// label1
@@ -173,11 +185,21 @@ namespace GUIApp {
 			this->label8->TabIndex = 13;
 			this->label8->Text = L"label8";
 			// 
+			// label9
+			// 
+			this->label9->AutoSize = true;
+			this->label9->Location = System::Drawing::Point(94, 222);
+			this->label9->Name = L"label9";
+			this->label9->Size = System::Drawing::Size(44, 16);
+			this->label9->TabIndex = 15;
+			this->label9->Text = L"label9";
+			// 
 			// TripRequestToDriverh
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1091, 521);
+			this->Controls->Add(this->label9);
 			this->Controls->Add(this->label8);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->btnBack);
@@ -195,6 +217,9 @@ namespace GUIApp {
 
 		}
 #pragma endregion
+		public:
+			double latTopLeft = -12.074135, lonTopLeft = -77.083166;   // Coordenadas de la esquina superior izquierda
+			double latBottomRight = -12.064391, lonBottomRight = -77.077202; // Coordenadas de la esquina inferior derecha
 	private: System::Void btnBack_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Hide();
 	}
@@ -202,10 +227,13 @@ private: System::Void btnAcceptPassenger_Click(System::Object^ sender, System::E
 	if (user->viaje->AvailableSeats > 0) {
 		user->viaje->AvailableSeats -= 1;
 	}
-	user->viaje->Passengers->Add(user->solicitud->pasajero);
+	user->viaje->Passengers->Add(pasajero);
 	user->solicitud = nullptr;
 	Service::UpdateDriver(user);
 	this->Close();
+}
+private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+
 }
 };
 }
