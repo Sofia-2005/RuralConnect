@@ -1,5 +1,5 @@
 #pragma once
-#include "TripRequestToDriver.h"
+#include "TripRequest.h"
 
 
 namespace GUIApp {
@@ -428,8 +428,8 @@ namespace GUIApp {
 		this->Hide();
 	}
 	private: System::Void btnTripApplication_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (User->solicitud != nullptr) {
-			TripRequestToDriverh^ Application = gcnew TripRequestToDriverh(LatLong,User);
+		if (User->solicitud != nullptr) { //LatLong, User
+			TripRequest^ Application = gcnew TripRequest(LatLong,User);
 			Application->Show();
 			//this->Hide();
 		}

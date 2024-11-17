@@ -142,6 +142,7 @@
     <ClCompile Include="SelectRoutePassenger.cpp" />
     <ClCompile Include="TripDetailsForm.cpp" />
     <ClCompile Include="TripInCourse.cpp" />
+    <ClCompile Include="TripRequest.cpp" />
     <ClCompile Include="TripRequestToDriverh.cpp" />
     <ClCompile Include="usersReportForm.cpp" />
     <ClCompile Include="VehicleForm.cpp" />
@@ -184,6 +185,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="TripInCourse.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="TripRequest.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="TripRequestToDriver.h">
@@ -235,6 +239,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TripInCourse.resx">
       <DependentUpon>TripInCourse.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TripRequest.resx">
+      <DependentUpon>TripRequest.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TripRequestToDriver.resx">
       <DependentUpon>TripRequestToDriver.h</DependentUpon>

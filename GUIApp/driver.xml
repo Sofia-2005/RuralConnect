@@ -16,23 +16,26 @@
     </vehicle>
     <viaje>
       <DepartureTime>0</DepartureTime>
-      <AvailableSeats>6</AvailableSeats>
-      <Passengers>
-        <Passenger>
-          <Name>Susan</Name>
-          <LastName>Lozano</LastName>
-          <DNI>8198</DNI>
-          <PhoneNumber>82973</PhoneNumber>
-          <Username>susan</Username>
-          <Password>susan</Password>
-          <Qualification>0</Qualification>
-          <UbiActual>-12.071704 -77.080154</UbiActual>
-          <DesiredDestination>-12.0670794048193 -77.0798581523179</DesiredDestination>
-        </Passenger>
-      </Passengers>
+      <AvailableSeats>7</AvailableSeats>
+      <Passengers />
       <EstimatedPrice>0</EstimatedPrice>
       <TripState>false</TripState>
     </viaje>
+    <solicitud>
+      <inicio>-12.071704 -77.080154</inicio>
+      <destino>-12.0678307493976 -77.0798482781457</destino>
+      <pasajero>
+        <Name>Susan</Name>
+        <LastName>Lozano</LastName>
+        <DNI>8198</DNI>
+        <PhoneNumber>82973</PhoneNumber>
+        <Username>susan</Username>
+        <Password>susan</Password>
+        <Qualification>0</Qualification>
+        <UbiActual>-12.071704 -77.080154</UbiActual>
+        <DesiredDestination>-12.0678307493976 -77.0798482781457</DesiredDestination>
+      </pasajero>
+    </solicitud>
     <Rutasa>
       <Latitude>0</Latitude>
       <Longitude>0</Longitude>
