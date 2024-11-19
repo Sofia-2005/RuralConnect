@@ -5,6 +5,9 @@ using namespace System;
 using namespace System::Collections::Generic;
 using namespace System::Xml::Serialization;
 
+using namespace System::Data::SqlClient;
+
+using namespace RuralConnect;
 
 
 
@@ -13,7 +16,33 @@ namespace RCPersistance {
 
 	{
 	public:
-		
+		// BASE DE DATOSSSSSSSSSSSS
+		static SqlConnection^ GetConnection();
+
+
+		static void AddPassenger(Passenger^ robot);
+		static List<Passenger^>^ QueryAllPassengers();
+		static void UpdatePassenger(Passenger^ robot);
+		static void DeletePassenger(String^ UserNAme);
+		static Passenger^ QueryPassengerByUserName(String^ Passsenger_username);
+
+		static void AddUser(User^ robot);
+		static List<User^>^ QueryAllUsers();
+		static void UpdateUser(User^ robot);
+		static void DeleteUser(String^ UserNAme);
+		static User^ QueryUserByUserName(String^ User_username);
+
+		static void AddClaim(Claim^ robot);
+		static List<Claim^>^ QueryAllClaims();
+		static void UpdateClaim(Claim^ robot);
+		static void DeleteClaim(String^ UserNAme);
+		static Claim^ QueryClaimByUserName(String^ User_username);
+
+
+
+		// BASE DE DATOSSSSSSSSSSSS
+
+
 		static void PersistXMLFile(String^ fileName, Object^ persistObject);
 		static Object^ LoadBinaryFile(String^ fileName);
 
