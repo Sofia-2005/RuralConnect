@@ -12,6 +12,8 @@ namespace GUIApp {
 	using namespace RuralConnect;
 	using namespace RuralService;
 
+	
+
 
 	/// <summary>
 	/// Resumen de RegisterForm
@@ -404,9 +406,14 @@ namespace GUIApp {
 
 						Passenger^ consultar = Service::QueryPassengerbyUsername(txtUsername->Text);
 						if (consultar == nullptr) {
-							Passenger^ p = gcnew Passenger(name, lastname, username, password, phone, dni);
-							Service::AddPassenger(p);
-							MessageBox::Show("Se ha agregado al pasajero " + p->Name + " " + p->LastName);
+							Passenger^ pasajero = gcnew Passenger(name, lastname, username, password, phone, dni);
+							
+
+							
+
+							Service::AddPassenger(pasajero);
+							MessageBox::Show("Se ha agregado al pasajero " + pasajero->Name + " " + pasajero->LastName);
+
 						}
 						else {
 

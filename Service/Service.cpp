@@ -28,7 +28,7 @@ void RuralService::Service::AddDriver(Driver^ driver)
 }
 void RuralService::Service::AddPassenger(Passenger^ passenger)
 {
-
+    /*
     for each (Passenger^ k in PassengerList) {
         if (k->Username->Equals(passenger->Username))
             throw gcnew DuplicatedUsernameException("El usuario ya existe en la base de datos.");
@@ -40,7 +40,33 @@ void RuralService::Service::AddPassenger(Passenger^ passenger)
     PassengerList = Service::QueryAllPassengers();
     PassengerList->Add(passenger);
     //Persistance::PersistXMLFile(XML_PASSENGER_FILE_NAME, PassengerList);
-    Persistance::Persist_Passenger_XML_File(XML_PASSENGER_FILE_NAME, PassengerList);
+    Persistance::Persist_Passenger_XML_File(XML_PASSENGER_FILE_NAME, PassengerList); */
+
+    // se agrega el pasajero a la base de datos, que serian todas sus tablas
+    Passenger^ tabla_pasajero = gcnew Passenger();
+    tabla_pasajero->Address = passenger->Address;
+    tabla_pasajero->DesiredDestination = passenger->DesiredDestination;
+    tabla_pasajero->Level = passenger->Level;
+    tabla_pasajero->Username = passenger->Username;
+    Persistance::AddPassenger(tabla_pasajero);
+
+
+    User^ tabla_usuario = gcnew User();
+    tabla_usuario->Name = passenger->Name;
+    tabla_usuario->LastName = passenger->LastName;
+    tabla_usuario->DNI = passenger->DNI;
+    tabla_usuario->PhoneNumber = passenger->PhoneNumber;
+    tabla_usuario->Username = passenger->Username;
+    tabla_usuario->Password = passenger->Password;
+    //tabla_usuario->claim = gcnew Claim(); esto se agrega mas abajo
+    tabla_usuario->Qualification = passenger->Qualification;
+    tabla_usuario->UbiActual = passenger->UbiActual;
+    Persistance::AddUser(tabla_usuario);
+
+
+    Claim^ tabla_reclamo = gcnew Claim();
+    tabla_reclamo->UserName = passenger->Username;
+    Persistance::AddClaim(tabla_reclamo);
 }
 
 void RuralService::Service::UpdatePassenger(Passenger^ p)
@@ -118,7 +144,8 @@ Passenger^ RuralService::Service::QueryPassengerbyUsername(String^ username)
             return PassengerList[i];
         }
     }
-    throw gcnew DoesNotExistUsernameException("El usuario no existe en la base de datos.");
+    //throw gcnew DoesNotExistUsernameException("El usuario no existe en la base de datos.");
+    return nullptr;
 }
 
 

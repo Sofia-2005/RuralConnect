@@ -288,6 +288,9 @@ namespace GUIApp {
 				Service::AddDriver(a);
 				MessageBox::Show("Se ha agregado al conductor " + a->Name + " " + a->LastName);
 
+				
+
+
 				this->Close();
 			}
 			else {
