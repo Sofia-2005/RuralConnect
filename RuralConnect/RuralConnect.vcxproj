@@ -124,7 +124,6 @@
     <ClInclude Include="Class.h" />
     <ClInclude Include="CreateRoute.h" />
     <ClInclude Include="Driver.h" />
-    <ClInclude Include="Moderator.h" />
     <ClInclude Include="Passenger.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />

@@ -37,14 +37,17 @@ int main(array<System::String^>^ args)
 
     Console::WriteLine(pasajero->Username);
     Console::WriteLine("Agregado");*/
-    RuralConnect::Claim^ usuario = gcnew RuralConnect::Claim();
+    RuralConnect::Solicitud^ usuario = gcnew RuralConnect::Solicitud();
 
-    usuario->Reason = "actualizado";
-    usuario->UserName = "Feo";
+    usuario->inicio = "noooo mi compaaa";
+    usuario->destino = "Feo";
+    usuario->UserName = "Luis Muñoz";
     
 
-    //Persistance::AddClaim(usuario);
-    List<RuralConnect::Claim^>^ pasajera = Persistance::QueryAllClaims();
+    //Persistance::DeleteSolicitud(usuario->UserName);
+    //Console::WriteLine(pasajera->UserName);
+
+    List<RuralConnect::Solicitud^>^ pasajera = Persistance::QueryAllSolicitudes();
     Console::WriteLine(pasajera->Count);
 
 

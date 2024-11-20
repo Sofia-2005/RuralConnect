@@ -38,6 +38,12 @@ namespace RCPersistance {
 		static void DeleteClaim(String^ UserNAme);
 		static Claim^ QueryClaimByUserName(String^ User_username);
 
+		static void AddPSolicitud(Solicitud^ robot);
+		static List<Solicitud^>^ QueryAllSolicitudes();
+		static void UpdateSolicitud(Solicitud^ robot);
+		static void DeleteSolicitud(String^ UserNAme);
+		static Solicitud^ QuerySolicitudByUserName(String^ Passsenger_username);
+
 
 
 		// BASE DE DATOSSSSSSSSSSSS

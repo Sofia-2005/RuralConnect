@@ -11,7 +11,9 @@ namespace RuralConnect {
 	public:
 		String^ inicio;
 		String^ destino;
-		Passenger^ pasajero;
+
+		String^ UserName;
+		Passenger^ pasajero = gcnew Passenger();
 	};
 
 }

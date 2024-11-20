@@ -964,3 +964,195 @@ Claim^ RCPersistance::Persistance::QueryClaimByUserName(String^ User_username)
     }
     return robot;
 }
+
+void RCPersistance::Persistance::AddPSolicitud(Solicitud^ robot)
+{
+    
+    SqlConnection^ conn;
+    try {
+        //Paso 1: Abrir y obtener la conexión a la BD
+        conn = GetConnection();
+
+        
+        String^ sqlStr = "dbo.usp_Add_Solicitud_table";
+        SqlCommand^ cmd = gcnew SqlCommand(sqlStr, conn);
+        cmd->CommandType = System::Data::CommandType::StoredProcedure;
+
+        cmd->Parameters->Add("@INICIO", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@DESTINO", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@USERNAME", System::Data::SqlDbType::VarChar, 100);
+        
+        
+        cmd->Prepare();
+
+        cmd->Parameters["@INICIO"]->Value = robot->inicio;
+        cmd->Parameters["@DESTINO"]->Value = robot->destino;
+        cmd->Parameters["@USERNAME"]->Value = robot->UserName;
+        
+        cmd->ExecuteNonQuery();
+        
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        //Paso 5: Cerrar los objetos de conexión de la BD.
+        if (conn != nullptr) conn->Close();
+    }
+    
+}
+
+List<Solicitud^>^ RCPersistance::Persistance::QueryAllSolicitudes()
+{
+    List<Solicitud^>^ robotsList = gcnew List<Solicitud^>();
+    SqlConnection^ conn;
+    SqlDataReader^ reader;
+    try {
+        //Paso 1: Obtener la conexión a la BD
+        conn = GetConnection();
+
+        //Paso 2: Preparar la sentencia SQL
+        //String^ sqlStr = "SELECT * FROM ROBOT_WAITER";
+        String^ sqlStr = "dbo.usp_Query_All_Solicitudes";
+        SqlCommand^ cmd = gcnew SqlCommand(sqlStr, conn);
+        cmd->CommandType = System::Data::CommandType::StoredProcedure;
+        cmd->Prepare();
+
+        //Paso 3: Ejecutar la sentencia SQL
+        reader = cmd->ExecuteReader();
+
+        //Paso 4: Procesar los resultados
+        while (reader->Read()) {
+            Solicitud^ robot = gcnew Solicitud();
+            robot->inicio = reader["INICIO"]->ToString();
+            robot->destino = reader["DESTINO"]->ToString();
+            robot->UserName = reader["USERNAME"]->ToString();
+            
+            robotsList->Add(robot);
+        }
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        //Paso 5: Importante! Cerrar los objetos de conexión a la BD
+        if (reader != nullptr) reader->Close();
+        if (conn != nullptr) conn->Close();
+    }
+    return robotsList;
+}
+
+void RCPersistance::Persistance::UpdateSolicitud(Solicitud^ robot)
+{
+    
+    SqlConnection^ conn = nullptr;
+    try {
+        //Paso 1: Obtener la conexión a la BD
+        conn = GetConnection();
+
+        //Paso 2: Se prepara la sentencia
+        String^ sqlStr = "dbo.usp_Update_Solicitud_table";
+        SqlCommand^ cmd = gcnew SqlCommand(sqlStr, conn);
+        cmd->CommandType = System::Data::CommandType::StoredProcedure;
+
+        cmd->Parameters->Add("@INICIO", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@DESTINO", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@USERNAME", System::Data::SqlDbType::VarChar, 100);
+        
+
+        cmd->Prepare();
+
+        cmd->Parameters["@INICIO"]->Value = robot->inicio;
+        cmd->Parameters["@DESTINO"]->Value = robot->destino;
+        cmd->Parameters["@USERNAME"]->Value = robot->UserName;
+        
+        
+
+        //Paso 3: Se ejecuta las sentncia SQL
+        cmd->ExecuteNonQuery();
+
+        //Paso 4: Se procesan los resultados
+        //robotId = Convert::ToInt32(cmd->Parameters["@ID"]->Value);
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        if (conn != nullptr) conn->Close();
+    }
+    
+}
+
+void RCPersistance::Persistance::DeleteSolicitud(String^ UserNAme)
+{
+    SqlConnection^ conn;
+    try {
+        //Paso 1: Obtener la conexión a la BD
+        conn = GetConnection();
+
+        //Paso 2: Se prepara la sentencia
+        String^ sqlStr = "dbo.usp_Delete_Solicitud_table";
+        SqlCommand^ cmd = gcnew SqlCommand(sqlStr, conn);
+        cmd->CommandType = System::Data::CommandType::StoredProcedure;
+
+        cmd->Parameters->Add("@USERNAME", System::Data::SqlDbType::VarChar, 100);
+        cmd->Prepare();
+        cmd->Parameters["@USERNAME"]->Value = UserNAme;
+
+        //Paso 3: Se ejecuta las sentncia SQL
+        cmd->ExecuteNonQuery();
+
+        //Paso 4: Se procesan los resultados
+        //robotId = Convert::ToInt32(cmd->Parameters["@ID"]->Value);
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        if (conn != nullptr) conn->Close();
+    }
+    
+}
+
+Solicitud^ RCPersistance::Persistance::QuerySolicitudByUserName(String^ Passsenger_username)
+{
+    Solicitud^ robot;
+    SqlConnection^ conn;
+    SqlDataReader^ reader;
+
+    try {
+        //Paso 1: Obtener la conexión a la BD
+        conn = GetConnection();
+
+        //Paso 2: Preparar la sentencia SQL
+        //String^ sqlStr = "SELECT * FROM ROBOT_WAITER WHERE ID=" + robotId;
+        String^ sqlStr = "dbo.usp_Query_Solicitud_ByUser_Name";
+        SqlCommand^ cmd = gcnew SqlCommand(sqlStr, conn);
+        cmd->CommandType = System::Data::CommandType::StoredProcedure;
+        cmd->Parameters->Add("@USERNAME", System::Data::SqlDbType::VarChar, 100);
+        cmd->Prepare();
+        cmd->Parameters["@USERNAME"]->Value = Passsenger_username;
+
+        //Paso 3: Ejecutar la sentencia SQL
+        reader = cmd->ExecuteReader();
+
+        //Paso 4: Procesar los resultados
+        if (reader->Read()) {
+            robot = gcnew Solicitud();
+
+            robot->inicio = reader["INICIO"]->ToString();
+            robot->destino = reader["DESTINO"]->ToString();
+            robot->UserName = reader["USERNAME"]->ToString();
+
+        }
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        //Paso 5: Importante! Cerrar los objetos de conexión a la BD
+        if (reader != nullptr) reader->Close();
+        if (conn != nullptr) conn->Close();
+    }
+    return robot;
+}

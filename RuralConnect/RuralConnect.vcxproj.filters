@@ -36,9 +36,6 @@
     <ClInclude Include="Driver.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Moderator.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="Passenger.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
