@@ -12,6 +12,7 @@ namespace GUIApp {
 	using namespace RuralConnect;
 	using namespace RuralService;
 
+
 	/// <summary>
 	/// Resumen de RegisterForm
 	/// </summary>
@@ -64,7 +65,7 @@ namespace GUIApp {
 		/// <summary>
 		/// Variable del diseñador necesaria.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -282,38 +283,163 @@ namespace GUIApp {
 		}
 #pragma endregion
 
-	static int pasajero = 0;
+		static int pasajero = 0;
+
+		bool isValid(String^ STR) {
+			if (STR->Length < 8 || STR->Length > 15) return false;
+
+			bool hasDigit = false, hasLower = false, hasUpper = false, hasSpecial = false;
+			String^ specialChars = "%^&*#@!";
+
+			for each (Char ch in STR) {
+				if (Char::IsDigit(ch)) hasDigit = true;
+				else if (Char::IsLower(ch)) hasLower = true;
+				else if (Char::IsUpper(ch)) hasUpper = true;
+				else if (specialChars->Contains(ch.ToString())) hasSpecial = true;
+				else if (Char::IsWhiteSpace(ch)) return false;
+
+				if (hasDigit && hasLower && hasUpper && hasSpecial) return true;
+			}
+
+			return hasDigit && hasLower && hasUpper && hasSpecial;
+		}
+		bool IsDniNumeric(String^ text) {
+
+			if (text->Length != 7) {
+				return false;
+			}
+
+
+			for each (wchar_t c in text) {
+				if (!Char::IsDigit(c)) {
+					return false;
+				}
+			}
+
+			return true;
+		}
+		bool IsValidPhoneNumber(String^ phoneNumber) {
+
+			if (phoneNumber->Length == 9) {
+				bool esValido = true;
+				for (int i = 0; i < phoneNumber->Length; i++) {
+					if (!Char::IsDigit(phoneNumber[i])) {
+						esValido = false;
+						break;
+					}
+				}
+				if (esValido) return true;
+			}
+
+
+			if (phoneNumber->StartsWith("+") && phoneNumber->Length > 3) {
+				String^ withoutPlus = phoneNumber->Substring(1);
+				int prefixLength = 0;
+
+
+				while (prefixLength < withoutPlus->Length && Char::IsDigit(withoutPlus[prefixLength])) {
+					prefixLength++;
+				}
+
+				if (prefixLength >= 1 && withoutPlus->Substring(prefixLength)->Length == 9) {
+					bool esValido = true;
+					for (int i = prefixLength; i < withoutPlus->Length; i++) {
+						if (!Char::IsDigit(withoutPlus[i])) {
+							esValido = false;
+							break;
+						}
+					}
+					if (esValido) return true;
+				}
+			}
+
+			// No cumple ningún caso
+			return false;
+		}
+
+
 
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void btnRegister_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (pasajero != 0) {
-			try {
-				String^ name = txtName->Text;
-				String^ lastname = txtLastname->Text;
-				String^ username = txtUsername->Text;
-				String^ password = txtPassword->Text;
-				int phone = Convert::ToInt32(txtPhone->Text);
-				String^ dni = txtDNI->Text;
+		String^ errores = "";
+		int cantidadNombres = txtName->Text->Split(gcnew array<wchar_t>{' '}, StringSplitOptions::RemoveEmptyEntries)->Length;
+		int cantidadApellidos = txtLastname->Text->Split(gcnew array<wchar_t>{' '}, StringSplitOptions::RemoveEmptyEntries)->Length;
 
-				if (pasajero == 1) {
-					Passenger^ p = gcnew Passenger(name, lastname, username, password, phone, dni);
-					Service::AddPassenger(p);
-					MessageBox::Show("Se ha agregado al pasajero " + p->Name + " " + p->LastName);
-					
+		if (!isValid(txtPassword->Text)) {
+			errores = errores + "Contraseá insegura\n";
+		}
+		if (cantidadNombres > 3 || cantidadNombres == 0) {
+			errores = errores + "Nombre incorrecto\n";
+
+		}
+		if (cantidadApellidos > 2 || cantidadApellidos == 0) {
+			errores = errores + "Apellido incorrecto\n";
+		}
+		if (!IsValidPhoneNumber(txtPhone->Text)) {
+			errores = errores + "Numero telefónico incorrecto\n";
+		}
+		if (!IsDniNumeric(txtDNI->Text)) {
+			errores = errores + "Numero DNI incorrecto\n";
+		}
+
+
+
+
+
+		if (pasajero != 0) {
+			if (errores == "") {
+
+
+				try {
+
+					String^ name = txtName->Text;
+					String^ lastname = txtLastname->Text;
+					String^ username = txtUsername->Text;
+					String^ password = txtPassword->Text;
+					int phone = Convert::ToInt32(txtPhone->Text);
+					String^ dni = txtDNI->Text;
+
+					if (pasajero == 1) {
+
+						Passenger^ consultar = Service::QueryPassengerbyUsername(txtUsername->Text);
+						if (consultar == nullptr) {
+							Passenger^ p = gcnew Passenger(name, lastname, username, password, phone, dni);
+							Service::AddPassenger(p);
+							MessageBox::Show("Se ha agregado al pasajero " + p->Name + " " + p->LastName);
+						}
+						else {
+
+
+							MessageBox::Show("Este pasajero se encuentra registado. Inténtelo otra vez :)");
+						}
+
+
+
+					}
+					else {
+						Driver^ consultar = Service::QueryDriverbyUsername(txtUsername->Text);
+						if (consultar == nullptr) {
+							VehicleForm^ form1 = gcnew VehicleForm(name, lastname, username, password, phone, dni);
+							form1->Show();
+						}
+						else {
+							MessageBox::Show("Este conductor se encuentra registado. Inténtelo otra vez :)");
+						}
+
+					}
+					pasajero = 0;
 				}
-				else {
-					VehicleForm^ form1 = gcnew VehicleForm(name, lastname, username, password, phone, dni);
-					form1->Show();
+				catch (Exception^ ex) {
+					MessageBox::Show("No se ha podido agregar al usuario por el siguiente motivo:\n" +
+						ex->Message);
+					pasajero = 0;
 				}
-				pasajero = 0;
+				this->Close();
 			}
-			catch (Exception^ ex) {
-				MessageBox::Show("No se ha podido agregar al usuario por el siguiente motivo:\n" +
-					ex->Message);
-				pasajero = 0;
+			else {
+				MessageBox::Show("Ocurrieron los siguientes errores :\n\n" + errores);
 			}
-			this->Close();
 		}
 		else {
 			MessageBox::Show("Debe elegir pasajero o conductor");
@@ -330,11 +456,11 @@ namespace GUIApp {
 	private: System::Void btnDriver_Click(System::Object^ sender, System::EventArgs^ e) {
 		pasajero = 2;
 	}
-private: System::Void RegisterForm_Load(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void txtName_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void txtPassword_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-}
-};
+	private: System::Void RegisterForm_Load(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void txtName_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void txtPassword_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	}
+	};
 }

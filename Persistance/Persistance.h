@@ -44,6 +44,12 @@ namespace RCPersistance {
 		static void DeleteSolicitud(String^ UserNAme);
 		static Solicitud^ QuerySolicitudByUserName(String^ Passsenger_username);
 
+		static void AddPTrip(Trip^ robot);
+		static List<Trip^>^ QueryAllTrips();
+		static void UpdateTrip(Trip^ robot);
+		static void DeleteTrip(String^ UserNAme);
+		static Trip^ QueryTripByUserName(String^ Passsenger_username);
+
 
 
 		// BASE DE DATOSSSSSSSSSSSS

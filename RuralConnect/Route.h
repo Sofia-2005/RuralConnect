@@ -24,6 +24,8 @@ namespace RuralConnect {
 
         void GetEstimatedPrice();
 
+        String^ UserName;
+
         Route() {
             Puntos_x_fijo = gcnew List<String^>();
             Puntos_y_fijo = gcnew List<String^>(); 
