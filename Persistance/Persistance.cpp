@@ -1330,6 +1330,7 @@ List<Trip^>^ RCPersistance::Persistance::QueryAllTrips()
         while (reader->Read()) {
 
             Trip^ robot = gcnew Trip();
+            array<String^>^ delimitador = gcnew array<String^> { "@@@" };
 
             robot->Date = reader["DATE"]->ToString();
             robot->DepartureTime = Convert::ToInt32(reader["DEPARTURETIME"]->ToString());
@@ -1338,23 +1339,24 @@ List<Trip^>^ RCPersistance::Persistance::QueryAllTrips()
             robot->TripState = Convert::ToInt32(reader["TRIPSTATE"]->ToString());
 
 
-            robot->Nombre_pasajeros_abordo = reader["PASSENGERS_name"]->ToString();
+
+
+            
+            String^ nombres = reader["PASSENGERS_name"]->ToString();
+            List<String^>^ lista_pasajero = gcnew List<String^>(reader["ROUTE"]->ToString()->Split(delimitador, StringSplitOptions::None));
+            for each (String^ nombre in lista_pasajero) {
+                robot->Passengers->Add( Persistance::QueryPassengerByUserName(nombre) );
+            }
+
+
             robot->Driver_Name = reader["DRIVER_name"]->ToString();
 
             robot->puntos_X_viaje = reader["PTS_X_TRIP"]->ToString();
             robot->puntos_Y_viaje = reader["PTS_Y_TRIP"]->ToString();
 
-            array<String^>^ delimitador = gcnew array<String^> { "@@@" };
+            
 
-            // Usamos Split y directamente creamos una lista
-            List<String^>^ lista_pasajero = gcnew List<String^>(reader["ROUTE"]->ToString()->Split(delimitador, StringSplitOptions::None));
-            for each(String^ nombre in lista_pasajero) {
-                Passenger^ pasajero = Persistance::QueryPassengerByUserName(nombre);
-                if (pasajero->Username != "") {
-                    robot->Passengers->Add(pasajero);
-                }
-
-            }
+            
 
 
 
@@ -1408,7 +1410,19 @@ void RCPersistance::Persistance::UpdateTrip(Trip^ robot)
         cmd->Parameters["@ESTIMATEDPRICE"]->Value = robot->EstimatedPrice;
         cmd->Parameters["@TRIPSTATE"]->Value = robot->TripState;
 
-        cmd->Parameters["@PASSENGERS_name"]->Value = robot->Nombre_pasajeros_abordo;
+
+        String^ suma = "";
+        for (int i = 0; i < robot->Passengers->Count; i++) {
+            if (i == 0) {
+                suma = suma + robot->Passengers[i]->Username;
+            }
+            else {
+                suma = suma + "@@@" + robot->Passengers[i]->Username;
+            }
+        }
+
+
+        cmd->Parameters["@PASSENGERS_name"]->Value = suma;
         cmd->Parameters["@DRIVER_name"]->Value = robot->Driver_Name;
 
         cmd->Parameters["@PTS_X_TRIP"]->Value = robot->puntos_X_viaje;
@@ -1486,6 +1500,7 @@ Trip^ RCPersistance::Persistance::QueryTripByUserName(String^ Passsenger_usernam
         //Paso 4: Procesar los resultados
         if (reader->Read()) {
             Trip^ robot = gcnew Trip();
+            array<String^>^ delimitador = gcnew array<String^> { "@@@" };
 
             robot->Date = reader["DATE"]->ToString();
             robot->DepartureTime = Convert::ToInt32(reader["DEPARTURETIME"]->ToString());
@@ -1494,23 +1509,21 @@ Trip^ RCPersistance::Persistance::QueryTripByUserName(String^ Passsenger_usernam
             robot->TripState = Convert::ToInt32(reader["TRIPSTATE"]->ToString());
 
 
-            robot->Nombre_pasajeros_abordo = reader["PASSENGERS_name"]->ToString();
+            
+            String^ nombres = reader["PASSENGERS_name"]->ToString();
+            List<String^>^ lista_pasajero = gcnew List<String^>(reader["PASSENGERS_name"]->ToString()->Split(delimitador, StringSplitOptions::None));
+            for each (String ^ nombre in lista_pasajero) {
+                robot->Passengers->Add(Persistance::QueryPassengerByUserName(nombre));
+            }
+
+
             robot->Driver_Name = reader["DRIVER_name"]->ToString();
 
             robot->puntos_X_viaje = reader["PTS_X_TRIP"]->ToString();
             robot->puntos_Y_viaje = reader["PTS_Y_TRIP"]->ToString();
 
-            array<String^>^ delimitador = gcnew array<String^> { "@@@" };
+            
 
-            // Usamos Split y directamente creamos una lista
-            List<String^>^ lista_pasajero = gcnew List<String^>(reader["ROUTE"]->ToString()->Split(delimitador, StringSplitOptions::None));
-            for each (String ^ nombre in lista_pasajero) {
-                Passenger^ pasajero = Persistance::QueryPassengerByUserName(nombre);
-                if (pasajero->Username != "") {
-                    robot->Passengers->Add(pasajero);
-                }
-
-            }
 
             
             
