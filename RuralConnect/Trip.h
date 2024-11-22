@@ -13,18 +13,18 @@ namespace RuralConnect {
     public:
         
 
-        String^ Date;
+        String^ Date="";
 
-        int DepartureTime;
-        int AvailableSeats;
+        int DepartureTime=0;
+        int AvailableSeats = 0;
         
-        int EstimatedPrice;
-        int TripState ;
+        int EstimatedPrice = 0;
+        int TripState = 0;
 
         String^ Nombre_pasajeros_abordo = "";
         List<Passenger^>^ Passengers = gcnew List<Passenger^>();
 
-        String^ Driver_Name;
+        String^ Driver_Name = "";
 
         String^ puntos_X_viaje = "";
         String^ puntos_Y_viaje = "";

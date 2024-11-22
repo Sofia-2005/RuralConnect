@@ -1265,7 +1265,17 @@ void RCPersistance::Persistance::AddPTrip(Trip^ robot)
         cmd->Parameters["@ESTIMATEDPRICE"]->Value = robot->EstimatedPrice;
         cmd->Parameters["@TRIPSTATE"]->Value = robot->TripState;
 
-        cmd->Parameters["@PASSENGERS_name"]->Value = robot->Nombre_pasajeros_abordo;
+        String^ suma = "";
+        for (int i = 0; i < robot->Passengers->Count; i++) {
+            if (i == 0) {
+                suma = suma + robot->Passengers[i]->Username;
+            }
+            else {
+                suma = suma + "@@@" +  robot->Passengers[i]->Username;
+            }
+        }
+
+        cmd->Parameters["@PASSENGERS_name"]->Value = suma;
         cmd->Parameters["@DRIVER_name"]->Value = robot->Driver_Name;
 
         cmd->Parameters["@PTS_X_TRIP"]->Value = robot->puntos_X_viaje;

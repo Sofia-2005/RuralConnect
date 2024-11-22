@@ -405,7 +405,7 @@ namespace GUIApp {
 					if (pasajero == 1) {
 
 						Passenger^ consultar = Service::QueryPassengerbyUsername(txtUsername->Text);
-						if (consultar == nullptr) {
+						if (consultar->Username == "") {
 							Passenger^ pasajero = gcnew Passenger(name, lastname, username, password, phone, dni);
 							
 
