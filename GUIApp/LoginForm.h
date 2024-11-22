@@ -237,7 +237,7 @@ private: System::Void txt_startSession_Click(System::Object^ sender, System::Eve
 			Passenger^ p = Service::QueryPassengerbyUsername(usuario);
 			MyForm^ f = gcnew MyForm(p);
 
-			Service::PasajeroActual = Service::QueryPassengerbyUsername(usuario);
+			//Service::PasajeroActual = Service::QueryPassengerbyUsername(usuario);
 			f->Show();
 		}
 		else {
@@ -245,7 +245,7 @@ private: System::Void txt_startSession_Click(System::Object^ sender, System::Eve
 			Driver^ d = Service::QueryDriverbyUsername(usuario);
 			PrincipalFormDriver^ f = gcnew PrincipalFormDriver(d);
 
-			Service::Conductor_actual = Service::QueryDriverbyUsername(usuario);
+			//Service::Conductor_actual = Service::QueryDriverbyUsername(usuario);
 			f->Show();
 		}
 

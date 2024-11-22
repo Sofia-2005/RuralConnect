@@ -15,6 +15,10 @@ namespace RuralService {
 	public:
 		//static String^ XML_PASSENGER_FILE_NAME = "passengers.xml";
 
+		// USUARIOS ACTUALES -------------------
+		Driver^ Conductor_Actual = gcnew Driver();
+		Passenger^ Pasajero_Actual = gcnew Passenger();
+		// -----------------------------------
 
 		static String^ XML_PASSENGER_FILE_NAME = "passengers.xml";
 		static String^ XML_DRIVER_FILE_NAME = "driver.xml";
@@ -24,8 +28,7 @@ namespace RuralService {
 		static List<Driver^>^ DriverList = gcnew List<Driver^>();
 		static SerialPort^ ArduinoPort;
 
-		static Driver^ Conductor_actual;
-		static Passenger^ PasajeroActual;
+		
 
 		static List<double>^ Puntos_rutas_x =  gcnew List<double>();
 		static List<double>^ Puntos_rutas_y = gcnew List<double>();

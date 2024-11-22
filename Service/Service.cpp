@@ -43,34 +43,14 @@ void RuralService::Service::AddPassenger(Passenger^ passenger)
     Persistance::Persist_Passenger_XML_File(XML_PASSENGER_FILE_NAME, PassengerList); */
 
     // se agrega el pasajero a la base de datos, que serian todas sus tablas
-    Passenger^ tabla_pasajero = gcnew Passenger();
-    tabla_pasajero->Address = passenger->Address;
-    tabla_pasajero->DesiredDestination = passenger->DesiredDestination;
-    tabla_pasajero->Level = passenger->Level;
-    tabla_pasajero->Username = passenger->Username;
-    Persistance::AddPassenger(tabla_pasajero);
+    
+    Persistance::AddPassenger(passenger);
 
-
-    User^ tabla_usuario = gcnew User();
-    tabla_usuario->Name = passenger->Name;
-    tabla_usuario->LastName = passenger->LastName;
-    tabla_usuario->DNI = passenger->DNI;
-    tabla_usuario->PhoneNumber = passenger->PhoneNumber;
-    tabla_usuario->Username = passenger->Username;
-    tabla_usuario->Password = passenger->Password;
-    //tabla_usuario->claim = gcnew Claim(); esto se agrega mas abajo
-    tabla_usuario->Qualification = passenger->Qualification;
-    tabla_usuario->UbiActual = passenger->UbiActual;
-    Persistance::AddUser(tabla_usuario);
-
-
-    Claim^ tabla_reclamo = gcnew Claim();
-    tabla_reclamo->UserName = passenger->Username;
-    Persistance::AddClaim(tabla_reclamo);
 }
 
-void RuralService::Service::UpdatePassenger(Passenger^ p)
+void RuralService::Service::UpdatePassenger(Passenger^ passenger)
 {
+    /*
     for (int i = 0; i < PassengerList->Count; i++) {
         if (PassengerList[i]->Username == p->Username) {
             PassengerList[i] = p;
@@ -79,11 +59,20 @@ void RuralService::Service::UpdatePassenger(Passenger^ p)
             return;
         }
     }
-    throw gcnew DoesNotExistUsernameException("El usuario no existe en la base de datos.");
+    throw gcnew DoesNotExistUsernameException("El usuario no existe en la base de datos."); */
+    
+
+    Persistance::UpdatePassenger(passenger);
+
+
+
+
+
+
 }
 
 void RuralService::Service::DeletePassenger(String^ username)
-{
+{   /*
     for (int i = 0; i < PassengerList->Count; i++) {
         if (PassengerList[i]->Username == username) {
             PassengerList->RemoveAt(i);
@@ -93,13 +82,21 @@ void RuralService::Service::DeletePassenger(String^ username)
             return;
         }
     }
-    throw gcnew DoesNotExistUsernameException("El usuario no existe en la base de datos.");
+    throw gcnew DoesNotExistUsernameException("El usuario no existe en la base de datos.");*/
+
+
+
+
+    Persistance::DeletePassenger(username);
+    
+
+
 }
 
 List<Passenger^>^ RuralService::Service::QueryAllPassengers()
 {
-    PassengerList = gcnew List<Passenger^>();
-    try {
+    List<Passenger^>^ PassengerList = gcnew List<Passenger^>();
+    /*try {
         //robotsList = (List<RobotWaiter^>^)Persistance::LoadRobotWaitersTextFile(TXT_ROBOT_FILE_NAME);
         //PassengerList = (List<Passenger^>^)Persistance::LoadPassengersXmlFile(XML_PASSENGER_FILE_NAME);
         PassengerList = (List<Passenger^>^)Persistance::Load_Passenger_XML_File(XML_PASSENGER_FILE_NAME);
@@ -107,22 +104,28 @@ List<Passenger^>^ RuralService::Service::QueryAllPassengers()
             PassengerList = gcnew List<Passenger^>();
     }
     catch (FileNotFoundException^ ex) {
-    }
+    }*/
+    PassengerList = Persistance::QueryAllPassengers();
+    
+
+
     return PassengerList;
 }
 
 void RuralService::Service::AddAdvert(Claim^ p)
-{
+{/*
     Lista_reclamos = Service::QueryAllAdvertisements();
     Lista_reclamos->Add(p);
     Persistance::Persist_Claim_XML_File(XML_CLAIM_FILE_NAME, Lista_reclamos);
+    */
+    Persistance::AddClaim(p);
 }
 
 List<Claim^>^ RuralService::Service::QueryAllAdvertisements()
 {
 
     //////
-    Lista_reclamos = gcnew List<Claim^>();
+    List <Claim^>^ Lista_reclamos = gcnew List<Claim^>();/*
     try {
         //robotsList = (List<RobotWaiter^>^)Persistance::LoadRobotWaitersTextFile(TXT_ROBOT_FILE_NAME);
         //PassengerList = (List<Passenger^>^)Persistance::LoadPassengersXmlFile(XML_PASSENGER_FILE_NAME);
@@ -131,21 +134,24 @@ List<Claim^>^ RuralService::Service::QueryAllAdvertisements()
             Lista_reclamos = gcnew List<Claim^>();
     }
     catch (FileNotFoundException^ ex) {
-    }
+    }///*/
+    Lista_reclamos = Persistance::QueryAllClaims();
+
     return Lista_reclamos;
-    ///
+    
+
+
 }
 
 
 Passenger^ RuralService::Service::QueryPassengerbyUsername(String^ username)
 {
-    for (int i = 0; i < PassengerList->Count; i++) {
-        if (PassengerList[i]->Username == username) {
-            return PassengerList[i];
-        }
-    }
+    Passenger^ pasajero_requerido = Persistance::QueryPassengerByUserName(username);
+
+
+    
     //throw gcnew DoesNotExistUsernameException("El usuario no existe en la base de datos.");
-    return nullptr;
+    return pasajero_requerido;
 }
 
 

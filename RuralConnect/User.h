@@ -22,7 +22,7 @@ namespace RuralConnect{
         String^ UbiActual="";
 
         User() {
-
+            Username = "";
         }
         void Register();
 

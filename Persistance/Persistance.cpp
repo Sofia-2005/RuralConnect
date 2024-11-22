@@ -356,19 +356,40 @@ void RCPersistance::Persistance::AddPassenger(Passenger^ robot)
         SqlCommand^ cmd = gcnew SqlCommand(sqlStr, conn);
         cmd->CommandType = System::Data::CommandType::StoredProcedure;
 
+        cmd->CommandType = System::Data::CommandType::StoredProcedure;
         cmd->Parameters->Add("@Address", System::Data::SqlDbType::VarChar, 30);
         cmd->Parameters->Add("@DesiredDestination", System::Data::SqlDbType::VarChar, 30);
         cmd->Parameters->Add("@Level", System::Data::SqlDbType::VarChar, 30);
-        cmd->Parameters->Add("@UserName", System::Data::SqlDbType::VarChar, 100);
 
+
+        cmd->Parameters->Add("@NAME", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@LASTNAME", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@DNI", System::Data::SqlDbType::VarChar, 20);
+        cmd->Parameters->Add("@PHONE_NUMBER", System::Data::SqlDbType::Int);
+        cmd->Parameters->Add("@USERNAME", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@PASSWORD", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@QUALIFICATION", System::Data::SqlDbType::Int);
+        cmd->Parameters->Add("@UBI_ACTUAL", System::Data::SqlDbType::VarChar, 100);
+
+        cmd->Parameters->Add("@REASON", System::Data::SqlDbType::VarChar, 1000);
 
         cmd->Prepare();
-
 
         cmd->Parameters["@Address"]->Value = robot->Address;
         cmd->Parameters["@DesiredDestination"]->Value = robot->DesiredDestination;
         cmd->Parameters["@Level"]->Value = robot->Level;
-        cmd->Parameters["@UserName"]->Value = robot->Username;
+
+
+        cmd->Parameters["@NAME"]->Value = robot->Name;
+        cmd->Parameters["@LASTNAME"]->Value = robot->LastName;
+        cmd->Parameters["@DNI"]->Value = robot->DNI;
+        cmd->Parameters["@PHONE_NUMBER"]->Value = robot->PhoneNumber;
+        cmd->Parameters["@USERNAME"]->Value = robot->Username;
+        cmd->Parameters["@PASSWORD"]->Value = robot->Password;
+        cmd->Parameters["@QUALIFICATION"]->Value = robot->Qualification;
+        cmd->Parameters["@UBI_ACTUAL"]->Value = robot->UbiActual;
+
+        cmd->Parameters["@REASON"]->Value = robot->claim->Reason;
 
 
 
@@ -414,7 +435,20 @@ List<Passenger^>^ RCPersistance::Persistance::QueryAllPassengers()
             robot->Address = reader["Address"]->ToString();
             robot->DesiredDestination = reader["DesiredDestination"]->ToString();
             robot->Level = reader["Level"]->ToString();
-            robot->Username = reader["UserName"]->ToString();
+            
+
+            robot->Name = reader["NAME"]->ToString();
+            robot->LastName = reader["LASTNAME"]->ToString();
+            robot->DNI = reader["DNI"]->ToString();
+            robot->PhoneNumber = Convert::ToInt32(reader["PHONE_NUMBER"]->ToString());
+            robot->Username = reader["USERNAME"]->ToString();
+            robot->Password = reader["PASSWORD"]->ToString();
+            robot->Qualification = Convert::ToInt32(reader["QUALIFICATION"]->ToString());
+            robot->UbiActual = reader["UBI_ACTUAL"]->ToString();
+
+            robot->claim->Reason = reader["REASON"]->ToString();
+
+
 
             robotsList->Add(robot);
         }
@@ -445,14 +479,36 @@ void RCPersistance::Persistance::UpdatePassenger(Passenger^ robot)
         cmd->Parameters->Add("@Address", System::Data::SqlDbType::VarChar, 30);
         cmd->Parameters->Add("@DesiredDestination", System::Data::SqlDbType::VarChar, 30);
         cmd->Parameters->Add("@Level", System::Data::SqlDbType::VarChar, 30);
-        cmd->Parameters->Add("@UserName", System::Data::SqlDbType::VarChar, 100);
+        
+
+        cmd->Parameters->Add("@NAME", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@LASTNAME", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@DNI", System::Data::SqlDbType::VarChar, 20);
+        cmd->Parameters->Add("@PHONE_NUMBER", System::Data::SqlDbType::Int);
+        cmd->Parameters->Add("@USERNAME", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@PASSWORD", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@QUALIFICATION", System::Data::SqlDbType::Int);
+        cmd->Parameters->Add("@UBI_ACTUAL", System::Data::SqlDbType::VarChar, 100);
+
+        cmd->Parameters->Add("@REASON", System::Data::SqlDbType::VarChar, 1000);
 
         cmd->Prepare();
 
         cmd->Parameters["@Address"]->Value = robot->Address;
         cmd->Parameters["@DesiredDestination"]->Value = robot->DesiredDestination;
         cmd->Parameters["@Level"]->Value = robot->Level;
-        cmd->Parameters["@UserName"]->Value = robot->Username;
+        
+
+        cmd->Parameters["@NAME"]->Value = robot->Name;
+        cmd->Parameters["@LASTNAME"]->Value = robot->LastName;
+        cmd->Parameters["@DNI"]->Value = robot->DNI;
+        cmd->Parameters["@PHONE_NUMBER"]->Value = robot->PhoneNumber;
+        cmd->Parameters["@USERNAME"]->Value = robot->Username;
+        cmd->Parameters["@PASSWORD"]->Value = robot->Password;
+        cmd->Parameters["@QUALIFICATION"]->Value = robot->Qualification;
+        cmd->Parameters["@UBI_ACTUAL"]->Value = robot->UbiActual;
+
+        cmd->Parameters["@REASON"]->Value = robot->claim->Reason;
 
 
 
@@ -483,11 +539,11 @@ void RCPersistance::Persistance::DeletePassenger(String^ UserNAme)
         SqlCommand^ cmd = gcnew SqlCommand(sqlStr, conn);
         cmd->CommandType = System::Data::CommandType::StoredProcedure;
 
-        cmd->Parameters->Add("@UserName", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@USERNAME", System::Data::SqlDbType::VarChar, 100);
 
         cmd->Prepare();
 
-        cmd->Parameters["@UserName"]->Value = UserNAme;
+        cmd->Parameters["@USERNAME"]->Value = UserNAme;
 
         //Paso 3: Se ejecuta las sentncia SQL
         cmd->ExecuteNonQuery();
@@ -520,11 +576,11 @@ Passenger^ RCPersistance::Persistance::QueryPassengerByUserName(String^ Passseng
         SqlCommand^ cmd = gcnew SqlCommand(sqlStr, conn);
         cmd->CommandType = System::Data::CommandType::StoredProcedure;
 
-        cmd->Parameters->Add("@UserName", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@USERNAME", System::Data::SqlDbType::VarChar, 100);
 
         cmd->Prepare();
 
-        cmd->Parameters["@UserName"]->Value = Passsenger_username;
+        cmd->Parameters["@USERNAME"]->Value = Passsenger_username;
 
         //Paso 3: Ejecutar la sentencia SQL
         reader = cmd->ExecuteReader();
@@ -532,10 +588,22 @@ Passenger^ RCPersistance::Persistance::QueryPassengerByUserName(String^ Passseng
         //Paso 4: Procesar los resultados
         if (reader->Read()) {
             robot = gcnew Passenger();
+            
             robot->Address = reader["Address"]->ToString();
             robot->DesiredDestination = reader["DesiredDestination"]->ToString();
             robot->Level = reader["Level"]->ToString();
-            robot->Username = reader["UserName"]->ToString();
+
+
+            robot->Name = reader["NAME"]->ToString();
+            robot->LastName = reader["LASTNAME"]->ToString();
+            robot->DNI = reader["DNI"]->ToString();
+            robot->PhoneNumber = Convert::ToInt32(reader["PHONE_NUMBER"]->ToString());
+            robot->Username = reader["USERNAME"]->ToString();
+            robot->Password = reader["PASSWORD"]->ToString();
+            robot->Qualification = Convert::ToInt32(reader["QUALIFICATION"]->ToString());
+            robot->UbiActual = reader["UBI_ACTUAL"]->ToString();
+
+            robot->claim->Reason = reader["REASON"]->ToString();
 
         }
     }
