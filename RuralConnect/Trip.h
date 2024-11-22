@@ -26,8 +26,8 @@ namespace RuralConnect {
 
         String^ Driver_Name;
 
-        String^ ¨puntos_X_viaje = "";
-        String^ ¨puntos_Y_viaje = "";
+        String^ puntos_X_viaje = "";
+        String^ puntos_Y_viaje = "";
         
 
 
