@@ -584,10 +584,10 @@ Passenger^ RCPersistance::Persistance::QueryPassengerByUserName(String^ Passseng
 
         //Paso 3: Ejecutar la sentencia SQL
         reader = cmd->ExecuteReader();
-
+        robot = gcnew Passenger();
         //Paso 4: Procesar los resultados
         if (reader->Read()) {
-            robot = gcnew Passenger();
+            
             
             robot->Address = reader["Address"]->ToString();
             robot->DesiredDestination = reader["DesiredDestination"]->ToString();
@@ -1242,58 +1242,42 @@ void RCPersistance::Persistance::AddPTrip(Trip^ robot)
         SqlCommand^ cmd = gcnew SqlCommand(sqlStr, conn);
         cmd->CommandType = System::Data::CommandType::StoredProcedure;
 
-        cmd->Parameters->Add("@ROUTE", System::Data::SqlDbType::VarChar, 1000);
+        
         cmd->Parameters->Add("@DATE", System::Data::SqlDbType::VarChar, 100);
         cmd->Parameters->Add("@DEPARTURETIME", System::Data::SqlDbType::Int);
         cmd->Parameters->Add("@AVAILABLESEATS", System::Data::SqlDbType::Int);
-        cmd->Parameters->Add("@PASSENGERS", System::Data::SqlDbType::VarChar, 1000);
         cmd->Parameters->Add("@ESTIMATEDPRICE", System::Data::SqlDbType::Int);
         cmd->Parameters->Add("@TRIPSTATE", System::Data::SqlDbType::Int);
 
-        cmd->Parameters->Add("@USERNAME", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@PASSENGERS_name", System::Data::SqlDbType::VarChar, 1000);
+        cmd->Parameters->Add("@DRIVER_name", System::Data::SqlDbType::VarChar, 100);
+
+        cmd->Parameters->Add("@PTS_X_TRIP", System::Data::SqlDbType::VarChar, 1000);
+        cmd->Parameters->Add("@PTS_Y_TRIP", System::Data::SqlDbType::VarChar, 1000);
         
 
         cmd->Prepare();
 
-        // añado todas las rutas en un solo string
-        String^ suma = "";
-        for each (String^ rutita in robot->Route) {
-            if (suma == "") {
-                suma = suma + rutita ;
-            }
-            else {
-                suma = suma + "@@@" + rutita ;
-            }
-            
-        }
-        cmd->Parameters["@ROUTE"]->Value = suma; // codigo
+       
         cmd->Parameters["@DATE"]->Value = robot->Date;
         cmd->Parameters["@DEPARTURETIME"]->Value = robot->DepartureTime;
         cmd->Parameters["@AVAILABLESEATS"]->Value = robot->AvailableSeats;
-
-
-        String^ suma_pasajeros = "";
-        for each (Passenger^ pasajero in robot->Passengers) {
-            if (suma_pasajeros == "") {
-                suma_pasajeros = suma_pasajeros + pasajero->Username;
-            }
-            else {
-                suma_pasajeros = suma_pasajeros + "@@@" + pasajero->Username;
-            }
-
-        }
-        cmd->Parameters["@PASSENGERS"]->Value = suma_pasajeros; // codigo
         cmd->Parameters["@ESTIMATEDPRICE"]->Value = robot->EstimatedPrice;
+        cmd->Parameters["@TRIPSTATE"]->Value = robot->TripState;
 
-        if (robot->TripState == true) {
-            cmd->Parameters["@TRIPSTATE"]->Value = 1; // codigo
-        }
-        else {
-            cmd->Parameters["@TRIPSTATE"]->Value = 0; // codigo
-        }
+        cmd->Parameters["@PASSENGERS_name"]->Value = robot->Nombre_pasajeros_abordo;
+        cmd->Parameters["@DRIVER_name"]->Value = robot->Driver_Name;
+
+        cmd->Parameters["@PTS_X_TRIP"]->Value = robot->puntos_X_viaje;
+        cmd->Parameters["@PTS_Y_TRIP"]->Value = robot->puntos_Y_viaje;
+        
+        
         
 
-        cmd->Parameters["@USERNAME"]->Value = robot->UserName;
+        
+        
+
+        
         
 
         //Paso 3: Ejecutar la sentencia de BD
@@ -1316,6 +1300,8 @@ List<Trip^>^ RCPersistance::Persistance::QueryAllTrips()
     List<Trip^>^ robotsList = gcnew List<Trip^>();
     SqlConnection^ conn;
     SqlDataReader^ reader;
+
+    
     try {
         //Paso 1: Obtener la conexión a la BD
         conn = GetConnection();
@@ -1334,24 +1320,33 @@ List<Trip^>^ RCPersistance::Persistance::QueryAllTrips()
         while (reader->Read()) {
 
             Trip^ robot = gcnew Trip();
-            array<String^>^ delimitador = gcnew array<String^> { "@@@" };
 
-            // Usamos Split y directamente creamos una lista
-            robot->Route = gcnew List<String^>(reader["ROUTE"]->ToString()->Split(delimitador, StringSplitOptions::None));
-
-            //robot->Route = reader["ROUTE"]->ToString();
             robot->Date = reader["DATE"]->ToString();
             robot->DepartureTime = Convert::ToInt32(reader["DEPARTURETIME"]->ToString());
             robot->AvailableSeats = Convert::ToInt32(reader["AVAILABLESEATS"]->ToString());
-
-            // con esto se puede hacer un bucle de wuerypassengerbyusername para llenar la lista d easajeros
-            robot->Nombre_pasajeros_abordo = gcnew List<String^>(reader["PASSENGERS"]->ToString()->Split(delimitador, StringSplitOptions::None));
-            //robot->Passengers = Convert::ToDouble(reader["SPEED"]->ToString());
             robot->EstimatedPrice = Convert::ToInt32(reader["ESTIMATEDPRICE"]->ToString());
             robot->TripState = Convert::ToInt32(reader["TRIPSTATE"]->ToString());
 
-            robot->UserName = reader["USERNAME"]->ToString();
-            
+
+            robot->Nombre_pasajeros_abordo = reader["PASSENGERS_name"]->ToString();
+            robot->Driver_Name = reader["DRIVER_name"]->ToString();
+
+            robot->puntos_X_viaje = reader["PTS_X_TRIP"]->ToString();
+            robot->puntos_Y_viaje = reader["PTS_Y_TRIP"]->ToString();
+
+            array<String^>^ delimitador = gcnew array<String^> { "@@@" };
+
+            // Usamos Split y directamente creamos una lista
+            List<String^>^ lista_pasajero = gcnew List<String^>(reader["ROUTE"]->ToString()->Split(delimitador, StringSplitOptions::None));
+            for each(String^ nombre in lista_pasajero) {
+                Passenger^ pasajero = Persistance::QueryPassengerByUserName(nombre);
+                if (pasajero->Username != "") {
+                    robot->Passengers->Add(pasajero);
+                }
+
+            }
+
+
 
             robotsList->Add(robot);
         }
@@ -1381,58 +1376,33 @@ void RCPersistance::Persistance::UpdateTrip(Trip^ robot)
         cmd->CommandType = System::Data::CommandType::StoredProcedure;
 
 
-        cmd->Parameters->Add("@ROUTE", System::Data::SqlDbType::VarChar, 1000);
         cmd->Parameters->Add("@DATE", System::Data::SqlDbType::VarChar, 100);
         cmd->Parameters->Add("@DEPARTURETIME", System::Data::SqlDbType::Int);
         cmd->Parameters->Add("@AVAILABLESEATS", System::Data::SqlDbType::Int);
-        cmd->Parameters->Add("@PASSENGERS", System::Data::SqlDbType::VarChar, 1000);
         cmd->Parameters->Add("@ESTIMATEDPRICE", System::Data::SqlDbType::Int);
         cmd->Parameters->Add("@TRIPSTATE", System::Data::SqlDbType::Int);
 
-        cmd->Parameters->Add("@USERNAME", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@PASSENGERS_name", System::Data::SqlDbType::VarChar, 1000);
+        cmd->Parameters->Add("@DRIVER_name", System::Data::SqlDbType::VarChar, 100);
+
+        cmd->Parameters->Add("@PTS_X_TRIP", System::Data::SqlDbType::VarChar, 1000);
+        cmd->Parameters->Add("@PTS_Y_TRIP", System::Data::SqlDbType::VarChar, 1000);
 
 
         cmd->Prepare();
 
-        // añado todas las rutas en un solo string
-        String^ suma = "";
-        for each (String ^ rutita in robot->Route) {
-            if (suma == "") {
-                suma = suma + rutita;
-            }
-            else {
-                suma = suma + "@@@" + rutita;
-            }
 
-        }
-        cmd->Parameters["@ROUTE"]->Value = suma; // codigo
         cmd->Parameters["@DATE"]->Value = robot->Date;
         cmd->Parameters["@DEPARTURETIME"]->Value = robot->DepartureTime;
         cmd->Parameters["@AVAILABLESEATS"]->Value = robot->AvailableSeats;
-
-
-        String^ suma_pasajeros = "";
-        for each (Passenger ^ pasajero in robot->Passengers) {
-            if (suma_pasajeros == "") {
-                suma_pasajeros = suma_pasajeros + pasajero->Username;
-            }
-            else {
-                suma_pasajeros = suma_pasajeros + "@@@" + pasajero->Username;
-            }
-
-        }
-        cmd->Parameters["@PASSENGERS"]->Value = suma_pasajeros; // codigo
         cmd->Parameters["@ESTIMATEDPRICE"]->Value = robot->EstimatedPrice;
+        cmd->Parameters["@TRIPSTATE"]->Value = robot->TripState;
 
-        if (robot->TripState == true) {
-            cmd->Parameters["@TRIPSTATE"]->Value = 1; // codigo
-        }
-        else {
-            cmd->Parameters["@TRIPSTATE"]->Value = 0; // codigo
-        }
+        cmd->Parameters["@PASSENGERS_name"]->Value = robot->Nombre_pasajeros_abordo;
+        cmd->Parameters["@DRIVER_name"]->Value = robot->Driver_Name;
 
-
-        cmd->Parameters["@USERNAME"]->Value = robot->UserName;
+        cmd->Parameters["@PTS_X_TRIP"]->Value = robot->puntos_X_viaje;
+        cmd->Parameters["@PTS_Y_TRIP"]->Value = robot->puntos_Y_viaje;
 
         //Paso 3: Se ejecuta las sentncia SQL
         cmd->ExecuteNonQuery();
@@ -1505,25 +1475,34 @@ Trip^ RCPersistance::Persistance::QueryTripByUserName(String^ Passsenger_usernam
 
         //Paso 4: Procesar los resultados
         if (reader->Read()) {
-            robot = gcnew Trip();
+            Trip^ robot = gcnew Trip();
+
+            robot->Date = reader["DATE"]->ToString();
+            robot->DepartureTime = Convert::ToInt32(reader["DEPARTURETIME"]->ToString());
+            robot->AvailableSeats = Convert::ToInt32(reader["AVAILABLESEATS"]->ToString());
+            robot->EstimatedPrice = Convert::ToInt32(reader["ESTIMATEDPRICE"]->ToString());
+            robot->TripState = Convert::ToInt32(reader["TRIPSTATE"]->ToString());
+
+
+            robot->Nombre_pasajeros_abordo = reader["PASSENGERS_name"]->ToString();
+            robot->Driver_Name = reader["DRIVER_name"]->ToString();
+
+            robot->puntos_X_viaje = reader["PTS_X_TRIP"]->ToString();
+            robot->puntos_Y_viaje = reader["PTS_Y_TRIP"]->ToString();
 
             array<String^>^ delimitador = gcnew array<String^> { "@@@" };
 
             // Usamos Split y directamente creamos una lista
-            robot->Route = gcnew List<String^>(reader["ROUTE"]->ToString()->Split(delimitador, StringSplitOptions::None));
+            List<String^>^ lista_pasajero = gcnew List<String^>(reader["ROUTE"]->ToString()->Split(delimitador, StringSplitOptions::None));
+            for each (String ^ nombre in lista_pasajero) {
+                Passenger^ pasajero = Persistance::QueryPassengerByUserName(nombre);
+                if (pasajero->Username != "") {
+                    robot->Passengers->Add(pasajero);
+                }
 
-            //robot->Route = reader["ROUTE"]->ToString();
-            robot->Date = reader["DATE"]->ToString();
-            robot->DepartureTime = Convert::ToInt32(reader["DEPARTURETIME"]->ToString());
-            robot->AvailableSeats = Convert::ToInt32(reader["AVAILABLESEATS"]->ToString());
+            }
 
-            // con esto se puede hacer un bucle de wuerypassengerbyusername para llenar la lista d easajeros
-            robot->Nombre_pasajeros_abordo = gcnew List<String^>(reader["PASSENGERS"]->ToString()->Split(delimitador, StringSplitOptions::None));
-            //robot->Passengers = Convert::ToDouble(reader["SPEED"]->ToString());
-            robot->EstimatedPrice = Convert::ToInt32(reader["ESTIMATEDPRICE"]->ToString());
-            robot->TripState = Convert::ToInt32(reader["TRIPSTATE"]->ToString());
-
-            robot->UserName = reader["USERNAME"]->ToString();
+            
             
         }
     }
