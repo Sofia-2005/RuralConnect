@@ -428,7 +428,7 @@ namespace GUIApp {
 		this->Hide();
 	}
 	private: System::Void btnTripApplication_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (User->solicitud != nullptr) { //LatLong, User
+		if (User->solicitud->destino != "") { //LatLong, User
 			TripRequest^ Application = gcnew TripRequest(LatLong,User);
 			Application->Show();
 			//this->Hide();

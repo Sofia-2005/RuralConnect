@@ -9,8 +9,8 @@ namespace RuralConnect {
 	public ref class Solicitud
 	{
 	public:
-		String^ inicio;
-		String^ destino;
+		String^ inicio="";
+		String^ destino="";
 
 		String^ UserName;
 		Passenger^ pasajero = gcnew Passenger();

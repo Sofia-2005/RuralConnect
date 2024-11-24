@@ -1539,3 +1539,490 @@ Trip^ RCPersistance::Persistance::QueryTripByUserName(String^ Passsenger_usernam
     }
     return robot;
 }
+
+void RCPersistance::Persistance::AddDriverTable(Driver^ driver)
+{
+    SqlConnection^ conn;
+    try {
+        //Paso 1: Abrir y obtener la conexión a la BD
+        conn = GetConnection();
+
+        //Paso 2: Preparar la sentencia de BD
+        String^ sqlStr = "dbo.usp_Add_DRIVER_table";
+        SqlCommand^ cmd = gcnew SqlCommand(sqlStr, conn);
+        cmd->CommandType = System::Data::CommandType::StoredProcedure;
+
+        //Atributos del driver
+        cmd->Parameters->Add("@NAME", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@LASTNAME", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@DNI", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@PHONE_NUMBER", System::Data::SqlDbType::Int);
+        cmd->Parameters->Add("@USERNAME", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@PASSWORD", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@QUALIFICATION", System::Data::SqlDbType::Int);
+        cmd->Parameters->Add("@UBI_ACTUAL", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@NUMVIAJESCOM", System::Data::SqlDbType::Int);
+
+        //Atributos del vehículo
+        cmd->Parameters->Add("@MODEL", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@SEATS", System::Data::SqlDbType::Int);
+        cmd->Parameters->Add("@PLATE_NUMBER", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@LICENSE", System::Data::SqlDbType::Image);
+
+        //Atributos del viaje
+        cmd->Parameters->Add("@PUNTOSXVIAJE", System::Data::SqlDbType::VarChar, 1000);
+        cmd->Parameters->Add("@PUNTOSYVIAJE", System::Data::SqlDbType::VarChar, 1000);
+            
+        cmd->Parameters->Add("@DATE", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@AVAILABLESEATS", System::Data::SqlDbType::Int);
+        cmd->Parameters->Add("@PASSENGERS", System::Data::SqlDbType::VarChar, 1000);
+        cmd->Parameters->Add("@ESTIMATEDPRICE", System::Data::SqlDbType::Int);
+        cmd->Parameters->Add("@TRIPSTATE", System::Data::SqlDbType::Int);
+
+
+        //Atributos del solicitud
+        cmd->Parameters->Add("@INICIO", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@DESTINO", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@PASAJEROSOLI", System::Data::SqlDbType::VarChar, 100);
+
+        //Atributos del route
+        cmd->Parameters->Add("@PUNTOSXRUTA", System::Data::SqlDbType::VarChar, 1000);
+        cmd->Parameters->Add("@PUNTOSYRUTA", System::Data::SqlDbType::VarChar, 1000);
+        cmd->Parameters->Add("@PUNTOSXRUTAFIJO", System::Data::SqlDbType::VarChar, 1000);
+        cmd->Parameters->Add("@PUNTOSYRUTAFIJO", System::Data::SqlDbType::VarChar, 1000);
+
+        cmd->Prepare();
+
+
+        cmd->Parameters["@NAME"]->Value = driver->Name;
+        cmd->Parameters["@LASTNAME"]->Value = driver->LastName;
+        cmd->Parameters["@DNI"]->Value = driver->DNI;
+        cmd->Parameters["@PHONE_NUMBER"]->Value = driver->PhoneNumber;
+        cmd->Parameters["@USERNAME"]->Value = driver->Username;
+        cmd->Parameters["@PASSWORD"]->Value = driver->Password;
+        cmd->Parameters["@QUALIFICATION"]->Value = driver->Qualification;
+        cmd->Parameters["@UBI_ACTUAL"]->Value = driver->UbiActual;
+        cmd->Parameters["@NUMVIAJESCOM"]->Value = driver->NumberOfCompletedTrips;
+
+        cmd->Parameters["@MODEL"]->Value = driver->vehicle->Model;
+        cmd->Parameters["@SEATS"]->Value = driver->vehicle->Seats;
+        cmd->Parameters["@PLATE_NUMBER"]->Value = driver->vehicle->PlateNumber;
+
+        if (driver->vehicle->License == nullptr)
+            cmd->Parameters["@LICENSE"]->Value = DBNull::Value;
+        else
+            cmd->Parameters["@LICENSE"]->Value = driver->vehicle->License;
+
+        cmd->Parameters["@PUNTOSXVIAJE"]->Value = driver->viaje->puntos_X_viaje;
+        cmd->Parameters["@PUNTOSYVIAJE"]->Value = driver->viaje->puntos_Y_viaje;
+        cmd->Parameters["@DATE"]->Value = driver->viaje->Date;
+        cmd->Parameters["@AVAILABLESEATS"]->Value = driver->viaje->AvailableSeats;
+        //cmd->Parameters["@PASSENGERS"]->Value = driver->viaje->Passengers;
+        String^ sum = "";
+        sum = "";
+        for each (Passenger^ p in driver->viaje->Passengers) {
+            if (sum == "") {
+                sum = sum + p->Username;
+            }
+            else {
+                sum = sum + "@@@" + p->Username;
+            }
+        }
+        cmd->Parameters["@PASSENGERS"]->Value = sum;
+        cmd->Parameters["@ESTIMATEDPRICE"]->Value = driver->viaje->EstimatedPrice;
+        cmd->Parameters["@TRIPSTATE"]->Value = driver->viaje->TripState;
+
+        cmd->Parameters["@INICIO"]->Value = driver->solicitud->inicio;
+        cmd->Parameters["@DESTINO"]->Value = driver->solicitud->destino;
+        cmd->Parameters["@PASAJEROSOLI"]->Value = driver->solicitud->pasajero->Username;
+
+        cmd->Parameters["@PUNTOSXRUTA"]->Value = driver->Rutasa->Puntos_x_volatil;
+        cmd->Parameters["@PUNTOSYRUTA"]->Value = driver->Rutasa->Puntos_y_volatil;
+
+        for each (String ^ p in driver->Rutasa->Puntos_x_fijo) {
+            if (sum == "") {
+                sum = sum + p;
+            }
+            else {
+                sum = sum + "@@@" + p;
+            }
+        }
+        cmd->Parameters["@PUNTOSXRUTAFIJO"]->Value = sum;
+
+
+        sum = "";
+        for each (String ^ p in driver->Rutasa->Puntos_y_fijo) {
+            if (sum == "") {
+                sum = sum + p;
+            }
+            else {
+                sum = sum + "@@@" + p;
+            }
+        }
+        cmd->Parameters["@PUNTOSYRUTAFIJO"]->Value = sum;
+
+        //Paso 3: Ejecutar la sentencia de BD   
+        cmd->ExecuteNonQuery();
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        //Paso 5: Cerrar los objetos de conexión de la BD.
+        if (conn != nullptr) conn->Close();
+    }
+}
+
+List<Driver^>^ RCPersistance::Persistance::QueryAllDriversTable()
+{
+    List<Driver^>^ driversList = gcnew List<Driver^>();
+    SqlConnection^ conn;
+    SqlDataReader^ reader;
+
+    try {
+        //Paso 1: Obtener la conexión a la BD
+        conn = GetConnection();
+
+        //Paso 2: Preparar la sentencia SQL
+        //String^ sqlStr = "SELECT * FROM ROBOT_WAITER";
+        String^ sqlStr = "dbo.usp_Query_All_Drivers";
+        SqlCommand^ cmd = gcnew SqlCommand(sqlStr, conn);
+        cmd->CommandType = System::Data::CommandType::StoredProcedure;
+        cmd->Prepare();
+
+        //Paso 3: Ejecutar la sentencia SQL
+        reader = cmd->ExecuteReader();
+
+        //Paso 4: Procesar los resultados
+        while (reader->Read()) {
+
+            array<String^>^ delimitador = gcnew array<String^> { "@@@" };
+
+            // Usamos Split y directamente creamos una lista
+            //driver->Rutasa-> = gcnew List<String^>(reader["ROUTE"]->ToString()->Split(delimitador, StringSplitOptions::None));*/
+
+            Driver^ driver = gcnew Driver();
+            driver->Name = reader["NAME"]->ToString();
+            driver->LastName = reader["LASTNAME"]->ToString();
+            driver->DNI = reader["DNI"]->ToString();
+            driver->PhoneNumber = Convert::ToInt32(reader["PHONE_NUMBER"]->ToString());
+            driver->Username = reader["USERNAME"]->ToString();
+            driver->Password = reader["PASSWORD"]->ToString();
+            driver->Qualification = Convert::ToInt32(reader["QUALIFICATION"]->ToString());
+            driver->UbiActual = reader["UBI_ACTUAL"]->ToString();
+            driver->NumberOfCompletedTrips = Convert::ToInt32(reader["NUMVIAJESCOM"]->ToString());
+
+            driver->vehicle->Model = reader["MODEL"]->ToString();
+            driver->vehicle->Seats = Convert::ToInt32(reader["SEATS"]->ToString());
+            driver->vehicle->PlateNumber = reader["PLATE_NUMBER"]->ToString();
+
+            if (!DBNull::Value->Equals(reader["LICENSE"]))
+                driver->vehicle->License = (array<Byte>^)reader["LICENSE"];
+
+            driver->viaje->puntos_X_viaje = reader["PUNTOSXVIAJE"]->ToString();
+            driver->viaje->puntos_Y_viaje = reader["PUNTOSYVIAJE"]->ToString();
+            driver->viaje->Date = reader["DATE"]->ToString();
+            driver->viaje->AvailableSeats = Convert::ToInt32(reader["AVAILABLESEATS"]->ToString());
+            //driver->viaje->Passengers = reader["PASSENGERS"]->ToString();
+            List<Passenger^>^ pasa = gcnew List<Passenger^>();
+            List<String^>^ aaa = gcnew List<String^>(reader["PASSENGERS"]->ToString()->Split(delimitador, StringSplitOptions::None));
+            for each (String ^ p in aaa) {
+                pasa->Add(QueryPassengerByUserName(p));
+            }
+            driver->viaje->Passengers = pasa;
+            driver->viaje->EstimatedPrice = Convert::ToInt32(reader["ESTIMATEDPRICE"]->ToString());
+            driver->viaje->TripState = Convert::ToInt32(reader["TRIPSTATE"]->ToString());
+
+            driver->solicitud->inicio = reader["INICIO"]->ToString();
+            driver->solicitud->destino = reader["DESTINO"]->ToString();
+            driver->solicitud->pasajero = QueryPassengerByUserName(reader["PASAJEROSOLI"]->ToString());
+
+            driver->Rutasa->Puntos_x_volatil = reader["PUNTOSXRUTA"]->ToString();
+            driver->Rutasa->Puntos_y_volatil = reader["PUNTOSYRUTA"]->ToString();
+            //driver->Rutasa-> Puntos_x_fijo= reader["PUNTOSXRUTAFIJO"]->ToString();
+            driver->Rutasa->Puntos_x_fijo = gcnew List<String^>(reader["PUNTOSXRUTAFIJO"]->ToString()->Split(delimitador, StringSplitOptions::None));
+            //driver->Rutasa-> Puntos_y_fijo= reader["PUNTOSYRUTAFIJO"]->ToString();
+            driver->Rutasa->Puntos_y_fijo = gcnew List<String^>(reader["PUNTOSYRUTAFIJO"]->ToString()->Split(delimitador, StringSplitOptions::None));
+
+            driversList->Add(driver);
+        }
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        //Paso 5: Importante! Cerrar los objetos de conexión a la BD
+        if (reader != nullptr) reader->Close();
+        if (conn != nullptr) conn->Close();
+    }
+    return driversList;
+}
+
+void RCPersistance::Persistance::UpdateDriverTable(Driver^ driver)
+{
+    SqlConnection^ conn;
+    try {
+        //Paso 1: Abrir y obtener la conexión a la BD
+        conn = GetConnection();
+
+        //Paso 2: Preparar la sentencia de BD
+        String^ sqlStr = "dbo.usp_Update_DRIVER_table";
+        SqlCommand^ cmd = gcnew SqlCommand(sqlStr, conn);
+        cmd->CommandType = System::Data::CommandType::StoredProcedure;
+        //<<<<<<< HEAD
+                //Atributos del driver
+        cmd->Parameters->Add("@NAME", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@LASTNAME", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@DNI", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@PHONE_NUMBER", System::Data::SqlDbType::Int);
+        cmd->Parameters->Add("@USERNAME", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@PASSWORD", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@QUALIFICATION", System::Data::SqlDbType::Int);
+        cmd->Parameters->Add("@UBI_ACTUAL", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@NUMVIAJESCOM", System::Data::SqlDbType::Int);
+
+        //Atributos del vehículo
+        cmd->Parameters->Add("@MODEL", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@SEATS", System::Data::SqlDbType::Int);
+        cmd->Parameters->Add("@PLATE_NUMBER", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@LICENSE", System::Data::SqlDbType::Image);
+
+        //Atributos del viaje
+        cmd->Parameters->Add("@PUNTOSXVIAJE", System::Data::SqlDbType::VarChar, 1000);
+        cmd->Parameters->Add("@PUNTOSYVIAJE", System::Data::SqlDbType::VarChar, 1000);
+        //=======    
+        //>>>>>>> 3847a32e909502d7af407711c1bbd22f34ae8548
+        cmd->Parameters->Add("@DATE", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@AVAILABLESEATS", System::Data::SqlDbType::Int);
+        cmd->Parameters->Add("@PASSENGERS", System::Data::SqlDbType::VarChar, 1000);
+        cmd->Parameters->Add("@ESTIMATEDPRICE", System::Data::SqlDbType::Int);
+        cmd->Parameters->Add("@TRIPSTATE", System::Data::SqlDbType::Int);
+        //<<<<<<< HEAD
+        //=======
+
+                /*cmd->Parameters->Add("@PASSENGERS_name", System::Data::SqlDbType::VarChar, 1000);
+                cmd->Parameters->Add("@DRIVER_name", System::Data::SqlDbType::VarChar, 100);
+
+                cmd->Parameters->Add("@PTS_X_TRIP", System::Data::SqlDbType::VarChar, 1000);
+                cmd->Parameters->Add("@PTS_Y_TRIP", System::Data::SqlDbType::VarChar, 1000);
+        >>>>>>> 3847a32e909502d7af407711c1bbd22f34ae8548*/
+
+        //Atributos del solicitud
+        cmd->Parameters->Add("@INICIO", System::Data::SqlDbType::VarChar,100);
+        cmd->Parameters->Add("@DESTINO", System::Data::SqlDbType::VarChar, 100);
+        cmd->Parameters->Add("@PASAJEROSOLI", System::Data::SqlDbType::VarChar, 100);
+
+        //Atributos del route
+        cmd->Parameters->Add("@PUNTOSXRUTA", System::Data::SqlDbType::VarChar, 1000);
+        cmd->Parameters->Add("@PUNTOSYRUTA", System::Data::SqlDbType::VarChar, 1000);
+        cmd->Parameters->Add("@PUNTOSXRUTAFIJO", System::Data::SqlDbType::VarChar, 1000);
+        cmd->Parameters->Add("@PUNTOSYRUTAFIJO", System::Data::SqlDbType::VarChar, 1000);
+
+        cmd->Prepare();
+
+        //<<<<<<< HEAD
+                /*cmd->Parameters["@MODEL"]->Value = vehicle->Model;
+                cmd->Parameters["@SEATS"]->Value = vehicle->Seats;
+                cmd->Parameters["@PLATENUMBER"]->Value = vehicle->PlateNumber;
+                if (vehicle->License == nullptr)
+                    cmd->Parameters["@LICENSE"]->Value = DBNull::Value;
+                else
+                    cmd->Parameters["@LICENSE"]->Value = vehicle->License;
+
+                cmd->Parameters["@USERNAME"]->Value = vehicle->UserName;*/
+        cmd->Parameters["@NAME"]->Value = driver->Name;
+        cmd->Parameters["@LASTNAME"]->Value = driver->LastName;
+        cmd->Parameters["@DNI"]->Value = driver->DNI;
+        cmd->Parameters["@PHONE_NUMBER"]->Value = driver->PhoneNumber;
+        cmd->Parameters["@USERNAME"]->Value = driver->Username;
+        cmd->Parameters["@PASSWORD"]->Value = driver->Password;
+        cmd->Parameters["@QUALIFICATION"]->Value = driver->Qualification;
+        cmd->Parameters["@UBI_ACTUAL"]->Value = driver->UbiActual;
+        cmd->Parameters["@NUMVIAJESCOM"]->Value = driver->NumberOfCompletedTrips;
+
+        cmd->Parameters["@MODEL"]->Value = driver->vehicle->Model;
+        cmd->Parameters["@SEATS"]->Value = driver->vehicle->Seats;
+        cmd->Parameters["@PLATE_NUMBER"]->Value = driver->vehicle->PlateNumber;
+        //cmd->Parameters["@LICENSE"]->Value = driver->vehicle->License;
+        if (driver->vehicle->License == nullptr)
+            cmd->Parameters["@LICENSE"]->Value = DBNull::Value;
+        else
+            cmd->Parameters["@LICENSE"]->Value = driver->vehicle->License;
+
+        cmd->Parameters["@PUNTOSXVIAJE"]->Value = driver->viaje->puntos_X_viaje;
+        cmd->Parameters["@PUNTOSYVIAJE"]->Value = driver->viaje->puntos_Y_viaje;
+        cmd->Parameters["@DATE"]->Value = driver->viaje->Date;
+        cmd->Parameters["@AVAILABLESEATS"]->Value = driver->viaje->AvailableSeats;
+        //cmd->Parameters["@PASSENGERS"]->Value = driver->viaje->Passengers;
+
+        String^ sum = "";
+        sum = "";
+        for each (Passenger ^ p in driver->viaje->Passengers) {
+            if (sum == "") {
+                sum = sum + p->Username;
+            }
+            else {
+                sum = sum + "@@@" + p->Username;
+            }
+        }
+        cmd->Parameters["@PASSENGERS"]->Value = sum;
+        cmd->Parameters["@ESTIMATEDPRICE"]->Value = driver->viaje->EstimatedPrice;
+        cmd->Parameters["@TRIPSTATE"]->Value = driver->viaje->TripState;
+
+        cmd->Parameters["@INICIO"]->Value = driver->solicitud->inicio;
+        cmd->Parameters["@DESTINO"]->Value = driver->solicitud->destino;
+        cmd->Parameters["@PASAJEROSOLI"]->Value = driver->solicitud->pasajero->Username;
+
+        cmd->Parameters["@PUNTOSXRUTA"]->Value = driver->Rutasa->Puntos_x_volatil;
+        cmd->Parameters["@PUNTOSYRUTA"]->Value = driver->Rutasa->Puntos_y_volatil;
+
+        for each (String ^ p in driver->Rutasa->Puntos_x_fijo) {
+            if (sum == "") {
+                sum = sum + p;
+            }
+            else {
+                sum = sum + "@@@" + p;
+            }
+        }
+        cmd->Parameters["@PUNTOSXRUTAFIJO"]->Value = sum;
+
+
+        sum = "";
+        for each (String ^ p in driver->Rutasa->Puntos_y_fijo) {
+            if (sum == "") {
+                sum = sum + p;
+            }
+            else {
+                sum = sum + "@@@" + p;
+            }
+        }
+        cmd->Parameters["@PUNTOSYRUTAFIJO"]->Value = sum;
+
+
+        //Paso 3: Ejecutar la sentencia de BD
+        cmd->ExecuteNonQuery();
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        //Paso 5: Cerrar los objetos de conexión de la BD.
+        if (conn != nullptr) conn->Close();
+    }
+}
+
+void RCPersistance::Persistance::DeleteDriverTable(String^ username)
+{
+    SqlConnection^ conn;
+    try {
+        //Paso 1: Obtener la conexión a la BD
+        conn = GetConnection();
+
+        //Paso 2: Se prepara la sentencia
+        String^ sqlStr = "dbo.usp_Delete_Driver_table";
+        SqlCommand^ cmd = gcnew SqlCommand(sqlStr, conn);
+        cmd->CommandType = System::Data::CommandType::StoredProcedure;
+
+
+        cmd->Parameters->Add("@USERNAME", System::Data::SqlDbType::VarChar, 100);
+        cmd->Prepare();
+        cmd->Parameters["@USERNAME"]->Value = username;
+
+        //Paso 3: Se ejecuta las sentncia SQL
+        cmd->ExecuteNonQuery();
+
+        //Paso 4: Se procesan los resultados
+        //robotId = Convert::ToInt32(cmd->Parameters["@ID"]->Value);
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        if (conn != nullptr) conn->Close();
+    }
+}
+
+Driver^ RCPersistance::Persistance::QueryDriverTableByUsername(String^ username)
+{
+    SqlConnection^ conn;
+    SqlDataReader^ reader;
+    Driver^ driver = gcnew Driver();
+    try {
+        //Paso 1: Obtener la conexión a la BD
+        conn = GetConnection();
+
+        //Paso 2: Preparar la sentencia SQL
+        //String^ sqlStr = "SELECT * FROM ROBOT_WAITER";
+        String^ sqlStr = "dbo.usp_Query_Drivers_ByUser_Name";
+        SqlCommand^ cmd = gcnew SqlCommand(sqlStr, conn);
+        cmd->CommandType = System::Data::CommandType::StoredProcedure;
+        cmd->Parameters->Add("@USERNAME", System::Data::SqlDbType::VarChar, 100);
+        cmd->Prepare();
+        cmd->Parameters["@USERNAME"]->Value = username;
+
+
+        //Paso 3: Ejecutar la sentencia SQL
+        reader = cmd->ExecuteReader();
+
+        //Paso 4: Procesar los resultados
+        if (reader->Read()) {
+            //<<<<<<< HEAD
+            array<String^>^ delimitador = gcnew array<String^> { "@@@" };
+
+            // Usamos Split y directamente creamos una lista
+            //driver->Rutasa-> = gcnew List<String^>(reader["ROUTE"]->ToString()->Split(delimitador, StringSplitOptions::None));*/
+
+            driver->Name = reader["NAME"]->ToString();
+            driver->LastName = reader["LASTNAME"]->ToString();
+            driver->DNI = reader["DNI"]->ToString();
+            driver->PhoneNumber = Convert::ToInt32(reader["PHONE_NUMBER"]->ToString());
+            driver->Username = reader["USERNAME"]->ToString();
+            driver->Password = reader["PASSWORD"]->ToString();
+            driver->Qualification = Convert::ToInt32(reader["QUALIFICATION"]->ToString());
+            driver->UbiActual = reader["UBI_ACTUAL"]->ToString();
+            driver->NumberOfCompletedTrips = Convert::ToInt32(reader["NUMVIAJESCOM"]->ToString());
+
+            driver->vehicle->Model = reader["MODEL"]->ToString();
+            driver->vehicle->Seats = Convert::ToInt32(reader["SEATS"]->ToString());
+            driver->vehicle->PlateNumber = reader["PLATE_NUMBER"]->ToString();
+            //driver->vehicle->License = Convert::ToDouble(reader["SPEED"]->ToString());
+            if (!DBNull::Value->Equals(reader["LICENSE"]))
+                driver->vehicle->License = (array<Byte>^)reader["LICENSE"];
+
+            driver->viaje->puntos_X_viaje = reader["PUNTOSXVIAJE"]->ToString();
+            driver->viaje->puntos_Y_viaje = reader["PUNTOSYVIAJE"]->ToString();
+            driver->viaje->Date = reader["DATE"]->ToString();
+            driver->viaje->AvailableSeats = Convert::ToInt32(reader["AVAILABLESEATS"]->ToString());
+            //driver->viaje->Passengers = reader["PASSENGERS"]->ToString();
+            List<Passenger^>^ pasa = gcnew List<Passenger^>();
+            List<String^>^ aaa = gcnew List<String^>(reader["PASSENGERS"]->ToString()->Split(delimitador, StringSplitOptions::None));
+            for each (String ^ p in aaa) {
+                pasa->Add(QueryPassengerByUserName(p));
+            }
+            driver->viaje->Passengers = pasa;
+            driver->viaje->EstimatedPrice = Convert::ToInt32(reader["ESTIMATEDPRICE"]->ToString());
+            driver->viaje->TripState = Convert::ToInt32(reader["TRIPSTATE"]->ToString());
+
+            driver->solicitud->inicio = reader["INICIO"]->ToString();
+            driver->solicitud->destino = reader["DESTINO"]->ToString();
+            driver->solicitud->pasajero = QueryPassengerByUserName(reader["PASAJEROSOLI"]->ToString());
+
+            driver->Rutasa->Puntos_x_volatil = reader["PUNTOSXRUTA"]->ToString();
+            driver->Rutasa->Puntos_y_volatil = reader["PUNTOSYRUTA"]->ToString();
+            //driver->Rutasa-> Puntos_x_fijo= reader["PUNTOSXRUTAFIJO"]->ToString();
+            driver->Rutasa->Puntos_x_fijo = gcnew List<String^>(reader["PUNTOSXRUTAFIJO"]->ToString()->Split(delimitador, StringSplitOptions::None));
+            //driver->Rutasa-> Puntos_y_fijo= reader["PUNTOSYRUTAFIJO"]->ToString();
+            driver->Rutasa->Puntos_y_fijo = gcnew List<String^>(reader["PUNTOSYRUTAFIJO"]->ToString()->Split(delimitador, StringSplitOptions::None));
+
+        }
+    }
+    catch (Exception^ ex) {
+        throw ex;
+    }
+    finally {
+        //Paso 5: Importante! Cerrar los objetos de conexión a la BD
+        if (reader != nullptr) reader->Close();
+        if (conn != nullptr) conn->Close();
+    }
+    return driver;
+}

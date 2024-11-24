@@ -13,7 +13,7 @@ int RuralService::Service::ShowListCount()
 }
 void RuralService::Service::AddDriver(Driver^ driver)
 {
-    for each (Driver ^ k in DriverList) {
+    /*for each (Driver ^ k in DriverList) {
         if (k->Username->Equals(driver->Username))
             throw gcnew DuplicatedUsernameException("El usuario ya existe en la base de datos.");
     }
@@ -23,7 +23,8 @@ void RuralService::Service::AddDriver(Driver^ driver)
     }
     DriverList = Service::QueryAllDrivers();
     DriverList->Add(driver);
-    Persistance::Persist_Driver_XML_File(XML_DRIVER_FILE_NAME, DriverList);
+    Persistance::Persist_Driver_XML_File(XML_DRIVER_FILE_NAME, DriverList);*/
+    Persistance::AddDriverTable(driver);
 
 }
 void RuralService::Service::AddPassenger(Passenger^ passenger)
@@ -157,7 +158,7 @@ Passenger^ RuralService::Service::QueryPassengerbyUsername(String^ username)
 
 void RuralService::Service::UpdateDriver(Driver^ p)
 {
-    DriverList = QueryAllDrivers();
+    /*DriverList = QueryAllDrivers();
     for (int i = 0; i < DriverList->Count; i++) {
         
         if (DriverList[i]->Username == p->Username) {
@@ -166,33 +167,28 @@ void RuralService::Service::UpdateDriver(Driver^ p)
             return;
         }
     }
-    throw gcnew DoesNotExistUsernameException("El usuario no existe en la base de datos.");
+    throw gcnew DoesNotExistUsernameException("El usuario no existe en la base de datos.");*/
+
+    Persistance::UpdateDriverTable(p);
 }
 
 void RuralService::Service::DeleteDriver(String^ username)
 {
-    for (int i = 0; i < DriverList->Count; i++) {
+    /*for (int i = 0; i < DriverList->Count; i++) {
         if (DriverList[i]->Username == username) {
             DriverList->RemoveAt(i);
             Persistance::Persist_Driver_XML_File(XML_DRIVER_FILE_NAME, DriverList);
             return;
         }
     }
-    throw gcnew DoesNotExistUsernameException("El usuario no existe en la base de datos.");
+    throw gcnew DoesNotExistUsernameException("El usuario no existe en la base de datos.");*/
+
+    Persistance::DeleteDriverTable(username);
 }
 
 List<Driver^>^ RuralService::Service::QueryAllDrivers()
 {
-    List<Driver^>^ lista_conduc = gcnew List<Driver^>();
-    try {
-        
-        lista_conduc = (List<Driver^>^)Persistance::Load_Driver_XML_File(XML_DRIVER_FILE_NAME);
-        if (lista_conduc == nullptr)
-            lista_conduc = gcnew List<Driver^>();
-    }
-    catch (FileNotFoundException^ ex) {
-        throw ex;
-    }
+    List<Driver^>^ lista_conduc = Persistance::QueryAllDriversTable();
    
     return lista_conduc;
     
@@ -200,14 +196,11 @@ List<Driver^>^ RuralService::Service::QueryAllDrivers()
 
 Driver^ RuralService::Service::QueryDriverbyUsername(String^ username)
 {
-    DriverList = QueryAllDrivers();
-    for (int i = 0; i < DriverList->Count; i++) {
-        if (DriverList[i]->Username == username) {
-            
-            return DriverList[i];
-        }
-    }
-    throw gcnew DoesNotExistUsernameException("El usuario no existe en la base de datos.");
+    Driver^ conductor;
+    conductor = Persistance::QueryDriverTableByUsername(username);
+
+    //throw gcnew DoesNotExistUsernameException("El usuario no existe en la base de datos.");
+    return conductor;
 }
 
 int RuralService::Service::QueryDriverPassengerbyUsername(String^ username, String^ password)

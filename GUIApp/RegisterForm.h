@@ -421,12 +421,10 @@ namespace GUIApp {
 							MessageBox::Show("Este pasajero se encuentra registado. Inténtelo otra vez :)");
 						}
 
-
-
 					}
 					else {
 						Driver^ consultar = Service::QueryDriverbyUsername(txtUsername->Text);
-						if (consultar == nullptr) {
+						if (consultar->Username == "") {
 							VehicleForm^ form1 = gcnew VehicleForm(name, lastname, username, password, phone, dni);
 							form1->Show();
 						}
