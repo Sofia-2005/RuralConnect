@@ -17,8 +17,8 @@ namespace RuralConnect {
         property List< String^>^ Puntos_x_fijo ;
         property List< String^>^ Puntos_y_fijo ;
 
-        property String^ Puntos_x_volatil;
-        property String^ Puntos_y_volatil;
+        String^ Puntos_x_volatil="";
+        String^ Puntos_y_volatil="";
 
         void GetEstimatedTime();
 

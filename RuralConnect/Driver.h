@@ -20,7 +20,7 @@ namespace RuralConnect {
     public:
         int NumberOfCompletedTrips=0;
         //List<Route^> TypicalRoutes;
-        Vehicle^ vehicle;
+        Vehicle^ vehicle = gcnew Vehicle();
         Trip^ viaje= gcnew Trip();
         Solicitud^ solicitud = gcnew Solicitud();
         Route^ Rutasa = gcnew Route();
@@ -44,10 +44,11 @@ namespace RuralConnect {
             PhoneNumber = phone;
             Username = username;
             Password = password;
-            Rutasa = nullptr;
-            viaje = nullptr;
-            solicitud = nullptr;
+
             Photo = photo;
+            //Rutasa = nullptr;
+            //viaje = nullptr;
+            //solicitud = nullptr;
         }
     };
 }

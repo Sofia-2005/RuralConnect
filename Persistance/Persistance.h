@@ -53,6 +53,12 @@ namespace RCPersistance {
 		static Trip^ QueryTripByUserName(String^ Passsenger_username);
 
 
+		static void AddDriverTable(Driver^ driver);
+		static List<Driver^>^ QueryAllDriversTable();
+		static void UpdateDriverTable(Driver^ driver);
+		static void DeleteDriverTable(String^ username);
+		static Driver^ QueryDriverTableByUsername(String^ username);
+
 
 		// BASE DE DATOSSSSSSSSSSSS
 
