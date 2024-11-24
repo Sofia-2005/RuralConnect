@@ -289,6 +289,9 @@ namespace GUIApp {
 private: System::Void btnAcceptPassenger_Click(System::Object^ sender, System::EventArgs^ e) {
 
 	user->viaje->Passengers->Add(pasajero);
+	if (user->viaje->AvailableSeats > 0) {
+		user->viaje->AvailableSeats = user->vehicle->Seats - 1;
+	}
 
 	Service::UpdateDriver(user);
 	this->Close();
