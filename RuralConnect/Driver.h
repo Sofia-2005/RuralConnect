@@ -37,7 +37,7 @@ namespace RuralConnect {
         Driver() {
         }
 
-        Driver(String^ name, String^ lastname, String^ username, String^ password, int phone, String^ dni) {
+        Driver(String^ name, String^ lastname, String^ username, String^ password, int phone, String^ dni, array<Byte>^ photo) {
             Name = name;
             LastName = lastname;
             DNI = dni;
@@ -47,6 +47,7 @@ namespace RuralConnect {
             Rutasa = nullptr;
             viaje = nullptr;
             solicitud = nullptr;
+            Photo = photo;
         }
     };
 }

@@ -22,12 +22,14 @@ namespace GUIApp {
 		String^ conductorLastName;
 		String^ conductorUsername;
 		String^ conductorPassword;
+		array<Byte>^ conductorPhoto;
+
 		int conductorPhone;
 	private: System::Windows::Forms::Label^ label5;
 	public:
 		String^ conductorDni;
 
-		VehicleForm(String^ name, String^ lastname, String^ username, String^ password, int phone, String^ dni) {
+		VehicleForm(String^ name, String^ lastname, String^ username, String^ password, int phone, String^ dni, array<Byte>^ Photo) {
 			InitializeComponent();
 			conductorName = name;
 			conductorLastName = lastname;
@@ -35,6 +37,8 @@ namespace GUIApp {
 			conductorPassword = password;
 			conductorPhone = phone;
 			conductorDni = dni;
+			conductorPhoto= Photo;
+
 		}
 
 		VehicleForm(void)
@@ -283,8 +287,9 @@ namespace GUIApp {
 				v->License = ms->ToArray();
 
 
-				Driver^ a = gcnew Driver(conductorName, conductorLastName, conductorUsername, conductorPassword, conductorPhone, conductorDni);
+				Driver^ a = gcnew Driver(conductorName, conductorLastName, conductorUsername, conductorPassword, conductorPhone, conductorDni, conductorPhoto);
 				a->vehicle = v;
+
 				Service::AddDriver(a);
 				MessageBox::Show("Se ha agregado al conductor " + a->Name + " " + a->LastName);
 

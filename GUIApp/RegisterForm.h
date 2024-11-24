@@ -57,6 +57,9 @@ namespace GUIApp {
 	private: System::Windows::Forms::TextBox^ txtUsername;
 	private: System::Windows::Forms::TextBox^ txtPassword;
 	private: System::Windows::Forms::Button^ btn_back;
+	private: System::Windows::Forms::PictureBox^ FotoUserReg;
+
+	private: System::Windows::Forms::Button^ button1;
 
 
 
@@ -93,6 +96,9 @@ namespace GUIApp {
 			this->txtUsername = (gcnew System::Windows::Forms::TextBox());
 			this->txtPassword = (gcnew System::Windows::Forms::TextBox());
 			this->btn_back = (gcnew System::Windows::Forms::Button());
+			this->FotoUserReg = (gcnew System::Windows::Forms::PictureBox());
+			this->button1 = (gcnew System::Windows::Forms::Button());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->FotoUserReg))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label1
@@ -153,7 +159,7 @@ namespace GUIApp {
 			// label7
 			// 
 			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(56, 310);
+			this->label7->Location = System::Drawing::Point(115, 332);
 			this->label7->Name = L"label7";
 			this->label7->Size = System::Drawing::Size(31, 16);
 			this->label7->TabIndex = 6;
@@ -161,7 +167,7 @@ namespace GUIApp {
 			// 
 			// btnPassenger
 			// 
-			this->btnPassenger->Location = System::Drawing::Point(148, 304);
+			this->btnPassenger->Location = System::Drawing::Point(173, 324);
 			this->btnPassenger->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnPassenger->Name = L"btnPassenger";
 			this->btnPassenger->Size = System::Drawing::Size(75, 33);
@@ -172,7 +178,7 @@ namespace GUIApp {
 			// 
 			// btnDriver
 			// 
-			this->btnDriver->Location = System::Drawing::Point(263, 304);
+			this->btnDriver->Location = System::Drawing::Point(318, 324);
 			this->btnDriver->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnDriver->Name = L"btnDriver";
 			this->btnDriver->Size = System::Drawing::Size(85, 33);
@@ -183,13 +189,14 @@ namespace GUIApp {
 			// 
 			// btnRegister
 			// 
-			this->btnRegister->Location = System::Drawing::Point(167, 355);
+			this->btnRegister->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
+			this->btnRegister->Location = System::Drawing::Point(224, 380);
 			this->btnRegister->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnRegister->Name = L"btnRegister";
 			this->btnRegister->Size = System::Drawing::Size(142, 47);
 			this->btnRegister->TabIndex = 9;
 			this->btnRegister->Text = L"Registrarse";
-			this->btnRegister->UseVisualStyleBackColor = true;
+			this->btnRegister->UseVisualStyleBackColor = false;
 			this->btnRegister->Click += gcnew System::EventHandler(this, &RegisterForm::btnRegister_Click);
 			// 
 			// txtName
@@ -244,7 +251,7 @@ namespace GUIApp {
 			// 
 			// btn_back
 			// 
-			this->btn_back->Location = System::Drawing::Point(363, 9);
+			this->btn_back->Location = System::Drawing::Point(423, 13);
 			this->btn_back->Margin = System::Windows::Forms::Padding(4);
 			this->btn_back->Name = L"btn_back";
 			this->btn_back->Size = System::Drawing::Size(109, 25);
@@ -253,11 +260,33 @@ namespace GUIApp {
 			this->btn_back->UseVisualStyleBackColor = true;
 			this->btn_back->Click += gcnew System::EventHandler(this, &RegisterForm::btn_back_Click);
 			// 
+			// FotoUserReg
+			// 
+			this->FotoUserReg->BackColor = System::Drawing::SystemColors::ScrollBar;
+			this->FotoUserReg->Location = System::Drawing::Point(318, 53);
+			this->FotoUserReg->Name = L"FotoUserReg";
+			this->FotoUserReg->Size = System::Drawing::Size(196, 204);
+			this->FotoUserReg->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+			this->FotoUserReg->TabIndex = 17;
+			this->FotoUserReg->TabStop = false;
+			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(363, 270);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(101, 31);
+			this->button1->TabIndex = 18;
+			this->button1->Text = L"Subir foto";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &RegisterForm::button1_Click);
+			// 
 			// RegisterForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(484, 426);
+			this->ClientSize = System::Drawing::Size(545, 438);
+			this->Controls->Add(this->button1);
+			this->Controls->Add(this->FotoUserReg);
 			this->Controls->Add(this->btn_back);
 			this->Controls->Add(this->txtPassword);
 			this->Controls->Add(this->txtUsername);
@@ -279,6 +308,7 @@ namespace GUIApp {
 			this->Name = L"RegisterForm";
 			this->Text = L"RegisterForm";
 			this->Load += gcnew System::EventHandler(this, &RegisterForm::RegisterForm_Load);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->FotoUserReg))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -307,7 +337,7 @@ namespace GUIApp {
 		}
 		bool IsDniNumeric(String^ text) {
 
-			if (text->Length != 7) {
+			if (text->Length != 8) {
 				return false;
 			}
 
@@ -401,6 +431,10 @@ namespace GUIApp {
 					String^ password = txtPassword->Text;
 					int phone = Convert::ToInt32(txtPhone->Text);
 					String^ dni = txtDNI->Text;
+					array<Byte>^ Photo = gcnew array<Byte>(0);
+					//COdigo para guardar la imagen
+					System::IO::MemoryStream^ ms = gcnew System::IO::MemoryStream();
+					FotoUserReg->Image->Save(ms, System::Drawing::Imaging::ImageFormat::Jpeg);
 
 					if (pasajero == 1) {
 
@@ -408,7 +442,9 @@ namespace GUIApp {
 						if (consultar == nullptr) {
 							Passenger^ pasajero = gcnew Passenger(name, lastname, username, password, phone, dni);
 							
-
+							//se guarda la foto
+						
+							pasajero->Photo = ms->ToArray();
 							
 
 							Service::AddPassenger(pasajero);
@@ -427,7 +463,10 @@ namespace GUIApp {
 					else {
 						Driver^ consultar = Service::QueryDriverbyUsername(txtUsername->Text);
 						if (consultar == nullptr) {
-							VehicleForm^ form1 = gcnew VehicleForm(name, lastname, username, password, phone, dni);
+							
+							Photo = ms->ToArray();
+
+							VehicleForm^ form1 = gcnew VehicleForm(name, lastname, username, password, phone, dni, Photo);
 							form1->Show();
 						}
 						else {
@@ -469,5 +508,12 @@ namespace GUIApp {
 	}
 	private: System::Void txtPassword_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
-	};
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		OpenFileDialog^ ofd = gcnew OpenFileDialog();
+		ofd->Filter = "Image Files (*.jpg;*.jpeg;)|*.jpg;*.jpeg;";
+		if (ofd->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
+			FotoUserReg->Image = gcnew Bitmap(ofd->FileName);
+		}
+	}
+};
 }

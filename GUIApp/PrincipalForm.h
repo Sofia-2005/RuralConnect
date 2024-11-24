@@ -101,6 +101,7 @@ namespace GUIApp {
 			this->pictureBox1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->pictureBox1->Name = L"pictureBox1";
 			this->pictureBox1->Size = System::Drawing::Size(202, 235);
+			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox1->TabIndex = 1;
 			this->pictureBox1->TabStop = false;
 			// 
@@ -175,8 +176,9 @@ namespace GUIApp {
 			this->btPhotoPass->Name = L"btPhotoPass";
 			this->btPhotoPass->Size = System::Drawing::Size(111, 34);
 			this->btPhotoPass->TabIndex = 9;
-			this->btPhotoPass->Text = L"Subir Foto";
+			this->btPhotoPass->Text = L"Cambiar Foto";
 			this->btPhotoPass->UseVisualStyleBackColor = true;
+			this->btPhotoPass->Click += gcnew System::EventHandler(this, &MyForm::btPhotoPass_Click);
 			// 
 			// txtUserName
 			// 
@@ -292,6 +294,18 @@ private: System::Void btnLogout_Click(System::Object^ sender, System::EventArgs^
 	/*LoginForm^ LogOutForm = gcnew LoginForm();
 	LogOutForm->Show();
 	this->Hide();*/
+}
+private: System::Void btPhotoPass_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	OpenFileDialog^ ofd = gcnew OpenFileDialog();
+	ofd->Filter = "Image Files (*.jpg;*.jpeg;)|*.jpg;*.jpeg;";
+	if (ofd->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
+		pictureBox1->Image = gcnew Bitmap(ofd->FileName);
+	}
+	//Secambia la foto del usuario Acepta cambio
+	System::IO::MemoryStream^ ms = gcnew System::IO::MemoryStream();
+	pictureBox1->Image->Save(ms, System::Drawing::Imaging::ImageFormat::Jpeg);
+	User -> Photo = ms->ToArray();
 }
 };
 }
