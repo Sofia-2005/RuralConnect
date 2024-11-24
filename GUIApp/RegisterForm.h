@@ -307,7 +307,7 @@ namespace GUIApp {
 		}
 		bool IsDniNumeric(String^ text) {
 
-			if (text->Length != 7) {
+			if (text->Length != 8) {
 				return false;
 			}
 

@@ -372,6 +372,7 @@ void RCPersistance::Persistance::AddPassenger(Passenger^ robot)
         cmd->Parameters->Add("@UBI_ACTUAL", System::Data::SqlDbType::VarChar, 100);
 
         cmd->Parameters->Add("@REASON", System::Data::SqlDbType::VarChar, 1000);
+        cmd->Parameters->Add("@PHOTO", System::Data::SqlDbType::Image);
 
         cmd->Prepare();
 
@@ -390,7 +391,10 @@ void RCPersistance::Persistance::AddPassenger(Passenger^ robot)
         cmd->Parameters["@UBI_ACTUAL"]->Value = robot->UbiActual;
 
         cmd->Parameters["@REASON"]->Value = robot->claim->Reason;
-
+        if (robot->Photo == nullptr)
+            cmd->Parameters["@PHOTO"]->Value = DBNull::Value;
+        else
+            cmd->Parameters["@PHOTO"]->Value = robot->Photo;
 
 
         //Paso 3: Ejecutar la sentencia de BD
@@ -447,7 +451,8 @@ List<Passenger^>^ RCPersistance::Persistance::QueryAllPassengers()
             robot->UbiActual = reader["UBI_ACTUAL"]->ToString();
 
             robot->claim->Reason = reader["REASON"]->ToString();
-
+            if (!DBNull::Value->Equals(reader["PHOTO"]))
+                robot->Photo = (array<Byte>^)reader["PHOTO"];
 
 
             robotsList->Add(robot);
@@ -491,6 +496,7 @@ void RCPersistance::Persistance::UpdatePassenger(Passenger^ robot)
         cmd->Parameters->Add("@UBI_ACTUAL", System::Data::SqlDbType::VarChar, 100);
 
         cmd->Parameters->Add("@REASON", System::Data::SqlDbType::VarChar, 1000);
+        cmd->Parameters->Add("@PHOTO", System::Data::SqlDbType::Image);
 
         cmd->Prepare();
 
@@ -509,7 +515,10 @@ void RCPersistance::Persistance::UpdatePassenger(Passenger^ robot)
         cmd->Parameters["@UBI_ACTUAL"]->Value = robot->UbiActual;
 
         cmd->Parameters["@REASON"]->Value = robot->claim->Reason;
-
+        if (robot->Photo == nullptr)
+            cmd->Parameters["@PHOTO"]->Value = DBNull::Value;
+        else
+            cmd->Parameters["@PHOTO"]->Value = robot->Photo;
 
 
         //Paso 3: Se ejecuta las sentncia SQL
@@ -604,6 +613,9 @@ Passenger^ RCPersistance::Persistance::QueryPassengerByUserName(String^ Passseng
             robot->UbiActual = reader["UBI_ACTUAL"]->ToString();
 
             robot->claim->Reason = reader["REASON"]->ToString();
+
+            if (!DBNull::Value->Equals(reader["PHOTO"]))
+                robot->Photo = (array<Byte>^)reader["PHOTO"];
 
         }
     }
@@ -1562,6 +1574,7 @@ void RCPersistance::Persistance::AddDriverTable(Driver^ driver)
         cmd->Parameters->Add("@QUALIFICATION", System::Data::SqlDbType::Int);
         cmd->Parameters->Add("@UBI_ACTUAL", System::Data::SqlDbType::VarChar, 100);
         cmd->Parameters->Add("@NUMVIAJESCOM", System::Data::SqlDbType::Int);
+        cmd->Parameters->Add("@PHOTO", System::Data::SqlDbType::Image);
 
         //Atributos del vehículo
         cmd->Parameters->Add("@MODEL", System::Data::SqlDbType::VarChar, 100);
@@ -1603,6 +1616,10 @@ void RCPersistance::Persistance::AddDriverTable(Driver^ driver)
         cmd->Parameters["@QUALIFICATION"]->Value = driver->Qualification;
         cmd->Parameters["@UBI_ACTUAL"]->Value = driver->UbiActual;
         cmd->Parameters["@NUMVIAJESCOM"]->Value = driver->NumberOfCompletedTrips;
+        if (driver->Photo == nullptr)
+            cmd->Parameters["@PHOTO"]->Value = DBNull::Value;
+        else
+            cmd->Parameters["@PHOTO"]->Value = driver->Photo;
 
         cmd->Parameters["@MODEL"]->Value = driver->vehicle->Model;
         cmd->Parameters["@SEATS"]->Value = driver->vehicle->Seats;
@@ -1639,6 +1656,7 @@ void RCPersistance::Persistance::AddDriverTable(Driver^ driver)
         cmd->Parameters["@PUNTOSXRUTA"]->Value = driver->Rutasa->Puntos_x_volatil;
         cmd->Parameters["@PUNTOSYRUTA"]->Value = driver->Rutasa->Puntos_y_volatil;
 
+        sum = "";
         for each (String ^ p in driver->Rutasa->Puntos_x_fijo) {
             if (sum == "") {
                 sum = sum + p;
@@ -1712,6 +1730,9 @@ List<Driver^>^ RCPersistance::Persistance::QueryAllDriversTable()
             driver->UbiActual = reader["UBI_ACTUAL"]->ToString();
             driver->NumberOfCompletedTrips = Convert::ToInt32(reader["NUMVIAJESCOM"]->ToString());
 
+            if (!DBNull::Value->Equals(reader["PHOTO"]))
+                driver->Photo = (array<Byte>^)reader["PHOTO"];
+
             driver->vehicle->Model = reader["MODEL"]->ToString();
             driver->vehicle->Seats = Convert::ToInt32(reader["SEATS"]->ToString());
             driver->vehicle->PlateNumber = reader["PLATE_NUMBER"]->ToString();
@@ -1780,6 +1801,7 @@ void RCPersistance::Persistance::UpdateDriverTable(Driver^ driver)
         cmd->Parameters->Add("@QUALIFICATION", System::Data::SqlDbType::Int);
         cmd->Parameters->Add("@UBI_ACTUAL", System::Data::SqlDbType::VarChar, 100);
         cmd->Parameters->Add("@NUMVIAJESCOM", System::Data::SqlDbType::Int);
+        cmd->Parameters->Add("@PHOTO", System::Data::SqlDbType::Image);
 
         //Atributos del vehículo
         cmd->Parameters->Add("@MODEL", System::Data::SqlDbType::VarChar, 100);
@@ -1839,6 +1861,10 @@ void RCPersistance::Persistance::UpdateDriverTable(Driver^ driver)
         cmd->Parameters["@QUALIFICATION"]->Value = driver->Qualification;
         cmd->Parameters["@UBI_ACTUAL"]->Value = driver->UbiActual;
         cmd->Parameters["@NUMVIAJESCOM"]->Value = driver->NumberOfCompletedTrips;
+        if (driver->Photo == nullptr)
+            cmd->Parameters["@PHOTO"]->Value = DBNull::Value;
+        else
+            cmd->Parameters["@PHOTO"]->Value = driver->Photo;
 
         cmd->Parameters["@MODEL"]->Value = driver->vehicle->Model;
         cmd->Parameters["@SEATS"]->Value = driver->vehicle->Seats;
@@ -1876,6 +1902,7 @@ void RCPersistance::Persistance::UpdateDriverTable(Driver^ driver)
         cmd->Parameters["@PUNTOSXRUTA"]->Value = driver->Rutasa->Puntos_x_volatil;
         cmd->Parameters["@PUNTOSYRUTA"]->Value = driver->Rutasa->Puntos_y_volatil;
 
+        sum = "";
         for each (String ^ p in driver->Rutasa->Puntos_x_fijo) {
             if (sum == "") {
                 sum = sum + p;
@@ -1981,6 +2008,9 @@ Driver^ RCPersistance::Persistance::QueryDriverTableByUsername(String^ username)
             driver->Qualification = Convert::ToInt32(reader["QUALIFICATION"]->ToString());
             driver->UbiActual = reader["UBI_ACTUAL"]->ToString();
             driver->NumberOfCompletedTrips = Convert::ToInt32(reader["NUMVIAJESCOM"]->ToString());
+
+            if (!DBNull::Value->Equals(reader["PHOTO"]))
+                driver->Photo = (array<Byte>^)reader["PHOTO"];
 
             driver->vehicle->Model = reader["MODEL"]->ToString();
             driver->vehicle->Seats = Convert::ToInt32(reader["SEATS"]->ToString());

@@ -144,6 +144,7 @@ namespace GUIApp {
 			this->btnAcceptPassenger->TabIndex = 22;
 			this->btnAcceptPassenger->Text = L"ACEPTAR PASAJERO";
 			this->btnAcceptPassenger->UseVisualStyleBackColor = true;
+			this->btnAcceptPassenger->Click += gcnew System::EventHandler(this, &TripRequest::btnAcceptPassenger_Click);
 			// 
 			// label7
 			// 
@@ -285,5 +286,12 @@ namespace GUIApp {
 			g->DrawLine(pen, x, y, x2, y2);
 		}
 	}
+private: System::Void btnAcceptPassenger_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	user->viaje->Passengers->Add(pasajero);
+
+	Service::UpdateDriver(user);
+	this->Close();
+}
 };
 }

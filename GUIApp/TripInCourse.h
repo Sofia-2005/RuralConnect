@@ -480,8 +480,6 @@ private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows:
 		int width = pictureBox1->Width;
 		int height = pictureBox1->Height;
 
-		if (counter == 1) {
-			counter++;
 			int x = 50, y = 50, x2 = 0, y2 = 0;
 			bool primera = true;
 
@@ -504,18 +502,17 @@ private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows:
 				y2 = a1[1];
 				g->DrawLine(pen, x, y, x2, y2);
 			}
-		}
-		else {
+
 			// Convertir latitud y longitud a coordenadas de píxeles
-			int x = (int)((latitude - latTopLeft) / (latBottomRight - latTopLeft) * width);
-			int y = (int)((longitude - lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
+			x = (int)((latitude - latTopLeft) / (latBottomRight - latTopLeft) * width);
+			y = (int)((longitude - lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
 
 			// Dibujar el punto en el mapa
 			//System::Drawing::Graphics^ g = pictureBox1->CreateGraphics();
-			Graphics^ g = e->Graphics;
-			int radius = 5; // Radio del punto
+			g = e->Graphics;
+			radius = 5; // Radio del punto
 			g->FillEllipse(System::Drawing::Brushes::Blue, x - radius, y - radius, radius * 2, radius * 2);
-		}
+	
 
 }
 private: System::Void txtLat_TextChanged(System::Object^ sender, System::EventArgs^ e) {
