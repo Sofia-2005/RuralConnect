@@ -18,6 +18,7 @@
     <ClCompile Include="AdvertisementForm.cpp" />
     <ClCompile Include="TripRequest.cpp" />
     <ClCompile Include="ReportPasajerosAbordo.cpp" />
+    <ClCompile Include="deleteAccount.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LoginForm.cpp">
@@ -57,5 +58,6 @@
     <ClInclude Include="ReportForm.h" />
     <ClInclude Include="TripRequest.h" />
     <ClInclude Include="ReportPasajerosAbordo.h" />
+    <ClInclude Include="deleteAccount.h" />
   </ItemGroup>
 </Project>

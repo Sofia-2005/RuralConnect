@@ -624,7 +624,7 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 private: System::Void TripInCourse_Load(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
-
+	User->NumberOfCompletedTrips = User->NumberOfCompletedTrips + 1;
 	principal->Show();
 	this->Close();
 

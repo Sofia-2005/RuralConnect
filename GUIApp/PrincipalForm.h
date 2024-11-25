@@ -1,5 +1,7 @@
 #pragma once
 #include "FindTrip.h"
+#include "deleteAccount.h"
+
 
 namespace GUIApp {
 
@@ -19,6 +21,8 @@ namespace GUIApp {
 	public:
 
 		Passenger^ User;
+	private: System::Windows::Forms::Button^ button1;
+	public:
 		Form^ login;
 		MyForm(RuralConnect::Passenger^ user, Form^ log)
 		{
@@ -83,7 +87,6 @@ namespace GUIApp {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm::typeid));
 			this->PhotoPasajero = (gcnew System::Windows::Forms::PictureBox());
 			this->btnLogout = (gcnew System::Windows::Forms::Button());
 			this->label2 = (gcnew System::Windows::Forms::Label());
@@ -96,13 +99,13 @@ namespace GUIApp {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->txtNumeroViajes = (gcnew System::Windows::Forms::Label());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PhotoPasajero))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// PhotoPasajero
 			// 
 			this->PhotoPasajero->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-		//	this->PhotoPasajero->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"PhotoPasajero.Image")));
 			this->PhotoPasajero->Location = System::Drawing::Point(28, 82);
 			this->PhotoPasajero->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->PhotoPasajero->Name = L"PhotoPasajero";
@@ -223,12 +226,24 @@ namespace GUIApp {
 			this->txtNumeroViajes->TabIndex = 12;
 			this->txtNumeroViajes->Text = L"Número";
 			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(500, 11);
+			this->button1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(115, 27);
+			this->button1->TabIndex = 13;
+			this->button1->Text = L"Eliminar cuenta";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ActiveCaption;
 			this->ClientSize = System::Drawing::Size(627, 431);
+			this->Controls->Add(this->button1);
 			this->Controls->Add(this->txtNumeroViajes);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label1);
@@ -333,6 +348,10 @@ private: System::Void btPhotoPass_Click(System::Object^ sender, System::EventArg
 	PhotoPasajero->Image->Save(ms, System::Drawing::Imaging::ImageFormat::Jpeg);
 	User->Photo = ms->ToArray();
 	Service::UpdatePassenger(User);
+}
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	deleteAccount^ f = gcnew deleteAccount(nullptr, User, this, login);
+	f->Show();
 }
 };
 }

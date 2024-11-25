@@ -1,7 +1,7 @@
 #pragma once
 
 #include "DriverPage.h"
-
+#include "deleteAccount.h"
 
 namespace GUIApp {
 
@@ -19,6 +19,8 @@ namespace GUIApp {
 	{
 	public:
 		static Driver^ User;
+	private: System::Windows::Forms::Button^ button2;
+	public:
 		Form^ login;
 		PrincipalFormDriver(RuralConnect::Driver^ user, Form^ log)
 		{
@@ -28,6 +30,8 @@ namespace GUIApp {
 			//
 			login = log;
 			this->User = user;
+			label5->Text = User->vehicle->Model;
+			//txtCompletedTrips->Text = ""+ User->NumberOfCompletedTrips;
 		}
 		//GUIApp::PrincipalFormDriver^ principalForm = gcnew GUIApp::PrincipalFormDriver(User);
 
@@ -102,6 +106,7 @@ namespace GUIApp {
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->btn_CompletedTripReport = (gcnew System::Windows::Forms::Button());
 			this->btnLogout = (gcnew System::Windows::Forms::Button());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PhotoDriver))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -240,11 +245,23 @@ namespace GUIApp {
 			this->btnLogout->UseVisualStyleBackColor = true;
 			this->btnLogout->Click += gcnew System::EventHandler(this, &PrincipalFormDriver::btnLogout_Click);
 			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(483, 11);
+			this->button2->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(144, 31);
+			this->button2->TabIndex = 26;
+			this->button2->Text = L"Eliminar cuenta";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &PrincipalFormDriver::button2_Click_1);
+			// 
 			// PrincipalFormDriver
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(640, 419);
+			this->Controls->Add(this->button2);
 			this->Controls->Add(this->btnLogout);
 			this->Controls->Add(this->btn_CompletedTripReport);
 			this->Controls->Add(this->label5);
@@ -301,6 +318,10 @@ private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArg
 private: System::Void btnLogout_Click(System::Object^ sender, System::EventArgs^ e) {
 	login->Show();
 	this->Close();
+}
+private: System::Void button2_Click_1(System::Object^ sender, System::EventArgs^ e) {
+	deleteAccount^ f = gcnew deleteAccount(User, nullptr, this, login);
+	f->Show();
 }
 };
 }
