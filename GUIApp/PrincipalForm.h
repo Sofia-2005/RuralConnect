@@ -19,12 +19,14 @@ namespace GUIApp {
 	public:
 
 		Passenger^ User;
-		MyForm(RuralConnect::Passenger^ user)
+		Form^ login;
+		MyForm(RuralConnect::Passenger^ user, Form^ log)
 		{
 			InitializeComponent();
 			//
 			//TODO: agregar código de constructor aquí
 			//
+			login = log;
 			this->User = user;
 		}
 
@@ -39,8 +41,10 @@ namespace GUIApp {
 				delete components;
 			}
 		}
+	private: System::Windows::Forms::PictureBox^ PhotoPasajero;
+	protected:
 
-	private: System::Windows::Forms::PictureBox^ pictureBox1;
+
 	private: System::Windows::Forms::Button^ btnLogout;
 
 
@@ -79,7 +83,8 @@ namespace GUIApp {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm::typeid));
+			this->PhotoPasajero = (gcnew System::Windows::Forms::PictureBox());
 			this->btnLogout = (gcnew System::Windows::Forms::Button());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->txtCategoria = (gcnew System::Windows::Forms::Label());
@@ -91,19 +96,20 @@ namespace GUIApp {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->txtNumeroViajes = (gcnew System::Windows::Forms::Label());
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PhotoPasajero))->BeginInit();
 			this->SuspendLayout();
 			// 
-			// pictureBox1
+			// PhotoPasajero
 			// 
-			this->pictureBox1->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->pictureBox1->Location = System::Drawing::Point(28, 82);
-			this->pictureBox1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(202, 235);
-			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
-			this->pictureBox1->TabIndex = 1;
-			this->pictureBox1->TabStop = false;
+			this->PhotoPasajero->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+		//	this->PhotoPasajero->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"PhotoPasajero.Image")));
+			this->PhotoPasajero->Location = System::Drawing::Point(28, 82);
+			this->PhotoPasajero->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->PhotoPasajero->Name = L"PhotoPasajero";
+			this->PhotoPasajero->Size = System::Drawing::Size(202, 235);
+			this->PhotoPasajero->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+			this->PhotoPasajero->TabIndex = 1;
+			this->PhotoPasajero->TabStop = false;
 			// 
 			// btnLogout
 			// 
@@ -234,13 +240,13 @@ namespace GUIApp {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->txtUserName);
 			this->Controls->Add(this->btnLogout);
-			this->Controls->Add(this->pictureBox1);
+			this->Controls->Add(this->PhotoPasajero);
 			this->HelpButton = true;
 			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PhotoPasajero))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -258,6 +264,27 @@ private: System::Void txtCategoria_Click(System::Object^ sender, System::EventAr
 }
 private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	txtUserName->Text = User->Name;
+	//Codigoo para establecer la imagene en el form
+	if (User->Photo != nullptr && User->Photo->Length > 0) {
+		// Convertir el array<Byte>^ en una imagen
+		System::IO::MemoryStream^ memoryStream = gcnew System::IO::MemoryStream(User->Photo);
+		try {
+
+			PhotoPasajero->Image = System::Drawing::Image::FromStream(memoryStream);
+		}
+		catch (System::Exception^ ex) {
+			MessageBox::Show("Error al cargar la imagen: " + ex->Message);
+		}
+		finally {
+			delete memoryStream; // Liberar recursos
+		}
+	}
+	else {
+		PhotoPasajero->Image = nullptr; // Opcional: Establecer imagen predeterminada
+		//PhotoPasajero->Image = System::Drawing::Image::FromFile("C:\\Users\\USER\\OneDrive\\Imágenes\\ilustracion-vectorial-de-dibujos-animados-los-ninos-van-a-la-escuela-mj42xy.jpg");
+
+	}
+
 	if (User->Qualification == 0) {
 		txtCategoria->Text = "CARBON";
 	}
@@ -282,7 +309,7 @@ private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e)
 }
 private: System::Void btnPlace_Click(System::Object^ sender, System::EventArgs^ e) {
 	// Crear una instancia del nuevo formulario (Form2 en este caso)
-	FindTrip^ newForm = gcnew FindTrip(User);
+	FindTrip^ newForm = gcnew FindTrip(User, this);
 	// Mostrar el nuevo formulario
 	newForm->Show();
 
@@ -290,22 +317,22 @@ private: System::Void btnPlace_Click(System::Object^ sender, System::EventArgs^ 
 	this->Hide();
 }
 private: System::Void btnLogout_Click(System::Object^ sender, System::EventArgs^ e) {
-	this->Hide();  // Ocultar el formulario actual
-	/*LoginForm^ LogOutForm = gcnew LoginForm();
-	LogOutForm->Show();
-	this->Hide();*/
+	login->Show();
+	this->Close();  // Ocultar el formulario actual
 }
 private: System::Void btPhotoPass_Click(System::Object^ sender, System::EventArgs^ e) {
 
 	OpenFileDialog^ ofd = gcnew OpenFileDialog();
 	ofd->Filter = "Image Files (*.jpg;*.jpeg;)|*.jpg;*.jpeg;";
 	if (ofd->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
-		pictureBox1->Image = gcnew Bitmap(ofd->FileName);
+		PhotoPasajero->Image = gcnew Bitmap(ofd->FileName);
+
 	}
 	//Secambia la foto del usuario Acepta cambio
 	System::IO::MemoryStream^ ms = gcnew System::IO::MemoryStream();
-	pictureBox1->Image->Save(ms, System::Drawing::Imaging::ImageFormat::Jpeg);
-	User -> Photo = ms->ToArray();
+	PhotoPasajero->Image->Save(ms, System::Drawing::Imaging::ImageFormat::Jpeg);
+	User->Photo = ms->ToArray();
+	Service::UpdatePassenger(User);
 }
 };
 }

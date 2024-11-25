@@ -17,6 +17,7 @@
     <ClCompile Include="usersReportForm.cpp" />
     <ClCompile Include="AdvertisementForm.cpp" />
     <ClCompile Include="TripRequest.cpp" />
+    <ClCompile Include="ReportPasajerosAbordo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LoginForm.cpp">
@@ -37,9 +38,6 @@
     <ClCompile Include="TripInCourse.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="TripRequestToDriverh.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DriverPage.h" />
@@ -58,5 +56,6 @@
     <ClInclude Include="SelectRoutePassenger.h" />
     <ClInclude Include="ReportForm.h" />
     <ClInclude Include="TripRequest.h" />
+    <ClInclude Include="ReportPasajerosAbordo.h" />
   </ItemGroup>
 </Project>

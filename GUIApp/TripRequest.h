@@ -238,6 +238,7 @@ namespace GUIApp {
 				public:
 					double latTopLeft = -12.074135, lonTopLeft = -77.083166;   // Coordenadas de la esquina superior izquierda
 					double latBottomRight = -12.064391, lonBottomRight = -77.077202; // Coordenadas de la esquina inferior derecha
+					List<Passenger^>^ Plist = gcnew List<Passenger^>();
 	private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 		int x = 50, y = 50, x2 = 0, y2 = 0;
 		bool primera = true;
@@ -289,6 +290,8 @@ namespace GUIApp {
 private: System::Void btnAcceptPassenger_Click(System::Object^ sender, System::EventArgs^ e) {
 
 	user->viaje->Passengers->Add(pasajero);
+	//se agrega pasajero a la lista que no se eliminara
+	Plist->Add(pasajero);
 	if (user->viaje->AvailableSeats > 0) {
 		user->viaje->AvailableSeats = user->vehicle->Seats - 1;
 	}

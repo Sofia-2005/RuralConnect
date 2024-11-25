@@ -21,12 +21,14 @@ namespace GUIApp {
 	{
 	public:
 		static Driver^ User;
-		DriverPage(RuralConnect::Driver^ user)
+		Form^ principal;
+		DriverPage(RuralConnect::Driver^ user, Form^ pp)
 		{
 			InitializeComponent();
 			//
 			//TODO: agregar código de constructor aquí
 			//
+			principal = pp;
 			this->User = user;
 		}
 
@@ -198,7 +200,7 @@ namespace GUIApp {
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void btnMyRoutes_Click(System::Object^ sender, System::EventArgs^ e) {
-		SelectRouteDriver^ Myroutes = gcnew SelectRouteDriver(User);
+		SelectRouteDriver^ Myroutes = gcnew SelectRouteDriver(User, principal, this);
 		Myroutes->Show();
 		this->Hide();
 	}
@@ -209,7 +211,7 @@ namespace GUIApp {
 			User->Rutasa->Puntos_x_volatil = puntoslat;
 			User->Rutasa->Puntos_y_volatil = puntoslon;
 			Service::UpdateDriver(User);
-			PublicRouteDriver^ CreateRoute = gcnew PublicRouteDriver(LatLong, User);
+			PublicRouteDriver^ CreateRoute = gcnew PublicRouteDriver(LatLong, User, principal, this );
 			CreateRoute->Show();
 			this->Hide();
 		}
@@ -218,7 +220,9 @@ namespace GUIApp {
 		}
 	}
 	private: System::Void btnBack_Click(System::Object^ sender, System::EventArgs^ e) {
-		this->Hide();
+		principal->Show();
+		this->Close();
+
 	}
 private: System::Void DriverPage_Load(System::Object^ sender, System::EventArgs^ e) {
 }

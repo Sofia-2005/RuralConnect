@@ -2,6 +2,7 @@
 
 #include "DriverPage.h"
 
+
 namespace GUIApp {
 
 	using namespace System;
@@ -18,14 +19,18 @@ namespace GUIApp {
 	{
 	public:
 		static Driver^ User;
-		PrincipalFormDriver(RuralConnect::Driver^ user)
+		Form^ login;
+		PrincipalFormDriver(RuralConnect::Driver^ user, Form^ log)
 		{
 			InitializeComponent();
 			//
 			//TODO: agregar código de constructor aquí
 			//
+			login = log;
 			this->User = user;
 		}
+		//GUIApp::PrincipalFormDriver^ principalForm = gcnew GUIApp::PrincipalFormDriver(User);
+
 
 	protected:
 		/// <summary>
@@ -44,9 +49,8 @@ namespace GUIApp {
 	private: System::Windows::Forms::Button^ button3;
 
 	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::PictureBox^ PhotoDriver;
 
-
-	private: System::Windows::Forms::PictureBox^ pictureBox1;
 
 	private: System::Windows::Forms::ProgressBar^ pB;
 
@@ -61,6 +65,7 @@ namespace GUIApp {
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::Button^ btn_CompletedTripReport;
+	private: System::Windows::Forms::Button^ btnLogout;
 
 
 
@@ -82,10 +87,11 @@ namespace GUIApp {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(PrincipalFormDriver::typeid));
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->PhotoDriver = (gcnew System::Windows::Forms::PictureBox());
 			this->pB = (gcnew System::Windows::Forms::ProgressBar());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->txtCompletedTrips = (gcnew System::Windows::Forms::Label());
@@ -95,7 +101,8 @@ namespace GUIApp {
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->btn_CompletedTripReport = (gcnew System::Windows::Forms::Button());
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
+			this->btnLogout = (gcnew System::Windows::Forms::Button());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PhotoDriver))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label4
@@ -128,13 +135,17 @@ namespace GUIApp {
 			this->label2->Text = L"Calificación:";
 			this->label2->Click += gcnew System::EventHandler(this, &PrincipalFormDriver::label2_Click);
 			// 
-			// pictureBox1
+			// PhotoDriver
 			// 
-			this->pictureBox1->Location = System::Drawing::Point(29, 52);
-			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(196, 240);
-			this->pictureBox1->TabIndex = 9;
-			this->pictureBox1->TabStop = false;
+			this->PhotoDriver->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"PhotoDriver.Image")));
+			this->PhotoDriver->InitialImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"PhotoDriver.InitialImage")));
+			this->PhotoDriver->Location = System::Drawing::Point(23, 45);
+			this->PhotoDriver->Name = L"PhotoDriver";
+			this->PhotoDriver->Size = System::Drawing::Size(196, 240);
+			this->PhotoDriver->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+			this->PhotoDriver->TabIndex = 9;
+			this->PhotoDriver->TabStop = false;
+			this->PhotoDriver->Click += gcnew System::EventHandler(this, &PrincipalFormDriver::pictureBox1_Click);
 			// 
 			// pB
 			// 
@@ -218,11 +229,23 @@ namespace GUIApp {
 			this->btn_CompletedTripReport->UseVisualStyleBackColor = true;
 			this->btn_CompletedTripReport->Click += gcnew System::EventHandler(this, &PrincipalFormDriver::btn_CompletedTripReport_Click);
 			// 
+			// btnLogout
+			// 
+			this->btnLogout->Location = System::Drawing::Point(12, 11);
+			this->btnLogout->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->btnLogout->Name = L"btnLogout";
+			this->btnLogout->Size = System::Drawing::Size(93, 23);
+			this->btnLogout->TabIndex = 25;
+			this->btnLogout->Text = L"LOGOUT";
+			this->btnLogout->UseVisualStyleBackColor = true;
+			this->btnLogout->Click += gcnew System::EventHandler(this, &PrincipalFormDriver::btnLogout_Click);
+			// 
 			// PrincipalFormDriver
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(640, 419);
+			this->Controls->Add(this->btnLogout);
 			this->Controls->Add(this->btn_CompletedTripReport);
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->label3);
@@ -235,11 +258,11 @@ namespace GUIApp {
 			this->Controls->Add(this->pB);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->label2);
-			this->Controls->Add(this->pictureBox1);
+			this->Controls->Add(this->PhotoDriver);
 			this->Name = L"PrincipalFormDriver";
 			this->Text = L"PrincipalFormDriver";
 			this->Load += gcnew System::EventHandler(this, &PrincipalFormDriver::PrincipalFormDriver_Load);
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PhotoDriver))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -261,8 +284,9 @@ private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e)
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 	// Crear una instancia del nuevo formulario (Form2 en este caso)
-	DriverPage^ newForm = gcnew DriverPage(User);
+	DriverPage^ newForm = gcnew DriverPage(User, this);
 	newForm->Show();
+	
 	this->Hide();
 }
 private: System::Void btn_CompletedTripReport_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -271,6 +295,12 @@ private: System::Void btn_CompletedTripReport_Click(System::Object^ sender, Syst
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void btn_Back_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void btnLogout_Click(System::Object^ sender, System::EventArgs^ e) {
+	login->Show();
+	this->Close();
 }
 };
 }

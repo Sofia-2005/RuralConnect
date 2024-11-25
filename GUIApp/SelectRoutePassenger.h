@@ -34,7 +34,11 @@ namespace GUIApp {
 	public:
 		List<double>^ PuntosLong = gcnew List<double>();
 		Passenger^ User;
-		SelectRoutePassenger(Passenger^ user)
+		Form^ principal;
+	private: System::Windows::Forms::Button^ button2;
+	public:
+		Form^ F2;
+		SelectRoutePassenger(Passenger^ user, Form^ p, Form^ f2)
 		{
 			InitializeComponent();
 			Conductores = Service::QueryAllDrivers();
@@ -44,6 +48,8 @@ namespace GUIApp {
 			}
 			User = user;
 			pictureBox1->Invalidate();
+			principal = p;
+			F2 = f2;
 
 		}
 
@@ -89,6 +95,7 @@ namespace GUIApp {
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->cmbRutas = (gcnew System::Windows::Forms::ComboBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -149,11 +156,22 @@ namespace GUIApp {
 			this->label2->TabIndex = 21;
 			this->label2->Text = L"La ruta seleccionada se muestra de color verde";
 			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(14, 8);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(75, 23);
+			this->button2->TabIndex = 22;
+			this->button2->Text = L"volver";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &SelectRoutePassenger::button2_Click);
+			// 
 			// SelectRoutePassenger
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1303, 631);
+			this->Controls->Add(this->button2);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->label3);
@@ -285,7 +303,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 			LatLong->Add(a);
 		}
 
-		TripDetailsForm^ CreateRoute = gcnew TripDetailsForm(LatLong,p, User);
+		TripDetailsForm^ CreateRoute = gcnew TripDetailsForm(LatLong,p, User, principal, F2, this);
 		CreateRoute->Show();
 		this->Hide();
 	}
@@ -295,6 +313,11 @@ private: System::Void SelectRoutePassenger_Load(System::Object^ sender, System::
 	for (int i = 0; i < Conductores->Count;i++) {
 		cmbRutas->Items->Add(gcnew ComboBoxItem(i, "Ruta " + (i + 1)));
 	}
+}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Close();
+	F2->Show();
+	
 }
 };
 }

@@ -1,5 +1,8 @@
 #pragma once
 #include "AdvertisementForm.h"
+//#include "PrincipalForm.h"
+//#include "FindTrip.h"
+//#include "SelectRoutePassenger.h"
 
 namespace GUIApp {
 
@@ -26,15 +29,21 @@ namespace GUIApp {
 		List<array<double>^>^ LatLong = gcnew List<array<double>^>();
 	public:
 		Driver^ conductor = gcnew Driver();
+	private: System::Windows::Forms::Button^ button3;
+	public:
 
 	public:
+		Form^ f4;
+		Form^ principal;
 		Passenger^ pasajero = gcnew Passenger();
-		RealTimeForm(List<array<double>^>^ a, Driver^ p, Passenger^ pasa)
+		RealTimeForm(List<array<double>^>^ a, Driver^ p, Passenger^ pasa, Form^ F4, Form^ principal2)
 		{
 			InitializeComponent();
 			LatLong = a;
 			conductor = p;
 			pasajero = pasa;
+			f4 = F4;
+			principal = principal2;
 			int x = 0, y = 0;
 			// Tamaño del PictureBox
 			int width = pictureBox1->Width;
@@ -98,6 +107,7 @@ namespace GUIApp {
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->button3 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -109,10 +119,11 @@ namespace GUIApp {
 			this->btnBack->TabIndex = 12;
 			this->btnBack->Text = L"Volver";
 			this->btnBack->UseVisualStyleBackColor = true;
+			this->btnBack->Click += gcnew System::EventHandler(this, &RealTimeForm::btnBack_Click);
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(40, 349);
+			this->button1->Location = System::Drawing::Point(30, 105);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(128, 39);
 			this->button1->TabIndex = 18;
@@ -122,7 +133,7 @@ namespace GUIApp {
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(44, 413);
+			this->button2->Location = System::Drawing::Point(34, 169);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(123, 37);
 			this->button2->TabIndex = 19;
@@ -141,11 +152,22 @@ namespace GUIApp {
 			this->pictureBox1->TabStop = false;
 			this->pictureBox1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &RealTimeForm::pictureBox1_Paint);
 			// 
+			// button3
+			// 
+			this->button3->Location = System::Drawing::Point(45, 463);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(123, 37);
+			this->button3->TabIndex = 21;
+			this->button3->Text = L"Terminar viaje";
+			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &RealTimeForm::button3_Click);
+			// 
 			// RealTimeForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1227, 545);
+			this->Controls->Add(this->button3);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
@@ -218,6 +240,19 @@ private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows:
 		y2 = a1[1];
 		g->DrawLine(pen, x, y, x2, y2);
 	}
+}
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+	conductor->viaje->Passengers->Remove(pasajero);
+	Service::UpdateDriver(conductor);
+
+	this->Close();
+	principal->Show();
+
+}
+private: System::Void btnBack_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Close();
+	f4->Show();
+
 }
 };
 }

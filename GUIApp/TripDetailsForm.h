@@ -28,14 +28,21 @@ namespace GUIApp {
 	private: System::Windows::Forms::Label^ label9;
 	private: System::Windows::Forms::Label^ label10;
 	public:
+		Form^ principal;
+		Form^ f2;
+		Form^ f3;
 		Passenger^ pasajero = gcnew Passenger();
-		TripDetailsForm(List<array<double>^>^ a, Driver^ p, Passenger^ pasa )
+		TripDetailsForm(List<array<double>^>^ a, Driver^ p, Passenger^ pasa, Form^ prin, Form^ F2, Form^ F3)
 		{
 			InitializeComponent();
 			LatLong = a;
 			conductor = p;
 			pasajero = pasa;
 			int x = 0, y = 0;
+			principal = prin;
+			f2 = F2;
+			f3 = F3;
+
 			// Tamaño del PictureBox
 			int width = pictureBox1->Width;
 			int height = pictureBox1->Height;
@@ -267,7 +274,8 @@ namespace GUIApp {
 		double latBottomRight = -12.064391, lonBottomRight = -77.077202; // Coordenadas de la esquina inferior derecha
 
 	private: System::Void btnBack_Click(System::Object^ sender, System::EventArgs^ e) {
-		this->Hide();
+		this->Close();
+		f3->Show();
 	}
 private: System::Void btnAcceptTrip_Click(System::Object^ sender, System::EventArgs^ e) {
 	
@@ -278,7 +286,7 @@ private: System::Void btnAcceptTrip_Click(System::Object^ sender, System::EventA
 	conductor->solicitud = soli;
 	Service::UpdateDriver(conductor);
 
-	RealTimeForm^ newForm = gcnew RealTimeForm(LatLong,conductor,pasajero);
+	RealTimeForm^ newForm = gcnew RealTimeForm(LatLong,conductor,pasajero, this, principal);
 	newForm->Show();
 	this->Hide();
 }

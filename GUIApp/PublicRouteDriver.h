@@ -26,12 +26,16 @@ namespace GUIApp {
 	private: System::Windows::Forms::Timer^ timer2;
 	public:
 		List<array<int>^>^ ListaXY = gcnew List<array<int>^>();
-		PublicRouteDriver(List<array<double>^>^ a, Driver^ p)
+		Form^ principal;
+		Form^ f3;
+		PublicRouteDriver(List<array<double>^>^ a, Driver^ p, Form^ pp, Form^ ff3)
 		{
 			InitializeComponent();
 			LatLong = a;
 			this->User = p;
 			int x = 0, y = 0;
+			principal = pp;
+			f3 = ff3;
 			// Tamaño del PictureBox
 			int width = pictureBox1->Width;
 			int height = pictureBox1->Height;
@@ -142,6 +146,7 @@ namespace GUIApp {
 			this->btnBack->TabIndex = 8;
 			this->btnBack->Text = L"Volver";
 			this->btnBack->UseVisualStyleBackColor = true;
+			this->btnBack->Click += gcnew System::EventHandler(this, &PublicRouteDriver::btnBack_Click);
 			// 
 			// label3
 			// 
@@ -204,7 +209,7 @@ private: System::Void btnPublishRoutes_Click(System::Object^ sender, System::Eve
 	v->AvailableSeats = User->vehicle->Seats;
 	User->viaje = v;
 	Service::UpdateDriver(User);
-	TripInCourse^ PublishRoutes = gcnew TripInCourse(LatLong, User);
+	TripInCourse^ PublishRoutes = gcnew TripInCourse(LatLong, User, this, principal);
 	PublishRoutes->Show();
 	this->Hide();
 }
@@ -244,6 +249,10 @@ private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) 
 	}
 }
 private: System::Void timer2_Tick(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void btnBack_Click(System::Object^ sender, System::EventArgs^ e) {
+	f3->Show();
+	this->Close();
 }
 };
 }

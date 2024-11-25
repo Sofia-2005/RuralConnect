@@ -79,6 +79,7 @@ namespace GUIApp {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(RegisterForm::typeid));
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
@@ -263,6 +264,9 @@ namespace GUIApp {
 			// FotoUserReg
 			// 
 			this->FotoUserReg->BackColor = System::Drawing::SystemColors::ScrollBar;
+			this->FotoUserReg->ErrorImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"FotoUserReg.ErrorImage")));
+			this->FotoUserReg->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"FotoUserReg.Image")));
+			this->FotoUserReg->InitialImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"FotoUserReg.InitialImage")));
 			this->FotoUserReg->Location = System::Drawing::Point(318, 53);
 			this->FotoUserReg->Name = L"FotoUserReg";
 			this->FotoUserReg->Size = System::Drawing::Size(196, 204);
@@ -284,7 +288,7 @@ namespace GUIApp {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(545, 438);
+			this->ClientSize = System::Drawing::Size(611, 438);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->FotoUserReg);
 			this->Controls->Add(this->btn_back);

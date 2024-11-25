@@ -33,10 +33,14 @@ namespace GUIApp {
 	public:
 	public:
 		List<double>^ PuntosLong = gcnew List<double>();
-		SelectRouteDriver(RuralConnect::Driver^ user)
+		Form^ principal;
+		Form^ f2;
+		SelectRouteDriver(RuralConnect::Driver^ user, Form^ pp, Form^ ff2)
 		{
 			InitializeComponent();
 			this->User = user;
+			principal = pp;
+			f2 = ff2;
 			for (int i = 0; i < User->Rutasa->Puntos_x_fijo->Count;i++) {
 				RutasLat->Add(User->Rutasa->Puntos_x_fijo[i]);
 				RutasLon->Add(User->Rutasa->Puntos_y_fijo[i]);
@@ -196,7 +200,9 @@ namespace GUIApp {
 		bool cambioRuta = false;
 		int indice=0;
 	private: System::Void btnBack_Click(System::Object^ sender, System::EventArgs^ e) {
-		this->Hide();
+		f2->Show();
+		this->Close();
+		
 	}
 private: System::Void btnRouteDetails_Click(System::Object^ sender, System::EventArgs^ e) {
 
@@ -310,7 +316,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 			LatLong->Add(a);
 		}
 
-		PublicRouteDriver^ CreateRoute = gcnew PublicRouteDriver(LatLong, User);
+		PublicRouteDriver^ CreateRoute = gcnew PublicRouteDriver(LatLong, User, principal, this);
 		CreateRoute->Show();
 		this->Hide();
 	}

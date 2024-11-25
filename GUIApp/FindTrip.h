@@ -22,10 +22,12 @@ namespace GUIApp {
 	{
 	public:
 		Bitmap^ originalImage;
+		Form^ Principal;
+
 	private: System::Windows::Forms::Label^ label2;
 	public:
 		Passenger^ User;
-		FindTrip(RuralConnect::Passenger^ user)
+		FindTrip(RuralConnect::Passenger^ user, Form^ p)
 		{
 			InitializeComponent();
 			originalImage = gcnew Bitmap(pictureBox1->Image);
@@ -36,6 +38,7 @@ namespace GUIApp {
 			User->UbiActual = "-12.071704 -77.080154";
 			pictureBox1->Invalidate();
 			Service::UpdatePassenger(User);
+			Principal = p;
 		}
 
 	protected:
@@ -204,10 +207,10 @@ private: System::Void btnFindTrip_Click(System::Object^ sender, System::EventArg
 
 			User->DesiredDestination = latitude + " " + longitude;
 			Service::UpdatePassenger(User);
-			SelectRoutePassenger^ f = gcnew SelectRoutePassenger(User);
+			SelectRoutePassenger^ f = gcnew SelectRoutePassenger(User, Principal, this);
 			f->Show();
 
-			this->Close();
+			this->Hide();
 		}
 		else {
 			MessageBox::Show("Debe elegir su destino");
@@ -219,7 +222,8 @@ private: System::Void btnFindTrip_Click(System::Object^ sender, System::EventArg
 	}
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-	this->Hide();
+	Principal->Show();
+	this->Close();
 }
 private: System::Void pictureBox1_MouseClick(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
 	//cmabiamos coordenadas pues la imagen esta volteada

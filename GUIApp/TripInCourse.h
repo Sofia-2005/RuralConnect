@@ -1,5 +1,9 @@
 #pragma once
 #include "TripRequest.h"
+#include "ReportPasajerosAbordo.h"
+
+//#include "PrincipalFormDriver.h"
+
 
 
 namespace GUIApp {
@@ -38,14 +42,29 @@ namespace GUIApp {
 
 	public:
 		Driver^ User;
-		List<array<double>^>^ LatLong = gcnew List<array<double>^>();
+
 	public:
-		TripInCourse(List<array<double>^>^ a, Driver^ p)
+
+
+	private: System::Windows::Forms::Button^ button2;
+	private: System::Windows::Forms::Button^ button3;
+
+
+
+	public:
+		List<array<double>^>^ LatLong = gcnew List<array<double>^>();
+		Form^ principal;
+		Form^ f4;
+	public:
+		TripInCourse(List<array<double>^>^ a, Driver^ p, Form^ pp, Form^ ff4)
 		{
+			
 			InitializeComponent();
 			LatLong = a;
 			this->User = p;
 			int x = 0, y = 0;
+			principal = pp;
+			f4 = ff4;
 			// Tamaño del PictureBox
 			int width = pictureBox1->Width;
 			int height = pictureBox1->Height;
@@ -142,6 +161,8 @@ namespace GUIApp {
 			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->btnSolicitud = (gcnew System::Windows::Forms::Button());
 			this->label10 = (gcnew System::Windows::Forms::Label());
+			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->button3 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox3))->BeginInit();
@@ -152,7 +173,7 @@ namespace GUIApp {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(12, 65);
+			this->label1->Location = System::Drawing::Point(12, 66);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(117, 16);
 			this->label1->TabIndex = 0;
@@ -237,7 +258,7 @@ namespace GUIApp {
 			// button1
 			// 
 			this->button1->Location = System::Drawing::Point(0, 0);
-			this->button1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->button1->Margin = System::Windows::Forms::Padding(4);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(100, 28);
 			this->button1->TabIndex = 6;
@@ -253,7 +274,7 @@ namespace GUIApp {
 			// txt_CantPersonas
 			// 
 			this->txt_CantPersonas->Location = System::Drawing::Point(0, 0);
-			this->txt_CantPersonas->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->txt_CantPersonas->Margin = System::Windows::Forms::Padding(4);
 			this->txt_CantPersonas->Name = L"txt_CantPersonas";
 			this->txt_CantPersonas->Size = System::Drawing::Size(132, 22);
 			this->txt_CantPersonas->TabIndex = 4;
@@ -261,7 +282,7 @@ namespace GUIApp {
 			// pictureBox2
 			// 
 			this->pictureBox2->Location = System::Drawing::Point(0, 0);
-			this->pictureBox2->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->pictureBox2->Margin = System::Windows::Forms::Padding(4);
 			this->pictureBox2->Name = L"pictureBox2";
 			this->pictureBox2->Size = System::Drawing::Size(133, 62);
 			this->pictureBox2->TabIndex = 3;
@@ -269,12 +290,13 @@ namespace GUIApp {
 			// 
 			// pictureBox3
 			// 
-			this->pictureBox3->Location = System::Drawing::Point(0, 0);
-			this->pictureBox3->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->pictureBox3->Location = System::Drawing::Point(3, -1);
+			this->pictureBox3->Margin = System::Windows::Forms::Padding(4);
 			this->pictureBox3->Name = L"pictureBox3";
 			this->pictureBox3->Size = System::Drawing::Size(133, 62);
 			this->pictureBox3->TabIndex = 2;
 			this->pictureBox3->TabStop = false;
+			this->pictureBox3->Click += gcnew System::EventHandler(this, &TripInCourse::pictureBox3_Click);
 			// 
 			// label5
 			// 
@@ -296,7 +318,7 @@ namespace GUIApp {
 			// 
 			this->pictureBox4->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox4.Image")));
 			this->pictureBox4->Location = System::Drawing::Point(975, 272);
-			this->pictureBox4->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->pictureBox4->Margin = System::Windows::Forms::Padding(4);
 			this->pictureBox4->Name = L"pictureBox4";
 			this->pictureBox4->Size = System::Drawing::Size(232, 126);
 			this->pictureBox4->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
@@ -307,7 +329,7 @@ namespace GUIApp {
 			// 
 			this->pictureBox5->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox5.Image")));
 			this->pictureBox5->Location = System::Drawing::Point(1160, 124);
-			this->pictureBox5->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->pictureBox5->Margin = System::Windows::Forms::Padding(4);
 			this->pictureBox5->Name = L"pictureBox5";
 			this->pictureBox5->Size = System::Drawing::Size(47, 38);
 			this->pictureBox5->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
@@ -336,7 +358,7 @@ namespace GUIApp {
 			// txtCantPersona
 			// 
 			this->txtCantPersona->Location = System::Drawing::Point(975, 220);
-			this->txtCantPersona->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->txtCantPersona->Margin = System::Windows::Forms::Padding(4);
 			this->txtCantPersona->Name = L"txtCantPersona";
 			this->txtCantPersona->Size = System::Drawing::Size(103, 22);
 			this->txtCantPersona->TabIndex = 11;
@@ -354,7 +376,7 @@ namespace GUIApp {
 			// 
 			this->btnSolicitud->ForeColor = System::Drawing::SystemColors::InactiveCaptionText;
 			this->btnSolicitud->Location = System::Drawing::Point(975, 102);
-			this->btnSolicitud->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->btnSolicitud->Margin = System::Windows::Forms::Padding(4);
 			this->btnSolicitud->Name = L"btnSolicitud";
 			this->btnSolicitud->Size = System::Drawing::Size(163, 60);
 			this->btnSolicitud->TabIndex = 9;
@@ -372,12 +394,34 @@ namespace GUIApp {
 			this->label10->TabIndex = 16;
 			this->label10->Text = L"personas ...";
 			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(999, 450);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(199, 51);
+			this->button2->TabIndex = 18;
+			this->button2->Text = L"Reporte de pasajeros a bordo";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &TripInCourse::button2_Click);
+			// 
+			// button3
+			// 
+			this->button3->Location = System::Drawing::Point(1030, 558);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(149, 42);
+			this->button3->TabIndex = 19;
+			this->button3->Text = L"Terminar Viaje";
+			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &TripInCourse::button3_Click);
+			// 
 			// TripInCourse
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ActiveCaption;
-			this->ClientSize = System::Drawing::Size(1252, 612);
+			this->ClientSize = System::Drawing::Size(1279, 612);
+			this->Controls->Add(this->button3);
+			this->Controls->Add(this->button2);
 			this->Controls->Add(this->label10);
 			this->Controls->Add(this->pictureBox4);
 			this->Controls->Add(this->pictureBox5);
@@ -404,6 +448,7 @@ namespace GUIApp {
 			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"TripInCourse";
 			this->Text = L"Viaje en curso";
+			this->Load += gcnew System::EventHandler(this, &TripInCourse::TripInCourse_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox3))->EndInit();
@@ -537,6 +582,24 @@ private: System::Void btnSolicitud_Click(System::Object^ sender, System::EventAr
 	String^ cantidad = ExecuteCantPeople(envio).ToString();
 	
 	txtCantPersona->Text = cantidad;
+}
+private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+
+//aca de debe poner los pasajeros del driver 
+}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	ReportPasajerosAbordo^ newform = gcnew ReportPasajerosAbordo(User);
+	newform->Show();
+}
+private: System::Void TripInCourse_Load(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+	
+	principal->Show();
+	this->Close();
+
+}
+private: System::Void pictureBox3_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }
