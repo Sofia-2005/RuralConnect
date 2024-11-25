@@ -203,6 +203,34 @@ Driver^ RuralService::Service::QueryDriverbyUsername(String^ username)
     return conductor;
 }
 
+Dictionary<String^, double>^ RuralService::Service::QueryUserByUserType()
+{
+    Dictionary<String^, double>^ dict = gcnew Dictionary<String^, double>();
+    dict->Add("Pasajero", 0);
+    dict->Add("Conductor", 0);
+
+    // Obtener las listas de conductores y pasajeros
+    List<Driver^>^ driversList = QueryAllDrivers();  // Consulta la lista de conductores
+    List<Passenger^>^ passengersList = QueryAllPassengers();  // Consulta la lista de pasajeros
+
+    // Contar la cantidad de conductores
+    dict["Conductor"] = driversList->Count;
+
+    // Contar la cantidad de pasajeros
+    dict["Pasajero"] = passengersList->Count;
+
+    /*List<Driver^>^ usersList = QueryAllDrivers();
+    for (int i = 0; i < usersList->Count; i++) {
+        for (int j = 0; j < usersList[i]->Count; j++) {
+            if (ordersList[i]->OrderDishes[j]->Dish->GetType() == EntranceDish::typeid)
+                dict["Entradas"] += ordersList[i]->OrderDishes[j]->SubTotal;
+            if (ordersList[i]->OrderDishes[j]->Dish->GetType() == MainDish::typeid)
+                dict["Platos principales"] += ordersList[i]->OrderDishes[j]->SubTotal;
+        }
+    }*/
+    return dict;
+}
+
 int RuralService::Service::QueryDriverPassengerbyUsername(String^ username, String^ password)
 {
     DriverList = Service::QueryAllDrivers();

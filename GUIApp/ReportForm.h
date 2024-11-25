@@ -37,12 +37,23 @@ namespace GUIApp {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::DataVisualization::Charting::Chart^ GeneralReportChart;
+	private: System::Windows::Forms::DataVisualization::Charting::Chart^ AmountOfCompletedTripsByDriverChart;
+	protected:
+
+	protected:
+
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::DataVisualization::Charting::Chart^ TotalAmountReportChart;
+	private: System::Windows::Forms::DataVisualization::Charting::Chart^ DriverEarningChart;
+
 	private: System::Windows::Forms::Label^ label3;
-	private: System::Windows::Forms::DataVisualization::Charting::Chart^ ChartPassengersByLevel;
+	private: System::Windows::Forms::DataVisualization::Charting::Chart^ TotalAmountReportChart;
+
+
+	private: System::Windows::Forms::DataVisualization::Charting::Chart^ AmountOfPassengersPerTripChart;
+	private: System::Windows::Forms::Label^ label4;
+
+
 
 
 	protected:
@@ -71,32 +82,39 @@ namespace GUIApp {
 			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea3 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
 			System::Windows::Forms::DataVisualization::Charting::Legend^ legend3 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
 			System::Windows::Forms::DataVisualization::Charting::Series^ series3 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
-			this->GeneralReportChart = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea4 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Legend^ legend4 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series4 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			this->AmountOfCompletedTripsByDriverChart = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->TotalAmountReportChart = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
+			this->DriverEarningChart = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->ChartPassengersByLevel = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->GeneralReportChart))->BeginInit();
+			this->TotalAmountReportChart = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
+			this->AmountOfPassengersPerTripChart = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->AmountOfCompletedTripsByDriverChart))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->DriverEarningChart))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->TotalAmountReportChart))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ChartPassengersByLevel))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->AmountOfPassengersPerTripChart))->BeginInit();
 			this->SuspendLayout();
 			// 
-			// GeneralReportChart
+			// AmountOfCompletedTripsByDriverChart
 			// 
 			chartArea1->Name = L"ChartArea1";
-			this->GeneralReportChart->ChartAreas->Add(chartArea1);
+			this->AmountOfCompletedTripsByDriverChart->ChartAreas->Add(chartArea1);
 			legend1->Name = L"Legend1";
-			this->GeneralReportChart->Legends->Add(legend1);
-			this->GeneralReportChart->Location = System::Drawing::Point(765, 41);
-			this->GeneralReportChart->Name = L"GeneralReportChart";
+			this->AmountOfCompletedTripsByDriverChart->Legends->Add(legend1);
+			this->AmountOfCompletedTripsByDriverChart->Location = System::Drawing::Point(765, 41);
+			this->AmountOfCompletedTripsByDriverChart->Name = L"AmountOfCompletedTripsByDriverChart";
 			series1->ChartArea = L"ChartArea1";
 			series1->Legend = L"Legend1";
-			series1->Name = L"Cantidad de viajes completados";
-			this->GeneralReportChart->Series->Add(series1);
-			this->GeneralReportChart->Size = System::Drawing::Size(518, 337);
-			this->GeneralReportChart->TabIndex = 0;
-			this->GeneralReportChart->Text = L"chart1";
+			series1->Name = L"Cantidad de viajes completados por conductor";
+			this->AmountOfCompletedTripsByDriverChart->Series->Add(series1);
+			this->AmountOfCompletedTripsByDriverChart->Size = System::Drawing::Size(518, 337);
+			this->AmountOfCompletedTripsByDriverChart->TabIndex = 0;
+			this->AmountOfCompletedTripsByDriverChart->Text = L"chart1";
+			this->AmountOfCompletedTripsByDriverChart->Click += gcnew System::EventHandler(this, &ReportForm::ReportForm_Load);
 			// 
 			// label1
 			// 
@@ -110,81 +128,111 @@ namespace GUIApp {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(179, 22);
+			this->label2->Location = System::Drawing::Point(180, 431);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(322, 16);
 			this->label2->TabIndex = 2;
 			this->label2->Text = L"Reporte de la cantidad total de personas registradas";
 			// 
-			// TotalAmountReportChart
+			// DriverEarningChart
 			// 
 			chartArea2->Name = L"ChartArea1";
-			this->TotalAmountReportChart->ChartAreas->Add(chartArea2);
+			this->DriverEarningChart->ChartAreas->Add(chartArea2);
 			legend2->Name = L"Legend1";
-			this->TotalAmountReportChart->Legends->Add(legend2);
-			this->TotalAmountReportChart->Location = System::Drawing::Point(80, 41);
-			this->TotalAmountReportChart->Name = L"TotalAmountReportChart";
+			this->DriverEarningChart->Legends->Add(legend2);
+			this->DriverEarningChart->Location = System::Drawing::Point(765, 450);
+			this->DriverEarningChart->Name = L"DriverEarningChart";
 			series2->ChartArea = L"ChartArea1";
 			series2->Legend = L"Legend1";
-			series2->Name = L"Cantidad de usuarios";
+			series2->Name = L"Ganancias por conductor";
 			series2->YValuesPerPoint = 2;
-			this->TotalAmountReportChart->Series->Add(series2);
-			this->TotalAmountReportChart->Size = System::Drawing::Size(518, 337);
-			this->TotalAmountReportChart->TabIndex = 3;
-			this->TotalAmountReportChart->Text = L"chart1";
+			this->DriverEarningChart->Series->Add(series2);
+			this->DriverEarningChart->Size = System::Drawing::Size(518, 337);
+			this->DriverEarningChart->TabIndex = 3;
+			this->DriverEarningChart->Text = L"chart1";
+			//this->DriverEarningChart->Click += gcnew System::EventHandler(this, &ReportForm::TotalAmountReportChart_Click);
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(600, 428);
+			this->label3->Location = System::Drawing::Point(889, 431);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(223, 16);
+			this->label3->Size = System::Drawing::Size(245, 16);
 			this->label3->TabIndex = 4;
-			this->label3->Text = L"Reporte sobre niveles de pasajeros";
-			this->label3->Click += gcnew System::EventHandler(this, &ReportForm::label3_Click);
+			this->label3->Text = L"Reporte sobre ganancias por conductor";
+			//this->label3->Click += gcnew System::EventHandler(this, &ReportForm::label3_Click);
 			// 
-			// ChartPassengersByLevel
+			// TotalAmountReportChart
 			// 
 			chartArea3->Name = L"ChartArea1";
-			this->ChartPassengersByLevel->ChartAreas->Add(chartArea3);
+			this->TotalAmountReportChart->ChartAreas->Add(chartArea3);
 			legend3->Name = L"Legend1";
-			this->ChartPassengersByLevel->Legends->Add(legend3);
-			this->ChartPassengersByLevel->Location = System::Drawing::Point(450, 447);
-			this->ChartPassengersByLevel->Name = L"ChartPassengersByLevel";
+			this->TotalAmountReportChart->Legends->Add(legend3);
+			this->TotalAmountReportChart->Location = System::Drawing::Point(80, 450);
+			this->TotalAmountReportChart->Name = L"TotalAmountReportChart";
 			series3->ChartArea = L"ChartArea1";
 			series3->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Pie;
 			series3->Legend = L"Legend1";
-			series3->Name = L"ChartLevelsPassengers";
-			this->ChartPassengersByLevel->Series->Add(series3);
-			this->ChartPassengersByLevel->Size = System::Drawing::Size(518, 337);
-			this->ChartPassengersByLevel->TabIndex = 5;
-			this->ChartPassengersByLevel->Text = L"chart1";
+			series3->Name = L"DriverEarnings";
+			this->TotalAmountReportChart->Series->Add(series3);
+			this->TotalAmountReportChart->Size = System::Drawing::Size(518, 337);
+			this->TotalAmountReportChart->TabIndex = 5;
+			this->TotalAmountReportChart->Text = L"chart1";
+			// 
+			// AmountOfPassengersPerTripChart
+			// 
+			chartArea4->Name = L"ChartArea1";
+			this->AmountOfPassengersPerTripChart->ChartAreas->Add(chartArea4);
+			legend4->Name = L"Legend1";
+			this->AmountOfPassengersPerTripChart->Legends->Add(legend4);
+			this->AmountOfPassengersPerTripChart->Location = System::Drawing::Point(80, 41);
+			this->AmountOfPassengersPerTripChart->Name = L"AmountOfPassengersPerTripChart";
+			series4->ChartArea = L"ChartArea1";
+			series4->Legend = L"Legend1";
+			series4->Name = L"Cantidad de pasajeros por viaje";
+			this->AmountOfPassengersPerTripChart->Series->Add(series4);
+			this->AmountOfPassengersPerTripChart->Size = System::Drawing::Size(518, 337);
+			this->AmountOfPassengersPerTripChart->TabIndex = 6;
+			this->AmountOfPassengersPerTripChart->Text = L"chart1";
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Location = System::Drawing::Point(180, 22);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(268, 16);
+			this->label4->TabIndex = 7;
+			this->label4->Text = L"Reporte de cantidad de pasajeros por viaje";
 			// 
 			// ReportForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1348, 834);
-			this->Controls->Add(this->ChartPassengersByLevel);
-			this->Controls->Add(this->label3);
+			this->Controls->Add(this->label4);
+			this->Controls->Add(this->AmountOfPassengersPerTripChart);
 			this->Controls->Add(this->TotalAmountReportChart);
+			this->Controls->Add(this->label3);
+			this->Controls->Add(this->DriverEarningChart);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
-			this->Controls->Add(this->GeneralReportChart);
+			this->Controls->Add(this->AmountOfCompletedTripsByDriverChart);
 			this->Name = L"ReportForm";
 			this->Text = L"Reportes ";
 			this->Load += gcnew System::EventHandler(this, &ReportForm::ReportForm_Load);
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->GeneralReportChart))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->AmountOfCompletedTripsByDriverChart))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->DriverEarningChart))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->TotalAmountReportChart))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ChartPassengersByLevel))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->AmountOfPassengersPerTripChart))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
 	private: System::Void ReportForm_Load(System::Object^ sender, System::EventArgs^ e) {
-		//GRÁFICO DE BARRAS SOBRE LA CANTIDAD DE VIAJES COMPLETADOS DE LOS CONDUCTORES
-		List<Driver^>^ driversList = Service::QueryAllDrivers();
+		
+		//GRÁFICO DE BARRAS SOBRE LA CANTIDAD DE VIAJES COMPLETADOS POR CONDUCTOR
+		/*List<Driver^>^ driversList = Service::QueryAllDrivers();
 
 		Random^ rnd = gcnew Random();
 
@@ -195,10 +243,17 @@ namespace GUIApp {
 			GeneralReportChart->Series["Cantidad de viajes completados"]->Points[i]->AxisLabel = " " + driversList[i]->Username + "\n" +
 				driversList[i]->DNI;
 			GeneralReportChart->Series["Cantidad de viajes completados"]->Points[i]->Label = "Viajes: " + driversList[i]->NumberOfCompletedTrips;
+		}*/
+
+		List<Driver^>^ AmountOfTripsList = Service::QueryAllDrivers();
+		for (int i = 0; i < AmountOfTripsList->Count; i++) {
+			AmountOfCompletedTripsByDriverChart->Series["Cantidad de viajes completados"]->Points->Add(AmountOfTripsList[i]->NumberOfCompletedTrips);
+			AmountOfCompletedTripsByDriverChart->Series["Cantidad de viajes completados"]->Points[i]->AxisLabel = "Viajes completados \n" + AmountOfTripsList[i]->Name + "\n" + AmountOfTripsList[i]->LastName;
+			AmountOfCompletedTripsByDriverChart->Series["Cantidad de viajes completados"]->Points[i]->Label = " " + AmountOfTripsList[i]->NumberOfCompletedTrips;
 		}
 
-		//GRÁFICO DE BARRAS PARA LA CANTIDAD DE USUARIOS POR PASAJERO Y CONDUCTOR
-		List<Passenger^>^ passengersList = Service::QueryAllPassengers();
+		//GRÁFICO DE BARRAS PARA LA CANTIDAD DE PASAJEROS POR VIAJE
+		/*List<Passenger^>^ passengersList = Service::QueryAllPassengers();
 
 		//Contamos la cantidad de conductores y pasajeros
 		//int numDrivers = driversList->Count;
@@ -214,11 +269,33 @@ namespace GUIApp {
 		//Agregamos la cantidad de usuarios pasajeros
 		TotalAmountReportChart->Series["Cantidad de usuarios"]->Points->Add(numPassengers);
 		TotalAmountReportChart->Series["Cantidad de usuarios"]->Points[1]->AxisLabel = "Pasajeros";
-		TotalAmountReportChart->Series["Cantidad de usuarios"]->Points[1]->Label = "Cantidad: " + numPassengers;
+		TotalAmountReportChart->Series["Cantidad de usuarios"]->Points[1]->Label = "Cantidad: " + numPassengers;*/
+		List<Driver^>^ passengersList = Service::QueryAllDrivers();
+		AmountOfPassengersPerTripChart->Series["Cantidad de pasajeros"]->Points->Clear();
+		for (int i = 0; i < passengersList->Count; i++) {
+			if (passengersList[i]->viaje != nullptr) {
+				int totalPassengers = passengersList[i]->viaje->Passengers->Count;
+				AmountOfPassengersPerTripChart->Series["Cantidad de pasajeros"]->Points->Add(totalPassengers);
+				AmountOfPassengersPerTripChart->Series["Cantidad de pasajeros"]->Points[i]->AxisLabel = passengersList[i]->Name + " " + passengersList[i]->LastName;
+				AmountOfPassengersPerTripChart->Series["Cantidad de pasajeros"]->Points[i]->Label = "Total pasajeros: " + totalPassengers;
+			}
+			else {
+				AmountOfPassengersPerTripChart->Series["Cantidad de pasajeros"]->Points->Add(0);
+				AmountOfPassengersPerTripChart->Series["Cantidad de pasajeros"]->Points[i]->AxisLabel = passengersList[i]->Name + " " + passengersList[i]->LastName;
+				AmountOfPassengersPerTripChart->Series["Cantidad de pasajeros"]->Points[i]->Label = "Sin viajes";
+			}
+		}
 
+		//GRÁFICO DE BARRAS PARA LA GANANCIA POR CONDUCTOR
+		List<Driver^>^ driversList = Service::QueryAllDrivers();
+		for (int i = 0; i < driversList->Count; i++) {
+			AmountOfCompletedTripsByDriverChart->Series["Ganancia obtenida"]->Points->Add(driversList[i]->viaje->EstimatedPrice);
+			AmountOfCompletedTripsByDriverChart->Series["Ganancia obtenida"]->Points[i]->AxisLabel = driversList[i]->Name + " " + driversList[i]->LastName;
+			AmountOfCompletedTripsByDriverChart->Series["Ganancia obtenida"]->Points[i]->Label = "S/." + driversList[i]->viaje->EstimatedPrice;
+		}
 		
-		//GRÁFICO CIRCULAR
-		// Definir los niveles de pasajeros
+		//GRÁFICO CIRCULAR PARA LOS USUARIOS DE LA APLICACIÓN
+		/*// Definir los niveles de pasajeros
 		array<String^>^ passengerLevels = { "Bronce", "Plata", "Oro", "Diamante" };
 
 		// Crear un diccionario para simular la cantidad de pasajeros por nivel
@@ -252,9 +329,14 @@ namespace GUIApp {
 				ChartPassengersByLevel->Series["ChartLevelsPassengers"]->Points[i]->LegendText = level;
 				ChartPassengersByLevel->Series["ChartLevelsPassengers"]->Points[i]->Label = "Cantidad: " + count;
 			}
+		}*/
+		array<String^>^ userTypes = { "Conductor", "Pasajero" };
+		Dictionary<String^, double>^ AmountOfUsersTypes = Service::QueryUserByUserType();
+		for (int i = 0; i < userTypes->Length; i++) {
+			TotalAmountReportChart->Series["Cantidad"]->Points->Add(AmountOfUsersTypes[userTypes[i]]);
+			TotalAmountReportChart->Series["Ganancia obtenida"]->Points[i]->LegendText = userTypes[i];
+			TotalAmountReportChart->Series["Ganancia obtenida"]->Points[i]->Label = "" + AmountOfUsersTypes[userTypes[i]];
 		}
 	}
-private: System::Void label3_Click(System::Object^ sender, System::EventArgs^ e) {
-}
 };
 }
