@@ -54,6 +54,9 @@ namespace RuralService {
 		static void DeleteDriver(String^ username);
 		static List<Driver^>^ QueryAllDrivers();
 		static Driver^ QueryDriverbyUsername(String^ username);
+		static Dictionary<String^, double>^ QueryUserByUserType();
+
+
 
 		static int QueryDriverPassengerbyUsername(String^ username, String^ password);
 		static int PassengerOrDriver(String^ username);
@@ -65,6 +68,7 @@ namespace RuralService {
 		static void DeletePassenger(String^ username);
 		static List<Passenger^>^ QueryAllPassengers();
 		static Passenger^ QueryPassengerbyUsername(String^ username);
+
 
 
 
