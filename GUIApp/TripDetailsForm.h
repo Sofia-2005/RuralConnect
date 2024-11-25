@@ -83,9 +83,9 @@ namespace GUIApp {
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ label4;
 
-	private: System::Windows::Forms::Label^ label5;
-	private: System::Windows::Forms::Label^ label6;
-	private: System::Windows::Forms::Label^ label7;
+
+
+
 	private: System::Windows::Forms::Button^ btnAcceptTrip;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	private: System::ComponentModel::IContainer^ components;
@@ -110,9 +110,6 @@ namespace GUIApp {
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
-			this->label5 = (gcnew System::Windows::Forms::Label());
-			this->label6 = (gcnew System::Windows::Forms::Label());
-			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->btnAcceptTrip = (gcnew System::Windows::Forms::Button());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->label8 = (gcnew System::Windows::Forms::Label());
@@ -154,9 +151,9 @@ namespace GUIApp {
 			this->label3->AutoSize = true;
 			this->label3->Location = System::Drawing::Point(12, 132);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(45, 16);
+			this->label3->Size = System::Drawing::Size(89, 16);
 			this->label3->TabIndex = 14;
-			this->label3->Text = L"Costo:";
+			this->label3->Text = L"Costo (soles):";
 			// 
 			// label4
 			// 
@@ -166,33 +163,6 @@ namespace GUIApp {
 			this->label4->Size = System::Drawing::Size(116, 16);
 			this->label4->TabIndex = 15;
 			this->label4->Text = L"Sitios disponibles:";
-			// 
-			// label5
-			// 
-			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(12, 201);
-			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(216, 16);
-			this->label5->TabIndex = 17;
-			this->label5->Text = L"Distancia hacia el punto de partida:";
-			// 
-			// label6
-			// 
-			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(9, 239);
-			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(268, 16);
-			this->label6->TabIndex = 18;
-			this->label6->Text = L"Tiempo estimado de llegada del conductor:";
-			// 
-			// label7
-			// 
-			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(12, 279);
-			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(193, 16);
-			this->label7->TabIndex = 19;
-			this->label7->Text = L"Distancia hacia su destino final:";
 			// 
 			// btnAcceptTrip
 			// 
@@ -236,7 +206,7 @@ namespace GUIApp {
 			// label10
 			// 
 			this->label10->AutoSize = true;
-			this->label10->Location = System::Drawing::Point(70, 132);
+			this->label10->Location = System::Drawing::Point(104, 132);
 			this->label10->Name = L"label10";
 			this->label10->Size = System::Drawing::Size(51, 16);
 			this->label10->TabIndex = 24;
@@ -252,9 +222,6 @@ namespace GUIApp {
 			this->Controls->Add(this->label8);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->btnAcceptTrip);
-			this->Controls->Add(this->label7);
-			this->Controls->Add(this->label6);
-			this->Controls->Add(this->label5);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
@@ -341,9 +308,21 @@ private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows:
 		g->DrawLine(pen, x, y, x2, y2);
 	}
 }
-private: System::Void TripDetailsForm_Load(System::Object^ sender, System::EventArgs^ e) {
-	label8->Text = conductor->Name+ " "+ conductor->LastName;
-	label9->Text =""+conductor->viaje->AvailableSeats;
+	private: System::Void TripDetailsForm_Load(System::Object^ sender, System::EventArgs^ e) {
+		label8->Text = conductor->Name + " " + conductor->LastName;
+		label9->Text = "" + conductor->viaje->AvailableSeats;
+
+
+		List<double>^ latlong1 = gcnew List<double>();
+		List<double>^ latlong2 = gcnew List<double>();
+
+		latlong1 = Service::De_String_toDouble(pasajero->UbiActual);
+
+		latlong2 = Service::De_String_toDouble(pasajero->DesiredDestination);
+
+		int precio = Math::Sqrt(Math::Pow(latlong1[0]-latlong2[0], 2) + Math::Pow(latlong1[1] - latlong2[1], 2))*1500;
+
+		label10->Text = "" + String::Format("{0:F1}", precio);
 }
 };
 }

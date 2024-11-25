@@ -226,7 +226,7 @@ private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows:
 
 	/* Terminamos de graficar ubicacion actual y destino*/
 
-	for (int i = 0;i < Conductores->Count;i++) {
+	/*for (int i = 0;i < Conductores->Count;i++) {
 		PuntosLat = Service::De_String_toDouble(RutasLat[i]);
 		PuntosLong = Service::De_String_toDouble(RutasLon[i]);
 
@@ -248,18 +248,12 @@ private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows:
 			y2 = (int)((PuntosLong[k+1] - lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
 			g->DrawLine(pen, x, y, x2, y2);
 		}
-	}
+	}*/
+		x = 50, y = 50, x2 = 0, y2 = 0;
 
-	if (cambioRuta) {
-		int x = 50, y = 50, x2 = 0, y2 = 0;
-		bool primera = true;
-
-		int width = pictureBox1->Width;
-		int height = pictureBox1->Height;
-
-		Graphics^ g = e->Graphics;
-		Pen^ pen = gcnew Pen(Color::Green);
-		int radius = 5; // Radio del punto
+		g = e->Graphics;
+		pen = gcnew Pen(Color::Green);
+		radius = 5; // Radio del punto
 
 			PuntosLat = Service::De_String_toDouble(RutasLat[indice]);
 			PuntosLong = Service::De_String_toDouble(RutasLon[indice]);
@@ -282,7 +276,6 @@ private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows:
 				y2 = (int)((PuntosLong[k + 1] - lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
 				g->DrawLine(pen, x, y, x2, y2);
 			}
-	}
 }
 private: System::Void cmbRutas_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 	indice = cmbRutas->SelectedIndex;
@@ -290,7 +283,6 @@ private: System::Void cmbRutas_SelectedIndexChanged(System::Object^ sender, Syst
 	pictureBox1->Invalidate();
 }
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-	if (cambioRuta) {
 
 		Driver^ p = Conductores[indice];
 		PuntosLat = Service::De_String_toDouble(RutasLat[indice]);
@@ -306,12 +298,12 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 		TripDetailsForm^ CreateRoute = gcnew TripDetailsForm(LatLong,p, User, principal, F2, this);
 		CreateRoute->Show();
 		this->Hide();
-	}
 }
 private: System::Void SelectRoutePassenger_Load(System::Object^ sender, System::EventArgs^ e) {
 	cmbRutas->Items->Clear();
 	for (int i = 0; i < Conductores->Count;i++) {
 		cmbRutas->Items->Add(gcnew ComboBoxItem(i, "Ruta " + (i + 1)));
+		cmbRutas->SelectedIndex = indice;
 	}
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {

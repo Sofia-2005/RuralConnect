@@ -54,6 +54,9 @@ namespace GUIApp {
 	public:
 		List<array<double>^>^ LatLong = gcnew List<array<double>^>();
 		Form^ principal;
+	private: System::Windows::Forms::Label^ label11;
+	private: System::Windows::Forms::Label^ label12;
+	public:
 		Form^ f4;
 	public:
 		TripInCourse(List<array<double>^>^ a, Driver^ p, Form^ pp, Form^ ff4)
@@ -163,6 +166,8 @@ namespace GUIApp {
 			this->label10 = (gcnew System::Windows::Forms::Label());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->label11 = (gcnew System::Windows::Forms::Label());
+			this->label12 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox3))->BeginInit();
@@ -414,12 +419,35 @@ namespace GUIApp {
 			this->button3->UseVisualStyleBackColor = true;
 			this->button3->Click += gcnew System::EventHandler(this, &TripInCourse::button3_Click);
 			// 
+			// label11
+			// 
+			this->label11->AutoSize = true;
+			this->label11->Location = System::Drawing::Point(958, 27);
+			this->label11->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label11->Name = L"label11";
+			this->label11->Size = System::Drawing::Size(162, 16);
+			this->label11->TabIndex = 20;
+			this->label11->Text = L"Monto recaudado en total:";
+			this->label11->Click += gcnew System::EventHandler(this, &TripInCourse::label11_Click);
+			// 
+			// label12
+			// 
+			this->label12->AutoSize = true;
+			this->label12->Location = System::Drawing::Point(1128, 27);
+			this->label12->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label12->Name = L"label12";
+			this->label12->Size = System::Drawing::Size(60, 16);
+			this->label12->TabIndex = 21;
+			this->label12->Text = L"0.0 soles";
+			// 
 			// TripInCourse
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ActiveCaption;
 			this->ClientSize = System::Drawing::Size(1279, 612);
+			this->Controls->Add(this->label12);
+			this->Controls->Add(this->label11);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->label10);
@@ -482,6 +510,8 @@ namespace GUIApp {
 private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
+
+	label12->Text = ""+User->viaje->EstimatedPrice;
 	List<String^>^ ubicacion = Service::ReadGPSData();
 	if (ubicacion[0] != "1") {
 		//Se leen los datos
@@ -594,12 +624,14 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 private: System::Void TripInCourse_Load(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
-	
+
 	principal->Show();
 	this->Close();
 
 }
 private: System::Void pictureBox3_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void label11_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

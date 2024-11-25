@@ -23,7 +23,12 @@ namespace GUIApp {
 	public:
 		List<array<double>^>^ LatLong = gcnew List<array<double>^>();
 		Driver^ user;
+	private: System::Windows::Forms::Label^ label10;
+	public:
 		Passenger^ pasajero;
+	private: System::Windows::Forms::Button^ button1;
+	public:
+		int precio = 0;
 	public:
 		TripRequest(List<array<double>^>^ a, Driver^ p)
 		{
@@ -32,8 +37,22 @@ namespace GUIApp {
 			user = p;
 			LatLong = a;
 			pasajero = user->solicitud->pasajero;
+
 			label2->Text = pasajero->Name;
 			label8->Text = pasajero->LastName;
+			label9->Text = ""+pasajero->PhoneNumber;
+
+			List<double>^ latlong1 = gcnew List<double>();
+			List<double>^ latlong2 = gcnew List<double>();
+
+			latlong1 = Service::De_String_toDouble(pasajero->UbiActual);
+
+			latlong2 = Service::De_String_toDouble(pasajero->DesiredDestination);
+
+			precio = Math::Sqrt(Math::Pow(latlong1[0] - latlong2[0], 2) + Math::Pow(latlong1[1] - latlong2[1], 2)) * 1500;
+
+			label10->Text = "" + String::Format("{0:F1}", precio);
+			
 
 			int x = 0, y = 0;
 			// Tamaño del PictureBox
@@ -106,6 +125,8 @@ namespace GUIApp {
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->label10 = (gcnew System::Windows::Forms::Label());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -138,7 +159,7 @@ namespace GUIApp {
 			// 
 			// btnAcceptPassenger
 			// 
-			this->btnAcceptPassenger->Location = System::Drawing::Point(46, 363);
+			this->btnAcceptPassenger->Location = System::Drawing::Point(46, 337);
 			this->btnAcceptPassenger->Name = L"btnAcceptPassenger";
 			this->btnAcceptPassenger->Size = System::Drawing::Size(200, 70);
 			this->btnAcceptPassenger->TabIndex = 22;
@@ -187,9 +208,9 @@ namespace GUIApp {
 			this->label3->AutoSize = true;
 			this->label3->Location = System::Drawing::Point(12, 223);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(76, 16);
+			this->label3->Size = System::Drawing::Size(102, 16);
 			this->label3->TabIndex = 17;
-			this->label3->Text = L"Calificación";
+			this->label3->Text = L"Precio a pagar: ";
 			// 
 			// label1
 			// 
@@ -211,11 +232,32 @@ namespace GUIApp {
 			this->pictureBox1->TabStop = false;
 			this->pictureBox1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &TripRequest::pictureBox1_Paint);
 			// 
+			// label10
+			// 
+			this->label10->AutoSize = true;
+			this->label10->Location = System::Drawing::Point(120, 223);
+			this->label10->Name = L"label10";
+			this->label10->Size = System::Drawing::Size(51, 16);
+			this->label10->TabIndex = 27;
+			this->label10->Text = L"label10";
+			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(46, 461);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(200, 70);
+			this->button1->TabIndex = 28;
+			this->button1->Text = L"RECHAZAR PASAJERO";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &TripRequest::button1_Click);
+			// 
 			// TripRequest
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1187, 586);
+			this->Controls->Add(this->button1);
+			this->Controls->Add(this->label10);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->label9);
 			this->Controls->Add(this->label8);
@@ -292,9 +334,21 @@ private: System::Void btnAcceptPassenger_Click(System::Object^ sender, System::E
 	user->viaje->Passengers->Add(pasajero);
 	//se agrega pasajero a la lista que no se eliminara
 	Plist->Add(pasajero);
+
 	if (user->viaje->AvailableSeats > 0) {
-		user->viaje->AvailableSeats = user->vehicle->Seats - 1;
+		user->viaje->AvailableSeats = user->viaje->AvailableSeats - 1;
 	}
+
+	//se agrega el precio que pagara en total
+	user->viaje->EstimatedPrice = user->viaje->EstimatedPrice + precio;
+
+	user->solicitud->destino = "";
+
+	Service::UpdateDriver(user);
+	this->Close();
+}
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	user->solicitud->destino = "";
 
 	Service::UpdateDriver(user);
 	this->Close();

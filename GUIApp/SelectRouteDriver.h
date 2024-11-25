@@ -24,7 +24,7 @@ namespace GUIApp {
 		List<String^>^ RutasLat = gcnew List<String^>();;
 		List<String^>^ RutasLon = gcnew List<String^>();;
 		List<double>^ PuntosLat = gcnew List<double>();
-	private: System::Windows::Forms::Timer^ timer1;
+
 	private: System::Windows::Forms::ComboBox^ cmbRutas;
 
 	private: System::Windows::Forms::Label^ label2;
@@ -45,7 +45,7 @@ namespace GUIApp {
 				RutasLat->Add(User->Rutasa->Puntos_x_fijo[i]);
 				RutasLon->Add(User->Rutasa->Puntos_y_fijo[i]);
 			}
-			timer1->Start();
+			pictureBox1->Invalidate();
 		}
 
 	protected:
@@ -87,12 +87,10 @@ namespace GUIApp {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->components = (gcnew System::ComponentModel::Container());
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(SelectRouteDriver::typeid));
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->btnBack = (gcnew System::Windows::Forms::Button());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
-			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->cmbRutas = (gcnew System::Windows::Forms::ComboBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
@@ -130,10 +128,6 @@ namespace GUIApp {
 			this->pictureBox1->TabIndex = 9;
 			this->pictureBox1->TabStop = false;
 			this->pictureBox1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &SelectRouteDriver::pictureBox1_Paint);
-			// 
-			// timer1
-			// 
-			this->timer1->Tick += gcnew System::EventHandler(this, &SelectRouteDriver::timer1_Tick);
 			// 
 			// cmbRutas
 			// 
@@ -214,17 +208,10 @@ private: System::Void SelectRouteDriver_Load(System::Object^ sender, System::Eve
 		for (int i = 0;i < User->Rutasa->Puntos_x_fijo->Count;i++) {
 			cmbRutas->Items->Add(gcnew ComboBoxItem(i,"Ruta "+(i+1)));
 		}
+		cmbRutas->SelectedIndex = indice;
 	}
 }
 private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
-	if (counter < 2) {
-		counter++;
-		pictureBox1->Invalidate();
-	}
-	else {
-		timer1->Stop();
-		timer1->Enabled = false;
-	}
 }
 private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 	int x = 50, y = 50, x2 = 0, y2 = 0;
@@ -237,61 +224,32 @@ private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows:
 	Pen^ pen = gcnew Pen(Color::Blue);
 	int radius = 5; // Radio del punto
 
-	for (int i = 0;i < RutasLat->Count;i++) {
-		PuntosLat = Service::De_String_toDouble(RutasLat[i]);
-		PuntosLong = Service::De_String_toDouble(RutasLon[i]);
+	x = 50, y = 50, x2 = 0, y2 = 0;
 
-		for (int j = 0;j < PuntosLat->Count;j++) {
+	g = e->Graphics;
+	pen = gcnew Pen(Color::Green);
+	radius = 5; // Radio del punto
 
-			x = (int)((PuntosLat[j] - latTopLeft) / (latBottomRight - latTopLeft) * width);
-			y = (int)((PuntosLong[j] - lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
+	PuntosLat = Service::De_String_toDouble(RutasLat[indice]);
+	PuntosLong = Service::De_String_toDouble(RutasLon[indice]);
 
-			g->FillEllipse(System::Drawing::Brushes::Blue, x - radius, y - radius, radius * 2, radius * 2);
-		}
+	for (int j = 0;j < PuntosLat->Count;j++) {
 
+		x = (int)((PuntosLat[j] - latTopLeft) / (latBottomRight - latTopLeft) * width);
+		y = (int)((PuntosLong[j] - lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
 
-		for (int k = 0;k < PuntosLat->Count - 1;k++) {
-
-			x = (int)((PuntosLat[k] - latTopLeft) / (latBottomRight - latTopLeft) * width);
-			y = (int)((PuntosLong[k] - lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
-
-			x2 = (int)((PuntosLat[k + 1] - latTopLeft) / (latBottomRight - latTopLeft) * width);
-			y2 = (int)((PuntosLong[k + 1] - lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
-			g->DrawLine(pen, x, y, x2, y2);
-		}
+		g->FillEllipse(System::Drawing::Brushes::Green, x - radius, y - radius, radius * 2, radius * 2);
 	}
 
-	if (cambioRuta) {
-		int x = 50, y = 50, x2 = 0, y2 = 0;
-		bool primera = true;
 
-		int width = pictureBox1->Width;
-		int height = pictureBox1->Height;
+	for (int k = 0;k < PuntosLat->Count - 1;k++) {
 
-		Graphics^ g = e->Graphics;
-		Pen^ pen = gcnew Pen(Color::Green);
-		int radius = 5; // Radio del punto
+		x = (int)((PuntosLat[k] - latTopLeft) / (latBottomRight - latTopLeft) * width);
+		y = (int)((PuntosLong[k] - lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
 
-		PuntosLat = Service::De_String_toDouble(RutasLat[indice]);
-		PuntosLong = Service::De_String_toDouble(RutasLon[indice]);
-
-		for (int j = 0;j < PuntosLat->Count;j++) {
-
-			x = (int)((PuntosLat[j] - latTopLeft) / (latBottomRight - latTopLeft) * width);
-			y = (int)((PuntosLong[j] - lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
-
-			g->FillEllipse(System::Drawing::Brushes::Green, x - radius, y - radius, radius * 2, radius * 2);
-		}
-
-		for (int k = 0;k < PuntosLat->Count - 1;k++) {
-
-			x = (int)((PuntosLat[k] - latTopLeft) / (latBottomRight - latTopLeft) * width);
-			y = (int)((PuntosLong[k] - lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
-
-			x2 = (int)((PuntosLat[k + 1] - latTopLeft) / (latBottomRight - latTopLeft) * width);
-			y2 = (int)((PuntosLong[k + 1] - lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
-			g->DrawLine(pen, x, y, x2, y2);
-		}
+		x2 = (int)((PuntosLat[k + 1] - latTopLeft) / (latBottomRight - latTopLeft) * width);
+		y2 = (int)((PuntosLong[k + 1] - lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
+		g->DrawLine(pen, x, y, x2, y2);
 	}
 }
 private: System::Void cmbRutas_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
@@ -301,7 +259,6 @@ private: System::Void cmbRutas_SelectedIndexChanged(System::Object^ sender, Syst
 }
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 
-	if (cambioRuta) {
 		User->Rutasa->Puntos_x_volatil = User->Rutasa->Puntos_x_fijo[indice];
 		User->Rutasa->Puntos_y_volatil = User->Rutasa->Puntos_y_fijo[indice];
 		Service::UpdateDriver(User);
@@ -319,7 +276,6 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 		PublicRouteDriver^ CreateRoute = gcnew PublicRouteDriver(LatLong, User, principal, this);
 		CreateRoute->Show();
 		this->Hide();
-	}
 }
 };
 }
