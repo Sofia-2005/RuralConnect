@@ -322,6 +322,13 @@ private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows:
 
 		int precio = Math::Sqrt(Math::Pow(latlong1[0]-latlong2[0], 2) + Math::Pow(latlong1[1] - latlong2[1], 2))*1500;
 
+		if (pasajero->Level == "PLATA") {
+			precio = 80 * precio / 100;
+		}
+		else if (pasajero->Level == "ORO") {
+			precio = 60 * precio / 100;
+		}
+
 		label10->Text = "" + String::Format("{0:F1}", precio);
 }
 };

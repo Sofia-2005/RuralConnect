@@ -228,10 +228,10 @@ namespace GUIApp {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(500, 11);
+			this->button1->Location = System::Drawing::Point(464, 11);
 			this->button1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(115, 27);
+			this->button1->Size = System::Drawing::Size(151, 43);
 			this->button1->TabIndex = 13;
 			this->button1->Text = L"Eliminar cuenta";
 			this->button1->UseVisualStyleBackColor = true;
@@ -297,25 +297,10 @@ private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) 
 	else {
 		PhotoPasajero->Image = nullptr; // Opcional: Establecer imagen predeterminada
 		//PhotoPasajero->Image = System::Drawing::Image::FromFile("C:\\Users\\USER\\OneDrive\\Imágenes\\ilustracion-vectorial-de-dibujos-animados-los-ninos-van-a-la-escuela-mj42xy.jpg");
-
 	}
 
-	if (User->Qualification == 0) {
-		txtCategoria->Text = "CARBON";
-	}
-	else if (User->Qualification == 1) {
-		txtCategoria->Text = "MADERA";
-	}
-	else if (User->Qualification == 2) {
-		txtCategoria->Text = "BRONCE";
-	}
-
-	else if (User->Qualification == 3) {
-		txtCategoria->Text = "PLATA";
-	}
-	else{
-		txtCategoria->Text = "ORO";
-	}
+	txtCategoria->Text = User->Level;
+	txtNumeroViajes->Text = User->Address;
 }
 
 private: System::Void label3_Click(System::Object^ sender, System::EventArgs^ e) {

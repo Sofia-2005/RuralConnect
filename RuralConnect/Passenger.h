@@ -14,9 +14,9 @@ using namespace System::Collections::Generic;
 namespace RuralConnect {
     [Serializable]public ref class Passenger : public User{
     public:
-        String^ Address ="";
+        String^ Address ="0";
         String^ DesiredDestination = "";
-        String^ Level = "";
+        String^ Level = "COBRE";
 
         void requestTrip();
 

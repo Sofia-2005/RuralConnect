@@ -244,7 +244,14 @@ private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows:
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 	conductor->viaje->Passengers->Remove(pasajero);
 	Service::UpdateDriver(conductor);
-
+	pasajero->Address = Convert::ToString(Convert::ToInt32(pasajero->Address) + 1);
+	if (Convert::ToInt32(pasajero->Address) >= 10) {
+		pasajero->Level = "PLATA";
+	}
+	else if (Convert::ToInt32(pasajero->Address) >= 20) {
+		pasajero->Level = "ORO";
+	}
+	Service::UpdatePassenger(pasajero);
 	this->Close();
 	principal->Show();
 
