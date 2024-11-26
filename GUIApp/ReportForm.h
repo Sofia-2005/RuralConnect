@@ -150,7 +150,6 @@ namespace GUIApp {
 			this->DriverEarningChart->Size = System::Drawing::Size(518, 337);
 			this->DriverEarningChart->TabIndex = 3;
 			this->DriverEarningChart->Text = L"chart1";
-			//this->DriverEarningChart->Click += gcnew System::EventHandler(this, &ReportForm::TotalAmountReportChart_Click);
 			// 
 			// label3
 			// 
@@ -160,7 +159,6 @@ namespace GUIApp {
 			this->label3->Size = System::Drawing::Size(245, 16);
 			this->label3->TabIndex = 4;
 			this->label3->Text = L"Reporte sobre ganancias por conductor";
-			//this->label3->Click += gcnew System::EventHandler(this, &ReportForm::label3_Click);
 			// 
 			// TotalAmountReportChart
 			// 
@@ -194,6 +192,7 @@ namespace GUIApp {
 			this->AmountOfPassengersPerTripChart->Size = System::Drawing::Size(518, 337);
 			this->AmountOfPassengersPerTripChart->TabIndex = 6;
 			this->AmountOfPassengersPerTripChart->Text = L"chart1";
+			//this->AmountOfPassengersPerTripChart->Click += gcnew System::EventHandler(this, &ReportForm::AmountOfPassengersPerTripChart_Click);
 			// 
 			// label4
 			// 
@@ -232,66 +231,105 @@ namespace GUIApp {
 	private: System::Void ReportForm_Load(System::Object^ sender, System::EventArgs^ e) {
 		
 		//GRÁFICO DE BARRAS SOBRE LA CANTIDAD DE VIAJES COMPLETADOS POR CONDUCTOR
-		/*List<Driver^>^ driversList = Service::QueryAllDrivers();
+		List<Trip^>^ tripList = Service::QueryAllTrips(); //Obtenemos los datos de todos los viajes
+		List<String^>^ driverNames = gcnew List<String^>(); //Lista creada para los nombres de los cnoductores
+		List<int>^ tripCounts = gcnew List<int>(); //Almacenamiento de viajes realizados por el conductor
 
-		Random^ rnd = gcnew Random();
+		//Recorremos la lista de viajes
+		for (int i = 0; i < tripList->Count; i++) {
+			String^ driverName = tripList[i]->Driver_Name;
 
-		GeneralReportChart->Series["Cantidad de viajes completados"]->Points->Clear();
-		for (int i = 0; i < driversList->Count; i++) {
-			driversList[i]->NumberOfCompletedTrips = rnd->Next(5, 50);
-			GeneralReportChart->Series["Cantidad de viajes completados"]->Points->Add(driversList[i]->NumberOfCompletedTrips);
-			GeneralReportChart->Series["Cantidad de viajes completados"]->Points[i]->AxisLabel = " " + driversList[i]->Username + "\n" +
-				driversList[i]->DNI;
-			GeneralReportChart->Series["Cantidad de viajes completados"]->Points[i]->Label = "Viajes: " + driversList[i]->NumberOfCompletedTrips;
-		}*/
+			//Verificación que el conductor está o no en la lista
+			bool found = false;
+			for (int j = 0; j < driverNames->Count; j++) {
+				if (driverNames[j] == driverName) {
+					tripCounts[j]++;
+					found = true;
+					break;
+				}
+			}
 
-		List<Driver^>^ AmountOfTripsList = Service::QueryAllDrivers();
-		for (int i = 0; i < AmountOfTripsList->Count; i++) {
-			AmountOfCompletedTripsByDriverChart->Series["Cantidad de viajes completados"]->Points->Add(AmountOfTripsList[i]->NumberOfCompletedTrips);
-			AmountOfCompletedTripsByDriverChart->Series["Cantidad de viajes completados"]->Points[i]->AxisLabel = "Viajes completados \n" + AmountOfTripsList[i]->Name + "\n" + AmountOfTripsList[i]->LastName;
-			AmountOfCompletedTripsByDriverChart->Series["Cantidad de viajes completados"]->Points[i]->Label = " " + AmountOfTripsList[i]->NumberOfCompletedTrips;
+			//En caso el conductor no este en la lista todavía
+			if (!found) {
+				driverNames->Add(driverName);
+				tripCounts->Add(1);
+			}
+		}
+
+		//Agregamos los datos al gráfico
+		for (int i = 0; i < driverNames->Count; i++) {
+			AmountOfCompletedTripsByDriverChart->Series["Cantidad de viajes completados"]->Points->Add(tripCounts[i]);
+			AmountOfCompletedTripsByDriverChart->Series["Cantidad de viajes completados"]->Points[i]->AxisLabel = "Conductor: \n" + driverNames[i];
+			AmountOfCompletedTripsByDriverChart->Series["Cantidad de viajes completados"]->Points[i]->Label = "Viajes completados: " + tripCounts[i];
 		}
 
 		//GRÁFICO DE BARRAS PARA LA CANTIDAD DE PASAJEROS POR VIAJE
-		/*List<Passenger^>^ passengersList = Service::QueryAllPassengers();
+		List<Trip^>^ passengersList = Service::QueryAllTrips();
 
-		//Contamos la cantidad de conductores y pasajeros
-		//int numDrivers = driversList->Count;
-		//int numPassengers = passengersList->Count;
-		int numDrivers = rnd->Next(10, 100);     
-		int numPassengers = rnd->Next(10, 100);
+		// Crear listas para almacenar nombres de conductores y sus totales de pasajeros
+		List<String^>^ Names = gcnew List<String^>();
+		List<int>^ totalPassengers = gcnew List<int>();
 
-		//Agregamos la cantidad de usuarios conductores
-		TotalAmountReportChart->Series["Cantidad de usuarios"]->Points->Add(numDrivers);
-		TotalAmountReportChart->Series["Cantidad de usuarios"]->Points[0]->AxisLabel = "Conductores";
-		TotalAmountReportChart->Series["Cantidad de usuarios"]->Points[0]->Label = "Cantidad: " + numDrivers;
-
-		//Agregamos la cantidad de usuarios pasajeros
-		TotalAmountReportChart->Series["Cantidad de usuarios"]->Points->Add(numPassengers);
-		TotalAmountReportChart->Series["Cantidad de usuarios"]->Points[1]->AxisLabel = "Pasajeros";
-		TotalAmountReportChart->Series["Cantidad de usuarios"]->Points[1]->Label = "Cantidad: " + numPassengers;*/
-		List<Driver^>^ passengersList = Service::QueryAllDrivers();
-		AmountOfPassengersPerTripChart->Series["Cantidad de pasajeros"]->Points->Clear();
 		for (int i = 0; i < passengersList->Count; i++) {
-			if (passengersList[i]->viaje != nullptr) {
-				int totalPassengers = passengersList[i]->viaje->Passengers->Count;
-				AmountOfPassengersPerTripChart->Series["Cantidad de pasajeros"]->Points->Add(totalPassengers);
-				AmountOfPassengersPerTripChart->Series["Cantidad de pasajeros"]->Points[i]->AxisLabel = passengersList[i]->Name + " " + passengersList[i]->LastName;
-				AmountOfPassengersPerTripChart->Series["Cantidad de pasajeros"]->Points[i]->Label = "Total pasajeros: " + totalPassengers;
+			String^ driverName = passengersList[i]->Driver_Name;
+			int passengerCount = passengersList[i]->PassengersTotal->Count;  // Obtener la cantidad total de pasajeros en el viaje
+
+			// Buscar si el conductor ya está en la lista
+			bool found = false;
+			for (int j = 0; j < Names->Count; j++) {
+				if (Names[j] == driverName) {
+					totalPassengers[j] += passengerCount;  // Sumar la cantidad de pasajeros al conductor existente
+					found = true;
+					break;
+				}
 			}
-			else {
-				AmountOfPassengersPerTripChart->Series["Cantidad de pasajeros"]->Points->Add(0);
-				AmountOfPassengersPerTripChart->Series["Cantidad de pasajeros"]->Points[i]->AxisLabel = passengersList[i]->Name + " " + passengersList[i]->LastName;
-				AmountOfPassengersPerTripChart->Series["Cantidad de pasajeros"]->Points[i]->Label = "Sin viajes";
+
+			// Si el conductor no está en la lista, agregarlo con su total de pasajeros
+			if (!found) {
+				Names->Add(driverName);
+				totalPassengers->Add(passengerCount);
 			}
 		}
 
+		// Generar el gráfico
+		for (int i = 0; i < Names->Count; i++) {
+			AmountOfPassengersPerTripChart->Series["Total de pasajeros"]->Points->Add(totalPassengers[i]);
+			AmountOfPassengersPerTripChart->Series["Total de pasajeros"]->Points[i]->AxisLabel = Names[i];
+			AmountOfPassengersPerTripChart->Series["Total de pasajeros"]->Points[i]->Label = totalPassengers[i] + " pasajeros";
+		}
+	
+	
 		//GRÁFICO DE BARRAS PARA LA GANANCIA POR CONDUCTOR
-		List<Driver^>^ driversList = Service::QueryAllDrivers();
-		for (int i = 0; i < driversList->Count; i++) {
-			AmountOfCompletedTripsByDriverChart->Series["Ganancia obtenida"]->Points->Add(driversList[i]->viaje->EstimatedPrice);
-			AmountOfCompletedTripsByDriverChart->Series["Ganancia obtenida"]->Points[i]->AxisLabel = driversList[i]->Name + " " + driversList[i]->LastName;
-			AmountOfCompletedTripsByDriverChart->Series["Ganancia obtenida"]->Points[i]->Label = "S/." + driversList[i]->viaje->EstimatedPrice;
+		List<Trip^>^ earningList = Service::QueryAllTrips(); //Obtenemos los datos de todos los viajes
+		List<String^>^ nombres = gcnew List<String^>(); //Lista creada para los nombres de los cnoductores
+		List<int>^ totalEarnings = gcnew List<int>(); //Almacenamiento de viajes realizados por el conductor
+		//Recorremos la lista de viajes
+		for (int i = 0; i < earningList->Count; i++) {
+			String^ driverName = earningList[i]->Driver_Name;
+			int earning = earningList[i]->EstimatedPrice;
+
+			//Verificación que el conductor está o no en la lista
+			bool found = false;
+			for (int j = 0; j < nombres->Count; j++) {
+				if (nombres[j] == driverName) {
+					totalEarnings[j] += earning;
+					found = true;
+					break;
+				}
+			}
+
+			//En caso el conductor no este en la lista todavía
+			if (!found) {
+				nombres->Add(driverName);
+				tripCounts->Add(earning);
+			}
+		}
+
+		//Agregamos los datos al gráfico
+		for (int i = 0; i < driverNames->Count; i++) {
+			DriverEarningChart->Series["Ganancias obtenidas"]->Points->Add(totalEarnings[i]);
+			DriverEarningChart->Series["Ganancias obtenidas"]->Points[i]->AxisLabel = nombres[i];
+			DriverEarningChart->Series["Ganancias obtenidas"]->Points[i]->Label = "S/." + totalEarnings[i];
 		}
 		
 		//GRÁFICO CIRCULAR PARA LOS USUARIOS DE LA APLICACIÓN
@@ -313,29 +351,13 @@ namespace GUIApp {
 
 			// Almacenar el conteo aleatorio en el diccionario
 			passengersByLevel[level] = count;
-		}
-
-
-		// Agregar puntos al gráfico circular con los datos simulados
-		for (int i = 0; i < passengerLevels->Length; i++) {
-			String^ level = passengerLevels[i];
-
-			// Verificamos si el nivel existe en el diccionario
-			if (passengersByLevel->ContainsKey(level)) {
-				int count = passengersByLevel[level];
-
-				// Añadir punto en el gráfico para el nivel actual
-				ChartPassengersByLevel->Series["ChartLevelsPassengers"]->Points->Add(count);
-				ChartPassengersByLevel->Series["ChartLevelsPassengers"]->Points[i]->LegendText = level;
-				ChartPassengersByLevel->Series["ChartLevelsPassengers"]->Points[i]->Label = "Cantidad: " + count;
-			}
 		}*/
 		array<String^>^ userTypes = { "Conductor", "Pasajero" };
 		Dictionary<String^, double>^ AmountOfUsersTypes = Service::QueryUserByUserType();
 		for (int i = 0; i < userTypes->Length; i++) {
 			TotalAmountReportChart->Series["Cantidad"]->Points->Add(AmountOfUsersTypes[userTypes[i]]);
-			TotalAmountReportChart->Series["Ganancia obtenida"]->Points[i]->LegendText = userTypes[i];
-			TotalAmountReportChart->Series["Ganancia obtenida"]->Points[i]->Label = "" + AmountOfUsersTypes[userTypes[i]];
+			TotalAmountReportChart->Series["Cantidad"]->Points[i]->LegendText = userTypes[i];
+			TotalAmountReportChart->Series["Cantidad"]->Points[i]->Label = "" + AmountOfUsersTypes[userTypes[i]];
 		}
 	}
 };
