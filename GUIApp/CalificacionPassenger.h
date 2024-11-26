@@ -149,6 +149,7 @@ namespace GUIApp {
 			this->PhotoConductor->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->PhotoConductor->Name = L"PhotoConductor";
 			this->PhotoConductor->Size = System::Drawing::Size(157, 194);
+			this->PhotoConductor->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->PhotoConductor->TabIndex = 24;
 			this->PhotoConductor->TabStop = false;
 			// 
@@ -429,15 +430,15 @@ namespace GUIApp {
 	}
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	if (val == 0) {
-		User->Qualification = 5;
+		MessageBox::Show("Debes calificar al conductor");
 	}
 	else {
-		User->Qualification = val;
-
+		User->Qualification = (User->Qualification+val)/2;
+		Service::UpdateDriver(User);
+		MessageBox::Show("Gracias por tu opinion");
+		this->Close();
+		principal->Show();
 	}
-	MessageBox::Show("Gracias por tu opinion");
-	this->Close();
-	principal->Show();
 
 }
 private: System::Void label5_Click(System::Object^ sender, System::EventArgs^ e) {
