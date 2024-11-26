@@ -43,8 +43,10 @@ namespace GUIApp {
 			InitializeComponent();
 			Conductores = Service::QueryAllDrivers();
 			for each (Driver ^ d in Conductores) {
-				RutasLat->Add(d->Rutasa->Puntos_x_volatil);
-				RutasLon->Add(d->Rutasa->Puntos_y_volatil);
+				if (d->Rutasa->Puntos_x_volatil != "") {
+					RutasLat->Add(d->Rutasa->Puntos_x_volatil);
+					RutasLon->Add(d->Rutasa->Puntos_y_volatil);
+				}
 			}
 			User = user;
 			pictureBox1->Invalidate();
