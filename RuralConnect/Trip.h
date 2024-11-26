@@ -20,9 +20,11 @@ namespace RuralConnect {
         
         int EstimatedPrice = 0;
         int TripState = 0;
-
+        int Cant_pasajero_Trip = 0;
         
         List<Passenger^>^ Passengers = gcnew List<Passenger^>();
+        List<Passenger^>^ PassengersTotal = gcnew List<Passenger^>();
+
 
         String^ Driver_Name = "";
 

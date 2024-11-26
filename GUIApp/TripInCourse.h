@@ -1,6 +1,7 @@
 #pragma once
 #include "TripRequest.h"
 #include "ReportPasajerosAbordo.h"
+#include "CalificacionDriver.h"
 
 //#include "PrincipalFormDriver.h"
 
@@ -27,6 +28,7 @@ namespace GUIApp {
 	/// </summary>
 	public ref class TripInCourse : public System::Windows::Forms::Form
 	{
+		
 		int counter = 1;
 		List<array<int>^>^ ListaXY = gcnew List<array<int>^>();
 	private: System::Windows::Forms::Timer^ timer2;
@@ -54,10 +56,16 @@ namespace GUIApp {
 	public:
 		List<array<double>^>^ LatLong = gcnew List<array<double>^>();
 		Form^ principal;
+		List<Passenger^>^ PPList = gcnew List<Passenger^>();
 	private: System::Windows::Forms::Label^ label11;
 	private: System::Windows::Forms::Label^ label12;
 	public:
 		Form^ f4;
+	private: System::Windows::Forms::Label^ label13;
+	public:
+	public: System::Windows::Forms::Label^ label14;
+		   
+	
 	public:
 		TripInCourse(List<array<double>^>^ a, Driver^ p, Form^ pp, Form^ ff4)
 		{
@@ -68,6 +76,7 @@ namespace GUIApp {
 			int x = 0, y = 0;
 			principal = pp;
 			f4 = ff4;
+			
 			// Tamaño del PictureBox
 			int width = pictureBox1->Width;
 			int height = pictureBox1->Height;
@@ -117,7 +126,7 @@ namespace GUIApp {
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::Label^ label4;
+	public: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::TextBox^ txt_CantPersonas;
 	private: System::Windows::Forms::PictureBox^ pictureBox2;
 	private: System::Windows::Forms::PictureBox^ pictureBox3;
@@ -168,6 +177,8 @@ namespace GUIApp {
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->label11 = (gcnew System::Windows::Forms::Label());
 			this->label12 = (gcnew System::Windows::Forms::Label());
+			this->label13 = (gcnew System::Windows::Forms::Label());
+			this->label14 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox3))->BeginInit();
@@ -411,7 +422,7 @@ namespace GUIApp {
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(1030, 558);
+			this->button3->Location = System::Drawing::Point(1027, 526);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(149, 42);
 			this->button3->TabIndex = 19;
@@ -440,12 +451,33 @@ namespace GUIApp {
 			this->label12->TabIndex = 21;
 			this->label12->Text = L"0.0 soles";
 			// 
+			// label13
+			// 
+			this->label13->AutoSize = true;
+			this->label13->Location = System::Drawing::Point(961, 61);
+			this->label13->Name = L"label13";
+			this->label13->Size = System::Drawing::Size(104, 16);
+			this->label13->TabIndex = 22;
+			this->label13->Text = L"Cnat. pasajeros ";
+			// 
+			// label14
+			// 
+			this->label14->AutoSize = true;
+			this->label14->Location = System::Drawing::Point(1131, 63);
+			this->label14->Name = L"label14";
+			this->label14->Size = System::Drawing::Size(42, 16);
+			this->label14->TabIndex = 23;
+			this->label14->Text = L"txtBox";
+			this->label14->Click += gcnew System::EventHandler(this, &TripInCourse::label14_Click);
+			// 
 			// TripInCourse
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ActiveCaption;
 			this->ClientSize = System::Drawing::Size(1279, 612);
+			this->Controls->Add(this->label14);
+			this->Controls->Add(this->label13);
 			this->Controls->Add(this->label12);
 			this->Controls->Add(this->label11);
 			this->Controls->Add(this->button3);
@@ -488,7 +520,7 @@ namespace GUIApp {
 		}
 #pragma endregion
 
-
+		
 		double latTopLeft = -12.074135, lonTopLeft = -77.083166;   // Coordenadas de la esquina superior izquierda
 		double latBottomRight = -12.064391, lonBottomRight = -77.077202; // Coordenadas de la esquina inferior derecha
 
@@ -512,6 +544,7 @@ private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArg
 private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
 
 	label12->Text = ""+User->viaje->EstimatedPrice;
+	label14->Text = "" + User->viaje->PassengersTotal->Count;
 	List<String^>^ ubicacion = Service::ReadGPSData();
 	if (ubicacion[0] != "1") {
 		//Se leen los datos
@@ -625,13 +658,18 @@ private: System::Void TripInCourse_Load(System::Object^ sender, System::EventArg
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 	User->NumberOfCompletedTrips = User->NumberOfCompletedTrips + 1;
-	principal->Show();
+	CalificacionDriver^ newp = gcnew CalificacionDriver(User, principal);
+	//tadavia no se enviara el principal
+	newp->Show();
+	
 	this->Close();
 
 }
 private: System::Void pictureBox3_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void label11_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void label14_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

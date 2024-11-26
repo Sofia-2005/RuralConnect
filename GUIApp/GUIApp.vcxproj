@@ -130,6 +130,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AdvertisementForm.cpp" />
+    <ClCompile Include="CalificacionDriver.cpp" />
     <ClCompile Include="deleteAccount.cpp" />
     <ClCompile Include="DriverPage.cpp" />
     <ClCompile Include="FindTrip.cpp" />
@@ -150,6 +151,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AdvertisementForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="CalificacionDriver.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="deleteAccount.h">
@@ -208,6 +212,9 @@
     <EmbeddedResource Include="AdvertisementForm.resx">
       <DependentUpon>AdvertisementForm.h</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CalificacionDriver.resx">
+      <DependentUpon>CalificacionDriver.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="deleteAccount.resx">
       <DependentUpon>deleteAccount.h</DependentUpon>

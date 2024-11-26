@@ -113,6 +113,7 @@ namespace GUIApp {
 			this->PhotoPasajero->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->PhotoPasajero->TabIndex = 1;
 			this->PhotoPasajero->TabStop = false;
+			this->PhotoPasajero->Click += gcnew System::EventHandler(this, &MyForm::PhotoPasajero_Click);
 			// 
 			// btnLogout
 			// 
@@ -337,6 +338,8 @@ private: System::Void btPhotoPass_Click(System::Object^ sender, System::EventArg
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	deleteAccount^ f = gcnew deleteAccount(nullptr, User, this, login);
 	f->Show();
+}
+private: System::Void PhotoPasajero_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

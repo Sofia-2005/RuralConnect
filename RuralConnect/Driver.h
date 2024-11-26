@@ -24,6 +24,7 @@ namespace RuralConnect {
         Trip^ viaje= gcnew Trip();
         Solicitud^ solicitud = gcnew Solicitud();
         Route^ Rutasa = gcnew Route();
+        
         void EndMyRoute();
         void CreateRoute();
         void OfferRoute();
