@@ -20,6 +20,7 @@
     <ClCompile Include="ReportPasajerosAbordo.cpp" />
     <ClCompile Include="deleteAccount.cpp" />
     <ClCompile Include="CalificacionDriver.cpp" />
+    <ClCompile Include="CalificacionPassenger.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LoginForm.cpp">
@@ -61,5 +62,6 @@
     <ClInclude Include="ReportPasajerosAbordo.h" />
     <ClInclude Include="deleteAccount.h" />
     <ClInclude Include="CalificacionDriver.h" />
+    <ClInclude Include="CalificacionPassenger.h" />
   </ItemGroup>
 </Project>

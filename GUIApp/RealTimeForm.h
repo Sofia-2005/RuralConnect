@@ -1,5 +1,6 @@
 #pragma once
 #include "AdvertisementForm.h"
+#include "CalificacionPassenger.h"
 //#include "PrincipalForm.h"
 //#include "FindTrip.h"
 //#include "SelectRoutePassenger.h"
@@ -253,8 +254,9 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 		pasajero->Level = "ORO";
 	}
 	Service::UpdatePassenger(pasajero);
+	CalificacionPassenger^ que = gcnew CalificacionPassenger(conductor, principal);
 	this->Close();
-	principal->Show();
+	que->Show();
 
 }
 private: System::Void btnBack_Click(System::Object^ sender, System::EventArgs^ e) {
