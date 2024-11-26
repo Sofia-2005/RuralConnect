@@ -433,6 +433,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 		MessageBox::Show("Debes calificar al conductor");
 	}
 	else {
+		User = Service::QueryDriverbyUsername(User->Username);
 		User->Qualification = (User->Qualification+val)/2;
 		Service::UpdateDriver(User);
 		MessageBox::Show("Gracias por tu opinion");
