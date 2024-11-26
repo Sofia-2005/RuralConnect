@@ -243,6 +243,7 @@ private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows:
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 	conductor->viaje->Passengers->Remove(pasajero);
+	conductor->viaje->AvailableSeats+1;
 	Service::UpdateDriver(conductor);
 	pasajero->Address = Convert::ToString(Convert::ToInt32(pasajero->Address) + 1);
 	if (Convert::ToInt32(pasajero->Address) >= 10) {

@@ -18,7 +18,7 @@ namespace RuralConnect{
         String^ Username;
         String^ Password;
         Claim^ claim = gcnew Claim();
-        int Qualification=0;
+        int Qualification=5;
         String^ UbiActual = "";
 
         array<Byte>^ Photo;

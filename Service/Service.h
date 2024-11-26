@@ -69,7 +69,11 @@ namespace RuralService {
 		static List<Passenger^>^ QueryAllPassengers();
 		static Passenger^ QueryPassengerbyUsername(String^ username);
 
-
+		static void AddTrip(Trip^);
+		static void UpdateTrip(Trip^);
+		static void DeleteTrip(String^ username);
+		static List<Trip^>^ QueryAllTrips();
+		static Trip^ QueryTripbyUsername(String^ username);
 
 
 

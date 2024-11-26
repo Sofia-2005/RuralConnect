@@ -155,6 +155,31 @@ Passenger^ RuralService::Service::QueryPassengerbyUsername(String^ username)
     return pasajero_requerido;
 }
 
+void RuralService::Service::AddTrip(Trip^t)
+{
+    Persistance::AddPTrip(t);
+}
+
+void RuralService::Service::UpdateTrip(Trip^t)
+{
+    Persistance::UpdateTrip(t);
+}
+
+void RuralService::Service::DeleteTrip(String^ username)
+{
+    Persistance::DeleteTrip(username);
+}
+
+List<Trip^>^ RuralService::Service::QueryAllTrips()
+{
+    return Persistance::QueryAllTrips();
+}
+
+Trip^ RuralService::Service::QueryTripbyUsername(String^ username)
+{
+    return Persistance::QueryTripByUserName(username);
+}
+
 
 void RuralService::Service::UpdateDriver(Driver^ p)
 {

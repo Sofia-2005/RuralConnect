@@ -1355,7 +1355,7 @@ List<Trip^>^ RCPersistance::Persistance::QueryAllTrips()
 
             
             String^ nombres = reader["PASSENGERS_name"]->ToString();
-            List<String^>^ lista_pasajero = gcnew List<String^>(reader["ROUTE"]->ToString()->Split(delimitador, StringSplitOptions::None));
+            List<String^>^ lista_pasajero = gcnew List<String^>(reader["PASSENGERS_name"]->ToString()->Split(delimitador, StringSplitOptions::None));
             for each (String^ nombre in lista_pasajero) {
                 robot->PassengersTotal->Add( Persistance::QueryPassengerByUserName(nombre) );
             }
@@ -1637,7 +1637,7 @@ void RCPersistance::Persistance::AddDriverTable(Driver^ driver)
         //cmd->Parameters["@PASSENGERS"]->Value = driver->viaje->Passengers;
         String^ sum = "";
         sum = "";
-        for each (Passenger^ p in driver->viaje->PassengersTotal) {
+        for each (Passenger^ p in driver->viaje->Passengers) {
             if (sum == "") {
                 sum = sum + p->Username;
             }
