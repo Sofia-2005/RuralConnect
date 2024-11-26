@@ -533,6 +533,7 @@ namespace GUIApp {
 		this->Hide();
 	}
 	private: System::Void btnTripApplication_Click(System::Object^ sender, System::EventArgs^ e) {
+		User = Service::QueryDriverbyUsername(User->Username);
 		if (User->solicitud->destino != "") { //LatLong, User
 			TripRequest^ Application = gcnew TripRequest(LatLong,User);
 			Application->Show();
@@ -658,6 +659,9 @@ private: System::Void TripInCourse_Load(System::Object^ sender, System::EventArg
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 	User->NumberOfCompletedTrips = User->NumberOfCompletedTrips + 1;
+	User->Rutasa->Puntos_x_volatil = "";
+	User->Rutasa->Puntos_y_volatil = "";
+	Service::UpdateDriver(User);
 	CalificacionDriver^ newp = gcnew CalificacionDriver(User, principal);
 	//tadavia no se enviara el principal
 	newp->Show();
