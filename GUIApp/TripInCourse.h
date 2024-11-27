@@ -465,9 +465,9 @@ namespace GUIApp {
 			this->label14->AutoSize = true;
 			this->label14->Location = System::Drawing::Point(1131, 63);
 			this->label14->Name = L"label14";
-			this->label14->Size = System::Drawing::Size(42, 16);
+			this->label14->Size = System::Drawing::Size(14, 16);
 			this->label14->TabIndex = 23;
-			this->label14->Text = L"txtBox";
+			this->label14->Text = L"0";
 			this->label14->Click += gcnew System::EventHandler(this, &TripInCourse::label14_Click);
 			// 
 			// TripInCourse
@@ -534,6 +534,8 @@ namespace GUIApp {
 	}
 	private: System::Void btnTripApplication_Click(System::Object^ sender, System::EventArgs^ e) {
 		User = Service::QueryDriverbyUsername(User->Username);
+		label12->Text = "" + User->viaje->EstimatedPrice;
+		label14->Text = "" + User->viaje->Passengers->Count;
 		if (User->solicitud->destino != "") { //LatLong, User
 			TripRequest^ Application = gcnew TripRequest(LatLong,User);
 			Application->Show();
@@ -544,8 +546,6 @@ private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArg
 }
 private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
 
-	label12->Text = ""+User->viaje->EstimatedPrice;
-	label14->Text = "" + User->viaje->PassengersTotal->Count;
 	List<String^>^ ubicacion = Service::ReadGPSData();
 	if (ubicacion[0] != "1") {
 		//Se leen los datos
