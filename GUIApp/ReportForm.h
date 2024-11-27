@@ -207,6 +207,7 @@ namespace GUIApp {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+
 			this->ClientSize = System::Drawing::Size(1348, 834);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->AmountOfPassengersPerTripChart);
