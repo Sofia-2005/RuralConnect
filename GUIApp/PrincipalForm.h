@@ -22,6 +22,7 @@ namespace GUIApp {
 
 		Passenger^ User;
 	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::Label^ label5;
 	public:
 		Form^ login;
 		MyForm(RuralConnect::Passenger^ user, Form^ log)
@@ -100,6 +101,7 @@ namespace GUIApp {
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->txtNumeroViajes = (gcnew System::Windows::Forms::Label());
 			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->label5 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PhotoPasajero))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -238,12 +240,23 @@ namespace GUIApp {
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
 			// 
+			// label5
+			// 
+			this->label5->AutoSize = true;
+			this->label5->BackColor = System::Drawing::SystemColors::ActiveCaption;
+			this->label5->Location = System::Drawing::Point(570, 169);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(15, 16);
+			this->label5->TabIndex = 14;
+			this->label5->Text = L"a";
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ActiveCaption;
 			this->ClientSize = System::Drawing::Size(627, 431);
+			this->Controls->Add(this->label5);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->txtNumeroViajes);
 			this->Controls->Add(this->label3);
@@ -302,6 +315,8 @@ private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) 
 
 	txtCategoria->Text = User->Level;
 	txtNumeroViajes->Text = User->Address;
+	label5->Text = ""+ User->Qualification;
+	progressBar1->Value = 20 * (User->Qualification);
 }
 
 private: System::Void label3_Click(System::Object^ sender, System::EventArgs^ e) {

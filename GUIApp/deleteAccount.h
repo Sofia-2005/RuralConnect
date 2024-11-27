@@ -72,9 +72,9 @@ namespace GUIApp {
 			this->label1->AutoSize = true;
 			this->label1->Location = System::Drawing::Point(41, 28);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(238, 16);
+			this->label1->Size = System::Drawing::Size(242, 16);
 			this->label1->TabIndex = 0;
-			this->label1->Text = L"¿Seguro que quiere elimina su cuenta\?";
+			this->label1->Text = L"¿Seguro que quiere eliminar su cuenta\?";
 			// 
 			// button1
 			// 
