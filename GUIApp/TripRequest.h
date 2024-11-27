@@ -341,7 +341,7 @@ namespace GUIApp {
 private: System::Void btnAcceptPassenger_Click(System::Object^ sender, System::EventArgs^ e) {
 
 	user->viaje->Passengers->Add(pasajero);
-	user->viaje->PassengersTotal->Add(pasajero);
+	Service::PasajerosTotal->Add(pasajero);
 	//se agrega pasajero a la lista que no se eliminara
 	
 	

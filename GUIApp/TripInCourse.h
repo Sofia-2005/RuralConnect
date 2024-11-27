@@ -662,6 +662,10 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 	User->Rutasa->Puntos_x_volatil = "";
 	User->Rutasa->Puntos_y_volatil = "";
 	Service::UpdateDriver(User);
+	Trip^ viaje = User->viaje;
+	viaje->Driver_Name = User->Username;
+	viaje->PassengersTotal = Service::PasajerosTotal;
+	Service::AddTrip(viaje);
 	CalificacionDriver^ newp = gcnew CalificacionDriver(User, principal);
 	//tadavia no se enviara el principal
 	newp->Show();

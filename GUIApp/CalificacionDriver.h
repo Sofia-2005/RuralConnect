@@ -158,6 +158,7 @@ namespace GUIApp {
 			this->PhotoPasajero->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->PhotoPasajero->Name = L"PhotoPasajero";
 			this->PhotoPasajero->Size = System::Drawing::Size(157, 194);
+			this->PhotoPasajero->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->PhotoPasajero->TabIndex = 5;
 			this->PhotoPasajero->TabStop = false;
 			this->PhotoPasajero->Click += gcnew System::EventHandler(this, &CalificacionDriver::pictureBox1_Click);
@@ -309,6 +310,7 @@ namespace GUIApp {
 			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"CalificacionDriver";
 			this->Text = L"CalificacionDriver";
+			this->Load += gcnew System::EventHandler(this, &CalificacionDriver::CalificacionDriver_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PhotoPasajero))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->ResumeLayout(false);
@@ -353,7 +355,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 		int calificacion = (p_actualizar->Qualification + Convert::ToInt32(txtCalificacion->Text) )/2;
 		p_actualizar->Qualification = calificacion;
 		Service::UpdatePassenger(p_actualizar);
-
+		MessageBox::Show("Se ha modificado la calificación");
 	}
 	else {
 		MessageBox::Show("Debe elegir un usuario ");
@@ -363,9 +365,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-	Trip^ viaje = User->viaje;
-	viaje->Driver_Name=User->Username;//PARA QUE HACES ESTO?
-	Service::AddTrip(viaje);
+
 	principal->Show();
 	this->Close();
 }
@@ -406,6 +406,9 @@ private: System::Void dataGridView1_CellClick(System::Object^ sender, System::Wi
 	}
 	//**********************************************************
 
+}
+private: System::Void CalificacionDriver_Load(System::Object^ sender, System::EventArgs^ e) {
+	ShowPasajeros();
 }
 };
 }

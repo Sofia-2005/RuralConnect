@@ -18,6 +18,8 @@ namespace RuralService {
 		// USUARIOS ACTUALES -------------------
 		Driver^ Conductor_Actual = gcnew Driver();
 		Passenger^ Pasajero_Actual = gcnew Passenger();
+		static List<Passenger^>^ PasajerosTotal = gcnew List<Passenger^>();
+		// -----------------------------------
 		// -----------------------------------
 		
 		static String^ XML_PASSENGER_FILE_NAME = "passengers.xml";
