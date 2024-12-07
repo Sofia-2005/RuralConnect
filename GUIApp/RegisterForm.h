@@ -47,8 +47,8 @@ namespace GUIApp {
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::Label^ label6;
 	private: System::Windows::Forms::Label^ label7;
-	private: System::Windows::Forms::Button^ btnPassenger;
-	private: System::Windows::Forms::Button^ btnDriver;
+
+
 	private: System::Windows::Forms::Button^ btnRegister;
 	private: System::Windows::Forms::TextBox^ txtName;
 	private: System::Windows::Forms::TextBox^ txtLastname;
@@ -60,6 +60,8 @@ namespace GUIApp {
 	private: System::Windows::Forms::PictureBox^ FotoUserReg;
 
 	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::RadioButton^ radioButton2;
+	private: System::Windows::Forms::RadioButton^ radioButton1;
 
 
 
@@ -87,8 +89,6 @@ namespace GUIApp {
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->label7 = (gcnew System::Windows::Forms::Label());
-			this->btnPassenger = (gcnew System::Windows::Forms::Button());
-			this->btnDriver = (gcnew System::Windows::Forms::Button());
 			this->btnRegister = (gcnew System::Windows::Forms::Button());
 			this->txtName = (gcnew System::Windows::Forms::TextBox());
 			this->txtLastname = (gcnew System::Windows::Forms::TextBox());
@@ -99,6 +99,8 @@ namespace GUIApp {
 			this->btn_back = (gcnew System::Windows::Forms::Button());
 			this->FotoUserReg = (gcnew System::Windows::Forms::PictureBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->radioButton2 = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButton1 = (gcnew System::Windows::Forms::RadioButton());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->FotoUserReg))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -165,28 +167,6 @@ namespace GUIApp {
 			this->label7->Size = System::Drawing::Size(31, 16);
 			this->label7->TabIndex = 6;
 			this->label7->Text = L"Rol:";
-			// 
-			// btnPassenger
-			// 
-			this->btnPassenger->Location = System::Drawing::Point(173, 324);
-			this->btnPassenger->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->btnPassenger->Name = L"btnPassenger";
-			this->btnPassenger->Size = System::Drawing::Size(75, 33);
-			this->btnPassenger->TabIndex = 7;
-			this->btnPassenger->Text = L"Pasajero";
-			this->btnPassenger->UseVisualStyleBackColor = true;
-			this->btnPassenger->Click += gcnew System::EventHandler(this, &RegisterForm::btnPassenger_Click);
-			// 
-			// btnDriver
-			// 
-			this->btnDriver->Location = System::Drawing::Point(318, 324);
-			this->btnDriver->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->btnDriver->Name = L"btnDriver";
-			this->btnDriver->Size = System::Drawing::Size(85, 33);
-			this->btnDriver->TabIndex = 8;
-			this->btnDriver->Text = L"Conductor";
-			this->btnDriver->UseVisualStyleBackColor = true;
-			this->btnDriver->Click += gcnew System::EventHandler(this, &RegisterForm::btnDriver_Click);
 			// 
 			// btnRegister
 			// 
@@ -284,11 +264,37 @@ namespace GUIApp {
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &RegisterForm::button1_Click);
 			// 
+			// radioButton2
+			// 
+			this->radioButton2->AutoSize = true;
+			this->radioButton2->Location = System::Drawing::Point(325, 330);
+			this->radioButton2->Name = L"radioButton2";
+			this->radioButton2->Size = System::Drawing::Size(89, 20);
+			this->radioButton2->TabIndex = 20;
+			this->radioButton2->TabStop = true;
+			this->radioButton2->Text = L"Conductor";
+			this->radioButton2->UseVisualStyleBackColor = true;
+			this->radioButton2->CheckedChanged += gcnew System::EventHandler(this, &RegisterForm::radioButton2_CheckedChanged);
+			// 
+			// radioButton1
+			// 
+			this->radioButton1->AutoSize = true;
+			this->radioButton1->Location = System::Drawing::Point(183, 330);
+			this->radioButton1->Name = L"radioButton1";
+			this->radioButton1->Size = System::Drawing::Size(83, 20);
+			this->radioButton1->TabIndex = 19;
+			this->radioButton1->TabStop = true;
+			this->radioButton1->Text = L"Pasajero";
+			this->radioButton1->UseVisualStyleBackColor = true;
+			this->radioButton1->CheckedChanged += gcnew System::EventHandler(this, &RegisterForm::radioButton1_CheckedChanged);
+			// 
 			// RegisterForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(611, 438);
+			this->Controls->Add(this->radioButton2);
+			this->Controls->Add(this->radioButton1);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->FotoUserReg);
 			this->Controls->Add(this->btn_back);
@@ -299,8 +305,6 @@ namespace GUIApp {
 			this->Controls->Add(this->txtLastname);
 			this->Controls->Add(this->txtName);
 			this->Controls->Add(this->btnRegister);
-			this->Controls->Add(this->btnDriver);
-			this->Controls->Add(this->btnPassenger);
 			this->Controls->Add(this->label7);
 			this->Controls->Add(this->label6);
 			this->Controls->Add(this->label5);
@@ -517,5 +521,11 @@ namespace GUIApp {
 			FotoUserReg->Image = gcnew Bitmap(ofd->FileName);
 		}
 	}
+private: System::Void radioButton1_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	pasajero = 1;
+}
+private: System::Void radioButton2_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	pasajero = 2;
+}
 };
 }

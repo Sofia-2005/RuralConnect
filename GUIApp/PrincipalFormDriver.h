@@ -150,7 +150,7 @@ namespace GUIApp {
 			this->PhotoDriver->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->PhotoDriver->TabIndex = 9;
 			this->PhotoDriver->TabStop = false;
-			this->PhotoDriver->Click += gcnew System::EventHandler(this, &PrincipalFormDriver::pictureBox1_Click);
+			this->PhotoDriver->Click += gcnew System::EventHandler(this, &PrincipalFormDriver::PhotoPasajero);
 			// 
 			// pB
 			// 
@@ -288,7 +288,24 @@ namespace GUIApp {
 	private: System::Void progressBar1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 private: System::Void PrincipalFormDriver_Load(System::Object^ sender, System::EventArgs^ e) {
+	if (User->Photo != nullptr && User->Photo->Length > 0) {
+		// Convertir el array<Byte>^ en una imagen
+		System::IO::MemoryStream^ memoryStream = gcnew System::IO::MemoryStream(User->Photo);
+		try {
 
+			PhotoDriver->Image = System::Drawing::Image::FromStream(memoryStream);
+		}
+		catch (System::Exception^ ex) {
+			MessageBox::Show("Error al cargar la imagen: " + ex->Message);
+		}
+		finally {
+			delete memoryStream; // Liberar recursos
+		}
+	}
+	else {
+		PhotoDriver->Image = nullptr; // Opcional: Establecer imagen predeterminada
+		//PhotoPasajero->Image = System::Drawing::Image::FromFile("C:\\Users\\USER\\OneDrive\\Imágenes\\ilustracion-vectorial-de-dibujos-animados-los-ninos-van-a-la-escuela-mj42xy.jpg");
+	}
 	txtDriverName->Text = User->Name + " " + User->LastName;
 
 	txtScore->Text = Convert::ToString(User->Qualification);
@@ -322,6 +339,8 @@ private: System::Void btnLogout_Click(System::Object^ sender, System::EventArgs^
 private: System::Void button2_Click_1(System::Object^ sender, System::EventArgs^ e) {
 	deleteAccount^ f = gcnew deleteAccount(User, nullptr, this, login);
 	f->Show();
+}
+private: System::Void PhotoPasajero(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }
