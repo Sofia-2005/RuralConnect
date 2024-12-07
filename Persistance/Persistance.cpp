@@ -334,9 +334,9 @@ Object^ RCPersistance::Persistance::Load_Claim_XML_File(String^ fileName)
 SqlConnection^ RCPersistance::Persistance::GetConnection()
 {
     SqlConnection^ conn = gcnew SqlConnection();
-    String^ password = "luisitoguapo123";
-    String^ serverName = "a20216480.c3ugbnmxzkjf.us-east-1.rds.amazonaws.com";
-    conn->ConnectionString = "Server=" + serverName + ";Database = Prueba_db;User ID = admin; Password = " +
+    String^ password = "ymm6Wr9FEXe3";
+    String^ serverName = "200.16.7.140";
+    conn->ConnectionString = "Server=" + serverName + ";Database = a20222049;User ID = a20222049; Password = " +
         password + ";";
     conn->Open();
     return conn;

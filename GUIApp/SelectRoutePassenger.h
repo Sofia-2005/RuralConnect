@@ -251,33 +251,39 @@ private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows:
 			g->DrawLine(pen, x, y, x2, y2);
 		}
 	}*/
-		x = 50, y = 50, x2 = 0, y2 = 0;
+	if (RutasLat->Count > 0) {
+
+		x = 50;
+		y = 50;
+		x2 = 0;
+		y2 = 0;
 
 		g = e->Graphics;
 		pen = gcnew Pen(Color::Green);
 		radius = 5; // Radio del punto
 
-			PuntosLat = Service::De_String_toDouble(RutasLat[indice]);
-			PuntosLong = Service::De_String_toDouble(RutasLon[indice]);
+		PuntosLat = Service::De_String_toDouble(RutasLat[indice]);
+		PuntosLong = Service::De_String_toDouble(RutasLon[indice]);
 
-			for (int j = 0;j < PuntosLat->Count;j++) {
+		for (int j = 0;j < PuntosLat->Count;j++) {
 
-				x = (int)((PuntosLat[j] - latTopLeft) / (latBottomRight - latTopLeft) * width);
-				y = (int)((PuntosLong[j] - lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
+			x = (int)((PuntosLat[j] - latTopLeft) / (latBottomRight - latTopLeft) * width);
+			y = (int)((PuntosLong[j] - lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
 
-				g->FillEllipse(System::Drawing::Brushes::Green, x - radius, y - radius, radius * 2, radius * 2);
-			}
+			g->FillEllipse(System::Drawing::Brushes::Green, x - radius, y - radius, radius * 2, radius * 2);
+		}
 
 
-			for (int k = 0;k < PuntosLat->Count - 1;k++) {
+		for (int k = 0;k < PuntosLat->Count - 1;k++) {
 
-				x = (int)((PuntosLat[k] - latTopLeft) / (latBottomRight - latTopLeft) * width);
-				y = (int)((PuntosLong[k] - lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
+			x = (int)((PuntosLat[k] - latTopLeft) / (latBottomRight - latTopLeft) * width);
+			y = (int)((PuntosLong[k] - lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
 
-				x2 = (int)((PuntosLat[k + 1] - latTopLeft) / (latBottomRight - latTopLeft) * width);
-				y2 = (int)((PuntosLong[k + 1] - lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
-				g->DrawLine(pen, x, y, x2, y2);
-			}
+			x2 = (int)((PuntosLat[k + 1] - latTopLeft) / (latBottomRight - latTopLeft) * width);
+			y2 = (int)((PuntosLong[k + 1] - lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
+			g->DrawLine(pen, x, y, x2, y2);
+		}
+	}
 }
 private: System::Void cmbRutas_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 	indice = cmbRutas->SelectedIndex;
