@@ -244,7 +244,11 @@ private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows:
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 	conductor = Service::QueryDriverbyUsername(conductor->Username);
-	conductor->viaje->Passengers->Remove(pasajero);
+	for (int i = 0;i < conductor->viaje->Passengers->Count;i++) {
+		if (conductor->viaje->Passengers[0]->Username == pasajero->Username) {
+			conductor->viaje->Passengers->RemoveAt(i);
+		}
+	}
 	conductor->viaje->AvailableSeats = conductor->viaje->AvailableSeats +1;
 	Service::UpdateDriver(conductor);
 	pasajero->Address = Convert::ToString(Convert::ToInt32(pasajero->Address) + 1);
