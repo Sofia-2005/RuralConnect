@@ -22,6 +22,7 @@ namespace GUIApp {
 
 		Passenger^ User;
 	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::Label^ label5;
 
 	public:
 		Form^ login;
@@ -101,6 +102,7 @@ namespace GUIApp {
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->txtNumeroViajes = (gcnew System::Windows::Forms::Label());
 			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->label5 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PhotoPasajero))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -261,12 +263,25 @@ namespace GUIApp {
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
 			// 
+			// label5
+			// 
+			this->label5->AutoSize = true;
+			this->label5->Font = (gcnew System::Drawing::Font(L"Elephant", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label5->Location = System::Drawing::Point(359, 161);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(20, 20);
+			this->label5->TabIndex = 14;
+			this->label5->Text = L"0";
+			this->label5->Click += gcnew System::EventHandler(this, &MyForm::label5_Click);
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ActiveCaption;
 			this->ClientSize = System::Drawing::Size(627, 431);
+			this->Controls->Add(this->label5);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->txtNumeroViajes);
 			this->Controls->Add(this->label3);
@@ -365,6 +380,8 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	f->Show();
 }
 private: System::Void PhotoPasajero_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void label5_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }
