@@ -92,8 +92,8 @@ namespace GUIApp {
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(410, 32);
 			this->label2->TabIndex = 1;
-			this->label2->Text = L"Este formulario de quejas es valida para reclamos y quejas referida\r\n            "
-				L"         al presente servicio de RuralConnect.";
+			this->label2->Text = L"Este formulario de quejas es válida para reclamos y quejas referida\r\nal presente "
+				L"servicio de RuralConnect.\r\n";
 			this->label2->Click += gcnew System::EventHandler(this, &AdvertisementForm::label2_Click);
 			// 
 			// label3
@@ -185,7 +185,7 @@ namespace GUIApp {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Name = L"AdvertisementForm";
-			this->Text = L"AdvertisementForm";
+			this->Text = L"Formulario de reclamos";
 			this->Load += gcnew System::EventHandler(this, &AdvertisementForm::AdvertisementForm_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();

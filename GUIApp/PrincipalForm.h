@@ -22,7 +22,7 @@ namespace GUIApp {
 
 		Passenger^ User;
 	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::Label^ label5;
+
 	public:
 		Form^ login;
 		MyForm(RuralConnect::Passenger^ user, Form^ log)
@@ -101,7 +101,6 @@ namespace GUIApp {
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->txtNumeroViajes = (gcnew System::Windows::Forms::Label());
 			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->label5 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PhotoPasajero))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -119,10 +118,12 @@ namespace GUIApp {
 			// 
 			// btnLogout
 			// 
+			this->btnLogout->Font = (gcnew System::Drawing::Font(L"Elephant", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->btnLogout->Location = System::Drawing::Point(9, 15);
 			this->btnLogout->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnLogout->Name = L"btnLogout";
-			this->btnLogout->Size = System::Drawing::Size(93, 23);
+			this->btnLogout->Size = System::Drawing::Size(114, 23);
 			this->btnLogout->TabIndex = 2;
 			this->btnLogout->Text = L"LOGOUT";
 			this->btnLogout->UseVisualStyleBackColor = true;
@@ -131,9 +132,11 @@ namespace GUIApp {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(251, 170);
+			this->label2->Font = (gcnew System::Drawing::Font(L"Elephant", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label2->Location = System::Drawing::Point(249, 162);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(79, 16);
+			this->label2->Size = System::Drawing::Size(104, 20);
 			this->label2->TabIndex = 4;
 			this->label2->Text = L"Calificación:";
 			this->label2->Click += gcnew System::EventHandler(this, &MyForm::label2_Click);
@@ -141,18 +144,22 @@ namespace GUIApp {
 			// txtCategoria
 			// 
 			this->txtCategoria->AutoSize = true;
-			this->txtCategoria->Location = System::Drawing::Point(395, 241);
+			this->txtCategoria->Font = (gcnew System::Drawing::Font(L"Elephant", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->txtCategoria->Location = System::Drawing::Point(415, 237);
 			this->txtCategoria->Name = L"txtCategoria";
-			this->txtCategoria->Size = System::Drawing::Size(66, 16);
+			this->txtCategoria->Size = System::Drawing::Size(83, 20);
 			this->txtCategoria->TabIndex = 5;
-			this->txtCategoria->Text = L"Categoria";
+			this->txtCategoria->Text = L"Categoría";
 			this->txtCategoria->Click += gcnew System::EventHandler(this, &MyForm::txtCategoria_Click);
 			// 
 			// btnPlace
 			// 
 			this->btnPlace->BackColor = System::Drawing::Color::AntiqueWhite;
+			this->btnPlace->Font = (gcnew System::Drawing::Font(L"Elephant", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->btnPlace->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->btnPlace->Location = System::Drawing::Point(255, 282);
+			this->btnPlace->Location = System::Drawing::Point(278, 283);
 			this->btnPlace->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnPlace->Name = L"btnPlace";
 			this->btnPlace->Size = System::Drawing::Size(232, 85);
@@ -163,7 +170,7 @@ namespace GUIApp {
 			// 
 			// progressBar1
 			// 
-			this->progressBar1->Location = System::Drawing::Point(397, 162);
+			this->progressBar1->Location = System::Drawing::Point(418, 159);
 			this->progressBar1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->progressBar1->Name = L"progressBar1";
 			this->progressBar1->Size = System::Drawing::Size(157, 23);
@@ -175,29 +182,35 @@ namespace GUIApp {
 			// 
 			this->label4->AutoSize = true;
 			this->label4->BackColor = System::Drawing::SystemColors::ActiveCaption;
+			this->label4->Font = (gcnew System::Drawing::Font(L"Elephant", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->label4->Location = System::Drawing::Point(275, 38);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(95, 16);
+			this->label4->Size = System::Drawing::Size(138, 20);
 			this->label4->TabIndex = 8;
 			this->label4->Text = L"BIENVENIDO :";
 			// 
 			// btPhotoPass
 			// 
-			this->btPhotoPass->Location = System::Drawing::Point(69, 334);
+			this->btPhotoPass->Font = (gcnew System::Drawing::Font(L"Elephant", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btPhotoPass->Location = System::Drawing::Point(61, 334);
 			this->btPhotoPass->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btPhotoPass->Name = L"btPhotoPass";
-			this->btPhotoPass->Size = System::Drawing::Size(111, 34);
+			this->btPhotoPass->Size = System::Drawing::Size(133, 34);
 			this->btPhotoPass->TabIndex = 9;
-			this->btPhotoPass->Text = L"Cambiar Foto";
+			this->btPhotoPass->Text = L"Cambiar foto";
 			this->btPhotoPass->UseVisualStyleBackColor = true;
 			this->btPhotoPass->Click += gcnew System::EventHandler(this, &MyForm::btPhotoPass_Click);
 			// 
 			// txtUserName
 			// 
 			this->txtUserName->AutoSize = true;
+			this->txtUserName->Font = (gcnew System::Drawing::Font(L"Elephant", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->txtUserName->Location = System::Drawing::Point(339, 121);
 			this->txtUserName->Name = L"txtUserName";
-			this->txtUserName->Size = System::Drawing::Size(125, 16);
+			this->txtUserName->Size = System::Drawing::Size(158, 20);
 			this->txtUserName->TabIndex = 3;
 			this->txtUserName->Text = L"Nombre del usuario";
 			this->txtUserName->Click += gcnew System::EventHandler(this, &MyForm::label1_Click);
@@ -205,32 +218,40 @@ namespace GUIApp {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(251, 241);
+			this->label1->Font = (gcnew System::Drawing::Font(L"Elephant", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label1->Location = System::Drawing::Point(249, 233);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(72, 16);
+			this->label1->Size = System::Drawing::Size(92, 20);
 			this->label1->TabIndex = 10;
-			this->label1->Text = L"Categoria: ";
+			this->label1->Text = L"Categoría: ";
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(251, 207);
+			this->label3->Font = (gcnew System::Drawing::Font(L"Elephant", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label3->Location = System::Drawing::Point(249, 199);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(122, 16);
+			this->label3->Size = System::Drawing::Size(150, 20);
 			this->label3->TabIndex = 11;
 			this->label3->Text = L"Cantidad de viajes:";
 			// 
 			// txtNumeroViajes
 			// 
 			this->txtNumeroViajes->AutoSize = true;
-			this->txtNumeroViajes->Location = System::Drawing::Point(395, 207);
+			this->txtNumeroViajes->Font = (gcnew System::Drawing::Font(L"Elephant", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->txtNumeroViajes->Location = System::Drawing::Point(415, 203);
 			this->txtNumeroViajes->Name = L"txtNumeroViajes";
-			this->txtNumeroViajes->Size = System::Drawing::Size(55, 16);
+			this->txtNumeroViajes->Size = System::Drawing::Size(71, 20);
 			this->txtNumeroViajes->TabIndex = 12;
 			this->txtNumeroViajes->Text = L"Número";
 			// 
 			// button1
 			// 
+			this->button1->Font = (gcnew System::Drawing::Font(L"Elephant", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->button1->Location = System::Drawing::Point(464, 11);
 			this->button1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->button1->Name = L"button1";
@@ -240,23 +261,12 @@ namespace GUIApp {
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
 			// 
-			// label5
-			// 
-			this->label5->AutoSize = true;
-			this->label5->BackColor = System::Drawing::SystemColors::ActiveCaption;
-			this->label5->Location = System::Drawing::Point(570, 169);
-			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(15, 16);
-			this->label5->TabIndex = 14;
-			this->label5->Text = L"a";
-			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ActiveCaption;
 			this->ClientSize = System::Drawing::Size(627, 431);
-			this->Controls->Add(this->label5);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->txtNumeroViajes);
 			this->Controls->Add(this->label3);
@@ -273,7 +283,7 @@ namespace GUIApp {
 			this->HelpButton = true;
 			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"MyForm";
-			this->Text = L"MyForm";
+			this->Text = L"Formulario principal";
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PhotoPasajero))->EndInit();
 			this->ResumeLayout(false);

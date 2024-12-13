@@ -126,9 +126,10 @@ namespace GUIApp {
 			// txt_Usuario
 			// 
 			this->txt_Usuario->AutoSize = true;
-			this->txt_Usuario->Location = System::Drawing::Point(56, 125);
+			this->txt_Usuario->Location = System::Drawing::Point(42, 102);
+			this->txt_Usuario->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->txt_Usuario->Name = L"txt_Usuario";
-			this->txt_Usuario->Size = System::Drawing::Size(0, 16);
+			this->txt_Usuario->Size = System::Drawing::Size(0, 13);
 			this->txt_Usuario->TabIndex = 31;
 			// 
 			// button1
@@ -145,10 +146,10 @@ namespace GUIApp {
 			// 
 			// PhotoConductor
 			// 
-			this->PhotoConductor->Location = System::Drawing::Point(363, 121);
-			this->PhotoConductor->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->PhotoConductor->Location = System::Drawing::Point(272, 98);
+			this->PhotoConductor->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->PhotoConductor->Name = L"PhotoConductor";
-			this->PhotoConductor->Size = System::Drawing::Size(157, 194);
+			this->PhotoConductor->Size = System::Drawing::Size(111, 132);
 			this->PhotoConductor->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->PhotoConductor->TabIndex = 24;
 			this->PhotoConductor->TabStop = false;
@@ -156,55 +157,60 @@ namespace GUIApp {
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->label4->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label4->Location = System::Drawing::Point(55, 251);
+			this->label4->Location = System::Drawing::Point(41, 213);
+			this->label4->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(31, 16);
 			this->label4->TabIndex = 23;
-			this->label4->Text = L"DNI";
+			this->label4->Text = L"DNI:";
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->label3->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label3->Location = System::Drawing::Point(55, 290);
+			this->label3->Location = System::Drawing::Point(41, 246);
+			this->label3->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(128, 16);
 			this->label3->TabIndex = 22;
-			this->label3->Text = L"Calificación Actual";
+			this->label3->Text = L"Calificación Actual:";
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->label2->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label2->Location = System::Drawing::Point(55, 210);
+			this->label2->Location = System::Drawing::Point(41, 171);
+			this->label2->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(58, 16);
 			this->label2->TabIndex = 21;
-			this->label2->Text = L"Apellido";
+			this->label2->Text = L"Apellido:";
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->label1->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(56, 167);
+			this->label1->Location = System::Drawing::Point(42, 131);
+			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(57, 16);
 			this->label1->TabIndex = 20;
-			this->label1->Text = L"Nombre";
+			this->label1->Text = L"Nombre:";
 			// 
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Font = (gcnew System::Drawing::Font(L"Elephant", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label5->Location = System::Drawing::Point(31, 71);
+			this->label5->Font = (gcnew System::Drawing::Font(L"Headline R", 9.75F, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(129)));
+			this->label5->Location = System::Drawing::Point(26, 53);
+			this->label5->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(450, 20);
+			this->label5->Size = System::Drawing::Size(382, 13);
 			this->label5->TabIndex = 32;
 			this->label5->Text = L"CALIFICA TU EXPERIENCIA CON EL CONDUCTOR";
 			this->label5->Click += gcnew System::EventHandler(this, &CalificacionPassenger::label5_Click);
@@ -212,36 +218,48 @@ namespace GUIApp {
 			// txtDNI
 			// 
 			this->txtDNI->AutoSize = true;
-			this->txtDNI->Location = System::Drawing::Point(205, 251);
+			this->txtDNI->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->txtDNI->Location = System::Drawing::Point(154, 213);
+			this->txtDNI->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->txtDNI->Name = L"txtDNI";
-			this->txtDNI->Size = System::Drawing::Size(30, 16);
+			this->txtDNI->Size = System::Drawing::Size(33, 18);
 			this->txtDNI->TabIndex = 36;
 			this->txtDNI->Text = L"DNI";
 			// 
 			// txtcalificacion
 			// 
 			this->txtcalificacion->AutoSize = true;
-			this->txtcalificacion->Location = System::Drawing::Point(205, 290);
+			this->txtcalificacion->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->txtcalificacion->Location = System::Drawing::Point(185, 246);
+			this->txtcalificacion->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->txtcalificacion->Name = L"txtcalificacion";
-			this->txtcalificacion->Size = System::Drawing::Size(116, 16);
+			this->txtcalificacion->Size = System::Drawing::Size(128, 18);
 			this->txtcalificacion->TabIndex = 35;
 			this->txtcalificacion->Text = L"Calificación Actual";
 			// 
 			// txtapellido
 			// 
 			this->txtapellido->AutoSize = true;
-			this->txtapellido->Location = System::Drawing::Point(205, 210);
+			this->txtapellido->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->txtapellido->Location = System::Drawing::Point(154, 171);
+			this->txtapellido->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->txtapellido->Name = L"txtapellido";
-			this->txtapellido->Size = System::Drawing::Size(57, 16);
+			this->txtapellido->Size = System::Drawing::Size(59, 18);
 			this->txtapellido->TabIndex = 34;
 			this->txtapellido->Text = L"Apellido";
 			// 
 			// txtnombre
 			// 
 			this->txtnombre->AutoSize = true;
-			this->txtnombre->Location = System::Drawing::Point(206, 167);
+			this->txtnombre->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->txtnombre->Location = System::Drawing::Point(154, 131);
+			this->txtnombre->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->txtnombre->Name = L"txtnombre";
-			this->txtnombre->Size = System::Drawing::Size(56, 16);
+			this->txtnombre->Size = System::Drawing::Size(62, 18);
 			this->txtnombre->TabIndex = 33;
 			this->txtnombre->Text = L"Nombre";
 			// 
@@ -250,18 +268,21 @@ namespace GUIApp {
 			this->label6->AutoSize = true;
 			this->label6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label6->Location = System::Drawing::Point(56, 354);
+			this->label6->Location = System::Drawing::Point(42, 294);
+			this->label6->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(400, 18);
+			this->label6->Size = System::Drawing::Size(332, 15);
 			this->label6->TabIndex = 37;
 			this->label6->Text = L"Escoge la cantidad de estrellas que se merece el conductor";
+			this->label6->Click += gcnew System::EventHandler(this, &CalificacionPassenger::label6_Click);
 			// 
 			// pictureBox1
 			// 
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(67, 402);
+			this->pictureBox1->Location = System::Drawing::Point(53, 338);
+			this->pictureBox1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(55, 55);
+			this->pictureBox1->Size = System::Drawing::Size(41, 45);
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox1->TabIndex = 38;
 			this->pictureBox1->TabStop = false;
@@ -270,9 +291,10 @@ namespace GUIApp {
 			// pictureBox2
 			// 
 			this->pictureBox2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox2.Image")));
-			this->pictureBox2->Location = System::Drawing::Point(311, 402);
+			this->pictureBox2->Location = System::Drawing::Point(236, 338);
+			this->pictureBox2->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->pictureBox2->Name = L"pictureBox2";
-			this->pictureBox2->Size = System::Drawing::Size(55, 55);
+			this->pictureBox2->Size = System::Drawing::Size(41, 45);
 			this->pictureBox2->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox2->TabIndex = 39;
 			this->pictureBox2->TabStop = false;
@@ -281,9 +303,10 @@ namespace GUIApp {
 			// pictureBox3
 			// 
 			this->pictureBox3->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox3.Image")));
-			this->pictureBox3->Location = System::Drawing::Point(250, 402);
+			this->pictureBox3->Location = System::Drawing::Point(191, 338);
+			this->pictureBox3->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->pictureBox3->Name = L"pictureBox3";
-			this->pictureBox3->Size = System::Drawing::Size(55, 55);
+			this->pictureBox3->Size = System::Drawing::Size(41, 45);
 			this->pictureBox3->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox3->TabIndex = 40;
 			this->pictureBox3->TabStop = false;
@@ -292,9 +315,10 @@ namespace GUIApp {
 			// pictureBox4
 			// 
 			this->pictureBox4->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox4.Image")));
-			this->pictureBox4->Location = System::Drawing::Point(189, 402);
+			this->pictureBox4->Location = System::Drawing::Point(145, 338);
+			this->pictureBox4->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->pictureBox4->Name = L"pictureBox4";
-			this->pictureBox4->Size = System::Drawing::Size(55, 55);
+			this->pictureBox4->Size = System::Drawing::Size(41, 45);
 			this->pictureBox4->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox4->TabIndex = 41;
 			this->pictureBox4->TabStop = false;
@@ -303,9 +327,10 @@ namespace GUIApp {
 			// pictureBox5
 			// 
 			this->pictureBox5->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox5.Image")));
-			this->pictureBox5->Location = System::Drawing::Point(128, 402);
+			this->pictureBox5->Location = System::Drawing::Point(99, 338);
+			this->pictureBox5->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->pictureBox5->Name = L"pictureBox5";
-			this->pictureBox5->Size = System::Drawing::Size(55, 55);
+			this->pictureBox5->Size = System::Drawing::Size(41, 45);
 			this->pictureBox5->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox5->TabIndex = 42;
 			this->pictureBox5->TabStop = false;
@@ -314,51 +339,56 @@ namespace GUIApp {
 			// label7
 			// 
 			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(82, 477);
+			this->label7->Location = System::Drawing::Point(65, 399);
+			this->label7->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(14, 16);
+			this->label7->Size = System::Drawing::Size(13, 13);
 			this->label7->TabIndex = 43;
 			this->label7->Text = L"1";
 			// 
 			// label8
 			// 
 			this->label8->AutoSize = true;
-			this->label8->Location = System::Drawing::Point(147, 477);
+			this->label8->Location = System::Drawing::Point(113, 399);
+			this->label8->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label8->Name = L"label8";
-			this->label8->Size = System::Drawing::Size(14, 16);
+			this->label8->Size = System::Drawing::Size(13, 13);
 			this->label8->TabIndex = 44;
 			this->label8->Text = L"2";
 			// 
 			// label9
 			// 
 			this->label9->AutoSize = true;
-			this->label9->Location = System::Drawing::Point(206, 477);
+			this->label9->Location = System::Drawing::Point(157, 399);
+			this->label9->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label9->Name = L"label9";
-			this->label9->Size = System::Drawing::Size(14, 16);
+			this->label9->Size = System::Drawing::Size(13, 13);
 			this->label9->TabIndex = 45;
 			this->label9->Text = L"3";
 			// 
 			// label10
 			// 
 			this->label10->AutoSize = true;
-			this->label10->Location = System::Drawing::Point(273, 477);
+			this->label10->Location = System::Drawing::Point(208, 399);
+			this->label10->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label10->Name = L"label10";
-			this->label10->Size = System::Drawing::Size(14, 16);
+			this->label10->Size = System::Drawing::Size(13, 13);
 			this->label10->TabIndex = 46;
 			this->label10->Text = L"4";
 			// 
 			// label11
 			// 
 			this->label11->AutoSize = true;
-			this->label11->Location = System::Drawing::Point(331, 477);
+			this->label11->Location = System::Drawing::Point(251, 399);
+			this->label11->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label11->Name = L"label11";
-			this->label11->Size = System::Drawing::Size(14, 16);
+			this->label11->Size = System::Drawing::Size(13, 13);
 			this->label11->TabIndex = 47;
 			this->label11->Text = L"5";
 			// 
 			// CalificacionPassenger
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(573, 525);
 			this->Controls->Add(this->label11);
@@ -384,6 +414,7 @@ namespace GUIApp {
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
+			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->Name = L"CalificacionPassenger";
 			this->Text = L"CalificacionPassenger";
 			this->Load += gcnew System::EventHandler(this, &CalificacionPassenger::CalificacionPassenger_Load);
@@ -459,6 +490,8 @@ private: System::Void pictureBox3_Click(System::Object^ sender, System::EventArg
 }
 private: System::Void pictureBox2_Click(System::Object^ sender, System::EventArgs^ e) {
 	val = 5;
+}
+private: System::Void label6_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

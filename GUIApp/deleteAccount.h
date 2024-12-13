@@ -70,15 +70,19 @@ namespace GUIApp {
 			// label1
 			// 
 			this->label1->AutoSize = true;
+			this->label1->Font = (gcnew System::Drawing::Font(L"Elephant", 10.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->label1->Location = System::Drawing::Point(41, 28);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(242, 16);
+			this->label1->Size = System::Drawing::Size(352, 22);
 			this->label1->TabIndex = 0;
-			this->label1->Text = L"¿Seguro que quiere eliminar su cuenta\?";
+			this->label1->Text = L"¿Seguro que quieres eliminar tu cuenta\?";
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(53, 65);
+			this->button1->Font = (gcnew System::Drawing::Font(L"Elephant", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button1->Location = System::Drawing::Point(110, 68);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(64, 34);
 			this->button1->TabIndex = 1;
@@ -88,7 +92,9 @@ namespace GUIApp {
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(192, 65);
+			this->button2->Font = (gcnew System::Drawing::Font(L"Elephant", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button2->Location = System::Drawing::Point(249, 68);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(64, 34);
 			this->button2->TabIndex = 2;
@@ -100,12 +106,13 @@ namespace GUIApp {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(329, 137);
+			this->ClientSize = System::Drawing::Size(417, 142);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->label1);
 			this->Name = L"deleteAccount";
-			this->Text = L"Eliminar cuenta";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
+			this->Text = L"Formulario para eliminar cuenta";
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
