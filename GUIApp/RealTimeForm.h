@@ -243,6 +243,7 @@ private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows:
 	}
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+	conductor = Service::QueryDriverbyUsername(conductor->Username);
 	conductor->viaje->Passengers->Remove(pasajero);
 	conductor->viaje->AvailableSeats = conductor->viaje->AvailableSeats +1;
 	Service::UpdateDriver(conductor);
