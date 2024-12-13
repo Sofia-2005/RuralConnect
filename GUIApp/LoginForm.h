@@ -30,6 +30,20 @@ namespace GUIApp {
 			InitializeComponent();
 			//
 			//TODO: agregar código de constructor aquí
+			// // Cambiar la fuente aquí
+			this->lbl_username->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Bold);
+			this->lbl_username->BackColor = System::Drawing::Color::Transparent;
+			this->lbl_username->ForeColor = System::Drawing::Color::White;
+
+			this->label1->Font = gcnew System::Drawing::Font(L"Segoe UI", 10, FontStyle::Italic);
+			this->label1->BackColor = System::Drawing::Color::Transparent;
+			this->label1->ForeColor = System::Drawing::Color::White;
+
+			// Dentro del constructor del formulario, agrega este evento para el botón
+			this->txt_startSession->FlatStyle = FlatStyle::Flat; // Estilo plano
+			this->txt_startSession->Paint += gcnew PaintEventHandler(this, &LoginForm::OnButtonPaint);
+
+			//this->buttonIniciarSesion->Font = gcnew System::Drawing::Font(L"Tahoma", 12, FontStyle::Regular);
 			//
 		}
 
@@ -212,6 +226,31 @@ namespace GUIApp {
 	}
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
+		   void LoginForm::OnButtonPaint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+			   Button^ button = (Button^)sender;
+
+			   // Colores para el botón
+			   System::Drawing::Color buttonColor = System::Drawing::Color::FromArgb(224, 255, 255); // Azul moderno
+			   System::Drawing::Color textColor = System::Drawing::Color::White; // Texto blanco
+
+			   // Dibuja un fondo redondeado
+			   System::Drawing::Drawing2D::GraphicsPath^ path = gcnew System::Drawing::Drawing2D::GraphicsPath();
+			   path->AddArc(0, 0, 20, 20, 180, 90); // Esquina superior izquierda
+			   path->AddArc(button->Width - 21, 0, 20, 20, 270, 90); // Esquina superior derecha
+			   path->AddArc(button->Width - 21, button->Height - 21, 20, 20, 0, 90); // Esquina inferior derecha
+			   path->AddArc(0, button->Height - 21, 20, 20, 90, 90); // Esquina inferior izquierda
+			   path->CloseFigure();
+
+			   e->Graphics->SmoothingMode = System::Drawing::Drawing2D::SmoothingMode::AntiAlias;
+			   e->Graphics->FillPath(gcnew System::Drawing::SolidBrush(buttonColor), path);
+
+			   // Dibuja el texto centrado
+			   System::Drawing::StringFormat^ sf = gcnew System::Drawing::StringFormat();
+			   sf->Alignment = System::Drawing::StringAlignment::Center;
+			   sf->LineAlignment = System::Drawing::StringAlignment::Center;
+			   e->Graphics->DrawString(button->Text, button->Font, gcnew System::Drawing::SolidBrush(textColor), button->ClientRectangle, sf);
+		   }
+
 private: System::Void txt_startSession_Click(System::Object^ sender, System::EventArgs^ e) {
 
 	String^ usuario = txt_username->Text;

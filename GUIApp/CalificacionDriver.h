@@ -39,6 +39,7 @@ namespace GUIApp {
 
 
 
+
 	public:
 		Form^ principal;
 		CalificacionDriver(Driver^ d, Form^ pp)
@@ -132,37 +133,47 @@ namespace GUIApp {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(79, 133);
+			this->label1->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label1->Location = System::Drawing::Point(39, 108);
+			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(59, 16);
+			this->label1->Size = System::Drawing::Size(57, 16);
 			this->label1->TabIndex = 1;
 			this->label1->Text = L"Nombre:";
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(78, 176);
+			this->label2->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label2->Location = System::Drawing::Point(38, 143);
+			this->label2->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(60, 16);
+			this->label2->Size = System::Drawing::Size(58, 16);
 			this->label2->TabIndex = 2;
 			this->label2->Text = L"Apellido:";
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(78, 256);
+			this->label3->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label3->Location = System::Drawing::Point(38, 208);
+			this->label3->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(79, 16);
+			this->label3->Size = System::Drawing::Size(83, 16);
 			this->label3->TabIndex = 3;
 			this->label3->Text = L"Calificación:";
 			this->label3->Click += gcnew System::EventHandler(this, &CalificacionDriver::label3_Click);
 			// 
 			// PhotoPasajero
 			// 
-			this->PhotoPasajero->Location = System::Drawing::Point(418, 23);
-			this->PhotoPasajero->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->PhotoPasajero->BackColor = System::Drawing::Color::PeachPuff;
+			this->PhotoPasajero->Location = System::Drawing::Point(286, 20);
+			this->PhotoPasajero->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->PhotoPasajero->Name = L"PhotoPasajero";
-			this->PhotoPasajero->Size = System::Drawing::Size(157, 194);
+			this->PhotoPasajero->Size = System::Drawing::Size(118, 158);
 			this->PhotoPasajero->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->PhotoPasajero->TabIndex = 5;
 			this->PhotoPasajero->TabStop = false;
@@ -170,34 +181,33 @@ namespace GUIApp {
 			// 
 			// txtNombre
 			// 
-			this->txtNombre->Location = System::Drawing::Point(177, 129);
-			this->txtNombre->Margin = System::Windows::Forms::Padding(4);
+			this->txtNombre->Location = System::Drawing::Point(133, 102);
 			this->txtNombre->Name = L"txtNombre";
-			this->txtNombre->Size = System::Drawing::Size(103, 22);
+			this->txtNombre->Size = System::Drawing::Size(78, 20);
 			this->txtNombre->TabIndex = 12;
 			// 
 			// txtCalificacion
 			// 
-			this->txtCalificacion->Location = System::Drawing::Point(177, 256);
-			this->txtCalificacion->Margin = System::Windows::Forms::Padding(4);
+			this->txtCalificacion->Location = System::Drawing::Point(133, 208);
 			this->txtCalificacion->Name = L"txtCalificacion";
-			this->txtCalificacion->Size = System::Drawing::Size(103, 22);
+			this->txtCalificacion->Size = System::Drawing::Size(78, 20);
 			this->txtCalificacion->TabIndex = 14;
 			// 
 			// txtApellido
 			// 
-			this->txtApellido->Location = System::Drawing::Point(177, 168);
-			this->txtApellido->Margin = System::Windows::Forms::Padding(4);
+			this->txtApellido->Location = System::Drawing::Point(133, 137);
 			this->txtApellido->Name = L"txtApellido";
-			this->txtApellido->Size = System::Drawing::Size(103, 22);
+			this->txtApellido->Size = System::Drawing::Size(78, 20);
 			this->txtApellido->TabIndex = 15;
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(410, 245);
-			this->button1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->button1->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button1->Location = System::Drawing::Point(280, 200);
+			this->button1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(165, 34);
+			this->button1->Size = System::Drawing::Size(124, 41);
 			this->button1->TabIndex = 16;
 			this->button1->Text = L"Modificar calificación";
 			this->button1->UseVisualStyleBackColor = true;
@@ -205,11 +215,13 @@ namespace GUIApp {
 			// 
 			// button2
 			// 
-			this->button2->BackColor = System::Drawing::SystemColors::ScrollBar;
-			this->button2->Location = System::Drawing::Point(12, 11);
-			this->button2->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->button2->BackColor = System::Drawing::SystemColors::HighlightText;
+			this->button2->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button2->Location = System::Drawing::Point(20, 10);
+			this->button2->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(77, 25);
+			this->button2->Size = System::Drawing::Size(76, 29);
 			this->button2->TabIndex = 17;
 			this->button2->Text = L"Terminar";
 			this->button2->UseVisualStyleBackColor = false;
@@ -218,9 +230,12 @@ namespace GUIApp {
 			// txt_Usuario
 			// 
 			this->txt_Usuario->AutoSize = true;
-			this->txt_Usuario->Location = System::Drawing::Point(79, 91);
+			this->txt_Usuario->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->txt_Usuario->Location = System::Drawing::Point(39, 74);
+			this->txt_Usuario->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->txt_Usuario->Name = L"txt_Usuario";
-			this->txt_Usuario->Size = System::Drawing::Size(57, 16);
+			this->txt_Usuario->Size = System::Drawing::Size(58, 16);
 			this->txt_Usuario->TabIndex = 18;
 			this->txt_Usuario->Text = L"Usuario:";
 			this->txt_Usuario->Click += gcnew System::EventHandler(this, &CalificacionDriver::label5_Click);
@@ -228,33 +243,39 @@ namespace GUIApp {
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(78, 217);
+			this->label4->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label4->Location = System::Drawing::Point(38, 176);
+			this->label4->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(33, 16);
+			this->label4->Size = System::Drawing::Size(31, 16);
 			this->label4->TabIndex = 4;
 			this->label4->Text = L"DNI:";
 			// 
 			// txtDNI
 			// 
-			this->txtDNI->Location = System::Drawing::Point(177, 213);
-			this->txtDNI->Margin = System::Windows::Forms::Padding(4);
+			this->txtDNI->Location = System::Drawing::Point(133, 172);
 			this->txtDNI->Name = L"txtDNI";
-			this->txtDNI->Size = System::Drawing::Size(103, 22);
+			this->txtDNI->Size = System::Drawing::Size(78, 20);
 			this->txtDNI->TabIndex = 13;
 			// 
 			// dataGridView1
 			// 
+			this->dataGridView1->BorderStyle = System::Windows::Forms::BorderStyle::Fixed3D;
+			this->dataGridView1->CellBorderStyle = System::Windows::Forms::DataGridViewCellBorderStyle::Sunken;
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(5) {
 				this->N, this->Username,
 					this->Nombre, this->Apellido, this->calificacion
 			});
-			this->dataGridView1->Location = System::Drawing::Point(6, 312);
-			this->dataGridView1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->dataGridView1->Cursor = System::Windows::Forms::Cursors::Default;
+			this->dataGridView1->Dock = System::Windows::Forms::DockStyle::Bottom;
+			this->dataGridView1->Location = System::Drawing::Point(0, 267);
+			this->dataGridView1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->RowHeadersWidth = 51;
 			this->dataGridView1->RowTemplate->Height = 24;
-			this->dataGridView1->Size = System::Drawing::Size(646, 217);
+			this->dataGridView1->Size = System::Drawing::Size(508, 176);
 			this->dataGridView1->TabIndex = 0;
 			this->dataGridView1->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &CalificacionDriver::dataGridView1_CellClick);
 			this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &CalificacionDriver::dataGridView1_CellContentClick);
@@ -296,9 +317,10 @@ namespace GUIApp {
 			// 
 			// CalificacionDriver
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(664, 540);
+			this->BackColor = System::Drawing::SystemColors::ActiveCaption;
+			this->ClientSize = System::Drawing::Size(508, 443);
 			this->Controls->Add(this->txt_Usuario);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
@@ -312,9 +334,10 @@ namespace GUIApp {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->dataGridView1);
-			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->Cursor = System::Windows::Forms::Cursors::Default;
+			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->Name = L"CalificacionDriver";
-			this->Text = L"Formulario de calificación del conductor";
+			this->Text = L"Califica a tu conductor :D";
 			this->Load += gcnew System::EventHandler(this, &CalificacionDriver::CalificacionDriver_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PhotoPasajero))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
