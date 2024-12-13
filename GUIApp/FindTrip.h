@@ -176,6 +176,7 @@ namespace GUIApp {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackColor = System::Drawing::SystemColors::ActiveCaption;
 			this->ClientSize = System::Drawing::Size(1431, 743);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label4);
@@ -185,6 +186,7 @@ namespace GUIApp {
 			this->Controls->Add(this->button2);
 			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"FindTrip";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"FindTrip";
 			this->Load += gcnew System::EventHandler(this, &FindTrip::FindTrip_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
