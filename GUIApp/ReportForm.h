@@ -109,7 +109,7 @@ namespace GUIApp {
 			this->AmountOfCompletedTripsByDriverChart->Name = L"AmountOfCompletedTripsByDriverChart";
 			series1->ChartArea = L"ChartArea1";
 			series1->Legend = L"Legend1";
-			series1->Name = L"Cantidad de viajes completados por conductor";
+			series1->Name = L"Cantidad de viajes completados";
 			this->AmountOfCompletedTripsByDriverChart->Series->Add(series1);
 			this->AmountOfCompletedTripsByDriverChart->Size = System::Drawing::Size(518, 337);
 			this->AmountOfCompletedTripsByDriverChart->TabIndex = 0;
@@ -144,7 +144,7 @@ namespace GUIApp {
 			this->DriverEarningChart->Name = L"DriverEarningChart";
 			series2->ChartArea = L"ChartArea1";
 			series2->Legend = L"Legend1";
-			series2->Name = L"Ganancias por conductor";
+			series2->Name = L"Ganancias obtenidas";
 			series2->YValuesPerPoint = 2;
 			this->DriverEarningChart->Series->Add(series2);
 			this->DriverEarningChart->Size = System::Drawing::Size(518, 337);
@@ -171,7 +171,7 @@ namespace GUIApp {
 			series3->ChartArea = L"ChartArea1";
 			series3->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::Pie;
 			series3->Legend = L"Legend1";
-			series3->Name = L"DriverEarnings";
+			series3->Name = L"Cantidad";
 			this->TotalAmountReportChart->Series->Add(series3);
 			this->TotalAmountReportChart->Size = System::Drawing::Size(518, 337);
 			this->TotalAmountReportChart->TabIndex = 5;
@@ -187,12 +187,11 @@ namespace GUIApp {
 			this->AmountOfPassengersPerTripChart->Name = L"AmountOfPassengersPerTripChart";
 			series4->ChartArea = L"ChartArea1";
 			series4->Legend = L"Legend1";
-			series4->Name = L"Cantidad de pasajeros por viaje";
+			series4->Name = L"Total de pasajeros";
 			this->AmountOfPassengersPerTripChart->Series->Add(series4);
 			this->AmountOfPassengersPerTripChart->Size = System::Drawing::Size(518, 337);
 			this->AmountOfPassengersPerTripChart->TabIndex = 6;
 			this->AmountOfPassengersPerTripChart->Text = L"chart1";
-			//this->AmountOfPassengersPerTripChart->Click += gcnew System::EventHandler(this, &ReportForm::AmountOfPassengersPerTripChart_Click);
 			// 
 			// label4
 			// 
@@ -207,7 +206,6 @@ namespace GUIApp {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-
 			this->ClientSize = System::Drawing::Size(1348, 834);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->AmountOfPassengersPerTripChart);
@@ -232,7 +230,7 @@ namespace GUIApp {
 	private: System::Void ReportForm_Load(System::Object^ sender, System::EventArgs^ e) {
 		
 		//GRÁFICO DE BARRAS SOBRE LA CANTIDAD DE VIAJES COMPLETADOS POR CONDUCTOR
-		List<Trip^>^ tripList = Service::QueryAllTrips(); //Obtenemos los datos de todos los viajes
+		/*List<Trip^>^ tripList = Service::QueryAllTrips(); //Obtenemos los datos de todos los viajes
 		List<String^>^ driverNames = gcnew List<String^>(); //Lista creada para los nombres de los cnoductores
 		List<int>^ tripCounts = gcnew List<int>(); //Almacenamiento de viajes realizados por el conductor
 
@@ -304,7 +302,7 @@ namespace GUIApp {
 		List<Trip^>^ earningList = Service::QueryAllTrips(); //Obtenemos los datos de todos los viajes
 		List<String^>^ nombres = gcnew List<String^>(); //Lista creada para los nombres de los cnoductores
 		List<int>^ totalEarnings = gcnew List<int>(); //Almacenamiento de viajes realizados por el conductor
-		//Recorremos la lista de viajes
+		//Recorremos la lista de viajes	
 		for (int i = 0; i < earningList->Count; i++) {
 			String^ driverName = earningList[i]->Driver_Name;
 			int earning = earningList[i]->EstimatedPrice;
@@ -334,32 +332,138 @@ namespace GUIApp {
 		}
 		
 		//GRÁFICO CIRCULAR PARA LOS USUARIOS DE LA APLICACIÓN
-		/*// Definir los niveles de pasajeros
-		array<String^>^ passengerLevels = { "Bronce", "Plata", "Oro", "Diamante" };
-
-		// Crear un diccionario para simular la cantidad de pasajeros por nivel
-		Dictionary<String^, int>^ passengersByLevel = gcnew Dictionary<String^, int>();
-
-		// Crear un generador de números aleatorios
-		Random^ rand = gcnew Random();
-
-		// Simulación de conteos aleatorios para cada nivel
-		for (int i = 0; i < passengerLevels->Length; i++) {
-			String^ level = passengerLevels[i];
-
-			// Generar un número aleatorio entre 1 y 100 (puedes ajustar el rango)
-			int count = rand->Next(1, 101);  // Por ejemplo, de 1 a 100
-
-			// Almacenar el conteo aleatorio en el diccionario
-			passengersByLevel[level] = count;
-		}*/
 		array<String^>^ userTypes = { "Conductor", "Pasajero" };
 		Dictionary<String^, double>^ AmountOfUsersTypes = Service::QueryUserByUserType();
 		for (int i = 0; i < userTypes->Length; i++) {
 			TotalAmountReportChart->Series["Cantidad"]->Points->Add(AmountOfUsersTypes[userTypes[i]]);
 			TotalAmountReportChart->Series["Cantidad"]->Points[i]->LegendText = userTypes[i];
 			TotalAmountReportChart->Series["Cantidad"]->Points[i]->Label = "" + AmountOfUsersTypes[userTypes[i]];
+		}*/
+
+try {
+	// GRÁFICO DE BARRAS SOBRE LA CANTIDAD DE VIAJES COMPLETADOS POR CONDUCTOR
+	List<Trip^>^ tripList = Service::QueryAllTrips(); // Obtener lista de viajes
+	if (tripList == nullptr || tripList->Count == 0) {
+		MessageBox::Show("No se encontraron datos de viajes para generar el gráfico.");
+		return;
+	}
+
+	List<String^>^ driverNames = gcnew List<String^>();
+	List<int>^ tripCounts = gcnew List<int>();
+
+	for (int i = 0; i < tripList->Count; i++) {
+		String^ driverName = tripList[i]->Driver_Name;
+		if (String::IsNullOrEmpty(driverName)) continue;
+
+		bool found = false;
+		for (int j = 0; j < driverNames->Count; j++) {
+			if (driverNames[j] == driverName) {
+				tripCounts[j]++;
+				found = true;
+				break;
+			}
 		}
+
+		if (!found) {
+			driverNames->Add(driverName);
+			tripCounts->Add(1);
+		}
+	}
+
+	// Agregar datos al gráfico
+	AmountOfCompletedTripsByDriverChart->Series["Cantidad de viajes completados"]->Points->Clear();
+	for (int i = 0; i < driverNames->Count; i++) {
+		auto point = AmountOfCompletedTripsByDriverChart->Series["Cantidad de viajes completados"]->Points->Add(tripCounts[i]);
+		point->AxisLabel = driverNames[i];
+		point->Label = "Viajes: " + tripCounts[i];
+	}
+
+	// GRÁFICO DE BARRAS PARA LA CANTIDAD DE PASAJEROS POR VIAJE
+	List<String^>^ Names = gcnew List<String^>();
+	List<int>^ totalPassengers = gcnew List<int>();
+
+	for (int i = 0; i < tripList->Count; i++) {
+		String^ driverName = tripList[i]->Driver_Name;
+		if (String::IsNullOrEmpty(driverName) || tripList[i]->PassengersTotal == nullptr) continue;
+
+		int passengerCount = tripList[i]->PassengersTotal->Count;
+		bool found = false;
+
+		for (int j = 0; j < Names->Count; j++) {
+			if (Names[j] == driverName) {
+				totalPassengers[j] += passengerCount;
+				found = true;
+				break;
+			}
+		}
+
+		if (!found) {
+			Names->Add(driverName);
+			totalPassengers->Add(passengerCount);
+		}
+	}
+
+	AmountOfPassengersPerTripChart->Series["Total de pasajeros"]->Points->Clear();
+	for (int i = 0; i < Names->Count; i++) {
+		auto point = AmountOfPassengersPerTripChart->Series["Total de pasajeros"]->Points->Add(totalPassengers[i]);
+		point->AxisLabel = Names[i];
+		point->Label = totalPassengers[i] + " pasajeros";
+	}
+
+	// GRÁFICO DE BARRAS PARA LA GANANCIA POR CONDUCTOR
+	List<String^>^ nombres = gcnew List<String^>();
+	List<int>^ totalEarnings = gcnew List<int>();
+
+	for (int i = 0; i < tripList->Count; i++) {
+		String^ driverName = tripList[i]->Driver_Name;
+		if (String::IsNullOrEmpty(driverName)) continue;
+
+		int earning = tripList[i]->EstimatedPrice;
+		bool found = false;
+
+		for (int j = 0; j < nombres->Count; j++) {
+			if (nombres[j] == driverName) {
+				totalEarnings[j] += earning;
+				found = true;
+				break;
+			}
+		}
+
+		if (!found) {
+			nombres->Add(driverName);
+			totalEarnings->Add(earning);
+		}
+	}
+
+	DriverEarningChart->Series["Ganancias obtenidas"]->Points->Clear();
+	for (int i = 0; i < nombres->Count; i++) {
+		auto point = DriverEarningChart->Series["Ganancias obtenidas"]->Points->Add(totalEarnings[i]);
+		point->AxisLabel = nombres[i];
+		point->Label = "S/. " + totalEarnings[i];
+	}
+
+	// GRÁFICO CIRCULAR PARA LOS USUARIOS DE LA APLICACIÓN
+	array<String^>^ userTypes = { "Conductor", "Pasajero" };
+	Dictionary<String^, double>^ AmountOfUsersTypes = Service::QueryUserByUserType();
+
+	if (AmountOfUsersTypes == nullptr || AmountOfUsersTypes->Count == 0) {
+		MessageBox::Show("No se encontraron datos de usuarios para generar el gráfico.");
+		return;
+	}
+
+	TotalAmountReportChart->Series["Cantidad"]->Points->Clear();
+	for (int i = 0; i < userTypes->Length; i++) {
+		if (!AmountOfUsersTypes->ContainsKey(userTypes[i])) continue;
+
+		auto point = TotalAmountReportChart->Series["Cantidad"]->Points->Add(AmountOfUsersTypes[userTypes[i]]);
+		point->LegendText = userTypes[i];
+		point->Label = AmountOfUsersTypes[userTypes[i]].ToString();
+	}
+}
+catch (Exception^ ex) {
+	MessageBox::Show("Error: " + ex->Message);
+}
+
 	}
 };
 }
