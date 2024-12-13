@@ -31,19 +31,7 @@ namespace GUIApp {
 			//
 			//TODO: agregar código de constructor aquí
 			// // Cambiar la fuente aquí
-			this->lbl_username->Font = gcnew System::Drawing::Font(L"Segoe UI", 12, FontStyle::Bold);
-			this->lbl_username->BackColor = System::Drawing::Color::Transparent;
-			this->lbl_username->ForeColor = System::Drawing::Color::White;
-
-			this->label1->Font = gcnew System::Drawing::Font(L"Segoe UI", 10, FontStyle::Italic);
-			this->label1->BackColor = System::Drawing::Color::Transparent;
-			this->label1->ForeColor = System::Drawing::Color::White;
-
-			// Dentro del constructor del formulario, agrega este evento para el botón
-			this->txt_startSession->FlatStyle = FlatStyle::Flat; // Estilo plano
-			this->txt_startSession->Paint += gcnew PaintEventHandler(this, &LoginForm::OnButtonPaint);
-
-			//this->buttonIniciarSesion->Font = gcnew System::Drawing::Font(L"Tahoma", 12, FontStyle::Regular);
+			
 			//
 		}
 
@@ -101,7 +89,9 @@ namespace GUIApp {
 			// 
 			// btnRegister
 			// 
-			this->btnRegister->Location = System::Drawing::Point(155, 363);
+			this->btnRegister->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btnRegister->Location = System::Drawing::Point(155, 434);
 			this->btnRegister->Margin = System::Windows::Forms::Padding(2);
 			this->btnRegister->Name = L"btnRegister";
 			this->btnRegister->Size = System::Drawing::Size(134, 42);
@@ -114,9 +104,9 @@ namespace GUIApp {
 			// fotoLogo
 			// 
 			this->fotoLogo->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"fotoLogo.Image")));
-			this->fotoLogo->Location = System::Drawing::Point(98, -32);
+			this->fotoLogo->Location = System::Drawing::Point(61, -20);
 			this->fotoLogo->Name = L"fotoLogo";
-			this->fotoLogo->Size = System::Drawing::Size(297, 339);
+			this->fotoLogo->Size = System::Drawing::Size(314, 370);
 			this->fotoLogo->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->fotoLogo->TabIndex = 1;
 			this->fotoLogo->TabStop = false;
@@ -125,17 +115,20 @@ namespace GUIApp {
 			// lbl_username
 			// 
 			this->lbl_username->AutoSize = true;
-			this->lbl_username->BackColor = System::Drawing::SystemColors::ButtonFace;
-			this->lbl_username->Location = System::Drawing::Point(95, 203);
+			this->lbl_username->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
+			this->lbl_username->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lbl_username->ForeColor = System::Drawing::SystemColors::ButtonFace;
+			this->lbl_username->Location = System::Drawing::Point(95, 237);
 			this->lbl_username->Name = L"lbl_username";
-			this->lbl_username->Size = System::Drawing::Size(65, 13);
+			this->lbl_username->Size = System::Drawing::Size(77, 16);
 			this->lbl_username->TabIndex = 2;
 			this->lbl_username->Text = L"USUARIO : ";
 			this->lbl_username->Click += gcnew System::EventHandler(this, &LoginForm::label1_Click);
 			// 
 			// txt_username
 			// 
-			this->txt_username->Location = System::Drawing::Point(223, 203);
+			this->txt_username->Location = System::Drawing::Point(223, 237);
 			this->txt_username->Name = L"txt_username";
 			this->txt_username->Size = System::Drawing::Size(152, 20);
 			this->txt_username->TabIndex = 3;
@@ -144,16 +137,19 @@ namespace GUIApp {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->BackColor = System::Drawing::SystemColors::ButtonFace;
-			this->label1->Location = System::Drawing::Point(95, 246);
+			this->label1->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
+			this->label1->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label1->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->label1->Location = System::Drawing::Point(95, 289);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(76, 13);
+			this->label1->Size = System::Drawing::Size(89, 16);
 			this->label1->TabIndex = 4;
 			this->label1->Text = L"PASSWORD :";
 			// 
 			// txt_password
 			// 
-			this->txt_password->Location = System::Drawing::Point(223, 246);
+			this->txt_password->Location = System::Drawing::Point(223, 285);
 			this->txt_password->Name = L"txt_password";
 			this->txt_password->Size = System::Drawing::Size(152, 20);
 			this->txt_password->TabIndex = 5;
@@ -161,21 +157,25 @@ namespace GUIApp {
 			// 
 			// txt_startSession
 			// 
+			this->txt_startSession->BackColor = System::Drawing::SystemColors::ControlDarkDark;
 			this->txt_startSession->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->txt_startSession->Location = System::Drawing::Point(155, 294);
+			this->txt_startSession->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->txt_startSession->ForeColor = System::Drawing::Color::Brown;
+			this->txt_startSession->Location = System::Drawing::Point(155, 356);
 			this->txt_startSession->Name = L"txt_startSession";
 			this->txt_startSession->Size = System::Drawing::Size(134, 45);
 			this->txt_startSession->TabIndex = 6;
 			this->txt_startSession->Text = L"INICIAR SESION";
-			this->txt_startSession->UseVisualStyleBackColor = true;
+			this->txt_startSession->UseVisualStyleBackColor = false;
 			this->txt_startSession->Click += gcnew System::EventHandler(this, &LoginForm::txt_startSession_Click);
 			// 
 			// pictureBox1
 			// 
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(381, 230);
+			this->pictureBox1->Location = System::Drawing::Point(381, 282);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(33, 36);
+			this->pictureBox1->Size = System::Drawing::Size(24, 23);
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox1->TabIndex = 7;
 			this->pictureBox1->TabStop = false;
@@ -186,7 +186,7 @@ namespace GUIApp {
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->ClientSize = System::Drawing::Size(505, 447);
+			this->ClientSize = System::Drawing::Size(461, 545);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->txt_startSession);
 			this->Controls->Add(this->txt_password);
