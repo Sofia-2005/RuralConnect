@@ -90,15 +90,19 @@ namespace GUIApp {
 			// label1
 			// 
 			this->label1->AutoSize = true;
+			this->label1->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->label1->Location = System::Drawing::Point(9, 59);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(302, 16);
+			this->label1->Size = System::Drawing::Size(338, 16);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Marque los puntos en el mapa para definir su ruta:";
 			this->label1->Click += gcnew System::EventHandler(this, &DriverPage::label1_Click);
 			// 
 			// btnCreateRoute
 			// 
+			this->btnCreateRoute->Font = (gcnew System::Drawing::Font(L"Elephant", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->btnCreateRoute->Location = System::Drawing::Point(63, 96);
 			this->btnCreateRoute->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnCreateRoute->Name = L"btnCreateRoute";
@@ -110,6 +114,8 @@ namespace GUIApp {
 			// 
 			// btnMyRoutes
 			// 
+			this->btnMyRoutes->Font = (gcnew System::Drawing::Font(L"Elephant", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->btnMyRoutes->Location = System::Drawing::Point(63, 393);
 			this->btnMyRoutes->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnMyRoutes->Name = L"btnMyRoutes";
@@ -121,6 +127,8 @@ namespace GUIApp {
 			// 
 			// btnBack
 			// 
+			this->btnBack->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->btnBack->Location = System::Drawing::Point(12, 12);
 			this->btnBack->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnBack->Name = L"btnBack";
@@ -133,7 +141,7 @@ namespace GUIApp {
 			// pictureBox1
 			// 
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(337, 23);
+			this->pictureBox1->Location = System::Drawing::Point(355, 23);
 			this->pictureBox1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->pictureBox1->Name = L"pictureBox1";
 			this->pictureBox1->Size = System::Drawing::Size(979, 558);
@@ -169,6 +177,8 @@ namespace GUIApp {
 			// 
 			// button1
 			// 
+			this->button1->Font = (gcnew System::Drawing::Font(L"Elephant", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->button1->Location = System::Drawing::Point(63, 171);
 			this->button1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->button1->Name = L"button1";
@@ -182,6 +192,7 @@ namespace GUIApp {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackColor = System::Drawing::SystemColors::ActiveCaption;
 			this->ClientSize = System::Drawing::Size(1351, 594);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->pictureBox3);
@@ -193,6 +204,7 @@ namespace GUIApp {
 			this->Controls->Add(this->label1);
 			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"DriverPage";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Definir Ruta";
 			this->Load += gcnew System::EventHandler(this, &DriverPage::DriverPage_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
