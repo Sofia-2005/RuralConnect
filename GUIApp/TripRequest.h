@@ -142,33 +142,41 @@ namespace GUIApp {
 			// label9
 			// 
 			this->label9->AutoSize = true;
+			this->label9->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->label9->Location = System::Drawing::Point(94, 186);
 			this->label9->Name = L"label9";
-			this->label9->Size = System::Drawing::Size(44, 16);
+			this->label9->Size = System::Drawing::Size(47, 16);
 			this->label9->TabIndex = 25;
 			this->label9->Text = L"label9";
 			// 
 			// label8
 			// 
 			this->label8->AutoSize = true;
+			this->label8->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->label8->Location = System::Drawing::Point(94, 145);
 			this->label8->Name = L"label8";
-			this->label8->Size = System::Drawing::Size(44, 16);
+			this->label8->Size = System::Drawing::Size(47, 16);
 			this->label8->TabIndex = 24;
 			this->label8->Text = L"label8";
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
+			this->label2->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->label2->Location = System::Drawing::Point(94, 106);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(44, 16);
+			this->label2->Size = System::Drawing::Size(47, 16);
 			this->label2->TabIndex = 23;
 			this->label2->Text = L"label2";
 			// 
 			// btnAcceptPassenger
 			// 
-			this->btnAcceptPassenger->Location = System::Drawing::Point(46, 337);
+			this->btnAcceptPassenger->Font = (gcnew System::Drawing::Font(L"Elephant", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btnAcceptPassenger->Location = System::Drawing::Point(42, 337);
 			this->btnAcceptPassenger->Name = L"btnAcceptPassenger";
 			this->btnAcceptPassenger->Size = System::Drawing::Size(200, 70);
 			this->btnAcceptPassenger->TabIndex = 22;
@@ -179,54 +187,66 @@ namespace GUIApp {
 			// label7
 			// 
 			this->label7->AutoSize = true;
+			this->label7->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->label7->Location = System::Drawing::Point(12, 64);
 			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(126, 16);
+			this->label7->Size = System::Drawing::Size(133, 16);
 			this->label7->TabIndex = 21;
 			this->label7->Text = L"Datos del Pasajero:";
 			// 
 			// label6
 			// 
 			this->label6->AutoSize = true;
+			this->label6->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->label6->Location = System::Drawing::Point(12, 145);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(67, 16);
+			this->label6->Size = System::Drawing::Size(69, 16);
 			this->label6->TabIndex = 20;
 			this->label6->Text = L"Apellidos:";
 			// 
 			// label5
 			// 
 			this->label5->AutoSize = true;
+			this->label5->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->label5->Location = System::Drawing::Point(12, 106);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(66, 16);
+			this->label5->Size = System::Drawing::Size(68, 16);
 			this->label5->TabIndex = 19;
 			this->label5->Text = L"Nombres:";
 			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
+			this->label4->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->label4->Location = System::Drawing::Point(12, 186);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(52, 16);
+			this->label4->Size = System::Drawing::Size(58, 16);
 			this->label4->TabIndex = 18;
 			this->label4->Text = L"Celular:";
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
+			this->label3->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->label3->Location = System::Drawing::Point(12, 223);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(102, 16);
+			this->label3->Size = System::Drawing::Size(110, 16);
 			this->label3->TabIndex = 17;
 			this->label3->Text = L"Precio a pagar: ";
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
+			this->label1->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->label1->Location = System::Drawing::Point(12, 21);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(234, 16);
+			this->label1->Size = System::Drawing::Size(259, 16);
 			this->label1->TabIndex = 16;
 			this->label1->Text = L"Información sobre la solicitud del viaje";
 			// 
@@ -244,15 +264,19 @@ namespace GUIApp {
 			// label10
 			// 
 			this->label10->AutoSize = true;
+			this->label10->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->label10->Location = System::Drawing::Point(120, 223);
 			this->label10->Name = L"label10";
-			this->label10->Size = System::Drawing::Size(51, 16);
+			this->label10->Size = System::Drawing::Size(56, 16);
 			this->label10->TabIndex = 27;
 			this->label10->Text = L"label10";
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(46, 461);
+			this->button1->Font = (gcnew System::Drawing::Font(L"Elephant", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button1->Location = System::Drawing::Point(42, 461);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(200, 70);
 			this->button1->TabIndex = 28;
@@ -264,6 +288,7 @@ namespace GUIApp {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackColor = System::Drawing::SystemColors::ActiveCaption;
 			this->ClientSize = System::Drawing::Size(1187, 586);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->label10);
@@ -279,6 +304,7 @@ namespace GUIApp {
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label1);
 			this->Name = L"TripRequest";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"TripRequest";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);

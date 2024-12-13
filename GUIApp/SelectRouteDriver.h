@@ -101,14 +101,18 @@ namespace GUIApp {
 			// label1
 			// 
 			this->label1->AutoSize = true;
+			this->label1->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->label1->Location = System::Drawing::Point(51, 54);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(128, 16);
+			this->label1->Size = System::Drawing::Size(140, 16);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Selecciona una ruta:";
 			// 
 			// btnBack
 			// 
+			this->btnBack->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->btnBack->Location = System::Drawing::Point(12, 12);
 			this->btnBack->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnBack->Name = L"btnBack";
@@ -141,26 +145,32 @@ namespace GUIApp {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(185, 54);
+			this->label2->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label2->Location = System::Drawing::Point(192, 54);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(291, 16);
+			this->label2->Size = System::Drawing::Size(313, 16);
 			this->label2->TabIndex = 11;
 			this->label2->Text = L"La ruta seleccionada se muestra de color verde";
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
+			this->label3->Font = (gcnew System::Drawing::Font(L"Elephant", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->label3->Location = System::Drawing::Point(1172, 140);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(42, 16);
+			this->label3->Size = System::Drawing::Size(55, 20);
 			this->label3->TabIndex = 12;
 			this->label3->Text = L"Rutas";
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(1186, 267);
+			this->button1->Font = (gcnew System::Drawing::Font(L"Elephant", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button1->Location = System::Drawing::Point(1182, 267);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(92, 39);
+			this->button1->Size = System::Drawing::Size(110, 39);
 			this->button1->TabIndex = 13;
 			this->button1->Text = L"Confirmar";
 			this->button1->UseVisualStyleBackColor = true;
@@ -170,6 +180,7 @@ namespace GUIApp {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackColor = System::Drawing::SystemColors::ActiveCaption;
 			this->ClientSize = System::Drawing::Size(1360, 628);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->label3);
