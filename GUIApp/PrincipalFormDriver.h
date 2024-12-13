@@ -277,7 +277,7 @@ namespace GUIApp {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->PhotoDriver);
 			this->Name = L"PrincipalFormDriver";
-			this->Text = L"PrincipalFormDriver";
+			this->Text = L"Formulario principal del conductor";
 			this->Load += gcnew System::EventHandler(this, &PrincipalFormDriver::PrincipalFormDriver_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PhotoDriver))->EndInit();
 			this->ResumeLayout(false);

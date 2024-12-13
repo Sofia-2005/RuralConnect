@@ -189,7 +189,7 @@ namespace GUIApp {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Name = L"PublicRouteDriver";
-			this->Text = L"Publicar ruta";
+			this->Text = L"Formulario de ruta publicada al conductor";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();

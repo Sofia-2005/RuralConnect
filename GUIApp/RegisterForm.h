@@ -107,9 +107,11 @@ namespace GUIApp {
 			// label1
 			// 
 			this->label1->AutoSize = true;
+			this->label1->Font = (gcnew System::Drawing::Font(L"Elephant", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->label1->Location = System::Drawing::Point(56, 53);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(59, 16);
+			this->label1->Size = System::Drawing::Size(75, 20);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Nombre:";
 			this->label1->Click += gcnew System::EventHandler(this, &RegisterForm::label1_Click);
@@ -117,60 +119,74 @@ namespace GUIApp {
 			// label2
 			// 
 			this->label2->AutoSize = true;
+			this->label2->Font = (gcnew System::Drawing::Font(L"Elephant", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->label2->Location = System::Drawing::Point(56, 94);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(60, 16);
+			this->label2->Size = System::Drawing::Size(75, 20);
 			this->label2->TabIndex = 1;
 			this->label2->Text = L"Apellido:";
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
+			this->label3->Font = (gcnew System::Drawing::Font(L"Elephant", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->label3->Location = System::Drawing::Point(56, 140);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(33, 16);
+			this->label3->Size = System::Drawing::Size(49, 20);
 			this->label3->TabIndex = 2;
 			this->label3->Text = L"DNI:";
 			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
+			this->label4->Font = (gcnew System::Drawing::Font(L"Elephant", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->label4->Location = System::Drawing::Point(56, 183);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(52, 16);
+			this->label4->Size = System::Drawing::Size(71, 20);
 			this->label4->TabIndex = 3;
 			this->label4->Text = L"Celular:";
 			// 
 			// label5
 			// 
 			this->label5->AutoSize = true;
+			this->label5->Font = (gcnew System::Drawing::Font(L"Elephant", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->label5->Location = System::Drawing::Point(56, 226);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(57, 16);
+			this->label5->Size = System::Drawing::Size(75, 20);
 			this->label5->TabIndex = 4;
 			this->label5->Text = L"Usuario:";
 			// 
 			// label6
 			// 
 			this->label6->AutoSize = true;
+			this->label6->Font = (gcnew System::Drawing::Font(L"Elephant", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->label6->Location = System::Drawing::Point(56, 270);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(79, 16);
+			this->label6->Size = System::Drawing::Size(102, 20);
 			this->label6->TabIndex = 5;
 			this->label6->Text = L"Contraseña:";
 			// 
 			// label7
 			// 
 			this->label7->AutoSize = true;
+			this->label7->Font = (gcnew System::Drawing::Font(L"Elephant", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->label7->Location = System::Drawing::Point(115, 332);
 			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(31, 16);
+			this->label7->Size = System::Drawing::Size(42, 20);
 			this->label7->TabIndex = 6;
 			this->label7->Text = L"Rol:";
 			// 
 			// btnRegister
 			// 
-			this->btnRegister->BackColor = System::Drawing::SystemColors::GradientActiveCaption;
+			this->btnRegister->BackColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->btnRegister->Font = (gcnew System::Drawing::Font(L"Elephant", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->btnRegister->Location = System::Drawing::Point(224, 380);
 			this->btnRegister->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnRegister->Name = L"btnRegister";
@@ -182,7 +198,7 @@ namespace GUIApp {
 			// 
 			// txtName
 			// 
-			this->txtName->Location = System::Drawing::Point(157, 53);
+			this->txtName->Location = System::Drawing::Point(166, 51);
 			this->txtName->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtName->Name = L"txtName";
 			this->txtName->Size = System::Drawing::Size(100, 22);
@@ -191,7 +207,7 @@ namespace GUIApp {
 			// 
 			// txtLastname
 			// 
-			this->txtLastname->Location = System::Drawing::Point(157, 94);
+			this->txtLastname->Location = System::Drawing::Point(166, 92);
 			this->txtLastname->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtLastname->Name = L"txtLastname";
 			this->txtLastname->Size = System::Drawing::Size(100, 22);
@@ -199,7 +215,7 @@ namespace GUIApp {
 			// 
 			// txtDNI
 			// 
-			this->txtDNI->Location = System::Drawing::Point(157, 140);
+			this->txtDNI->Location = System::Drawing::Point(166, 138);
 			this->txtDNI->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtDNI->Name = L"txtDNI";
 			this->txtDNI->Size = System::Drawing::Size(100, 22);
@@ -207,7 +223,7 @@ namespace GUIApp {
 			// 
 			// txtPhone
 			// 
-			this->txtPhone->Location = System::Drawing::Point(157, 183);
+			this->txtPhone->Location = System::Drawing::Point(166, 181);
 			this->txtPhone->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtPhone->Name = L"txtPhone";
 			this->txtPhone->Size = System::Drawing::Size(100, 22);
@@ -215,7 +231,7 @@ namespace GUIApp {
 			// 
 			// txtUsername
 			// 
-			this->txtUsername->Location = System::Drawing::Point(157, 226);
+			this->txtUsername->Location = System::Drawing::Point(166, 224);
 			this->txtUsername->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtUsername->Name = L"txtUsername";
 			this->txtUsername->Size = System::Drawing::Size(100, 22);
@@ -223,7 +239,7 @@ namespace GUIApp {
 			// 
 			// txtPassword
 			// 
-			this->txtPassword->Location = System::Drawing::Point(157, 270);
+			this->txtPassword->Location = System::Drawing::Point(166, 268);
 			this->txtPassword->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->txtPassword->Name = L"txtPassword";
 			this->txtPassword->Size = System::Drawing::Size(100, 22);
@@ -232,7 +248,9 @@ namespace GUIApp {
 			// 
 			// btn_back
 			// 
-			this->btn_back->Location = System::Drawing::Point(423, 13);
+			this->btn_back->Font = (gcnew System::Drawing::Font(L"Elephant", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btn_back->Location = System::Drawing::Point(13, 13);
 			this->btn_back->Margin = System::Windows::Forms::Padding(4);
 			this->btn_back->Name = L"btn_back";
 			this->btn_back->Size = System::Drawing::Size(109, 25);
@@ -256,6 +274,8 @@ namespace GUIApp {
 			// 
 			// button1
 			// 
+			this->button1->Font = (gcnew System::Drawing::Font(L"Elephant", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->button1->Location = System::Drawing::Point(363, 270);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(101, 31);
@@ -267,9 +287,11 @@ namespace GUIApp {
 			// radioButton2
 			// 
 			this->radioButton2->AutoSize = true;
+			this->radioButton2->Font = (gcnew System::Drawing::Font(L"Elephant", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->radioButton2->Location = System::Drawing::Point(325, 330);
 			this->radioButton2->Name = L"radioButton2";
-			this->radioButton2->Size = System::Drawing::Size(89, 20);
+			this->radioButton2->Size = System::Drawing::Size(111, 24);
 			this->radioButton2->TabIndex = 20;
 			this->radioButton2->TabStop = true;
 			this->radioButton2->Text = L"Conductor";
@@ -279,9 +301,11 @@ namespace GUIApp {
 			// radioButton1
 			// 
 			this->radioButton1->AutoSize = true;
+			this->radioButton1->Font = (gcnew System::Drawing::Font(L"Elephant", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->radioButton1->Location = System::Drawing::Point(183, 330);
 			this->radioButton1->Name = L"radioButton1";
-			this->radioButton1->Size = System::Drawing::Size(83, 20);
+			this->radioButton1->Size = System::Drawing::Size(97, 24);
 			this->radioButton1->TabIndex = 19;
 			this->radioButton1->TabStop = true;
 			this->radioButton1->Text = L"Pasajero";
@@ -292,6 +316,7 @@ namespace GUIApp {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackColor = System::Drawing::SystemColors::ActiveCaption;
 			this->ClientSize = System::Drawing::Size(611, 438);
 			this->Controls->Add(this->radioButton2);
 			this->Controls->Add(this->radioButton1);
@@ -314,7 +339,7 @@ namespace GUIApp {
 			this->Controls->Add(this->label1);
 			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"RegisterForm";
-			this->Text = L"RegisterForm";
+			this->Text = L"Formulario de registro";
 			this->Load += gcnew System::EventHandler(this, &RegisterForm::RegisterForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->FotoUserReg))->EndInit();
 			this->ResumeLayout(false);

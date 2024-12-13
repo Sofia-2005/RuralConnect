@@ -134,10 +134,10 @@ namespace GUIApp {
 			// button1
 			// 
 			this->button1->BackColor = System::Drawing::SystemColors::AppWorkspace;
-			this->button1->Location = System::Drawing::Point(436, 402);
+			this->button1->Location = System::Drawing::Point(421, 402);
 			this->button1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(84, 55);
+			this->button1->Size = System::Drawing::Size(110, 55);
 			this->button1->TabIndex = 29;
 			this->button1->Text = L"Calificar";
 			this->button1->UseVisualStyleBackColor = false;
@@ -160,9 +160,9 @@ namespace GUIApp {
 				static_cast<System::Byte>(0)));
 			this->label4->Location = System::Drawing::Point(55, 251);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(31, 16);
+			this->label4->Size = System::Drawing::Size(35, 16);
 			this->label4->TabIndex = 23;
-			this->label4->Text = L"DNI";
+			this->label4->Text = L"DNI:";
 			// 
 			// label3
 			// 
@@ -171,9 +171,9 @@ namespace GUIApp {
 				static_cast<System::Byte>(0)));
 			this->label3->Location = System::Drawing::Point(55, 290);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(128, 16);
+			this->label3->Size = System::Drawing::Size(132, 16);
 			this->label3->TabIndex = 22;
-			this->label3->Text = L"Calificación Actual";
+			this->label3->Text = L"Calificación Actual:";
 			// 
 			// label2
 			// 
@@ -182,9 +182,9 @@ namespace GUIApp {
 				static_cast<System::Byte>(0)));
 			this->label2->Location = System::Drawing::Point(55, 210);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(58, 16);
+			this->label2->Size = System::Drawing::Size(62, 16);
 			this->label2->TabIndex = 21;
-			this->label2->Text = L"Apellido";
+			this->label2->Text = L"Apellido:";
 			// 
 			// label1
 			// 
@@ -193,9 +193,9 @@ namespace GUIApp {
 				static_cast<System::Byte>(0)));
 			this->label1->Location = System::Drawing::Point(56, 167);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(57, 16);
+			this->label1->Size = System::Drawing::Size(61, 16);
 			this->label1->TabIndex = 20;
-			this->label1->Text = L"Nombre";
+			this->label1->Text = L"Nombre:";
 			// 
 			// label5
 			// 
@@ -360,6 +360,7 @@ namespace GUIApp {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackColor = System::Drawing::SystemColors::ActiveCaption;
 			this->ClientSize = System::Drawing::Size(573, 525);
 			this->Controls->Add(this->label11);
 			this->Controls->Add(this->label10);
@@ -385,7 +386,7 @@ namespace GUIApp {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Name = L"CalificacionPassenger";
-			this->Text = L"CalificacionPassenger";
+			this->Text = L"Formulario de calificación del pasajero";
 			this->Load += gcnew System::EventHandler(this, &CalificacionPassenger::CalificacionPassenger_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PhotoConductor))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();

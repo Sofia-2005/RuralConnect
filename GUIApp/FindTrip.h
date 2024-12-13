@@ -122,10 +122,10 @@ namespace GUIApp {
 			// 
 			this->btnFindTrip->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btnFindTrip->Location = System::Drawing::Point(81, 384);
+			this->btnFindTrip->Location = System::Drawing::Point(64, 448);
 			this->btnFindTrip->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnFindTrip->Name = L"btnFindTrip";
-			this->btnFindTrip->Size = System::Drawing::Size(152, 48);
+			this->btnFindTrip->Size = System::Drawing::Size(178, 74);
 			this->btnFindTrip->TabIndex = 13;
 			this->btnFindTrip->Text = L"Confirmar destino";
 			this->btnFindTrip->UseVisualStyleBackColor = true;
@@ -151,18 +151,18 @@ namespace GUIApp {
 			this->label4->AutoSize = true;
 			this->label4->Location = System::Drawing::Point(32, 190);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(259, 16);
+			this->label4->Size = System::Drawing::Size(262, 16);
 			this->label4->TabIndex = 16;
-			this->label4->Text = L"Haz click en el mapa para elegir tu destino";
+			this->label4->Text = L"Haz click en el mapa para elegir tu destino.\r\n";
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
 			this->label2->Location = System::Drawing::Point(32, 62);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(237, 16);
+			this->label2->Size = System::Drawing::Size(272, 16);
 			this->label2->TabIndex = 17;
-			this->label2->Text = L"El punto rojo indica su ubicación actual";
+			this->label2->Text = L"Nota: El punto rojo indica su ubicación actual";
 			// 
 			// FindTrip
 			// 
