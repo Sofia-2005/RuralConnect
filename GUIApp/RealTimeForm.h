@@ -114,10 +114,12 @@ namespace GUIApp {
 			// 
 			// btnBack
 			// 
-			this->btnBack->Location = System::Drawing::Point(9, 10);
-			this->btnBack->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->btnBack->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btnBack->Location = System::Drawing::Point(12, 12);
+			this->btnBack->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnBack->Name = L"btnBack";
-			this->btnBack->Size = System::Drawing::Size(61, 20);
+			this->btnBack->Size = System::Drawing::Size(81, 25);
 			this->btnBack->TabIndex = 12;
 			this->btnBack->Text = L"Volver";
 			this->btnBack->UseVisualStyleBackColor = true;
@@ -125,10 +127,12 @@ namespace GUIApp {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(22, 85);
-			this->button1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->button1->Font = (gcnew System::Drawing::Font(L"Elephant", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button1->Location = System::Drawing::Point(31, 105);
+			this->button1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(96, 32);
+			this->button1->Size = System::Drawing::Size(128, 39);
 			this->button1->TabIndex = 18;
 			this->button1->Text = L"RECLAMO";
 			this->button1->UseVisualStyleBackColor = true;
@@ -136,12 +140,12 @@ namespace GUIApp {
 			// 
 			// button2
 			// 
-			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->button2->Font = (gcnew System::Drawing::Font(L"Elephant", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button2->Location = System::Drawing::Point(26, 137);
-			this->button2->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->button2->Location = System::Drawing::Point(35, 169);
+			this->button2->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(92, 30);
+			this->button2->Size = System::Drawing::Size(123, 37);
 			this->button2->TabIndex = 19;
 			this->button2->Text = L"SOS";
 			this->button2->UseVisualStyleBackColor = true;
@@ -150,10 +154,10 @@ namespace GUIApp {
 			// pictureBox1
 			// 
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(155, 20);
-			this->pictureBox1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->pictureBox1->Location = System::Drawing::Point(207, 25);
+			this->pictureBox1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(736, 413);
+			this->pictureBox1->Size = System::Drawing::Size(981, 508);
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			this->pictureBox1->TabIndex = 20;
 			this->pictureBox1->TabStop = false;
@@ -161,10 +165,12 @@ namespace GUIApp {
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(34, 376);
-			this->button3->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->button3->Font = (gcnew System::Drawing::Font(L"Elephant", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button3->Location = System::Drawing::Point(35, 444);
+			this->button3->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(92, 30);
+			this->button3->Size = System::Drawing::Size(141, 54);
 			this->button3->TabIndex = 21;
 			this->button3->Text = L"Terminar viaje";
 			this->button3->UseVisualStyleBackColor = true;
@@ -172,17 +178,19 @@ namespace GUIApp {
 			// 
 			// RealTimeForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(920, 443);
+			this->BackColor = System::Drawing::SystemColors::ActiveCaption;
+			this->ClientSize = System::Drawing::Size(1227, 545);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->btnBack);
-			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"RealTimeForm";
-			this->Text = L"RealTimeForm";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
+			this->Text = L"Viaje en Curso";
 			this->Load += gcnew System::EventHandler(this, &RealTimeForm::RealTimeForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
