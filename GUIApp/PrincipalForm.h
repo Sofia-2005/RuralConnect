@@ -125,7 +125,7 @@ namespace GUIApp {
 			this->btnLogout->Location = System::Drawing::Point(9, 15);
 			this->btnLogout->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnLogout->Name = L"btnLogout";
-			this->btnLogout->Size = System::Drawing::Size(114, 23);
+			this->btnLogout->Size = System::Drawing::Size(114, 39);
 			this->btnLogout->TabIndex = 2;
 			this->btnLogout->Text = L"LOGOUT";
 			this->btnLogout->UseVisualStyleBackColor = true;
@@ -298,6 +298,7 @@ namespace GUIApp {
 			this->HelpButton = true;
 			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"MyForm";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Formulario principal";
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PhotoPasajero))->EndInit();

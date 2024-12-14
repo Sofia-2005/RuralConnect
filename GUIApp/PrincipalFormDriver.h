@@ -68,7 +68,7 @@ namespace GUIApp {
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Label^ label5;
-	private: System::Windows::Forms::Button^ btn_CompletedTripReport;
+
 	private: System::Windows::Forms::Button^ btnLogout;
 
 
@@ -104,7 +104,6 @@ namespace GUIApp {
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label5 = (gcnew System::Windows::Forms::Label());
-			this->btn_CompletedTripReport = (gcnew System::Windows::Forms::Button());
 			this->btnLogout = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PhotoDriver))->BeginInit();
@@ -114,15 +113,19 @@ namespace GUIApp {
 			// 
 			this->label4->AutoSize = true;
 			this->label4->BackColor = System::Drawing::SystemColors::ActiveCaption;
+			this->label4->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->label4->Location = System::Drawing::Point(369, 61);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(95, 16);
+			this->label4->Size = System::Drawing::Size(96, 16);
 			this->label4->TabIndex = 16;
 			this->label4->Text = L"BIENVENIDO :";
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(319, 328);
+			this->button3->Font = (gcnew System::Drawing::Font(L"Elephant", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button3->Location = System::Drawing::Point(319, 285);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(208, 79);
 			this->button3->TabIndex = 14;
@@ -133,9 +136,11 @@ namespace GUIApp {
 			// label2
 			// 
 			this->label2->AutoSize = true;
+			this->label2->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->label2->Location = System::Drawing::Point(261, 157);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(79, 16);
+			this->label2->Size = System::Drawing::Size(87, 16);
 			this->label2->TabIndex = 12;
 			this->label2->Text = L"Calificación:";
 			this->label2->Click += gcnew System::EventHandler(this, &PrincipalFormDriver::label2_Click);
@@ -154,7 +159,7 @@ namespace GUIApp {
 			// 
 			// pB
 			// 
-			this->pB->Location = System::Drawing::Point(351, 150);
+			this->pB->Location = System::Drawing::Point(356, 154);
 			this->pB->Name = L"pB";
 			this->pB->Size = System::Drawing::Size(158, 23);
 			this->pB->TabIndex = 15;
@@ -164,41 +169,51 @@ namespace GUIApp {
 			// label1
 			// 
 			this->label1->AutoSize = true;
+			this->label1->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->label1->Location = System::Drawing::Point(261, 191);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(164, 16);
+			this->label1->Size = System::Drawing::Size(173, 16);
 			this->label1->TabIndex = 18;
 			this->label1->Text = L"N° de viajes completados:";
 			// 
 			// txtCompletedTrips
 			// 
 			this->txtCompletedTrips->AutoSize = true;
-			this->txtCompletedTrips->Location = System::Drawing::Point(431, 191);
+			this->txtCompletedTrips->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->txtCompletedTrips->Location = System::Drawing::Point(447, 191);
 			this->txtCompletedTrips->Name = L"txtCompletedTrips";
-			this->txtCompletedTrips->Size = System::Drawing::Size(177, 16);
+			this->txtCompletedTrips->Size = System::Drawing::Size(187, 16);
 			this->txtCompletedTrips->TabIndex = 20;
 			this->txtCompletedTrips->Text = L"Cant. de viajes completados";
 			// 
 			// txtScore
 			// 
 			this->txtScore->AutoSize = true;
-			this->txtScore->Location = System::Drawing::Point(531, 157);
+			this->txtScore->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->txtScore->Location = System::Drawing::Point(524, 157);
 			this->txtScore->Name = L"txtScore";
-			this->txtScore->Size = System::Drawing::Size(73, 16);
+			this->txtScore->Size = System::Drawing::Size(82, 16);
 			this->txtScore->TabIndex = 19;
 			this->txtScore->Text = L"Puntuación";
 			// 
 			// txtDriverName
 			// 
 			this->txtDriverName->AutoSize = true;
+			this->txtDriverName->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->txtDriverName->Location = System::Drawing::Point(348, 102);
 			this->txtDriverName->Name = L"txtDriverName";
-			this->txtDriverName->Size = System::Drawing::Size(140, 16);
+			this->txtDriverName->Size = System::Drawing::Size(150, 16);
 			this->txtDriverName->TabIndex = 17;
 			this->txtDriverName->Text = L"Nombre del conductor";
 			// 
 			// button1
 			// 
+			this->button1->Font = (gcnew System::Drawing::Font(L"Elephant", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->button1->Location = System::Drawing::Point(55, 309);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(130, 37);
@@ -209,37 +224,33 @@ namespace GUIApp {
 			// label3
 			// 
 			this->label3->AutoSize = true;
+			this->label3->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->label3->Location = System::Drawing::Point(261, 224);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(104, 16);
+			this->label3->Size = System::Drawing::Size(110, 16);
 			this->label3->TabIndex = 22;
 			this->label3->Text = L"Modelo de auto:";
 			// 
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(373, 224);
+			this->label5->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label5->Location = System::Drawing::Point(377, 224);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(91, 16);
+			this->label5->Size = System::Drawing::Size(100, 16);
 			this->label5->TabIndex = 23;
 			this->label5->Text = L"Audi Z32 Gray";
 			// 
-			// btn_CompletedTripReport
-			// 
-			this->btn_CompletedTripReport->Location = System::Drawing::Point(323, 275);
-			this->btn_CompletedTripReport->Name = L"btn_CompletedTripReport";
-			this->btn_CompletedTripReport->Size = System::Drawing::Size(204, 47);
-			this->btn_CompletedTripReport->TabIndex = 24;
-			this->btn_CompletedTripReport->Text = L"Reporte de viajes completados";
-			this->btn_CompletedTripReport->UseVisualStyleBackColor = true;
-			this->btn_CompletedTripReport->Click += gcnew System::EventHandler(this, &PrincipalFormDriver::btn_CompletedTripReport_Click);
-			// 
 			// btnLogout
 			// 
+			this->btnLogout->Font = (gcnew System::Drawing::Font(L"Elephant", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->btnLogout->Location = System::Drawing::Point(12, 11);
 			this->btnLogout->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->btnLogout->Name = L"btnLogout";
-			this->btnLogout->Size = System::Drawing::Size(93, 23);
+			this->btnLogout->Size = System::Drawing::Size(110, 29);
 			this->btnLogout->TabIndex = 25;
 			this->btnLogout->Text = L"LOGOUT";
 			this->btnLogout->UseVisualStyleBackColor = true;
@@ -247,10 +258,12 @@ namespace GUIApp {
 			// 
 			// button2
 			// 
+			this->button2->Font = (gcnew System::Drawing::Font(L"Elephant", 7.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->button2->Location = System::Drawing::Point(483, 11);
 			this->button2->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(144, 31);
+			this->button2->Size = System::Drawing::Size(144, 38);
 			this->button2->TabIndex = 26;
 			this->button2->Text = L"Eliminar cuenta";
 			this->button2->UseVisualStyleBackColor = true;
@@ -260,10 +273,10 @@ namespace GUIApp {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackColor = System::Drawing::SystemColors::ActiveCaption;
 			this->ClientSize = System::Drawing::Size(640, 419);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->btnLogout);
-			this->Controls->Add(this->btn_CompletedTripReport);
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->button1);
@@ -277,6 +290,7 @@ namespace GUIApp {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->PhotoDriver);
 			this->Name = L"PrincipalFormDriver";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Formulario principal del conductor";
 			this->Load += gcnew System::EventHandler(this, &PrincipalFormDriver::PrincipalFormDriver_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PhotoDriver))->EndInit();

@@ -216,6 +216,7 @@ namespace GUIApp {
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->AmountOfCompletedTripsByDriverChart);
 			this->Name = L"ReportForm";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Reportes ";
 			this->Load += gcnew System::EventHandler(this, &ReportForm::ReportForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->AmountOfCompletedTripsByDriverChart))->EndInit();

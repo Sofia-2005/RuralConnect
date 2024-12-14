@@ -191,6 +191,7 @@ namespace GUIApp {
 			this->Controls->Add(this->label1);
 			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"SelectRouteDriver";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Elegir Ruta";
 			this->Load += gcnew System::EventHandler(this, &SelectRouteDriver::SelectRouteDriver_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();

@@ -115,7 +115,7 @@ namespace GUIApp {
 			this->label1->AutoSize = true;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(32, 154);
+			this->label1->Location = System::Drawing::Point(14, 154);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(138, 16);
 			this->label1->TabIndex = 4;
@@ -155,7 +155,7 @@ namespace GUIApp {
 			this->label4->AutoSize = true;
 			this->label4->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label4->Location = System::Drawing::Point(27, 189);
+			this->label4->Location = System::Drawing::Point(12, 189);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(286, 16);
 			this->label4->TabIndex = 16;
@@ -166,7 +166,7 @@ namespace GUIApp {
 			this->label2->AutoSize = true;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label2->Location = System::Drawing::Point(22, 62);
+			this->label2->Location = System::Drawing::Point(9, 62);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(304, 16);
 			this->label2->TabIndex = 17;
