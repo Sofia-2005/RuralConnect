@@ -192,6 +192,7 @@ namespace GUIApp {
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->label1);
 			this->Name = L"SelectRoutePassenger";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"SelectRoutePassenger";
 			this->Load += gcnew System::EventHandler(this, &SelectRoutePassenger::SelectRoutePassenger_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();

@@ -257,6 +257,11 @@ private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows:
 		y2 = a1[1];
 		g->DrawLine(pen, x, y, x2, y2);
 	}
+
+	x = (int)((-12.0723561226158 - latTopLeft) / (latBottomRight - latTopLeft) * width);
+	y = (int)((-77.0790978410596 - lonTopLeft) / (lonBottomRight - lonTopLeft) * height);
+
+	g->FillEllipse(System::Drawing::Brushes::Orange, x - radius, y - radius, radius * 2, radius * 2);
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 	conductor = Service::QueryDriverbyUsername(conductor->Username);

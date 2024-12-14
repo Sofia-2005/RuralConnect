@@ -27,7 +27,7 @@ namespace GUIApp {
 
 	private: System::Windows::Forms::ComboBox^ cmbRutas;
 
-	private: System::Windows::Forms::Label^ label2;
+
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Button^ button1;
 	public:
@@ -92,7 +92,6 @@ namespace GUIApp {
 			this->btnBack = (gcnew System::Windows::Forms::Button());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->cmbRutas = (gcnew System::Windows::Forms::ComboBox());
-			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
@@ -142,17 +141,6 @@ namespace GUIApp {
 			this->cmbRutas->TabIndex = 10;
 			this->cmbRutas->SelectedIndexChanged += gcnew System::EventHandler(this, &SelectRouteDriver::cmbRutas_SelectedIndexChanged);
 			// 
-			// label2
-			// 
-			this->label2->AutoSize = true;
-			this->label2->Font = (gcnew System::Drawing::Font(L"Britannic Bold", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label2->Location = System::Drawing::Point(192, 54);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(313, 16);
-			this->label2->TabIndex = 11;
-			this->label2->Text = L"La ruta seleccionada se muestra de color verde";
-			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
@@ -184,7 +172,6 @@ namespace GUIApp {
 			this->ClientSize = System::Drawing::Size(1360, 628);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->label3);
-			this->Controls->Add(this->label2);
 			this->Controls->Add(this->cmbRutas);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->btnBack);
